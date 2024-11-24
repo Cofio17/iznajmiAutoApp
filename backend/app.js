@@ -23,14 +23,14 @@ mongoose.connect(process.env.MONGO_URL)
 
 //middleware
 app.use(cors());
-app.use(express.json()); //mora se dodati za post zahtev kako bi se mogao primiti json na server
+app.use(express.json()); //needed so the server can receive json data in post request
 
 
 //routes
-app.use('/cars', itemsRouter);
+app.use('/cars', itemsRouter); //cars route - incomplete
 app.use('/', reservationsRouter); //izbaciti
-app.use("/api/calendar", calendarRoute); //kalendar ruta
-app.use('/company', companyRouter);
+app.use("/api/calendar", calendarRoute); //calendar route
+app.use('/company', companyRouter); // companies route
 
 app.get('/', (req, res) => {
     res.send('home page');

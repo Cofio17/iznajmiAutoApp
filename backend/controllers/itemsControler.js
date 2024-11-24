@@ -1,3 +1,6 @@
+const Car = require('../models/car');
+
+//potebno je povuci podatke iz baze umesto prop podataka
 let cars = [
     {
         id: 1,
@@ -42,12 +45,6 @@ const getAllICars = (req, res) => {
     res.status(200).json({ successful: true, data: cars })
 }
 
-/**
- * prvo trazimo auto na osnovu id, uporedjuje sa id iz liste i id iz requesta
- * ako je car false onda se salje error 404
- * ako nije prazan salje se auto
- * u catch se stavlja error vezan za probleme sa serverom code: 500>
- */
 const getCarById = (req, res) => {
     try {
         const { itemID } = req.params;

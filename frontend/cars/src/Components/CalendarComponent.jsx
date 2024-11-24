@@ -10,7 +10,7 @@ export default function CalendarComponent({ calendarId, carId, fetchDates }) {
     const [loading, setLoading] = useState(true);
     const [busyDays, setBusyDays] = useState([]);
 
-    // Simulacija podataka
+    // Data simulation 
     const disabledDays = [
         new Date(2024, 10, 5),
         new Date(2024, 10, 7),
@@ -18,8 +18,9 @@ export default function CalendarComponent({ calendarId, carId, fetchDates }) {
     ];
 
 
-    // Provera opsega datuma da li je bilo koji datum zauzet
+
     useEffect(() => {
+        // checking if range is valid
         function checkValidRange() {
             if (date.length === 2) {
                 let isDisabled = false;
@@ -36,6 +37,7 @@ export default function CalendarComponent({ calendarId, carId, fetchDates }) {
             }
         }
 
+        //function that returns busy dates for specific car/calendar depending on calendar ID 
         const getBusyDates = async () => {
             try {
                 console.log(calendarId);
@@ -55,14 +57,14 @@ export default function CalendarComponent({ calendarId, carId, fetchDates }) {
             }
         }
 
-
+        //iteration through busy days
         const iteratediabledDays = () => {
             busyDays.forEach((busyEvent) => {
                 let { start, end } = busyEvent;
 
                 while (new Date(start).toDateString() !== new Date(end).toDateString()) {
                     const day = new Date(start);
-                    day.setDate(day.getDate() + 1); //povecavanje dana za 1
+                    day.setDate(day.getDate() + 1); //increasing days for 1
                     console.log(`dani ${day.toDateString()}`);
                     start = day;
                 }
@@ -74,23 +76,23 @@ export default function CalendarComponent({ calendarId, carId, fetchDates }) {
         checkValidRange();
     }, []);  // izbaceno date i disabledDays
 
-    // Onemogućavanje određenih dana u kalendaru
+    // Functions for disabling specific days in a calendar
     const disableDays = ({ date }) => {
         return busyDays.some((busyEvent) => {
             let { start, end } = busyEvent;
 
-            // Pretvaranje start i end u Date objekte
+
             start = new Date(start);
             end = new Date(end);
 
-            // Petlja koja proverava sve datume između start i end
+            // iterating through start to end date
             while (start <= end) {
                 if (start.toDateString() === date.toDateString()) {
-                    return true; // Datum je zauzet
+                    return true; // date is busy
                 }
-                start.setDate(start.getDate() + 1); // Povećava datum za jedan dan
+                start.setDate(start.getDate() + 1); // //increasing days for 1
             }
-            return false; // Datum nije zauzet
+            return false; // date !busy
         });
     };
 
@@ -136,15 +138,15 @@ export default function CalendarComponent({ calendarId, carId, fetchDates }) {
             <Calendar
                 view="month"
                 selectRange={true}
-                tileDisabled={disableDays} // Onemogućava zauzete datume
+                tileDisabled={disableDays} // Disabling days
                 value={date}
-                onChange={handleDateChange} // Pokreće proveru kada se datum menja
+                onChange={handleDateChange} // Check when the date is changed if the range is valid *incomplete
                 allowPartialRange={false}
             />
             {date.length > 1 && (
                 <p>Izabrani datum: {`${date[0].toDateString()} - ${date[1].toDateString()}`}</p>
             )}
-            {error && <p style={{ color: 'red' }}>{error}</p>} {/* Prikaz greške */}
+            {error && <p style={{ color: 'red' }}>{error}</p>}
         </div>
     );
 }

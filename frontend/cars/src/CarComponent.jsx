@@ -29,7 +29,7 @@ export default function Car() {
     const postDataToServer = async () => {
         if (selectedDate.length !== 2) {
             console.log("Invalid date selection:", selectedDate);
-            return; // Prekini ako nema dovoljno podataka
+            return;
         }
         try {
             const [startDate, endDate] = selectedDate;

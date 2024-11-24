@@ -1,5 +1,6 @@
 const { writeFile } = require('fs');
 
+//method for saving reservtions data- incomplete
 function reservationsPost(req, res) {
     console.log(`Received data ${JSON.stringify(req.body, null, 2)}`);
     writeFile('./reservations.txt', JSON.stringify(req.body, null, 2) + '\n', { flag: 'a' }, (err) => {

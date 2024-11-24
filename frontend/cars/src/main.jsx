@@ -4,10 +4,10 @@ import './index.css'
 import App from './App.jsx'
 import Car from './CarComponent.jsx'
 import ErrorPage from './ErrorPage.jsx'
-//importovan router
+//router imported
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
-//router dodeljen promeljivoj router
+//Instancing router
 const router = createBrowserRouter([
 
   {

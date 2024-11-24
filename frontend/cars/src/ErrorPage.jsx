@@ -1,9 +1,7 @@
 import { Link } from 'react-router-dom'
 export default function ErrorPage({ error }) {
     /**
-     * u html oba izgleda kao <a>
-     * Glavna razlika je sto ce element a da uradi refrech cele stranice
-     * a Link koristi CSR i js i pomocu toga bez refresha radi kretanje
+     * Error page that renders if the searched URL is non existent
      */
     return (
         <div className=''>

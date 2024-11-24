@@ -3,6 +3,10 @@ const { createEvent, accessBusyDates } = require("../service/googleCalendar.js")
 
 const router = express.Router();
 
+/**
+ * POST method for event creation
+ * data is received and sent to createEvent Function
+ */
 router.post("/create-event", async (req, res) => {
     const { summary, description, start, end, calendarId } = req.body;
 
