@@ -1,5 +1,3 @@
-﻿# Car-Managment-Web-App
-
  # Car Rental Platform
 
 ## Overview  
