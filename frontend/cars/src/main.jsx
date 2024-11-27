@@ -4,6 +4,7 @@ import './index.css'
 import App from './App.jsx'
 import Car from './CarComponent.jsx'
 import ErrorPage from './ErrorPage.jsx'
+import HomePage from './Pages/HomePage.jsx'
 //router imported
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
@@ -12,14 +13,19 @@ const router = createBrowserRouter([
 
   {
     path: '/',
-    element: <App />,
+    element: <HomePage />,
     errorElement: <ErrorPage />,
+  },
+  {
+    path: "/cars",
+    element: <App />
   },
   {
     path: '/car/:carId',
     element: <Car />,
     errorElement: <ErrorPage />
   },
+
 
 ]);
 createRoot(document.getElementById('root')).render(

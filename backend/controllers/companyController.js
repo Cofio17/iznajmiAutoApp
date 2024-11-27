@@ -1,4 +1,6 @@
 const Company = require('../models/company');
+
+//Get all companies from db 
 const getAllCompanies = async (req, res) => {
     try {
         const response = await Company.find();
@@ -8,6 +10,7 @@ const getAllCompanies = async (req, res) => {
     }
 }
 
+//insert company in a db
 const insertCompany = async (req, res) => {
     const { name, location } = req.body;
     try {

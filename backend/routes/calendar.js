@@ -5,9 +5,10 @@ const router = express.Router();
 
 /**
  * POST method for event creation
- * data is received and sent to createEvent Function
+ * data is received and sent to 'createEvent' Function
  */
 router.post("/create-event", async (req, res) => {
+    //necessary data for creating an event
     const { summary, description, start, end, calendarId } = req.body;
 
     const eventDetails = {
@@ -23,10 +24,8 @@ router.post("/create-event", async (req, res) => {
         },
         calendarId: calendarId
     };
-
-
-
     try {
+        //creating an event
         const event = await createEvent(eventDetails);
         console.log(`event created: ${event}`);
         res.status(200).json({ message: "Event created", eventLink: event.htmlLink });
@@ -36,7 +35,10 @@ router.post("/create-event", async (req, res) => {
     }
 });
 
-
+/**
+ * POST method for receiving busy dates
+ * data is received and sent to 'accessBusyDates' Function
+ */
 router.post('/get-busy-dates', async (req, res) => {
     try {
         const { calendarId } = req.body;

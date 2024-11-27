@@ -2,8 +2,10 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 import ErrorPage from './ErrorPage';
+import './style.scss'
 import CalendarComponent from './Components/CalendarComponent';
 import formatDate from './utils/convertDate';
+import Header from './Components/Header';
 
 
 export default function Car() {
@@ -40,7 +42,7 @@ export default function Car() {
                     number: number,
 
                 },
-                description: `Zakazan Auto: ${carData.name}: ${carData.tablice}`,
+                description: `Zakazan Auto: ${carData.brand}: ${carData.licensePlate}`,
                 start: {
                     dateTime: formatDate(startDate)
                 },
@@ -65,6 +67,7 @@ export default function Car() {
             try {
                 setLoading(true);
                 const response = await axios.get(`http://localhost:5000/cars/${params.carId}`)
+
                 setCarData(response.data.data);
                 setError(false);
             }
@@ -78,6 +81,9 @@ export default function Car() {
         fetchCarData();
     }, [])
 
+
+
+
     if (loading) {
         return <p>Data is loading</p>
     }
@@ -85,8 +91,9 @@ export default function Car() {
         return <ErrorPage error={error} />
     }
 
-    return (
-        <div>
+    return (<>
+        <Header />
+        <div className='container'>
             <h1>Car Page {params.carId}</h1>
             <h2>Car {carData.name}</h2> <br />
             <h3>Tablice: {carData.tablice}</h3>
@@ -102,9 +109,9 @@ export default function Car() {
             <input type="email" id='email' value={email} onChange={(e) => { setEmail(e.target.value) }} />
 
             <button onClick={postDataToServer}>Make a reservation</button>
-
-
-
         </div>
+        <img className='car-image' src={carData.image} alt="car image" />
+    </>
+
     )
 }

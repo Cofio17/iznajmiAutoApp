@@ -15,8 +15,8 @@ async function createEvent(eventDetails) {
     console.log("event details: ", JSON.stringify(eventDetails, null, 2));
     console.log(eventDetails.calendarId);
 
-
-    //instance of a calendar 
+    //calendar = object of a calendar
+    //google.calendar = function from googleapis library
     const calendar = google.calendar({ version: "v3", auth });
 
     try {
@@ -34,6 +34,8 @@ async function createEvent(eventDetails) {
 
 //method for accessing busy days in a calendar 
 async function accessBusyDates(calendarId) {
+
+    //creating calendar object 
     const calendar = google.calendar({ version: "v3", auth });
 
 

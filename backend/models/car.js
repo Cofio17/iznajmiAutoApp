@@ -19,7 +19,7 @@ const carSchema = new Schema({
     features: { type: [String], default: [] },
     image: { type: String },
     description: { type: String },
-    companyId: { type: Schema.Types.ObjectId, ref: 'Company', required: true },
+    companyId: { type: Schema.Types.ObjectId, ref: 'Company' },
     categoryId: { type: Schema.Types.ObjectId, ref: 'Category' }
 });
 

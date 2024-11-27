@@ -1,11 +1,14 @@
 const express = require(`express`);
 const router = express.Router();
-const { getAllICars, getCarById } = require('../controllers/itemsControler.js');
+const { getAllCars, getCarById, insertCars } = require('../controllers/itemsControler.js');
 
 
-router.get('/', getAllICars);
+router.get('/', getAllCars);
+router.get('/save', insertCars);
 
 router.get('/:itemID', getCarById);
+
+
 
 module.exports = router;
 

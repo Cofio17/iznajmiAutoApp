@@ -5,9 +5,9 @@ export default function ErrorPage({ error }) {
      */
     return (
         <div className=''>
-            <h1>Oops, this page doesnt <b>exists</b></h1>
-            <Link to='/'>Home from router</Link> <br />
-            <a href="/">Home from a href</a>
+            <h1>Oops, this page doesnt <b>exist</b> Yet</h1>
+            <Link to='/'><b>Back to home Page</b></Link> <br />
+
 
             <h2>{error}</h2>
 
