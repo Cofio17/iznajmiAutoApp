@@ -6,6 +6,8 @@ import SectionItem from '../Components/SectionItem';
 
 export default function HomePage() {
 
+
+
     const sectionData = {
         header: "Iznajmite auto za svoje putovanje danas",
         details: "Pronađite, rezervišite i preuzmite vaš idealan rent-a-car vozilo, bez obzira na vašu lokaciju. Uz našu široku ponudu vozila, sigurni smo da ćete pronaći vozilo koje odgovara vašim potrebama.",

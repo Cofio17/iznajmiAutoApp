@@ -14,9 +14,6 @@ h1{
     color: $header-color;
 }
 
-%box-shadow{
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-}
 
 :root{
     background-color: $white-color;
@@ -34,6 +31,11 @@ body{
     color: $primary-color !important;
 }
 
+%box-shadow{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+
 @mixin flex-row (){
     display: flex;
     flex-direction: row;
@@ -48,20 +50,37 @@ body{
 .navlist{
     @include flex-row();
     position: sticky;
+    justify-content: space-between;
     list-style: none;
-    justify-content: space-around;
+    align-items: center;
     @extend %box-shadow;
+    padding: 0.4rem 1rem;
     img{
         height: 2.5rem;
         width: 120px;
+        margin-left: 1rem;
     }
-    padding: 1rem;
+    
     a{
         &:hover{
             color: $primary-color;
         }
     }
+
+.navlinks{
+    @include flex-row();
+    justify-self: center !important;
+    gap: 3rem;
 }
+}
+#login{
+    background-color: $primary-color !important; 
+    color: white;
+    transition: all 0.3s ease;
+    &:hover{
+    background-color: $darker-primary-color !important
+    }
+ }
 
 .section-container{
     @include flex-column();
@@ -75,11 +94,19 @@ body{
 
     h1{
         color: $header-color !important;
-        border-top: 3px solid black;
+       
     }
     p{
         color: $text-color-light;
         font-size: 1.2rem;
+    }
+    .gold-line {
+        display: inline-block; /* Omogućava kontrolisanu širinu */
+        width: 60px; 
+        height: 5px; 
+        background-color: $yellow-color; 
+        border-radius: 2px; 
+        margin: 0 auto; 
     }
 }
 
@@ -174,15 +201,52 @@ h2{
     z-index: 2;
 }
 
+/*Car Component*/
+.container-car{
+p, span ul, li, label{
+    color: black;
 
+   
+}
+}
 
+.company-name{
+    background-color: $yellow-color;
+    width: fit-content;
+    border-radius: 20px;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    color: $white-color;
+    font-weight: 500;
+}
+
+.container-car-data{
+    @include flex-column();
+    flex-wrap: wrap;
+    height: 150px;
+    background-color: $text-color;
+    border-radius: 15px;
+    width: fit-content;
+    gap: 1.2rem;
+    
+}
+
+.calendar-wrapper button{
+    border-radius: 0;
+}
 
 
 //obrisati kasnije
 
-    img{
+.car-image{
         height: 300px;
         width: 500px;
     }
+
+
+    .icon{
+        color: $gray !important;
+    }
+
 
 

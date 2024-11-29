@@ -1,11 +1,14 @@
 import { Link } from 'react-router-dom'
+import Header from './Components/Header'
 export default function ErrorPage({ error }) {
     /**
      * Error page that renders if the searched URL is non existent
      */
     return (
+
         <div className=''>
-            <h1>Oops, this page doesnt <b>exist</b> Yet</h1>
+            <Header />
+            <h1>Oops, this page doesnt <b>exist</b> Yet :&#40;</h1>
             <Link to='/'><b>Back to home Page</b></Link> <br />
 
 

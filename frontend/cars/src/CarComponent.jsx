@@ -6,7 +6,8 @@ import './style.scss'
 import CalendarComponent from './Components/CalendarComponent';
 import formatDate from './utils/convertDate';
 import Header from './Components/Header';
-
+import CarInfo from './Components/CarInfo';
+import ImageSlider from './Components/ImageSlider';
 
 export default function Car() {
     const params = useParams();
@@ -20,6 +21,29 @@ export default function Car() {
     //privremeno ovde
     const [email, setEmail] = useState('');
     const [number, setNumber] = useState('');
+
+
+
+    useEffect(() => {
+        const fetchCarData = async () => {
+            try {
+                setLoading(true);
+                const response = await axios.get(`http://localhost:5000/cars/${params.carId}`)
+
+                setCarData(response.data.data);
+                console.log(carData);
+
+                setError(false);
+            }
+            catch (err) {
+                setError(err);
+            }
+            finally {
+                setLoading(false);
+            }
+        }
+        fetchCarData();
+    }, [])
 
 
     //fetching data from child/calendar component
@@ -62,28 +86,6 @@ export default function Car() {
 
     };
 
-    useEffect(() => {
-        const fetchCarData = async () => {
-            try {
-                setLoading(true);
-                const response = await axios.get(`http://localhost:5000/cars/${params.carId}`)
-
-                setCarData(response.data.data);
-                setError(false);
-            }
-            catch (err) {
-                setError(err);
-            }
-            finally {
-                setLoading(false);
-            }
-        }
-        fetchCarData();
-    }, [])
-
-
-
-
     if (loading) {
         return <p>Data is loading</p>
     }
@@ -93,11 +95,17 @@ export default function Car() {
 
     return (<>
         <Header />
-        <div className='container'>
-            <h1>Car Page {params.carId}</h1>
-            <h2>Car {carData.name}</h2> <br />
-            <h3>Tablice: {carData.tablice}</h3>
+        <div className='container-car'>
 
+            <h2>{carData.brand} {carData.model} {carData.year}</h2>
+
+            <p className='company-name'>
+                {carData?.companyId?.name || 'Naziv Agencije'}
+            </p>
+
+            <ImageSlider />
+
+            <CarInfo carData={carData} />
 
             <CalendarComponent calendarId={carData.calendarId} fetchDates={handleSelectedData} carId={params.carId} />
             {/* fetchDates prop receives a fuctions that handles the selected dates and brings back to the this/parent component */}
@@ -110,7 +118,8 @@ export default function Car() {
 
             <button onClick={postDataToServer}>Make a reservation</button>
         </div>
-        <img className='car-image' src={carData.image} alt="car image" />
+        {/* <img className='car-image' src={carData.image} alt="car image" /> */}
+
     </>
 
     )

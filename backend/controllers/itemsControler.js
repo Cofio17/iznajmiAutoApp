@@ -50,7 +50,7 @@ const Car = require('../models/car');
 //get all cars from the db
 const getAllCars = async (req, res) => {
     try {
-        const response = await Car.find();
+        const response = await Car.find().populate('companyId');
         res.status(200).json({ message: 'Succesful', data: response })
     } catch (err) {
         res.status(500).json({ message: 'error getting cars', error: err.message })
@@ -63,7 +63,7 @@ const getAllCars = async (req, res) => {
 const getCarById = async (req, res) => {
     try {
         const { itemID } = req.params;
-        const car = await Car.findOne({ licensePlate: itemID });
+        const car = await Car.findOne({ licensePlate: itemID }).populate('companyId');
         if (!car) {
             return res.status(404).json({ success: false, data: 'This car doesnt exits' });
         }

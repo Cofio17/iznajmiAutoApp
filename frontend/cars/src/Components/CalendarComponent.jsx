@@ -6,36 +6,12 @@ import axios from 'axios';
 export default function CalendarComponent({ calendarId, carId, fetchDates }) {
     const [date, setDate] = useState([]);
     const [error, setError] = useState('');
-    // const [busyDates, setBusyDates] = useState(); //busy dates need to be implemnted into calendar
     const [loading, setLoading] = useState(true);
     const [busyDays, setBusyDays] = useState([]);
-
-    // Data simulation 
-    const disabledDays = [
-        new Date(2024, 10, 5),
-        new Date(2024, 10, 7),
-        new Date(2024, 10, 20),
-    ];
 
 
 
     useEffect(() => {
-        // checking if range is valid
-        function checkValidRange() {
-            if (date.length === 2) {
-                let isDisabled = false;
-                const datum = new Date(date[0]);
-                while (datum <= date[1]) {
-                    isDisabled = disabledDays.some(el => el.toDateString() === datum.toDateString());
-                    if (isDisabled) {
-                        setError(`Datum ${datum.toDateString()} je već zauzet`);
-                        return true;  // Datum je zauzet
-                    }
-                    datum.setDate(datum.getDate() + 1);
-                }
-                setError('');
-            }
-        }
 
         //function that returns busy dates for specific car/calendar depending on calendar ID 
         const getBusyDates = async () => {
@@ -57,30 +33,17 @@ export default function CalendarComponent({ calendarId, carId, fetchDates }) {
             }
         }
 
-        //iteration through busy days
-        const iteratediabledDays = () => {
-            busyDays.forEach((busyEvent) => {
-                let { start, end } = busyEvent;
 
-                while (new Date(start).toDateString() !== new Date(end).toDateString()) {
-                    const day = new Date(start);
-                    day.setDate(day.getDate() + 1); //increasing days for 1
-                    console.log(`dani ${day.toDateString()}`);
-                    start = day;
-                }
-            })
-        }
 
-        iteratediabledDays();
+
         getBusyDates();
-        checkValidRange();
-    }, []);  // izbaceno date i disabledDays
+
+    }, []);
 
     // Functions for disabling specific days in a calendar
     const disableDays = ({ date }) => {
         return busyDays.some((busyEvent) => {
             let { start, end } = busyEvent;
-
 
             start = new Date(start);
             end = new Date(end);
@@ -96,6 +59,24 @@ export default function CalendarComponent({ calendarId, carId, fetchDates }) {
         });
     };
 
+    //iteration through busy days
+    const iteratediabledDays = (date) => {
+        let isBusy = false;
+        busyDays.forEach((busyEvent) => {
+            let { start, end } = busyEvent;
+            while (new Date(start).toDateString() !== new Date(end).toDateString()) {
+                const day = new Date(start);
+                if (date.toDateString() === day.toDateString()) {
+                    isBusy = true;
+                    break;
+                }
+
+                day.setDate(day.getDate() + 1); //increase day for 1
+                start = day;
+            }
+        })
+        return isBusy;
+    }
 
     // Funkcija za odabir datuma, proverava da li je opseg validan
     const handleDateChange = (selectedDate) => {
@@ -103,10 +84,10 @@ export default function CalendarComponent({ calendarId, carId, fetchDates }) {
         if (Array.isArray(selectedDate) && selectedDate.length === 2) {
             const [startDate, endDate] = selectedDate;
             let invalidRange = false;
-            const datum = new Date(startDate);
+            let datum = new Date(startDate);
 
             while (datum <= endDate) {
-                if (disabledDays.some(disableDate => disableDate.toDateString() === datum.toDateString())) {
+                if (iteratediabledDays(datum)) {
                     invalidRange = true;
                     break;
                 }
@@ -115,16 +96,16 @@ export default function CalendarComponent({ calendarId, carId, fetchDates }) {
 
             if (invalidRange) {
                 setError('Opseg sadrži zauzeti datum. Molimo odaberite drugi opseg.');
-                setDate([]); // Resetuje selektovane datume
-                fetchDates([]);//salje izabrane datume u parent component
+                setDate([]); // Resseting selected dates
+                fetchDates([]);//sending selected dates to a parent component
             } else {
                 setError('');
-                setDate(selectedDate); // Ako je opseg validan, postavi ga
-                fetchDates(selectedDate);//salje izabrane datume u parent component
+                setDate(selectedDate); // if range is valid, set it
+                fetchDates(selectedDate);//sending selected dates to a parent component
             }
         } else {
-            setDate(selectedDate); // Ako je samo jedan datum izabran
-            fetchDates(selectedDate);//salje izabrane datume u parent component
+            setDate(selectedDate); // if only 1 date is selected
+            fetchDates(selectedDate);
         }
     };
 
@@ -140,8 +121,12 @@ export default function CalendarComponent({ calendarId, carId, fetchDates }) {
                 selectRange={true}
                 tileDisabled={disableDays} // Disabling days
                 value={date}
-                onChange={handleDateChange} // Check when the date is changed if the range is valid *incomplete
+                onChange={handleDateChange} // Check when the date is changed if the range is valid
                 allowPartialRange={false}
+                minDate={new Date(new Date().setDate(new Date().getDate() + 1))}
+                prev2Label={null}
+                next2Label={null}
+                maxDate={new Date(new Date().setMonth(new Date().getMonth() + 3))}
             />
             {date.length > 1 && (
                 <p>Izabrani datum: {`${date[0].toDateString()} - ${date[1].toDateString()}`}</p>

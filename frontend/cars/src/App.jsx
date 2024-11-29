@@ -13,7 +13,7 @@ function App() {
       try {
         const response = await axios.get('http://localhost:5000/cars');
         setCars(response.data.data);
-        console.log(response.data.data);
+
 
       } catch (error) {
         console.log(error);
@@ -31,9 +31,10 @@ function App() {
       <h1>Iznajmi me - Automobili</h1>
       <ul>
         {cars.map((car) => {
-          return <li key={car.id}><Link to={`/car/${car.licensePlate}`}>{car.brand} {car.model} {car.year}</Link></li>
+          return <li key={car.licensePlate}><Link to={`/car/${car.licensePlate}`}>{car.brand} {car.model} {car.year}</Link></li>
         })}
       </ul>
+
     </>
   )
 }
