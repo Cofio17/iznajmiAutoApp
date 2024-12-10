@@ -32,10 +32,6 @@ export default function CalendarComponent({ calendarId, carId, fetchDates }) {
                 setLoading(false);
             }
         }
-
-
-
-
         getBusyDates();
 
     }, []);
@@ -96,7 +92,7 @@ export default function CalendarComponent({ calendarId, carId, fetchDates }) {
 
             if (invalidRange) {
                 setError('Opseg sadrži zauzeti datum. Molimo odaberite drugi opseg.');
-                setDate([]); // Resseting selected dates
+                setDate([]); // Reseting selected dates
                 fetchDates([]);//sending selected dates to a parent component
             } else {
                 setError('');
@@ -129,9 +125,9 @@ export default function CalendarComponent({ calendarId, carId, fetchDates }) {
                 maxDate={new Date(new Date().setMonth(new Date().getMonth() + 3))}
             />
             {date.length > 1 && (
-                <p>Izabrani datum: {`${date[0].toDateString()} - ${date[1].toDateString()}`}</p>
+                <p>Selected date: <b>{`${date[0].toDateString()} - ${date[1].toDateString()}`}</b> </p>
             )}
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+            {error && <p>{error}</p>}
         </div>
     );
 }

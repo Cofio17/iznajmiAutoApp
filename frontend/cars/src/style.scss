@@ -7,14 +7,22 @@ $light-primary:#99D6B5;
 $yellow-color:#B69121;
 $gray: #6b6b6b;
 $text-color: #ebebeb;
+$text-color-headers: #444;
 $header-color: rgba(15, 23, 39, 0.85);
 $text-color-light: rgba(15, 23, 39, 0.45);
 
 h1{
     color: $header-color;
+    font-size: 3.2rem;
 }
 
+h2,h3{
+    color: $text-color-headers  ;
+}
 
+.error {
+    color: red;
+}
 :root{
     background-color: $white-color;
 }
@@ -27,6 +35,11 @@ body{
     margin: 0;
 }
 
+main{
+    margin-top: 70px ;
+    
+}
+
 .active{
     color: $primary-color !important;
 }
@@ -36,6 +49,27 @@ body{
 }
 
 
+
+
+
+@mixin button-style(){
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #48AD7E;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    a{
+        color: #fff;
+    }
+
+  &:hover{
+    background-color: #2D6A4F;
+  }
+}
 @mixin flex-row (){
     display: flex;
     flex-direction: row;
@@ -47,14 +81,29 @@ body{
     flex-direction: column;
 }
 
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; 
+    z-index: 100; 
+    background-color: #fff; 
+    margin-bottom: 100px;
+
+    @extend %box-shadow;
+}
+
+
+
 .navlist{
     @include flex-row();
-    position: sticky;
     justify-content: space-between;
     list-style: none;
     align-items: center;
-    @extend %box-shadow;
+    
+
     padding: 0.4rem 1rem;
+   
     img{
         height: 2.5rem;
         width: 120px;
@@ -93,8 +142,8 @@ body{
     border-radius: 15px;
 
     h1{
-        color: $header-color !important;
-       
+        color: $header-color !important; 
+        font-size: 2rem; 
     }
     p{
         color: $text-color-light;
@@ -107,6 +156,13 @@ body{
         background-color: $yellow-color; 
         border-radius: 2px; 
         margin: 0 auto; 
+    }
+
+    @media screen  and (max-width: 1050px){ 
+        gap: 30px;
+        margin: 3rem 0;
+        
+        
     }
 }
 
@@ -132,10 +188,13 @@ body{
 }
 
 .section-container-item-icon{
+    display: flex;
     height: 70px;
     width: 70px;
     background-color: #48AD7E;
     border-radius: 50%;
+    align-items: center;
+justify-content: center;    
 }
 
 
@@ -203,11 +262,54 @@ h2{
 
 /*Car Component*/
 .container-car{
-p, span ul, li, label{
+    // place-items: center;
+p, span ul, li, label,h2{
     color: black;
-
-   
 }
+
+h2 span{
+    color: $gray;
+}
+.container-car-upper{
+    @include flex-row();
+    justify-content: center;
+    align-items: center;
+    gap:2rem;
+}
+
+.container-car-calendar{
+    @include flex-column();
+    justify-content: center;
+    align-items: center;
+    gap:1rem;
+    margin-bottom: 2rem;
+}
+
+#price {
+    p{
+        color: #48AD7E;
+        font-size:1.5rem;
+    }
+    
+    padding: 5px 10px;
+    @extend %box-shadow;
+    border-radius: 15px;
+    width: 160px;
+    text-align: center;
+}
+
+.car-name-company-name{
+    @include flex-row();
+    justify-content: space-between;
+    margin: 0 0.7rem 0.3rem 0.7rem
+}
+
+}
+
+
+
+.button{
+    @include button-style();
 }
 
 .company-name{
@@ -222,13 +324,40 @@ p, span ul, li, label{
 
 .container-car-data{
     @include flex-column();
+    justify-content: center;
     flex-wrap: wrap;
-    height: 150px;
+    height: auto;
     background-color: $text-color;
     border-radius: 15px;
-    width: fit-content;
+    width: 40%;
     gap: 1.2rem;
-    
+    padding: 1.5rem;
+    margin: 2rem auto;
+
+    .content{
+        @include flex-row();
+        justify-content: space-around;
+        gap: 2rem;
+        hr{
+            margin: 0 0rem 0.5rem 0;
+        }
+        svg{
+            margin-right: 3px;
+        }
+        .features-list{
+            list-style: none;
+            padding: 0;
+        }
+
+       
+    }
+    @media screen and (max-width : 1050px) {
+        align-items: center;
+        .content{
+            justify-content: center;
+            
+        }
+    } 
 }
 
 .calendar-wrapper button{
@@ -236,17 +365,46 @@ p, span ul, li, label{
 }
 
 
-//obrisati kasnije
-
-.car-image{
-        height: 300px;
-        width: 500px;
-    }
-
-
     .icon{
         color: $gray !important;
     }
+
+    .container-category {
+        @include flex-row();
+        justify-content: center;
+        gap: 1rem;
+        background-color: $text-color;
+        border-radius: 15px;
+        width: fit-content;
+        margin: 0 auto;
+        @extend %box-shadow;
+    
+        .category {
+            position: relative;
+            padding: 0.4rem;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+    
+            &:hover {
+                background-color: #fff;
+            }
+    
+            &.active {
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0; 
+                    left: 0;
+                    width: 100%; 
+                    height: 3px; 
+                    background-color: $primary-color; 
+                    border-radius: 3px;
+                }
+            }
+        }
+    }
+    
 
 
 

@@ -5,6 +5,7 @@ import App from './App.jsx'
 import Car from './CarComponent.jsx'
 import ErrorPage from './ErrorPage.jsx'
 import HomePage from './Pages/HomePage.jsx'
+import ReservationForm from './Components/ReservationForm.jsx'
 //router imported
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
     element: <Car />,
     errorElement: <ErrorPage />
   },
+  {
+    path: '/reservation',
+    element: <ReservationForm />
+  }
 
 
 ]);

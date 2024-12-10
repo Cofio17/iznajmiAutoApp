@@ -1,27 +1,25 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import ErrorPage from './ErrorPage';
 import './style.scss'
 import CalendarComponent from './Components/CalendarComponent';
-import formatDate from './utils/convertDate';
 import Header from './Components/Header';
 import CarInfo from './Components/CarInfo';
 import ImageSlider from './Components/ImageSlider';
+import CategoryInfo from './Components/Car/CategoryInfo,';
+
+import { useNavigate } from 'react-router-dom';
 
 export default function Car() {
     const params = useParams();
     const carId = params.carId;
     const [carData, setCarData] = useState({});
     const [error, setError] = useState();
+    const [errorText, setErrorText] = useState('');
     const [loading, setLoading] = useState(true);
     const [selectedDate, setSelectedDate] = useState([]);
-
-
-    //privremeno ovde
-    const [email, setEmail] = useState('');
-    const [number, setNumber] = useState('');
-
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -31,8 +29,6 @@ export default function Car() {
                 const response = await axios.get(`http://localhost:5000/cars/${params.carId}`)
 
                 setCarData(response.data.data);
-                console.log(carData);
-
                 setError(false);
             }
             catch (err) {
@@ -45,46 +41,27 @@ export default function Car() {
         fetchCarData();
     }, [])
 
+    const handleNavigate = () => {
+        if (selectedDate.length < 2) {
+            setErrorText('Please, selected the reservation date');
+            return null;
+        }
+        const dataToPass = {
+            car: carData,
+            carId: carId,
+            selectedDate: selectedDate
+        }
+        setErrorText('');
+        navigate('/reservation', { state: dataToPass });
+    }
+
+
 
     //fetching data from child/calendar component
     const handleSelectedData = (date) => {
         setSelectedDate(date);
+        setErrorText('');
     }
-
-    //sending data to server/ google calendar api and making event in a calendar
-    const postDataToServer = async () => {
-        if (selectedDate.length !== 2) {
-            console.log("Invalid date selection:", selectedDate);
-            return;
-        }
-        try {
-            const [startDate, endDate] = selectedDate;
-            const reservationData = {
-                summary: {
-                    carId: carId,
-                    email: email,
-                    number: number,
-
-                },
-                description: `Zakazan Auto: ${carData.brand}: ${carData.licensePlate}`,
-                start: {
-                    dateTime: formatDate(startDate)
-                },
-                end: {
-                    dateTime: formatDate(endDate),
-                },
-                calendarId: carData.calendarId
-            };
-            const response = await axios.post(`http://localhost:5000/api/calendar/create-event`, reservationData, {
-                headers: { 'Content-Type': 'application/json' },
-            });
-            console.log("Response:", response.data);
-
-        } catch (error) {
-            console.error("Error sending data:", error);
-        }
-
-    };
 
     if (loading) {
         return <p>Data is loading</p>
@@ -93,34 +70,29 @@ export default function Car() {
         return <ErrorPage error={error} />
     }
 
-    return (<>
-        <Header />
-        <div className='container-car'>
+    return (
+        <>
+            <Header />
+            <main>
+                <div className='container-car'>
+                    <div className="container-car-upper">
 
-            <h2>{carData.brand} {carData.model} {carData.year}</h2>
+                        <ImageSlider carData={carData} />
+                        <div className='container-car-calendar'>
+                            <div id='price'><p>{carData.pricePerDay}€ / Day </p></div>
+                            {/* fetchDates prop receives a fuctions that handles the selected dates and brings back to the this/parent component */}
+                            <CalendarComponent calendarId={carData.calendarId} fetchDates={handleSelectedData} carId={params.carId} />
+                            {errorText && <p>{errorText}</p>}
 
-            <p className='company-name'>
-                {carData?.companyId?.name || 'Naziv Agencije'}
-            </p>
+                            <button className='button' onClick={handleNavigate}><Link>Next</Link></button>
+                        </div>
+                    </div>
+                    <CategoryInfo carData={carData} />
 
-            <ImageSlider />
 
-            <CarInfo carData={carData} />
-
-            <CalendarComponent calendarId={carData.calendarId} fetchDates={handleSelectedData} carId={params.carId} />
-            {/* fetchDates prop receives a fuctions that handles the selected dates and brings back to the this/parent component */}
-
-            <label htmlFor="number">Unesite Broj:</label>
-            <input type="text" id='number' value={number} onChange={(e) => { setNumber(e.target.value) }} />
-            <br />
-            <label htmlFor="number">Unesite email:</label>
-            <input type="email" id='email' value={email} onChange={(e) => { setEmail(e.target.value) }} />
-
-            <button onClick={postDataToServer}>Make a reservation</button>
-        </div>
-        {/* <img className='car-image' src={carData.image} alt="car image" /> */}
-
-    </>
+                </div>
+            </main>
+        </>
 
     )
 }

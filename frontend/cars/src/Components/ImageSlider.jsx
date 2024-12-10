@@ -3,31 +3,47 @@ import '../style.scss'
 import '../imageGallery.scss'
 
 
-export default function ImageSlider({ }) {
+export default function ImageSlider({ carData }) {
+    const bigImg = '?';
+    const smallImg = '?';
 
     const imagess = [
         {
-            original: "https://picsum.photos/id/1018/1000/600/",
-            thumbnail: "https://picsum.photos/id/1018/250/150/",
+            original: `https://i.imgur.com/VRpF2MI.jpeg${bigImg}`,
+            thumbnail: `https://i.imgur.com/VRpF2MI.jpeg${smallImg}`,
         },
         {
-            original: "https://picsum.photos/id/1015/1000/600/",
-            thumbnail: "https://picsum.photos/id/1015/250/150/",
+            original: `https://i.imgur.com/lQoHZEp.jpeg${bigImg}`,
+            thumbnail: `https://i.imgur.com/lQoHZEp.jpeg${smallImg}`,
         },
+
         {
-            original: "https://picsum.photos/id/1019/1000/600/",
-            thumbnail: "https://picsum.photos/id/1019/250/150/",
+            original: `https://i.imgur.com/hJ6gPXX.jpeg${bigImg}`,
+            thumbnail: `https://i.imgur.com/hJ6gPXX.jpeg${smallImg}`,
+        },
+
+        {
+            original: `https://i.imgur.com/7FaCC2f.jpeg${bigImg}`,
+            thumbnail: `https://i.imgur.com/7FaCC2f.jpeg${smallImg}`,
+        },
+
+        {
+            original: `https://i.imgur.com/xkGv86a.jpeg${bigImg}`,
+            thumbnail: `https://i.imgur.com/xkGv86a.jpeg${smallImg}`,
         },
     ];
-    const images = [
-        'https://gcdn.polovniautomobili.com/user-images/thumbs/2407/24073573/a35c3e0accb9-800x600.jpg',
-        'https://gcdn.polovniautomobili.com/user-images/thumbs/2407/24073573/da271d4ae391-800x600.jpg',
-        'https://gcdn.polovniautomobili.com/user-images/thumbs/2407/24073573/80c5e127fa47-800x600.jpg',
-        'https://gcdn.polovniautomobili.com/user-images/thumbs/2407/24073573/5a4de2e62215-800x600.jpg'
-    ]
+
 
     return (
         <div className="container-image-slider-custom">
+            <div className="car-name-company-name">
+                <h2>{carData.brand} {carData.model} <span>{carData.year}</span></h2>
+
+                <p className='company-name'>
+                    {carData?.companyId?.name || 'Naziv Agencije'}
+                </p>
+            </div>
+
             <ImageGallery items={imagess} autoPlay={false} showBullets={true} showIndex={true} showNav={true} showFullscreenButton={false} showPlayButton={false} />;
         </div>
     )

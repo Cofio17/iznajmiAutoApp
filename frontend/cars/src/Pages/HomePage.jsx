@@ -3,6 +3,8 @@ import Header from '../Components/Header'
 import SectionComponent from '../Components/SectionComponent'
 import CityComponent from '../Components/cityComponent';
 import SectionItem from '../Components/SectionItem';
+import { faCar, faKey, faHandshake } from '@fortawesome/free-solid-svg-icons'
+import { icon } from '@fortawesome/fontawesome-svg-core';
 
 export default function HomePage() {
 
@@ -17,18 +19,21 @@ export default function HomePage() {
                 title: "Pronađite vozilo",
                 description:
                     "Pronađite vaš savršen rent-a-car uz samo nekoliko klikova. Filtrirajte po ceni, tipu vozila i drugim opcijama da biste pronašli vozilo koje vam najbolje odgovara.",
+                icon: faCar
             },
             {
                 id: "02",
                 title: "Proverite recenzije",
                 description:
                     "Proverite recenzije drugih putnika koji su koristili vozila na našoj platformi. Saznajte šta su drugi rekli o vozilima, kako se služba klijentima ponaša i kako je iskustvo iznajmljivanja vozila.",
+                icon: faHandshake
             },
             {
                 id: "03",
                 title: "Rezervišite vozilo",
                 description:
                     "Rezervišite vaše vozilo u samo nekoliko minuta. Upisujete datume i lokaciju preuzimanja, a mi ćemo vam prikazati dostupne opcije. Odaberite vozilo koje vam najviše odgovara i rezervišite ga danas.",
+                icon: faKey
             },
         ],
     };
@@ -70,9 +75,13 @@ export default function HomePage() {
 
 
     return (<div className="container">
+
         <Header />
-        <SectionComponent sectionData={cities} DynamicComponent={CityComponent} />
-        <SectionComponent sectionData={sectionData} DynamicComponent={SectionItem} />
+        <main>
+            <SectionComponent sectionData={cities} DynamicComponent={CityComponent} />
+            <SectionComponent sectionData={sectionData} DynamicComponent={SectionItem} />
+        </main>
+
     </div>
     )
 }

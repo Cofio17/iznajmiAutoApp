@@ -28,12 +28,15 @@ function App() {
   return (
     <>
       <Header />
-      <h1>Iznajmi me - Automobili</h1>
-      <ul>
-        {cars.map((car) => {
-          return <li key={car.licensePlate}><Link to={`/car/${car.licensePlate}`}>{car.brand} {car.model} {car.year}</Link></li>
-        })}
-      </ul>
+      <main>
+        <h1>Iznajmi me - Automobili</h1>
+        <ul>
+          {cars.map((car) => {
+            return <li key={car.licensePlate}><Link to={`/car/${car.licensePlate}`}>{car.brand} {car.model} {car.year}</Link></li>
+          })}
+        </ul>
+
+      </main>
 
     </>
   )

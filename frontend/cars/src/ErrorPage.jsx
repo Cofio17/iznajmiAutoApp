@@ -8,11 +8,14 @@ export default function ErrorPage({ error }) {
 
         <div className=''>
             <Header />
-            <h1>Oops, this page doesnt <b>exist</b> Yet :&#40;</h1>
-            <Link to='/'><b>Back to home Page</b></Link> <br />
+            <main>
+                <h1>Oops, this page doesnt <b>exist</b> Yet :&#40;</h1>
+                <Link to='/'><b>Back to home Page</b></Link> <br />
 
 
-            <h2>{error}</h2>
+                <h2>{error}</h2>
+            </main>
+
 
         </div>
 

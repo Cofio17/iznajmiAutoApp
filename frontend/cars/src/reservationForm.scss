@@ -1,0 +1,42 @@
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 40px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+
+    button {
+        display: flex;            
+        justify-content: center;  
+       margin: 0 auto;        
+    }
+    input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    
+    
+    button:disabled {
+        background-color: #cccccc;
+    }
+    
+    span,label,p{
+        color: black;
+    }
+
+    .checkbox{
+        display: flex;
+        justify-content: flex-start;
+    }
+}
+
+
