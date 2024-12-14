@@ -3,7 +3,7 @@ import CarInfo from "../CarInfo";
 
 export default function CategoryInfo({ carData }) {
     const [activeIndex, setActiveIndex] = useState(0);
-    const categories = ["General Information", "About Dealership", "About this model"];
+    const categories = ["General Information", "About Dealership", "Picking Up"];
 
     const renderCarInfo = () => {
         return <CarInfo carData={carData} header={categories[activeIndex]} />;

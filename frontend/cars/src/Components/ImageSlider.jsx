@@ -44,7 +44,7 @@ export default function ImageSlider({ carData }) {
                 </p>
             </div>
 
-            <ImageGallery items={imagess} autoPlay={false} showBullets={true} showIndex={true} showNav={true} showFullscreenButton={false} showPlayButton={false} />;
+            <ImageGallery items={imagess} autoPlay={false} showBullets={true} showIndex={false} showNav={true} showFullscreenButton={false} showPlayButton={false} />;
         </div>
     )
 

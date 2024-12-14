@@ -203,7 +203,7 @@ $primary-color:#48AD7E;
   object-fit: contain;
 
   @media screen and (max-width: 768px) {
-   max-width: 90%;
+   max-width: 95%;
   }
 }
 
@@ -366,7 +366,7 @@ $primary-color:#48AD7E;
   .image-gallery-thumbnails-container {
     cursor: pointer;
     text-align: center;
-    white-space: nowrap;
+    white-space: wrap;
   }
 
 }
@@ -386,6 +386,7 @@ $primary-color:#48AD7E;
 
   + .image-gallery-thumbnail {
     margin-left: 2px;
+    
   }
 
   .image-gallery-thumbnail-inner {

@@ -15,11 +15,11 @@ export default function Header() {
                         <li><NavLink to='/'><img src={logo} alt="logo" /></NavLink></li>
                         <div className="navlinks">
                             <li><NavLink to='/'  >Home</NavLink></li>
-                            <li><NavLink to='/cars'  >Cars</NavLink></li>
+                            <li><NavLink to='/cars'  >Rent a Car</NavLink></li>
                             <li><NavLink to='about_us' >About us</NavLink></li>
                         </div>
 
-                        <div><button id="login">Login/Register</button></div>
+                        <div><button id="login">Sign Up</button></div>
 
                     </ul>
                 }

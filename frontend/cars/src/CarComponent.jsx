@@ -5,7 +5,6 @@ import ErrorPage from './ErrorPage';
 import './style.scss'
 import CalendarComponent from './Components/CalendarComponent';
 import Header from './Components/Header';
-import CarInfo from './Components/CarInfo';
 import ImageSlider from './Components/ImageSlider';
 import CategoryInfo from './Components/Car/CategoryInfo,';
 

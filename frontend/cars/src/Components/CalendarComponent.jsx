@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import { Alert } from '@mui/material';
 import axios from 'axios';
 
 export default function CalendarComponent({ calendarId, carId, fetchDates }) {
@@ -91,7 +92,7 @@ export default function CalendarComponent({ calendarId, carId, fetchDates }) {
             }
 
             if (invalidRange) {
-                setError('Opseg sadrži zauzeti datum. Molimo odaberite drugi opseg.');
+                setError('Please select diffrent date');
                 setDate([]); // Reseting selected dates
                 fetchDates([]);//sending selected dates to a parent component
             } else {
@@ -123,11 +124,13 @@ export default function CalendarComponent({ calendarId, carId, fetchDates }) {
                 prev2Label={null}
                 next2Label={null}
                 maxDate={new Date(new Date().setMonth(new Date().getMonth() + 3))}
+
             />
-            {date.length > 1 && (
-                <p>Selected date: <b>{`${date[0].toDateString()} - ${date[1].toDateString()}`}</b> </p>
-            )}
-            {error && <p>{error}</p>}
+            {date.length > 1 &&
+                <Alert variant='outlined' severity='success'><b>{`${date[0].toDateString()} - ${date[1].toDateString()}`}</b></Alert>
+                // <p>Selected date: <b>{`${date[0].toDateString()} - ${date[1].toDateString()}`}</b> </p>
+            }
+            {error && <Alert variant='outlined' severity='info'>{error}</Alert>}
         </div>
     );
 }

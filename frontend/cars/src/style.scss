@@ -17,10 +17,10 @@ h1{
 }
 
 h2,h3{
-    color: $text-color-headers  ;
+    color: $text-color-headers !important  ;
 }
 
-.error {
+.error {color: $gray;
     color: red;
 }
 :root{
@@ -36,8 +36,7 @@ body{
 }
 
 main{
-    margin-top: 70px ;
-    
+    margin-top: 70px ;  
 }
 
 .active{
@@ -70,6 +69,8 @@ main{
     background-color: #2D6A4F;
   }
 }
+
+
 @mixin flex-row (){
     display: flex;
     flex-direction: row;
@@ -120,14 +121,17 @@ header {
     @include flex-row();
     justify-self: center !important;
     gap: 3rem;
+    margin-right: 50px;
 }
 }
 #login{
     background-color: $primary-color !important; 
     color: white;
     transition: all 0.3s ease;
+    font-size: 0.8rem;
     &:hover{
-    background-color: $darker-primary-color !important
+    background-color: $darker-primary-color !important;
+   
     }
  }
 
@@ -160,9 +164,7 @@ header {
 
     @media screen  and (max-width: 1050px){ 
         gap: 30px;
-        margin: 3rem 0;
-        
-        
+        margin: 3rem 0; 
     }
 }
 
@@ -185,6 +187,12 @@ header {
     width: 400px;
     height: 300px;
    align-items: center;
+
+   @media screen and (max-width:768px) {
+    &{
+        width: 350px;
+    }
+   }
 }
 
 .section-container-item-icon{
@@ -195,6 +203,9 @@ header {
     border-radius: 50%;
     align-items: center;
 justify-content: center;    
+ svg{
+    color: $white-color;
+ }
 }
 
 
@@ -214,8 +225,8 @@ h2{
 .section-container-image {
     position: relative;
     cursor: pointer;
-    width: 350px;
-    height: 350px; 
+    width: 330px;
+    height: 330px; 
     overflow: hidden;
     border-radius: 15px;
     margin: 1rem;
@@ -228,17 +239,18 @@ h2{
         }
        
     }
-
     .overlay {
         position: absolute;
-        top: 0;
+        top: -10%;
         left: 0;
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.3); /* Zatamnjivanje sa 40% crne boje */
         z-index: 1; /* Overlay će biti iznad slike */
     }
+   
 }
+
 
 .section-container-image img {
     width: 100%;
@@ -381,6 +393,7 @@ h2 span{
     
         .category {
             position: relative;
+            user-select: none;
             padding: 0.4rem;
             border-radius: 15px;
             cursor: pointer;
@@ -391,6 +404,7 @@ h2 span{
             }
     
             &.active {
+                background-color: #fff;
                 &::after {
                     content: '';
                     position: absolute;
@@ -399,11 +413,253 @@ h2 span{
                     width: 100%; 
                     height: 3px; 
                     background-color: $primary-color; 
-                    border-radius: 3px;
+                    border-radius: 15px;
                 }
             }
         }
     }
+
+
+#search-bar{
+    @include flex-row();
+    justify-content: center;
+    
+    gap: 1rem;
+    @media screen  and (max-width: 810px){ 
+        &{
+            justify-self: center;
+            max-width: 250px;
+        }
+        .search-bar-icon{
+            background-color: #48AD7E;
+            width: 85%;
+            margin-left: 0;
+            border-radius: 15px;
+            text-align: center;
+            svg{
+                display: none;
+            }
+
+            &:hover{
+                background-color: #2D6A4F;
+            }
+        }
+        .search-bar-icon::before{
+            content: 'Search';
+            text-align: center;
+            margin: 0 auto;
+            
+        }
+    }
+  
+}
+
+.search-bar-icon{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-left: 0.5rem;
+    padding: 10px;
+    border-radius: 0.7rem;
+    background-color: $text-color;
+    transition: all 0.3s ease;
+    svg{
+        color: $text-color-headers !important;
+
+    }
+
+    &:hover{
+        border-radius: 50%;
+        background-color: $primary-color;
+        svg{
+            color:$text-color !important;
+        }
+    }
+}
+
+.mui-input{
+    div{
+        border-radius: 15px !important;
+    }
+  
+}
+
+/*HERO HEADER STYLE*/
+
+.hero-header-container{
+    text-align: center;
+    position: relative;
+    text-align: center;
+   
+
+    h1 {
+        position: absolute;
+        display: inline-block;
+        left: 50%;
+        top: 50%; /* Podešava vertikalnu poziciju */
+        transform: translate(-50%, -50%); /* Pomeranje za pola svoje veličine za savršeno centriranje */
+        margin: 0; /* Uklanja margine ako ih ima */
+        color: $text-color;
+    }
+
+    @media screen and (max-width:810px) {
+        h1{
+            top: 35%;
+            font-size: 2rem;
+            width: 300px;
+            
+        }
+    }
+}
+
+
+.hero-header-image{
+   
+    object-fit: cover;
+    height: 400px;
+    width: 90%;
+    border-radius: 15px;
+}
+
+.overlay {
+    position: absolute;
+    bottom: -10%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 2;
+    height: fit-content;
+    padding: 10px 20px; 
+    border-radius: 10px; 
+    place-items: center;
+    
+    .search-bar{
+        background-color: #fff;
+        width: fit-content;
+        padding: 10px;
+        border-radius: 15px;
+    }
+
+    @media screen and (max-width:810px) {
+        bottom: -20%; //menjati po zelji
+    }
+
+
+}
+
+.container-car-cards{
+    margin-top: 150px;
+    @include flex-row();
+    gap: 2rem;
+   max-width: 900px;
+   justify-self: center;
+   align-self: center;
+}
+
+.car-card{
+    @include flex-row();
+    max-width: 270px;
+    height: 350px;
+    @extend %box-shadow;
+    border-radius: 30px;
+    align-items: center;
+    transition: all 0.3s ease;
+    padding-bottom: 5px;
+
+    &:hover{
+        transform: translateY(-5%)
+        
+    }
+    
+    div{
+        width: 100%;
+    }
+
+    h2{
+        justify-self: center;
+    }
+
+    .car-card-info{
+        @include flex-row();
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap !important;
+        gap: 1rem;
+        width: 90%;
+        margin: 0 auto;
+      
+       
+        
+        .info {
+            display: flex;
+            flex-direction: column; /* Poređuje elemente unutar sekcije vertikalno */
+            gap: 0.3rem; /* Razmak između redova */
+            align-items: center;
+        }
+       
+         p {
+            display: flex;
+            align-items: center; /* Vertikalno centriranje ikone i teksta */
+            font-size: 10px;
+            color: $text-color-headers;
+        }
+          .icon {
+            font-size: 0.8rem;
+            color: #555; 
+          }
+
+    }
+
+    .car-card-image{
+        position: relative;
+        height: 60%;
+        width: 100%;
+        overflow: hidden;
+        border-radius:15px; 
+        .overlay {
+            position: absolute; 
+            top: 0;
+            left: 0;
+            height: 100%; 
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.3); 
+            z-index: 2; 
+            border-radius:15px;
+          
+        }
+    
+        img{
+            display: block;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            @extend %box-shadow;
+        }
+    }
+
+    p{
+        color: $primary-color;
+    }
+
+    hr{
+        color:#fffdfd;
+        margin: 0 3rem;
+    }
+
+
+    .car-card-price{
+      
+        p{
+            text-align: center; 
+        }
+    }
+
+}
+
+
+
+
     
 
 

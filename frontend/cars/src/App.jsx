@@ -3,10 +3,10 @@ import axios from 'axios'
 import './App.css'
 import { Link } from 'react-router-dom'
 import Header from './Components/Header'
-
+import HeroHeader from './Components/HeroHeader/HeroHeader'
+import CarCard from './Components/CarCard/CarCard'
 function App() {
   const [cars, setCars] = useState([]);
-
 
   useEffect(() => {
     const fetchCars = async () => {
@@ -24,15 +24,14 @@ function App() {
 
   }, [])
 
-
   return (
     <>
       <Header />
       <main>
-        <h1>Iznajmi me - Automobili</h1>
-        <ul>
+        <HeroHeader header='Find Your Ideal Car' />
+        <ul className='container-car-cards'>
           {cars.map((car) => {
-            return <li key={car.licensePlate}><Link to={`/car/${car.licensePlate}`}>{car.brand} {car.model} {car.year}</Link></li>
+            return <li key={car.licensePlate}><CarCard carData={car} /></li>
           })}
         </ul>
 

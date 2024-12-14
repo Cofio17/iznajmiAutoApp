@@ -5,6 +5,7 @@ import CityComponent from '../Components/cityComponent';
 import SectionItem from '../Components/SectionItem';
 import { faCar, faKey, faHandshake } from '@fortawesome/free-solid-svg-icons'
 import { icon } from '@fortawesome/fontawesome-svg-core';
+import Search from '../Components/SearchPageComponents/Search';
 
 export default function HomePage() {
 
@@ -78,6 +79,7 @@ export default function HomePage() {
 
         <Header />
         <main>
+            <Search />
             <SectionComponent sectionData={cities} DynamicComponent={CityComponent} />
             <SectionComponent sectionData={sectionData} DynamicComponent={SectionItem} />
         </main>
