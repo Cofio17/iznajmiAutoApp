@@ -1,3 +1,4 @@
+
 const mongoose = require('mongoose');
 const { Schema } = mongoose //konstruktor funkcija
 
@@ -20,7 +21,8 @@ const carSchema = new Schema({
     image: { type: String },
     description: { type: String },
     companyId: { type: Schema.Types.ObjectId, ref: 'Company' },
-    categoryId: { type: Schema.Types.ObjectId, ref: 'Category' }
+    categoryId: { type: Schema.Types.ObjectId, ref: 'Category' },
+    calendarId: { type: String }
 });
 
 const Car = mongoose.model('Car', carSchema);

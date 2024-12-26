@@ -1,5 +1,6 @@
 const express = require("express");
-const { createEvent, accessBusyDates } = require("../service/googleCalendar.js");
+const { createEvent, accessBusyDates, searchCarsByDate } = require("../service/googleCalendar.js");
+const Car = require('../models/car.js');
 
 const router = express.Router();
 
@@ -55,6 +56,24 @@ router.post('/get-busy-dates', async (req, res) => {
     } catch (error) {
         console.error("Error creating event:", error);
         res.status(500).json({ message: "Error creating event", error: error.message });
+    }
+})
+
+
+/**
+ * POST Method for receiving busy dates for every car 
+ * 
+ */
+router.post('/search', async (req, res) => {
+    const { timeMin, timeMax } = req.body;
+
+    try {
+        const cars = await Car.find();
+        const response = await searchCarsByDate(cars, timeMin, timeMax);
+        res.status(200).json({ message: "Cars have been accessed", cars: response })
+
+    } catch (error) {
+        res.status(500).json({ message: "error", er: error });
     }
 })
 

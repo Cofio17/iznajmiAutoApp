@@ -37,8 +37,6 @@ async function accessBusyDates(calendarId) {
 
     //creating calendar object 
     const calendar = google.calendar({ version: "v3", auth });
-
-
     //setting current date
     const todayISO = new Date().toISOString();
     //setting current date + 3 months 
@@ -59,5 +57,35 @@ async function accessBusyDates(calendarId) {
     })
     return response.data;
 }
+/**
+ * Searching for available cars in the given period
+ * @param {Array} cars -array of cars
+ * @param {Date} timeMin -start date of period
+ * @param {Date} timeMax - end date of period
+ * @returns {Promise<Array>}- array of cars that are free in period
+ */
+async function searchCarsByDate(cars, timeMin, timeMax) {
+    const calendar = google.calendar({ version: "v3", auth });
 
-module.exports = { createEvent, accessBusyDates };
+    //making array of objects with pair of id:calendarId <String>
+    const calendarIds = cars.map((car) => {
+        return ({ id: car.calendarId });
+    })
+
+    const response = await calendar.freebusy.query({
+        requestBody: {
+            timeMin: timeMin,
+            timeMax: timeMax,
+            items: [...calendarIds]
+        }
+    })
+
+    const freeCars = cars.filter((car) => {
+        return response.data.calendars[car.calendarId].busy.length === 0;
+    })
+
+
+    return freeCars;
+}
+
+module.exports = { createEvent, accessBusyDates, searchCarsByDate };

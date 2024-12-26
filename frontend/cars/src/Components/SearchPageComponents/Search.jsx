@@ -4,9 +4,14 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TextField, Autocomplete } from '@mui/material';
 import dayjs from 'dayjs';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { useLocation, useNavigate } from 'react-router-dom';
+
+import { SearchContext } from '../../Contexts/SearchContext';
+
+
 
 /**
  * 
@@ -18,6 +23,16 @@ export default function Search() {
     const maxDate = dayjs().add(3, 'month');
     const [city, setCity] = useState(null);
 
+
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const { searchListData, setSearchListData } = useContext(SearchContext);
+
+
+    // const localhost = process.env.LOCAL_HOST;
+    const searchLink = 'http://localhost:5000/api/calendar/search'
+
     const cities = [
         'Subotica',
         'Novi Sad',
@@ -28,8 +43,32 @@ export default function Search() {
 
 
 
-    const searchCars = () => {
+    /**
+     * redirecting to Cars Page and sending data through state
+     */
+    const handleSearch = async () => {
+        try {
+            await getCars();
+            if (location.pathname === '/') {
+                navigate('/cars', { state: searchListData });
+            }
+        } catch (error) {
+            console.log('Error during redirection:', error);
+        }
 
+    }
+
+    const getCars = async (e) => {
+
+        try {
+            const response = await axios.post(`${searchLink}`, { timeMin: startDate, timeMax: endDate }, { headers: { 'Content-Type': 'application/json' } });
+            //Context API state managment
+            setSearchListData(response.data.cars);
+
+        } catch (error) {
+            console.log(`error fetching data ${error}`);
+
+        }
     }
 
     return (
@@ -72,7 +111,7 @@ export default function Search() {
 
 
             />
-            <div onClick={searchCars} className='search-bar-icon' >
+            <div onClick={handleSearch} className='search-bar-icon' >
                 <FontAwesomeIcon icon={faMagnifyingGlass} color='black' size='2x' />
             </div>
         </div>

@@ -4,11 +4,14 @@ import SectionComponent from '../Components/SectionComponent'
 import CityComponent from '../Components/cityComponent';
 import SectionItem from '../Components/SectionItem';
 import { faCar, faKey, faHandshake } from '@fortawesome/free-solid-svg-icons'
-import { icon } from '@fortawesome/fontawesome-svg-core';
 import Search from '../Components/SearchPageComponents/Search';
+import { useEffect } from 'react';
 
 export default function HomePage() {
 
+    useEffect(() => {
+        document.title = 'Iznajmi me - Pocetna'
+    })
 
 
     const sectionData = {
@@ -69,11 +72,6 @@ export default function HomePage() {
             },
         ],
     }
-
-
-
-
-
 
     return (<div className="container">
 

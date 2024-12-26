@@ -7,6 +7,7 @@ export default function CarCard({ carData }) {
     return (
         <Link to={`/car/${carData.licensePlate}`}>
             <div className="car-card">
+
                 <div className="car-card-image">
                     <div className="overlay"></div>
                     <img src={carData.image} alt="car-image" />

@@ -6,6 +6,7 @@ import Car from './CarComponent.jsx'
 import ErrorPage from './ErrorPage.jsx'
 import HomePage from './Pages/HomePage.jsx'
 import ReservationForm from './Components/ReservationForm.jsx'
+import { SearchProvider } from './Contexts/SearchContext.jsx'
 //router imported
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/cars",
+    path: "/cars?",
     element: <App />
   },
   {
@@ -37,6 +38,8 @@ createRoot(document.getElementById('root')).render(
 
 
   <StrictMode>
-    <RouterProvider router={router} />
+    <SearchProvider>
+      <RouterProvider router={router} />
+    </SearchProvider>
   </StrictMode>,
 )
