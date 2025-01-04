@@ -8,7 +8,8 @@ import { Alert } from '@mui/material';
 import Footer from './Components/Footer';
 import LoadingCircle from './utils/LoadingCircle/LoadingCircle'
 import CarList from './Components/CarList/CarList'
-import Sidebar from './Sidebar/Sidebar'
+import Sidebar from './Components/Sidebar/Sidebar'
+import Filter from './Components/Filter/Filter'
 
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
       await getCars();
     }
     fetchCars();
-  }, []);
+  }, [searchListData]);
 
 
   return (
@@ -43,7 +44,9 @@ function App() {
       <Header />
       <HeroHeader header='Find Your Ideal Car' />
       <main className='sidebar-cars-list'>
-        <Sidebar />
+        <Sidebar>
+          <Filter />
+        </Sidebar>
         {loading ?
           <LoadingCircle /> : searchListData.length === 0 ?
             <div style={{ marginTop: 120 }}>

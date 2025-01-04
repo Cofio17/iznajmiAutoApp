@@ -797,10 +797,13 @@ h2 span{
  .sidebar{
     position: sticky;
     top: 55px;
-    background-color: #2D6A4F;
     height: 500px;
     width: 200px;
     margin:0px 70px ;
+
+    label{
+        color: $text-color-light;
+    }
     
  }
 
