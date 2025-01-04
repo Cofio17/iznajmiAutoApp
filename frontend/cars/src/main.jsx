@@ -15,15 +15,23 @@ const router = createBrowserRouter([
 
   {
     path: '/',
-    element: <HomePage />,
+
+    element:
+      <SearchProvider>
+        <HomePage />
+      </SearchProvider>,
+
     errorElement: <ErrorPage />,
   },
   {
-    path: "/cars?",
-    element: <App />
+    path: "/cars",
+    element:
+      <SearchProvider>
+        <App />
+      </SearchProvider>,
   },
   {
-    path: '/car/:carId',
+    path: 'cars/car/:carId',
     element: <Car />,
     errorElement: <ErrorPage />
   },
@@ -38,8 +46,8 @@ createRoot(document.getElementById('root')).render(
 
 
   <StrictMode>
-    <SearchProvider>
-      <RouterProvider router={router} />
-    </SearchProvider>
+
+    <RouterProvider router={router} />
+
   </StrictMode>,
 )

@@ -6,6 +6,7 @@ import SectionItem from '../Components/SectionItem';
 import { faCar, faKey, faHandshake } from '@fortawesome/free-solid-svg-icons'
 import Search from '../Components/SearchPageComponents/Search';
 import { useEffect } from 'react';
+import Footer from '../Components/Footer';
 
 export default function HomePage() {
 
@@ -82,6 +83,7 @@ export default function HomePage() {
             <SectionComponent sectionData={sectionData} DynamicComponent={SectionItem} />
         </main>
 
+        <Footer />
     </div>
     )
 }

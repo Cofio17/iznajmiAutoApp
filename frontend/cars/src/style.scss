@@ -47,6 +47,11 @@ main{
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
+.fit-content{
+    width: fit-content;
+    justify-self: center;
+}
+
 
 
 
@@ -243,10 +248,10 @@ h2{
     }
     .overlay {
         position: absolute;
-        top: -10%;
+        top: 0;
         left: 0;
         width: 100%;
-        height: 100%;
+        height: 130%;
         background-color: rgba(0, 0, 0, 0.3); /* Zatamnjivanje sa 40% crne boje */
         z-index: 1; /* Overlay će biti iznad slike */
     }
@@ -431,6 +436,7 @@ h2 span{
         &{
             justify-self: center;
             max-width: 250px;
+            margin-top: 130px;
         }
         .search-bar-icon{
             background-color: #48AD7E;
@@ -444,6 +450,7 @@ h2 span{
 
             &:hover{
                 background-color: #2D6A4F;
+        
             }
         }
         .search-bar-icon::before{
@@ -461,7 +468,7 @@ h2 span{
     display: flex;
     align-items: center;
     margin-left: 0.5rem;
-    padding: 10px;
+    padding: 20px;
     border-radius: 0.7rem;
     background-color: $text-color;
     transition: all 0.3s ease;
@@ -471,7 +478,7 @@ h2 span{
     }
 
     &:hover{
-        border-radius: 50%;
+        border-radius: 20px;
         background-color: $primary-color;
         svg{
             color:$text-color !important;
@@ -492,6 +499,8 @@ h2 span{
     text-align: center;
     position: relative;
     text-align: center;
+    margin-top: 100px;
+   
    
 
     h1 {
@@ -543,19 +552,26 @@ h2 span{
     }
 
     @media screen and (max-width:810px) {
-        bottom: -20%; //menjati po zelji
+        bottom: -30%; //menjati po zelji
     }
 
 
 }
 
 .container-car-cards{
-    margin-top: 150px;
+    margin-top: 3rem;
     @include flex-row();
     gap: 2rem;
-   max-width: 900px;
-   justify-self: center;
-   align-self: center;
+    max-width: 900px;
+    justify-self: center;
+    align-self: center;
+
+   @media screen and (max-width:768px) {
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    margin-top: 130px;
+   }
 }
 
 .car-card{
@@ -628,7 +644,7 @@ h2 span{
             position: absolute; 
             top: 0;
             left: 0;
-            height: 100%; 
+            height: 120%; 
             width: 100%;
             background-color: rgba(0, 0, 0, 0.3); 
             z-index: 2; 
@@ -695,6 +711,103 @@ h2 span{
     }
   }
 
+
+  //------------Footer styles------------
+  footer {
+    width: 100%;
+    color: $text-color-light;
+    margin-top: 3rem;
+  
+
+  
+    hr {
+      margin: 0 10%;
+      border: 0;
+      border-top: 1px solid $text-color-light;
+    }
+  
+    .content {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap; /* Omogućava prelamanje */
+      padding: 20px 0;
+  
+      .footer-section {
+        max-width: 20%;
+        min-width: 250px; /* Minimalna širina za bolje prilagođavanje */
+        margin: 10px 0;
+        text-align: center;
+  
+        img {
+          max-width: 300px;
+          margin-bottom: 10px;
+        }
+  
+        p {
+          margin-bottom: 15px;
+        }
+  
+        .links {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+  
+          a {
+            color: $text-color-light;
+            text-decoration: none;
+  
+            &:hover {
+              color: $primary-color; 
+            }
+          }
+        }
+      }
+    }
+  
+    @media (max-width: 960px) {
+      .content {
+        flex-direction: column;
+        align-items: center;
+        img {
+            width: 230px;
+            display: block; /* Uklanja inline padding/margine slike */
+            margin: 0 auto; /* Centriranje slike horizontalno */
+
+          }
+      }
+  
+      .footer-section {
+        max-width: 100%;
+
+        
+      }
+  
+      hr {
+        margin: 20px 10%;
+      }
+    }
+  }
+
+
+  //********sidebar**********
+
+  
+
+ .sidebar{
+    position: sticky;
+    top: 55px;
+    background-color: #2D6A4F;
+    height: 500px;
+    width: 200px;
+    margin:0px 70px ;
+    
+ }
+
+ .sidebar-cars-list{
+    display: flex;
+    justify-content: space-between;
+ }
 
 
 

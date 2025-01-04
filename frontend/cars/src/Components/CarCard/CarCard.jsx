@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGasPump, faDoorOpen, faCar, faLocationDot, faList, faUsers, faCarBurst } from '@fortawesome/free-solid-svg-icons'
+import { faGasPump, faDoorOpen, faCar, faUsers } from '@fortawesome/free-solid-svg-icons'
 export default function CarCard({ carData }) {
 
 
     return (
-        <Link to={`/car/${carData.licensePlate}`}>
-            <div className="car-card">
+        <Link to={`car/${carData.licensePlate}`}>
+            <div className="car-card"  >
 
                 <div className="car-card-image">
                     <div className="overlay"></div>

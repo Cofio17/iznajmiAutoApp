@@ -3,6 +3,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import formatDate from "../utils/convertDate";
 import '../reservationForm.scss'
+import { TextField } from '@mui/material'
+
 
 export default function ReservationForm() {
     const location = useLocation();
@@ -27,10 +29,13 @@ export default function ReservationForm() {
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
 
+    const [error, setError] = useState(false);
+
     const validateForm = () => {
         const newErrors = {};
         if (!firstName.trim()) {
             newErrors.firstName = 'Ime je obavezno.';
+            setError(true);
         }
         if (!lastName.trim()) {
             newErrors.lastName = 'Prezime je obavezno.';
@@ -80,6 +85,7 @@ export default function ReservationForm() {
                 setErrors({ server: 'Došlo je do greške. Pokušajte ponovo.' });
             } finally {
                 setIsSubmitting(false);
+                setError(false);
             }
         }
     };
@@ -93,6 +99,9 @@ export default function ReservationForm() {
             <label htmlFor="firstName">Ime</label>
             <input type="text" id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="Unesite ime" />
             {errors.firstName && <p style={{ color: 'red' }}>{errors.firstName}</p>}
+
+            <label htmlFor="firstname">Ime</label>
+            <TextField error={error} fullWidth id="firstname" required={true} variant="outlined" type="text" value={firstName} label={'Ime'} onChange={(e) => setFirstName(e.target.value)} className="mui-input" />
 
             <label htmlFor="lastName">Prezime</label>
             <input type="text" id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Unesite prezime" />

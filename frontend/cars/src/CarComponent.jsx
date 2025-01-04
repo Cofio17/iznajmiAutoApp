@@ -20,12 +20,14 @@ export default function Car() {
     const [selectedDate, setSelectedDate] = useState([]);
     const navigate = useNavigate();
 
+    const localhost = import.meta.env.VITE_LOCAL_HOST;
+
 
     useEffect(() => {
         const fetchCarData = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get(`http://localhost:5000/cars/${params.carId}`)
+                const response = await axios.get(`${localhost}cars/${params.carId}`)
 
                 setCarData(response.data.data);
                 setError(false);

@@ -3,72 +3,59 @@ import axios from 'axios'
 import './App.css'
 import Header from './Components/Header'
 import HeroHeader from './Components/HeroHeader/HeroHeader'
-import CarCard from './Components/CarCard/CarCard'
-import { useLocation } from 'react-router-dom'
 import { SearchContext } from './Contexts/SearchContext'
+import { Alert } from '@mui/material';
+import Footer from './Components/Footer';
+import LoadingCircle from './utils/LoadingCircle/LoadingCircle'
+import CarList from './Components/CarList/CarList'
+import Sidebar from './Sidebar/Sidebar'
+
 
 function App() {
   const [cars, setCars] = useState([]);
+  const localhost = import.meta.env.VITE_LOCAL_HOST;
   //Custom Context API
-  const { searchListData } = useContext(SearchContext);
-  const location = useLocation();
+  const { loading, searchListData } = useContext(SearchContext);
 
-  // const localhost = process.env.LOCAL_HOST;
-  const carsLink = 'http://localhost:5000/cars'
+  const getCars = async () => {
+    try {
+      const response = await axios.get(`${localhost}cars`);
+      setCars(response.data.data);
+    } catch (error) {
+      console.log(`error fetching data ${error}`);
+    }
+
+  }
 
 
   useEffect(() => {
+    document.title = "Izaberite Vas Auto";
 
-    document.title = "Izaberite Vas Auto"
-    /**
-     * if redirect triggers, that data is being used otherwise all cars are being fetched
-     */
-    const getCars = async () => {
-      try {
-        if (!location.state) {
-          const response = await axios.get(`${carsLink}`);
-          setCars(response.data.data);
-        }
-        else {
-          setCars(location.state);
-        }
-
-
-      } catch (error) {
-        console.log(`error fetching data ${error}`);
-
-      }
+    const fetchCars = async () => {
+      await getCars();
     }
+    fetchCars();
+  }, []);
 
-    /**
-     * if cars array is empty getCars is being cald otherwise data is being obtainer through context API
-     */
-    const handleDataChange = async () => {
-      if (cars.length < 1) {
-        await getCars();
-      }
-      else {
-        setCars(searchListData);
-      }
-
-    }
-
-    handleDataChange();
-  }, [searchListData])
 
   return (
     <>
       <Header />
-      <main>
-        <HeroHeader header='Find Your Ideal Car' />
-        <ul className='container-car-cards'>
-          {cars.map((car) => {
-            return <li key={car.licensePlate}><CarCard carData={car} /></li>
-          })}
-        </ul>
-
-      </main>
-
+      <HeroHeader header='Find Your Ideal Car' />
+      <main className='sidebar-cars-list'>
+        <Sidebar />
+        {loading ?
+          <LoadingCircle /> : searchListData.length === 0 ?
+            <div style={{ marginTop: 120 }}>
+              <Alert className='fit-content' severity='info' >Nazalost, nema slobodnih autombila za izabrani period.Pogledajte Celu Ponudu</Alert>
+              <CarList list={cars} />
+            </div>
+            :
+            <CarList list={searchListData} />
+        }
+        <Sidebar />
+      </main >
+      <Footer />
     </>
   )
 }

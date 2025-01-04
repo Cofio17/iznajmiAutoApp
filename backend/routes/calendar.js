@@ -65,11 +65,24 @@ router.post('/get-busy-dates', async (req, res) => {
  * 
  */
 router.post('/search', async (req, res) => {
-    const { timeMin, timeMax } = req.body;
+    const { timeMin, timeMax, location } = req.body;
+    let filteredCars = [];
+
+    console.log(`timeMin ${timeMin}`);
+    console.log(`timeMin ${timeMax}`);
 
     try {
         const cars = await Car.find();
         const response = await searchCarsByDate(cars, timeMin, timeMax);
+
+        if (location) {
+            filteredCars = response.filter((car) => {
+                return (car.location === location)
+            })
+            res.status(200).json({ message: "Cars have been accessed", cars: filteredCars })
+            return;
+        }
+
         res.status(200).json({ message: "Cars have been accessed", cars: response })
 
     } catch (error) {

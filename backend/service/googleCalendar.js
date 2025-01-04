@@ -1,6 +1,11 @@
 const { google } = require('googleapis');
 const addingXMonths = require('../utils/addingMonths.js');
 
+//setting current date
+const todayISO = new Date().toISOString();
+//setting current date + 3 months 
+const endDate = addingXMonths(3);
+
 
 // authentification using client email and client private key and scope definition
 const auth = new google.auth.JWT(
@@ -37,10 +42,7 @@ async function accessBusyDates(calendarId) {
 
     //creating calendar object 
     const calendar = google.calendar({ version: "v3", auth });
-    //setting current date
-    const todayISO = new Date().toISOString();
-    //setting current date + 3 months 
-    const endDate = addingXMonths(3);
+
 
     //checking every busy day in period of 3 months
     const response = await calendar.freebusy.query({
