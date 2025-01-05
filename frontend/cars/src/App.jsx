@@ -12,16 +12,21 @@ import Sidebar from './Components/Sidebar/Sidebar'
 import Filter from './Components/Filter/Filter'
 
 
+
 function App() {
   const [cars, setCars] = useState([]);
   const localhost = import.meta.env.VITE_LOCAL_HOST;
   //Custom Context API
-  const { loading, searchListData } = useContext(SearchContext);
+  const { loading, setSearchListData, searchListData, filterListData } = useContext(SearchContext);
+
 
   const getCars = async () => {
     try {
       const response = await axios.get(`${localhost}cars`);
       setCars(response.data.data);
+      setSearchListData(response.data.data);
+
+
     } catch (error) {
       console.log(`error fetching data ${error}`);
     }
@@ -36,7 +41,7 @@ function App() {
       await getCars();
     }
     fetchCars();
-  }, [searchListData]);
+  }, []);
 
 
   return (
@@ -48,13 +53,14 @@ function App() {
           <Filter />
         </Sidebar>
         {loading ?
-          <LoadingCircle /> : searchListData.length === 0 ?
+          <LoadingCircle /> : searchListData.length < 1 ?
             <div style={{ marginTop: 120 }}>
               <Alert className='fit-content' severity='info' >Nazalost, nema slobodnih autombila za izabrani period.Pogledajte Celu Ponudu</Alert>
               <CarList list={cars} />
             </div>
             :
-            <CarList list={searchListData} />
+            filterListData.length === 0 ? <CarList list={searchListData} /> : <CarList list={filterListData} />
+
         }
         <Sidebar />
       </main >
