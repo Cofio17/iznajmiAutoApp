@@ -7,6 +7,8 @@ import ErrorPage from './ErrorPage.jsx'
 import HomePage from './Pages/HomePage.jsx'
 import ReservationForm from './Components/ReservationForm.jsx'
 import { SearchProvider } from './Contexts/SearchContext.jsx'
+//loaders
+import { fetchCars } from './loaders/fetchCars.js'
 //router imported
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
@@ -15,7 +17,6 @@ const router = createBrowserRouter([
 
   {
     path: '/',
-
     element:
       <SearchProvider>
         <HomePage />
@@ -25,10 +26,12 @@ const router = createBrowserRouter([
   },
   {
     path: "/cars",
-    element:
+    element: (
       <SearchProvider>
         <App />
-      </SearchProvider>,
+      </SearchProvider>
+    ),
+    loader: fetchCars, // Loader za učitavanje podataka
   },
   {
     path: 'cars/car/:carId',
@@ -46,8 +49,6 @@ createRoot(document.getElementById('root')).render(
 
 
   <StrictMode>
-
     <RouterProvider router={router} />
-
   </StrictMode>,
 )

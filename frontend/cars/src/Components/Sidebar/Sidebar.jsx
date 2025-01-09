@@ -1,4 +1,4 @@
-import Filter from "../Filter/Filter"
+
 export default function Sidebar({ children }) {
 
     return (

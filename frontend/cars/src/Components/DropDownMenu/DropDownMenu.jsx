@@ -18,7 +18,7 @@ export default function DropDownMenu({ isActive }) {
         },
     };
 
-    const demoList = [
+    const list = [
         { id: 1, naziv: "Limuzina" },
         { id: 2, naziv: "HecBek" },
         { id: 3, naziv: "Prikolica" },
@@ -35,9 +35,9 @@ export default function DropDownMenu({ isActive }) {
                     exit="closed"
                     variants={variants}
                 >
-                    {demoList.map((item) => (
+                    {list.map((item) => (
                         <li key={item.id}>
-                            <NavLink to={`/cars?search=${item.naziv}`}>
+                            <NavLink to={`/cars?tip=${encodeURIComponent(item.naziv)}`}>
                                 <span>{item.naziv}</span>
                             </NavLink>
                         </li>

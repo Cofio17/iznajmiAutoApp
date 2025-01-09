@@ -2,7 +2,6 @@ import { Checkbox, FormControlLabel } from "@mui/material";
 
 export default function Input({ value, label, onFilterChange, checked }) {
     const handleChange = (event) => {
-
         onFilterChange(value, event.target.checked); // Šalje vrednost i stanje
     };
 

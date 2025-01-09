@@ -1,72 +1,66 @@
-import { useEffect, useState, useContext } from 'react'
-import axios from 'axios'
-import './App.css'
-import Header from './Components/Header'
-import HeroHeader from './Components/HeroHeader/HeroHeader'
-import { SearchContext } from './Contexts/SearchContext'
-import { Alert } from '@mui/material';
-import Footer from './Components/Footer';
-import LoadingCircle from './utils/LoadingCircle/LoadingCircle'
-import CarList from './Components/CarList/CarList'
-import Sidebar from './Components/Sidebar/Sidebar'
-import Filter from './Components/Filter/Filter'
-
-
+import { useEffect, useState, useContext } from "react";
+import axios from "axios";
+import "./App.css";
+import Header from "./Components/Header";
+import HeroHeader from "./Components/HeroHeader/HeroHeader";
+import { SearchContext } from "./Contexts/SearchContext";
+import AlertBox from "./utils/Alert/Alert";
+import Footer from "./Components/Footer";
+import LoadingCircle from "./utils/LoadingCircle/LoadingCircle";
+import CarList from "./Components/CarList/CarList";
+import Sidebar from "./Components/Sidebar/Sidebar";
+import Filter from "./Components/Filter/Filter";
+import { useLoaderData } from "react-router-dom";
 
 function App() {
-  const [cars, setCars] = useState([]);
   const localhost = import.meta.env.VITE_LOCAL_HOST;
   //Custom Context API
-  const { loading, setSearchListData, searchListData, filterListData } = useContext(SearchContext);
-
-
-  const getCars = async () => {
-    try {
-      const response = await axios.get(`${localhost}cars`);
-      setCars(response.data.data);
-      setSearchListData(response.data.data);
-
-
-    } catch (error) {
-      console.log(`error fetching data ${error}`);
-    }
-
-  }
-
+  const {
+    loading,
+    setSearchListData,
+    searchListData,
+    filterListData,
+    setLoading,
+  } = useContext(SearchContext);
+  const carsData = useLoaderData();
 
   useEffect(() => {
     document.title = "Izaberite Vas Auto";
-
-    const fetchCars = async () => {
-      await getCars();
+    console.log(`useffect`);
+    
+    if (searchListData.length === 0) {
+      setSearchListData(carsData); // Postavi učitane podatke u kontekst
     }
-    fetchCars();
-  }, []);
-
+  }, [carsData, setSearchListData]);
 
   return (
     <>
       <Header />
-      <HeroHeader header='Find Your Ideal Car' />
-      <main className='sidebar-cars-list'>
+      <HeroHeader header="Find Your Ideal Car" />
+      <main className="sidebar-cars-list">
         <Sidebar>
           <Filter />
         </Sidebar>
-        {loading ?
-          <LoadingCircle /> : searchListData.length < 1 ?
-            <div style={{ marginTop: 120 }}>
-              <Alert className='fit-content' severity='info' >Nazalost, nema slobodnih autombila za izabrani period.Pogledajte Celu Ponudu</Alert>
-              <CarList list={cars} />
-            </div>
-            :
-            filterListData.length === 0 ? <CarList list={searchListData} /> : <CarList list={filterListData} />
-
-        }
+        {loading ? (
+          <LoadingCircle />
+        ) : searchListData.length < 1 ? (
+          <div className="cars-list-error">
+            <AlertBox
+              severity={"info"}
+              text={"Nažalost, nema slobodnih autombila za izabrani period"}
+            />
+            {/* <CarList list={cars} />  */}
+          </div>
+        ) : filterListData.length === 0 ? (
+          <CarList list={searchListData} />
+        ) : (
+          <CarList list={filterListData} />
+        )}
         <Sidebar />
-      </main >
+      </main>
       <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
