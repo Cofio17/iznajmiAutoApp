@@ -39,7 +39,7 @@ export default function Search() {
     //search params for cities
     const searchParams = new URLSearchParams(location.search);
     const [city, setCity] = useState(null);
-    const { setLoading, setSearchListData } = useContext(SearchContext);
+    const { setLoading, setSearchListData, setFilterListData } = useContext(SearchContext);
 
 
 
@@ -75,7 +75,7 @@ export default function Search() {
      * /cars - fetching available cars 
      */
     const handleSearch = async () => {
-
+        setFilterListData([]);
         setSearchListData([]);
         try {
             await getCars();

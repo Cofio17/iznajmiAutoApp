@@ -37,6 +37,7 @@ body{
 
 main{
     margin-top: 70px ;  
+   
 }
 
 .active{
@@ -48,13 +49,10 @@ main{
 }
 
 .fit-content{
-    width: fit-content;
+    width:fit-content;
     justify-self: center;
+    height: fit-content;
 }
-
-
-
-
 
 @mixin button-style(){
     border-radius: 8px;
@@ -435,6 +433,7 @@ h2 span{
     @media screen  and (max-width: 810px){ 
         &{
             justify-self: center;
+            margin: 0 auto;
             max-width: 250px;
             margin-top: 130px;
         }
@@ -530,7 +529,7 @@ h2 span{
     height: 400px;
     width: 90%;
     border-radius: 15px;
-}
+    }
 
 .overlay {
     position: absolute;
@@ -543,12 +542,17 @@ h2 span{
     padding: 10px 20px; 
     border-radius: 10px; 
     place-items: center;
+    //dodato na laptop
+    display: flex;
+    justify-content: center;
+    
     
     .search-bar{
         background-color: #fff;
         width: fit-content;
         padding: 10px;
         border-radius: 15px;
+        
     }
 
     @media screen and (max-width:810px) {
@@ -600,6 +604,7 @@ h2 span{
     }
 
     h2{
+        text-align: center; //mozzila laptop
         justify-self: center;
     }
 
@@ -812,9 +817,15 @@ h2 span{
     justify-content: space-between;
  }
 
+ .cars-list-error{
+    @include flex-row();
+    justify-content: center;
+
+    @media screen and (max-width:768px) {
+        margin-top: 130px;
+    }
+ }
+
 
 
     
-
-
-

@@ -1,7 +1,7 @@
 import '../style.scss'
 import Header from '../Components/Header'
 import SectionComponent from '../Components/SectionComponent'
-import CityComponent from '../Components/cityComponent';
+import CityComponent from '../Components/CityComponent';
 import SectionItem from '../Components/SectionItem';
 import { faCar, faKey, faHandshake } from '@fortawesome/free-solid-svg-icons'
 import Search from '../Components/SearchPageComponents/Search';
