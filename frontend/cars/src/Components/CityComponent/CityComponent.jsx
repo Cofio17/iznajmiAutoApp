@@ -1,16 +1,16 @@
-import "../style.scss";
+
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState, useContext } from "react";
 import { useInView } from "framer-motion";
-import { SearchContext } from "../Contexts/SearchContext";
+import { SearchContext } from "../../Contexts/SearchContext";
 import axios from "axios";
 
 export default function CityComponent({ itemData }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const [hasAnimated, setHasAnimated] = useState(false);
-  const { searchListData,setSearchListData, setLoading } = useContext(SearchContext);
+  const { searchListData, setSearchListData, setLoading } = useContext(SearchContext);
   const localhost = import.meta.env.VITE_LOCAL_HOST;
 
 
@@ -22,7 +22,7 @@ export default function CityComponent({ itemData }) {
 
   const getCars = async () => {
     try {
-        setLoading(true);
+      setLoading(true);
       const response = await axios.get(`${localhost}cars`);
       const filteredDataByCity = response.data.data.filter((car) => {
         return car.location === itemData.title;
@@ -31,13 +31,13 @@ export default function CityComponent({ itemData }) {
     } catch (error) {
       console.log(`error fetching data ${error}`);
     }
-    finally{
-        setLoading(false);
-        
+    finally {
+      setLoading(false);
+
     }
   };
 
-  const handleClick = async ()=>{
+  const handleClick = async () => {
     await getCars();
   }
 

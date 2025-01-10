@@ -1,0 +1,7 @@
+$small-screen:768px;
+.filters-container{
+
+    @media screen and (max-width:$small-screen) {
+        display: none;
+    }
+}

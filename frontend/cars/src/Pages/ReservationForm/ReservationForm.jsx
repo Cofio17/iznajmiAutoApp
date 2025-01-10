@@ -1,8 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import formatDate from "../utils/convertDate";
-import '../reservationForm.scss'
+import formatDate from "../../utils/convertDate";
+import './reservationForm.scss'
 import { TextField } from '@mui/material'
 
 

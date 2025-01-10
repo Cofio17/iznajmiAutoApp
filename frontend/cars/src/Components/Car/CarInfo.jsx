@@ -1,4 +1,4 @@
-import '../style.scss'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGasPump, faDoorOpen, faCar, faLocationDot, faList, faUsers, faCarBurst } from '@fortawesome/free-solid-svg-icons'
 export default function CarInfo({ carData, header }) {

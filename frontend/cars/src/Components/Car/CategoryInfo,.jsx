@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CarInfo from "../CarInfo";
+import CarInfo from "./CarInfo";
 
 export default function CategoryInfo({ carData }) {
     const [activeIndex, setActiveIndex] = useState(0);

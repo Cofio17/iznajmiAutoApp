@@ -1,4 +1,4 @@
-import '../style.scss'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { motion } from 'framer-motion'
 export default function SectionItem({ itemData }) {

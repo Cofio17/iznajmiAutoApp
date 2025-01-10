@@ -2,11 +2,10 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom'
 import ErrorPage from './ErrorPage';
-import './style.scss'
-import CalendarComponent from './Components/CalendarComponent';
-import Header from './Components/Header';
-import ImageSlider from './Components/ImageSlider';
-import CategoryInfo from './Components/Car/CategoryInfo,';
+import CalendarComponent from '../Components/Calendar/CalendarComponent';
+import Header from '../Components/Header/Header';
+import ImageSlider from '../Components/ImageSlider/ImageSlider';
+import CategoryInfo from '../Components/Car/CategoryInfo,';
 
 import { useNavigate } from 'react-router-dom';
 

@@ -118,7 +118,7 @@ export default function Search() {
                     maxDate={maxDate}
                     onChange={(newValue) => { setStartDate(newValue) }}
                     format='DD/MM/YYYY'
-                    className='mui-input'
+                    className='mui-input city'
 
 
                 />
@@ -129,7 +129,7 @@ export default function Search() {
                     maxDate={maxDate}
                     onChange={(newValue) => { setEndDate(newValue) }}
                     format='DD/MM/YYYY'
-                    className='mui-input'
+                    className='mui-input city'
 
                 />
             </LocalizationProvider>
@@ -143,7 +143,7 @@ export default function Search() {
                 renderInput={(params) => (
                     <TextField {...params} label="Choose a city" variant="outlined" />
                 )}
-                style={{ width: 230 }}
+                // style={{ width: 230 }}
                 className='mui-input'
             />
             <div onClick={handleSearch} className='search-bar-icon' >

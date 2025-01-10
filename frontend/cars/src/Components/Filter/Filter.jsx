@@ -3,17 +3,18 @@ import { SearchContext } from "../../Contexts/SearchContext";
 import FilterGroup from "./FilterGroup";
 import countMatchingValues from "./countMatchingValues";
 import { useLocation } from "react-router-dom";
+import './filter.scss'
 
 export default function Filter() {
   const [filter, setFilter] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const location = useLocation();
-  const { searchListData, setFilterListData } = useContext(SearchContext);
+  const { searchListData, setFilterListData, filterListData } = useContext(SearchContext);
 
 
   const filterGroups = [
     {
-      legend: "type",
+      legend: "Karoserija",
       inputs: ["Limuzina", "HecBek", "Prikolica", "SUV", "Karavan"],
     },
     {
@@ -21,7 +22,7 @@ export default function Filter() {
       inputs: ["350L", "450L", "550L", "550L<"],
     },
     {
-      legend: "transsmision",
+      legend: "Prenos",
       inputs: ["Automatic", "Manual"],
     },
   ];
@@ -35,10 +36,10 @@ export default function Filter() {
    * 
    * How Does Filter Work?
    * on every click on checkboxes this onFilterChange function triggers.
-   * filters are added or deleted from the list
-   * next function is called *updateList*
-   * again filters are added to diffrent list due to how react works(filter state isnt updated at the right time)
-   * filterData state is filling with filtered cars
+   * filters are added or deleted from the list.
+   * next function is called *updateList*.
+   * again filters are added to diffrent list due to how react works(filter state isnt updated at the right time).
+   * filterData state is filling with filtered cars.
    *
    */
   const onFilterChange = (value, checked) => {
@@ -63,6 +64,7 @@ export default function Filter() {
       : filter.filter((item) => item !== value); // Ukloni filter ako nije selektovano
 
     const numberOfTypes = countMatchingValues(filterGroups, updatedFilters, 0); // Proveri broj selektovanih filtera u grupi "type"
+
     setFilteredData(
       searchListData.filter((car) => {
         return updatedFilters.every((filter) => {
@@ -90,25 +92,31 @@ export default function Filter() {
     );
   };
 
-  //filterListData Context API
-  useEffect(() => {
-    
-    setFilterListData(filteredData);
-  }, [filteredData]);
+
 
   useEffect(() => {
-    console.log(`search filter data filter: ${searchListData}`);
-    
+
     const searchParams = new URLSearchParams(location.search);
     const tip = searchParams.get("tip");
     if (tip && !filter.includes(tip)) {
-        setFilter((prevFilter) => [...prevFilter, tip]);
-        updateList(tip, true);
+      setFilter((prevFilter) => [...prevFilter, tip]);
+      updateList(tip, true);
     }
-}, [location.search]);
+
+  }, [location.search]);
+
+  //filterListData Context API
+  useEffect(() => {
+    console.log(`filtered data ${filteredData}`);
+
+    setFilterListData(filteredData);
+  }, [filteredData]);
+
+
 
   return (
-    <>
+
+    <div className="filters-container">
       {filterGroups.map((group, index) => (
         <FilterGroup
           key={index}
@@ -117,6 +125,7 @@ export default function Filter() {
           selectedFilters={filter}
         />
       ))}
-    </>
+    </div>
+
   );
 }

@@ -10,6 +10,7 @@ export default function CalendarComponent({ calendarId, carId, fetchDates }) {
     const [loading, setLoading] = useState(true);
     const [busyDays, setBusyDays] = useState([]);
 
+    const localhost = import.meta.env.VITE_LOCAL_HOST;
 
 
     useEffect(() => {
@@ -20,7 +21,7 @@ export default function CalendarComponent({ calendarId, carId, fetchDates }) {
                 console.log(calendarId);
 
                 setLoading(true);
-                const response = await axios.post(`http://localhost:5000/api/calendar/get-busy-dates`, { calendarId: calendarId });
+                const response = await axios.post(`${localhost}api/calendar/get-busy-dates`, { calendarId: calendarId });
                 console.log(response.data.dates.calendars[calendarId].busy);
                 const busyDates = response.data.dates.calendars[calendarId].busy
                 setBusyDays(busyDates);

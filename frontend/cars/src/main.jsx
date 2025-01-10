@@ -1,12 +1,13 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.jsx'
-import Car from './CarComponent.jsx'
-import ErrorPage from './ErrorPage.jsx'
+import App from './Pages/App.jsx'
+import Car from './Pages/CarComponent.jsx'
+import ErrorPage from './Pages/ErrorPage.jsx'
 import HomePage from './Pages/HomePage.jsx'
-import ReservationForm from './Components/ReservationForm.jsx'
+import ReservationForm from './Pages/ReservationForm/ReservationForm.jsx'
 import { SearchProvider } from './Contexts/SearchContext.jsx'
+import ScrollToTop from './utils/ScrollToTop.jsx'
 //loaders
 import { fetchCars } from './loaders/fetchCars.js'
 //router imported
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
     path: "/cars",
     element: (
       <SearchProvider>
+        <ScrollToTop />
         <App />
       </SearchProvider>
     ),

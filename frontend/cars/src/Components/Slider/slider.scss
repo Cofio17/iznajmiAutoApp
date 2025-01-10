@@ -1,0 +1,84 @@
+//colors
+$white-color:#fff;
+$primary-color:#48AD7E;
+$darker-primary-color:#2D6A4F;
+$black-color: #081C15;
+$light-primary:#99D6B5;
+$yellow-color:#B69121;
+$gray: #6b6b6b;
+$text-color: #ebebeb;
+$text-color-headers: #444;
+$header-color: rgba(15, 23, 39, 0.85);
+$text-color-light: rgba(15, 23, 39, 0.45);
+
+
+.container-car-slider{
+display: flex;
+flex-direction: column;
+margin: 3rem 10%;
+
+button{
+    background-color: #48AD7E;
+    &:hover{
+        background-color: #48AD7E;
+    }
+}
+
+}
+.slider-container-item{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    max-height: 100px;
+
+    img{
+        max-height: 80%;
+        max-width: 80%;
+        align-self: center;
+        justify-self: center;
+    }
+
+    a:hover{
+        h3{
+            text-decoration: underline;
+        }
+    }
+}
+
+h1{
+    color: $header-color !important; 
+    font-size: 2rem; 
+
+   
+}
+p{
+    color: $text-color-light;
+    font-size: 1.2rem;
+}
+.gold-line {
+    display: inline-block; /* Omogućava kontrolisanu širinu */
+    width: 60px; 
+    height: 5px; 
+    background-color: $yellow-color; 
+    border-radius: 2px; 
+    margin: 0 auto; 
+}
+
+.section-container-h1-p{
+display: flex;
+flex-direction: column;
+gap: 1rem;
+width: 65%;
+margin: 2rem 0;
+place-items: center;
+align-self: center;
+@media screen and (max-width:768px) {
+    h1{
+        font-size: 1.7rem;
+
+    }
+    width: 100%;
+}
+}

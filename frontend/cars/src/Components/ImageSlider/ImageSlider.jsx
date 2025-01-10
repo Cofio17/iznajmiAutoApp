@@ -1,6 +1,5 @@
 import ImageGallery from "react-image-gallery";
-import '../style.scss'
-import '../imageGallery.scss'
+import './imageGallery.scss'
 
 
 export default function ImageSlider({ carData }) {

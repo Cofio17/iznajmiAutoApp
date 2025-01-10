@@ -92,8 +92,7 @@ header {
     width: 100%; 
     z-index: 100; 
     background-color: #fff; 
-    margin-bottom: 100px;
-
+    margin-bottom: 100px; //obrisat
     @extend %box-shadow;
 }
 
@@ -101,7 +100,7 @@ header {
 
 .navlist{
     @include flex-row();
-    justify-content: space-between;
+    justify-content: space-between !important;
     list-style: none;
     align-items: center;
     
@@ -127,7 +126,39 @@ header {
     gap: 3rem;
     margin-right: 50px;
     position: relative;
+    @media (max-width: 768px) {
+        display: none !important; // Sakrij desktop navigaciju na manjim ekranima
+    }
 }
+@media (max-width: 768px) {
+    &{
+        height: 40px;
+       
+    }
+    img{
+        position: absolute;
+        right: 1rem;
+        top: 0.5rem;
+    }
+}
+
+
+.navlinks-button {
+    @media (max-width: 768px) {
+        display: none; // Sakrij desktop navigaciju na manjim ekranima
+    }
+}
+
+.bm-menu-wrap {
+    display: none;
+
+    @media (max-width: 768px) {
+        display: block; // Prikaži burger meni samo na manjim ekranima
+    }
+}
+
+
+  
 }
 #login{
     background-color: $primary-color !important; 
@@ -430,6 +461,9 @@ h2 span{
     justify-content: center;
     
     gap: 1rem;
+    input{
+        width:150px ;
+    }
     @media screen  and (max-width: 810px){ 
         &{
             justify-self: center;
@@ -437,11 +471,16 @@ h2 span{
             max-width: 250px;
             margin-top: 130px;
         }
+
+        input:first-of-type, input:nth-of-type(1){
+            
+        }
         .search-bar-icon{
             background-color: #48AD7E;
-            width: 85%;
+            width: 78%;
             margin-left: 0;
             border-radius: 15px;
+            padding: 10px;
             text-align: center;
             svg{
                 display: none;
@@ -489,6 +528,9 @@ h2 span{
     div{
         border-radius: 15px !important;
     }
+    &.city{
+        width: 205px;
+    }
   
 }
 
@@ -509,7 +551,7 @@ h2 span{
         top: 50%; /* Podešava vertikalnu poziciju */
         transform: translate(-50%, -50%); /* Pomeranje za pola svoje veličine za savršeno centriranje */
         margin: 0; /* Uklanja margine ako ih ima */
-        color: $text-color;
+        color: $text-color !important;
     }
 
     @media screen and (max-width:810px) {
@@ -796,6 +838,7 @@ h2 span{
 
 
   //********sidebar**********
+  //dodati media screenovi za pocetak
 
   
 
@@ -809,12 +852,21 @@ h2 span{
     label{
         color: $text-color-light;
     }
+    @media screen and (max-width:768px) {
+        display: none;
+       
+    }
     
  }
 
  .sidebar-cars-list{
     display: flex;
     justify-content: space-between;
+
+    @media screen and (max-width:768px) {
+        display: block;
+       
+    }
  }
 
  .cars-list-error{
@@ -823,6 +875,7 @@ h2 span{
 
     @media screen and (max-width:768px) {
         margin-top: 130px;
+       
     }
  }
 

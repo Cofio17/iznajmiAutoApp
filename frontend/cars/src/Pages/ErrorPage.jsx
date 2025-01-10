@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import Header from './Components/Header'
+import Header from '../Components/Header/Header'
 export default function ErrorPage({ error }) {
     /**
      * Error page that renders if the searched URL is non existent
