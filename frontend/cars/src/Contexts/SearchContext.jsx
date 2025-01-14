@@ -9,10 +9,11 @@ export function SearchProvider({ children }) {
     const [searchListData, setSearchListData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [filterListData, setFilterListData] = useState([]);
+    const [filtersContext, setFiltersContext] = useState([]);
 
     return (
         // Provide the search data and its updater to child components
-        <SearchContext.Provider value={{ loading, setLoading, searchListData, setSearchListData, filterListData, setFilterListData }}>
+        <SearchContext.Provider value={{ loading, setLoading, searchListData, setSearchListData, filterListData, setFilterListData, filtersContext, setFiltersContext }}>
             {children}
         </SearchContext.Provider>
     )

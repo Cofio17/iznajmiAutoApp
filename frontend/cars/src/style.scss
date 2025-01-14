@@ -10,6 +10,7 @@ $text-color: #ebebeb;
 $text-color-headers: #444;
 $header-color: rgba(15, 23, 39, 0.85);
 $text-color-light: rgba(15, 23, 39, 0.45);
+$small-screen:768px;
 
 h1{
     color: $header-color;
@@ -47,6 +48,7 @@ main{
 %box-shadow{
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
+
 
 .fit-content{
     width:fit-content;
@@ -103,9 +105,6 @@ header {
     justify-content: space-between !important;
     list-style: none;
     align-items: center;
-    
-    
-
     padding: 0.4rem 1rem;
    
     img{
@@ -132,13 +131,13 @@ header {
 }
 @media (max-width: 768px) {
     &{
-        height: 40px;
+        height: 30px;
        
     }
     img{
         position: absolute;
         right: 1rem;
-        top: 0.5rem;
+        top: 0;
     }
 }
 
@@ -370,6 +369,21 @@ h2 span{
     font-weight: 500;
 }
 
+.map-container{
+    height: auto;
+    background-color: $text-color;
+    border-radius: 15px;
+    width: 40%;
+    height: fit-content;
+    gap: 1.2rem;
+    padding: 1.5rem;
+    margin: 2rem auto;
+    text-align: center;
+    h3{
+        
+    }
+}
+
 .container-car-data{
     @include flex-column();
     justify-content: center;
@@ -388,6 +402,7 @@ h2 span{
         gap: 2rem;
         hr{
             margin: 0 0rem 0.5rem 0;
+            color: lightgray;
         }
         svg{
             margin-right: 3px;
@@ -400,6 +415,7 @@ h2 span{
        
     }
     @media screen and (max-width : 1050px) {
+        width: 80%;
         align-items: center;
         .content{
             justify-content: center;
@@ -453,6 +469,13 @@ h2 span{
                 }
             }
         }
+
+        @media screen and (max-width:768px) {
+            h3{
+                font-size: 1rem
+            }
+        }
+       
     }
 
 
@@ -472,9 +495,6 @@ h2 span{
             margin-top: 130px;
         }
 
-        input:first-of-type, input:nth-of-type(1){
-            
-        }
         .search-bar-icon{
             background-color: #48AD7E;
             width: 78%;
@@ -605,7 +625,6 @@ h2 span{
 }
 
 .container-car-cards{
-    margin-top: 3rem;
     @include flex-row();
     gap: 2rem;
     max-width: 900px;
@@ -616,7 +635,6 @@ h2 span{
     padding: 0;
     align-items: center;
     justify-content: center;
-    margin-top: 130px;
    }
 }
 
@@ -779,6 +797,7 @@ h2 span{
       justify-content: space-around;
       flex-wrap: wrap; /* Omogućava prelamanje */
       padding: 20px 0;
+      
   
       .footer-section {
         max-width: 20%;
@@ -789,6 +808,7 @@ h2 span{
         img {
           max-width: 300px;
           margin-bottom: 10px;
+          height: 70px;
         }
   
         p {
@@ -848,15 +868,30 @@ h2 span{
     height: 500px;
     width: 200px;
     margin:0px 70px ;
+    
+    #filter-button{
+        display: none;
+        color: $text-color-headers;
+        font-weight: bold;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        @media screen and (max-width:768px) {
+            display: inline-block;
+       }
+    }
 
     label{
         color: $text-color-light;
     }
     @media screen and (max-width:768px) {
-        display: none;
-       
+         position: static;
+         place-items: center;
+         margin-top: 50px;
+         align-self: center;
+         height: auto;
+         width: auto;
+        
     }
-    
  }
 
  .sidebar-cars-list{
@@ -864,7 +899,8 @@ h2 span{
     justify-content: space-between;
 
     @media screen and (max-width:768px) {
-        display: block;
+        flex-direction: column;
+        place-items: center; //dodato
        
     }
  }
@@ -878,6 +914,21 @@ h2 span{
        
     }
  }
+
+
+.filters-container{
+
+    @media screen and (max-width:$small-screen) {
+        display: block;
+    }
+}
+
+// .outer-div-filter-container{
+//     @media screen and (max-width:768px) {
+//         opacity: auto;
+       
+//     }
+// }
 
 
 

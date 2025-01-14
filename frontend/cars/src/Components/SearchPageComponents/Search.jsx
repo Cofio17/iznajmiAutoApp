@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { SearchContext } from '../../Contexts/SearchContext';
+import LoadingCircle from '../../utils/LoadingCircle/LoadingCircle';
 
 
 /**
@@ -39,9 +40,12 @@ export default function Search() {
     //search params for cities
     const searchParams = new URLSearchParams(location.search);
     const [city, setCity] = useState(null);
-    const { setLoading, setSearchListData, setFilterListData } = useContext(SearchContext);
+    const { loading, setLoading, setSearchListData, setFilterListData, setFiltersContext } = useContext(SearchContext);
 
-
+    const resetFilters = () => {
+        setFilterListData([]);
+        setFiltersContext([]);
+    }
 
     useEffect(() => {
         const handleSearchParams = () => {
@@ -75,6 +79,7 @@ export default function Search() {
      * /cars - fetching available cars 
      */
     const handleSearch = async () => {
+        resetFilters();
         setFilterListData([]);
         setSearchListData([]);
         try {
@@ -143,12 +148,12 @@ export default function Search() {
                 renderInput={(params) => (
                     <TextField {...params} label="Choose a city" variant="outlined" />
                 )}
-                // style={{ width: 230 }}
                 className='mui-input'
             />
             <div onClick={handleSearch} className='search-bar-icon' >
                 <FontAwesomeIcon icon={faMagnifyingGlass} color='black' size='1x' />
             </div>
+            {loading && location.pathname === '/' && <LoadingCircle />}
         </div>
     );
 }

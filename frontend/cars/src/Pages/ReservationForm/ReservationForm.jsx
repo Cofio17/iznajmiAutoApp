@@ -3,23 +3,21 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import formatDate from "../../utils/convertDate";
 import './reservationForm.scss'
-import { TextField } from '@mui/material'
+import { TextField, FormControlLabel, Checkbox } from '@mui/material'
+import { generateReservationEmailHtml } from "../../utils/emails/ReservationEmail";
+import Modal from "../../utils/Modal/Modal";
+import { AnimatePresence } from "framer-motion";
+
 
 
 export default function ReservationForm() {
     const location = useLocation();
     const navigate = useNavigate();
     const { car, selectedDate, carId } = location.state || {};
+    const localhost = import.meta.env.VITE_LOCAL_HOST;
 
-    console.log(selectedDate[0].toDateString());
 
-
-    useEffect(() => {
-        if (!car || !selectedDate || !carId) {
-            navigate('/');
-        }
-    }, [car, selectedDate, carId, navigate]);
-
+    //wall of state- FORM STATES
     const [email, setEmail] = useState('');
     const [number, setNumber] = useState('');
     const [firstName, setFirstName] = useState('');
@@ -28,9 +26,27 @@ export default function ReservationForm() {
     const [termsAccepted, setTermsAccepted] = useState(false);
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
-
     const [error, setError] = useState(false);
 
+
+    //Modal
+    const [modalOpen, setModalOpen] = useState(false);
+    const close = () => {
+        setModalOpen(false);
+        navigate('/', { replace: true });
+    }
+    const open = () => setModalOpen(true);
+
+
+    //UseEffect for moving data 
+    useEffect(() => {
+        if (!car || !selectedDate || !carId) {
+            navigate('/');
+        }
+    }, [car, selectedDate, carId, navigate]);
+
+
+    //Form validation for inccorect input
     const validateForm = () => {
         const newErrors = {};
         if (!firstName.trim()) {
@@ -56,6 +72,10 @@ export default function ReservationForm() {
         return Object.keys(newErrors).length === 0;
     };
 
+    /**
+     * If validateForm() is true Google calendar API triggers and if succesful, event is being created in the  calendar
+     * @param {Event} event 
+     */
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (validateForm()) {
@@ -71,9 +91,15 @@ export default function ReservationForm() {
                 };
                 console.log(reservationData);
 
-                const response = await axios.post(`http://localhost:5000/api/calendar/create-event`, reservationData, {
+                const response = await axios.post(`${localhost}api/calendar/create-event`, reservationData, {
                     headers: { 'Content-Type': 'application/json' },
                 });
+                if (response.status === 200) {
+                    await sendEmail(car.brand, car.model);
+                    open();
+
+                }
+
                 setEmail('');
                 setNumber('');
                 setFirstName('');
@@ -86,50 +112,86 @@ export default function ReservationForm() {
             } finally {
                 setIsSubmitting(false);
                 setError(false);
+
             }
         }
     };
 
+    /**
+     * On succesfull api call to google calendar, html mail is generated and sent to the user who made a reservation
+     * @param {string} brand - brand of a car
+     * @param {string} model  - model of a car
+     */
+    const sendEmail = async (brand, model) => {
+        const userFirstname = firstName;
+
+        // Generisanje HTML sadržaja
+        const emailHtml = generateReservationEmailHtml(userFirstname, brand, model);
+
+        try {
+            const response = await axios.post(
+                `${localhost}email/send-email`,
+                {
+                    to: email, // Dinamička adresa korisnika
+                    subject: "Uspešna rezervacija! Iznajmi.me",
+                    html: emailHtml, // Prosleđivanje generisanog HTML sadržaja
+                },
+                {
+                    headers: { "Content-Type": "application/json" }, // Ispravno postavljanje zaglavlja
+                }
+            );
+            console.log("Email sent:", response.data);
+        } catch (error) {
+            console.error("Error sending email:", error);
+        }
+    };
+
+
     return (
-        <form onSubmit={handleSubmit}>
-            <h1>Rezervacija</h1>
-            <p>Automobil: {car?.brand}</p>
-            <p>{selectedDate[0].toDateString()} - {selectedDate[1].toDateString()}</p>
+        <div>
+            <AnimatePresence initial={false} mode='wait'>
+                {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} />}
+            </AnimatePresence>
 
-            <label htmlFor="firstName">Ime</label>
-            <input type="text" id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="Unesite ime" />
-            {errors.firstName && <p style={{ color: 'red' }}>{errors.firstName}</p>}
+            <form className="reservation-form" onSubmit={handleSubmit}>
+                <h1>Rezervacija</h1>
+                <p>Automobil: {car?.brand} {car?.model} {car.year}</p>
+                <p>{selectedDate[0].toDateString()} - {selectedDate[1].toDateString()}</p>
 
-            <label htmlFor="firstname">Ime</label>
-            <TextField error={error} fullWidth id="firstname" required={true} variant="outlined" type="text" value={firstName} label={'Ime'} onChange={(e) => setFirstName(e.target.value)} className="mui-input" />
 
-            <label htmlFor="lastName">Prezime</label>
-            <input type="text" id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Unesite prezime" />
-            {errors.lastName && <p style={{ color: 'red' }}>{errors.lastName}</p>}
+                <TextField error={error} fullWidth id="firstname" required={true} variant="outlined" type="text" value={firstName} label={'Ime'} onChange={(e) => setFirstName(e.target.value)} className="mui-input reservation-form-input" />
+                <TextField error={error} fullWidth id="lastName" required={true} variant="outlined" type="text" value={lastName} label={'Prezime'} onChange={(e) => setLastName(e.target.value)} className="mui-input reservation-form-input" />
 
-            <label htmlFor="jmbg">JMBG</label>
-            <input type="text" id="jmbg" value={jmbg} onChange={(e) => setJmbg(e.target.value)} placeholder="Unesite JMBG" />
-            {errors.jmbg && <p style={{ color: 'red' }}>{errors.jmbg}</p>}
+                <TextField error={error} fullWidth id="jmbg" required={true} variant="outlined" type="text" value={jmbg} label={'unesite JMBG'} onChange={(e) => setJmbg(e.target.value)} className="mui-input reservation-form-input" />
+                {errors.jmbg && <p style={{ color: 'red' }}>{errors.jmbg}</p>}
 
-            <label htmlFor="number">Broj Telefona</label>
-            <input type="text" id="number" value={number} onChange={(e) => setNumber(e.target.value)} placeholder="Unesite broj telefona" />
-            {errors.number && <p style={{ color: 'red' }}>{errors.number}</p>}
+                <TextField error={error} fullWidth id="number" required={true} variant="outlined" type="tel" value={number} label={'mobilni telefon...'} onChange={(e) => setNumber(e.target.value)} className="mui-input reservation-form-input" />
+                {errors.number && <p style={{ color: 'red' }}>{errors.number}</p>}
 
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Unesite email" />
-            {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
+                <TextField error={error} fullWidth id="email" required={true} variant="outlined" type="email" value={email} label={'Email'} onChange={(e) => setEmail(e.target.value)} className="mui-input reservation-form-input" />
+                {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
 
-            <div className="checkbox">
-                <input type="checkbox" id="terms" checked={termsAccepted} onChange={(e) => setTermsAccepted(e.target.checked)} />
-                <label htmlFor="terms">Prihvatam uslove korišćenja</label>
-                {errors.termsAccepted && <p style={{ color: 'red' }}>{errors.termsAccepted}</p>}
-            </div>
 
-            <button type="submit" className="button" disabled={isSubmitting}>
-                {isSubmitting ? 'Slanje...' : 'Rezerviši'}
-            </button>
 
-            {errors.server && <p style={{ color: 'red' }}>{errors.server}</p>}
-        </form>
+                <FormControlLabel required control={
+                    <Checkbox
+
+                        onChange={(e) => { setTermsAccepted(e.target.checked) }}
+                        size="small"
+                        sx={{
+                            marginLeft: 2,
+                            color: '#B69121',
+                            '&.Mui-checked': { color: '#B69121' }
+                        }} />} label={'Prihvatam uslove korišćenja'} />
+
+                <button type="submit" className="button" disabled={isSubmitting}>
+                    {isSubmitting ? 'Slanje...' : 'Rezerviši'}
+                </button>
+                {errors.server && <p style={{ color: 'red' }}>{errors.server}</p>}
+
+            </form>
+
+        </div>
+
     );
 }

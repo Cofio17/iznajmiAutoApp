@@ -1,10 +1,63 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { motion, useAnimationControls } from 'framer-motion';
+import { useState } from 'react';
+import { useMediaQuery } from '@mui/material';
 
-export default function Sidebar({ children }) {
+export default function Sidebar({ children, filter }) {
+    const [collapsed, setCollapsed] = useState(true);
+    const controls = useAnimationControls();
+
+    const isMobile = useMediaQuery('(max-width:600px)'); // ili drugi breakpoint koji vam odgovara
+
+    const variants = {
+        open: {
+            height: "auto",
+            opacity: 1,
+            transition: { duration: 0.2 },
+            display: 'block'
+        },
+        closed: {
+            height: 0,
+            opacity: 0,
+            transition: { duration: 0.2 },
+            overflow: 'hidden'
+        }
+    };
+
+    const handleClick = () => {
+        setCollapsed(!collapsed);
+        if (isMobile) {
+            controls.start(collapsed ? 'open' : 'closed');
+        }
+    };
 
     return (
         <section className="sidebar">
-            {children}
+            {filter && (
+                <div>
+                    <span onClick={handleClick} id='filter-button'>
+                        Napredno filtriranje
+                        <motion.span
 
+                            animate={{ rotate: collapsed ? 180 : 0 }}
+                            transition={{ duration: 0.2 }}
+                            style={{ display: 'inline-block' }}
+                        >
+                            <FontAwesomeIcon icon={faChevronDown} />
+                        </motion.span>
+                    </span>
+                    <motion.div
+                        className='outer-div-filter-container'
+                        animate={isMobile ? controls : undefined}
+                        initial={isMobile ? 'closed' : 'open'} // Na većim ekranima odmah otvoreno
+                        variants={variants}
+                        style={{ display: isMobile || !collapsed ? 'block' : 'none' }} // Uklanja animaciju na desktop
+                    >
+                        {children}
+                    </motion.div>
+                </div>
+            )}
         </section>
-    )
+    );
 }

@@ -6,8 +6,9 @@ import CalendarComponent from '../Components/Calendar/CalendarComponent';
 import Header from '../Components/Header/Header';
 import ImageSlider from '../Components/ImageSlider/ImageSlider';
 import CategoryInfo from '../Components/Car/CategoryInfo,';
-
 import { useNavigate } from 'react-router-dom';
+import Footer from '../Components/Footer';
+
 
 export default function Car() {
     const params = useParams();
@@ -20,7 +21,6 @@ export default function Car() {
     const navigate = useNavigate();
 
     const localhost = import.meta.env.VITE_LOCAL_HOST;
-
 
     useEffect(() => {
         const fetchCarData = async () => {
@@ -88,10 +88,9 @@ export default function Car() {
                         </div>
                     </div>
                     <CategoryInfo carData={carData} />
-
-
                 </div>
             </main>
+            <Footer />
         </>
 
     )

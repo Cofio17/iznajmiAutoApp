@@ -5,7 +5,6 @@ const { getAllCars, getCarById, insertCars } = require('../controllers/itemsCont
 
 router.get('/', getAllCars);
 router.get('/save', insertCars);
-
 router.get('/:itemID', getCarById);
 
 

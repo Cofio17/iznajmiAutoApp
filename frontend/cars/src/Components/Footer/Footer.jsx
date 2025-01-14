@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
+import image from '../../assets//images/logo.png'
 
 export default function Footer() {
     const email = "info@iznajmi.me";
 
     const sectionLogo = {
-        image: "/logo300x50.png",
+        image: image,
         content: `Ako imate bilo kakva pitanja ili potrebu za pomoć, molimo Vas da nas kontaktirate putem mejla `
     };
 

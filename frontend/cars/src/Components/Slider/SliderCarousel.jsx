@@ -9,19 +9,23 @@ import porodicanImg from '../../assets/sliderCars/Porodican.png';
 import sportskiImg from '../../assets/sliderCars/Sportski.png';
 import miniImg from '../../assets/sliderCars/Mini.png';
 import kompaktanImg from '../../assets/sliderCars/Kompaktan.png';
+import { fetchCars } from '../../loaders/fetchCars';
+import { useContext } from 'react';
+import { SearchContext } from '../../Contexts/SearchContext';
 
 
 
 
 export default function SliderCarousel() {
 
-    //napraviti loader
+    const { searchListData, setSearchListData } = useContext(SearchContext);
+
 
     let settings = {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 3,
+        slidesToShow: 4,
         slidesToScroll: 1,
         initialSlide: 1,
         responsive: [
@@ -78,6 +82,13 @@ export default function SliderCarousel() {
         }
     ]
 
+    const handleClick = async () => {
+        if (searchListData.length === 0) {
+            const res = await fetchCars();
+            setSearchListData(res);
+        }
+    }
+
     return (
         <div className="container-car-slider">
             <div className="section-container-h1-p">
@@ -88,7 +99,7 @@ export default function SliderCarousel() {
             <Slider {...settings}>
                 {carTypes.map((car) => {
                     return <div className='slider-container-item' key={car.naziv}>
-                        <Link to={`/cars?tip=${encodeURIComponent(car.naziv)}`}>
+                        <Link onClick={handleClick} to={`/cars?tip=${encodeURIComponent(car.naziv)}`}>
                             <img src={car.image} alt="car" />
                             <h3>{car.naziv}</h3>
                         </Link>

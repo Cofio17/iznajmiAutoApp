@@ -10,6 +10,7 @@ const itemsRouter = require('./routes/itemsRoute.js');
 const reservationsRouter = require('./routes/reservationsRoute.js');
 const calendarRoute = require('./routes/calendar.js');
 const companyRouter = require('./routes/companyRoute.js');
+const emailRouter = require('./routes/email.js');
 
 //connection to database
 mongoose.connect(process.env.MONGO_URL)
@@ -31,6 +32,7 @@ app.use('/cars', itemsRouter); //cars route - incomplete
 app.use('/', reservationsRouter); //izbaciti
 app.use("/api/calendar", calendarRoute); //calendar route
 app.use('/company', companyRouter); // companies route
+app.use('/email', emailRouter);
 
 app.get('/', (req, res) => {
     res.send('home page');
