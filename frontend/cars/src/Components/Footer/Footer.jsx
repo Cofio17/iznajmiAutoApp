@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import image from '../../assets//images/logo.png'
+import ScrollToTop from "../../utils/ScrollToTop";
 
 export default function Footer() {
     const email = "info@iznajmi.me";
@@ -17,7 +18,7 @@ export default function Footer() {
                 { text: "Politika privatnosti", url: "/politika-privatnosti" },
                 { text: "Politika reklamacije", url: "/politika-reklamacije" },
                 { text: "Politika otkazivanja", url: "/politika-otkazivanja" },
-                { text: "O nama", url: "/o-nama" }
+                { text: "O nama", url: "/about_us" }
             ]
         },
         {
@@ -34,6 +35,7 @@ export default function Footer() {
 
     return (
         <footer>
+            <ScrollToTop />
             <hr />
             <div className="content">
                 <div className="footer-section logo">

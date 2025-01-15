@@ -14,7 +14,7 @@ import LoadingCircle from '../../utils/LoadingCircle/LoadingCircle';
 
 /**
  * 
- * @returns Component that contains search bar and search with dates
+ * @returns Component with Search Bar
  */
 export default function Search() {
 
@@ -71,8 +71,6 @@ export default function Search() {
 
         handleSearchParams();
     }, [location.pathname]);
-
-
 
     /**
      * / - redirecting to Cars Page and sending data throught url params

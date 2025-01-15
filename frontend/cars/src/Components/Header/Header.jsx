@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useLocation } from "react-router-dom"
 import logo from '../../assets/images/logo.png'
 import DropDownMenu from "../DropDownMenu/DropDownMenu"
 import { useState } from "react"
@@ -10,6 +10,14 @@ export default function Header() {
     const [activeDropDown, setActiveDropDown] = useState(false);
     let timer;
 
+    const location = useLocation();
+
+    const handleRefresh = (path) => {
+        if (location.pathname === path) {
+            localStorage.removeItem("searchListData");
+            //window.location.reload();
+        }
+    };
     return (
         <header>
 
@@ -27,9 +35,9 @@ export default function Header() {
                             clearTimeout(timer);
                             setActiveDropDown(true);
                         }}>
-                            <NavLink aria-haspopup={true} to='/cars' >Rent a Car </NavLink>
+                            <NavLink onClick={() => { handleRefresh('/cars') }} aria-haspopup={true} to='/cars' >Rent a Car </NavLink>
                             <DropDownMenu isActive={activeDropDown} /></li>
-                        <li><NavLink to='about_us' >About us</NavLink></li>
+                        <li><NavLink to='/about_us' >About us</NavLink></li>
                     </div>
 
                     <div className="navlinks-button">

@@ -23,11 +23,28 @@ function App() {
 
   useEffect(() => {
     document.title = "Izaberite Vas Auto";
+    console.log(searchListData);
+
 
     if (searchListData.length === 0) {
       setSearchListData(carsData); // Postavi učitane podatke u kontekst
     }
+  }, [carsData, setSearchListData, searchListData]);
+
+  useEffect(() => {
+    const savedSearchListData = localStorage.getItem("searchListData");
+    if (!savedSearchListData || JSON.parse(savedSearchListData).length === 0) {
+      setSearchListData(carsData); // Postavi učitane podatke u kontekst
+    } else {
+      setSearchListData(JSON.parse(savedSearchListData));
+    }
   }, [carsData, setSearchListData]);
+
+  useEffect(() => {
+    if (searchListData.length > 0) {
+      localStorage.setItem("searchListData", JSON.stringify(searchListData));
+    }
+  }, [searchListData]);
 
   const areFiltersActive = filtersContext && filtersContext.length > 0;
 

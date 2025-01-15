@@ -8,6 +8,8 @@ import ImageSlider from '../Components/ImageSlider/ImageSlider';
 import CategoryInfo from '../Components/Car/CategoryInfo,';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../Components/Footer';
+import GoBack from '../Components/GoBack/GoBack';
+import dayjs from 'dayjs';
 
 
 export default function Car() {
@@ -18,6 +20,7 @@ export default function Car() {
     const [errorText, setErrorText] = useState('');
     const [loading, setLoading] = useState(true);
     const [selectedDate, setSelectedDate] = useState([]);
+    const [priceTotal, setPriceTotal] = useState();
     const navigate = useNavigate();
 
     const localhost = import.meta.env.VITE_LOCAL_HOST;
@@ -60,6 +63,20 @@ export default function Car() {
     //fetching data from child/calendar component
     const handleSelectedData = (date) => {
         setSelectedDate(date);
+        // Izračunavanje broja dana
+        const daysTotal = dayjs(date[1]).diff(dayjs(date[0]), 'days') + 1;
+
+        // Izračunavanje ukupne cene
+        const totalPrice = carData.pricePerDay * daysTotal;
+
+        // Ažuriranje stanja
+        setPriceTotal(totalPrice);
+
+        // Debugging
+        console.log(carData.pricePerDay);
+        console.log(`Price total: ${totalPrice}, Days total: ${daysTotal}`);
+
+        // Resetovanje greške
         setErrorText('');
     }
 
@@ -75,16 +92,17 @@ export default function Car() {
             <Header />
             <main>
                 <div className='container-car'>
+                    <GoBack />
                     <div className="container-car-upper">
-
                         <ImageSlider carData={carData} />
                         <div className='container-car-calendar'>
-                            <div id='price'><p>{carData.pricePerDay}€ / Day </p></div>
+                            <div id='price'><p>{carData.pricePerDay}€ / Dan </p></div>
                             {/* fetchDates prop receives a fuctions that handles the selected dates and brings back to the this/parent component */}
                             <CalendarComponent calendarId={carData.calendarId} fetchDates={handleSelectedData} carId={params.carId} />
                             {errorText && <p>{errorText}</p>}
 
-                            <button className='button' onClick={handleNavigate}><Link>Next</Link></button>
+                            <button className='button' onClick={handleNavigate}><Link>Dalje</Link></button>
+                            {priceTotal && <span style={{ color: "#444" }}>Cena za izabrane dane <del>{priceTotal}€</del> {priceTotal * 0.95}€ </span>}
                         </div>
                     </div>
                     <CategoryInfo carData={carData} />

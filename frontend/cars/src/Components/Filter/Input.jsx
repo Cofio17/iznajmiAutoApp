@@ -11,7 +11,7 @@ export default function Input({ value, label, onFilterChange, checked }) {
                 <Checkbox
                     onChange={handleChange}
                     checked={checked}
-                    size="small"
+                    size="medium"
                     sx={{
                         marginLeft: 2,
                         color: '#B69121',

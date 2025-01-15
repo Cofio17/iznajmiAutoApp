@@ -20,8 +20,8 @@ export default function Filter() {
       inputs: ["Limuzina", "HecBek", "Prikolica", "SUV", "Karavan"],
     },
     {
-      legend: "Gepek",
-      inputs: ["350L", "450L", "550L", "550L<"],
+      legend: "Gepek(L)",
+      inputs: ["0-250L", "251L-350L", "351L-550L", "preko 550L"],
     },
     {
       legend: "Prenos",

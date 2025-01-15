@@ -7,6 +7,7 @@ import { TextField, FormControlLabel, Checkbox } from '@mui/material'
 import { generateReservationEmailHtml } from "../../utils/emails/ReservationEmail";
 import Modal from "../../utils/Modal/Modal";
 import { AnimatePresence } from "framer-motion";
+import GoBack from "../../Components/GoBack/GoBack";
 
 
 
@@ -36,6 +37,19 @@ export default function ReservationForm() {
         navigate('/', { replace: true });
     }
     const open = () => setModalOpen(true);
+
+    useEffect(() => {
+        if (modalOpen) {
+            document.body.classList.add('no-scroll');
+        } else {
+            document.body.classList.remove('no-scroll');
+        }
+
+        // Čisti efekat prilikom demontaže komponenta
+        return () => {
+            document.body.classList.remove('no-scroll');
+        };
+    }, [modalOpen]);
 
 
     //UseEffect for moving data 
@@ -152,6 +166,7 @@ export default function ReservationForm() {
             <AnimatePresence initial={false} mode='wait'>
                 {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} />}
             </AnimatePresence>
+            <GoBack />
 
             <form className="reservation-form" onSubmit={handleSubmit}>
                 <h1>Rezervacija</h1>

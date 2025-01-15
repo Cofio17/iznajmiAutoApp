@@ -56,6 +56,12 @@ main{
     height: fit-content;
 }
 
+.no-scroll {
+    overflow: hidden;
+    height: 100vh;
+}
+
+
 @mixin button-style(){
     border-radius: 8px;
     border: 1px solid transparent;
@@ -379,9 +385,7 @@ h2 span{
     padding: 1.5rem;
     margin: 2rem auto;
     text-align: center;
-    h3{
-        
-    }
+
 }
 
 .container-car-data{
@@ -931,5 +935,94 @@ h2 span{
 // }
 
 
+.go-back-container{
+font-size: 1rem;
 
+    &:hover{
+        span{
+            text-decoration: underline;
+        }
+    }
     
+}
+
+
+//****************ABOUT US******************
+.about-us-container {
+    width: fit-content;
+    color: #444;
+    font-weight: 600;
+    max-width: 800px;
+    margin: 0 auto;
+
+    @media screen and (max-width:$small-screen) {
+     padding: 15px;
+          
+    }
+
+  
+  .about-us ul,
+  .politics-container ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+  }
+
+  .about-us-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.about-us ul,
+.policies ul,
+.terms ul {
+    list-style: none;
+    padding: 0;
+}
+
+.about-us li,
+.policies li,
+.terms li {
+    margin: 10px 0;
+}
+
+a {
+    text-decoration: none;
+    color: #2D6A4F;
+    display: flex;
+    align-items: center;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.policy-link,
+.terms-link {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.policy-link svg,
+.terms-link svg {
+    margin-left: 5px;
+    font-size: 14px;
+}
+}
+
+.policies, .terms{
+max-width: 1000px;
+margin:  0 auto;
+padding: 10px;
+h2{
+    font-size: 1.3rem;
+    color: #6b6b6b;
+}
+p{
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+}
+
+  
+  
