@@ -1,20 +1,18 @@
 import '../style.scss'
-import Header from '../Components/Header/Header'
 import SectionComponent from '../Components/HomeSections/SectionComponent'
 import CityComponent from '../Components/CityComponent/CityComponent'
 import SectionItem from '../Components/HomeSections/SectionItem'
 import { faCar, faKey, faHandshake } from '@fortawesome/free-solid-svg-icons'
 import Search from '../Components/SearchPageComponents/Search';
 import { useEffect } from 'react';
-import Footer from '../Components/Footer';
 import SliderCarousel from '../Components/Slider/SliderCarousel'
+import Layout from '../Components/Layout/Layout'
 
 export default function HomePage() {
 
     useEffect(() => {
         document.title = 'Iznajmi me - Pocetna'
     })
-
 
     const sectionData = {
         header: "Iznajmite auto za svoje putovanje danas",
@@ -76,17 +74,12 @@ export default function HomePage() {
         ],
     }
 
-    return (<div className="container">
-
-        <Header />
-        <main>
+    return (
+        <Layout >
             <Search />
             <SliderCarousel />
             <SectionComponent sectionData={cities} DynamicComponent={CityComponent} />
             <SectionComponent sectionData={sectionData} DynamicComponent={SectionItem} />
-        </main>
-
-        <Footer />
-    </div>
+        </Layout>
     )
 }

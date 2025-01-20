@@ -8,6 +8,8 @@ import { generateReservationEmailHtml } from "../../utils/emails/ReservationEmai
 import Modal from "../../utils/Modal/Modal";
 import { AnimatePresence } from "framer-motion";
 import GoBack from "../../Components/GoBack/GoBack";
+import useModal from "../../Hooks/useModal";
+import SuccesfulReservation from "../../utils/Modal/ModalTypes/SuccesfulReservation";
 
 
 
@@ -28,28 +30,7 @@ export default function ReservationForm() {
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState(false);
-
-
-    //Modal
-    const [modalOpen, setModalOpen] = useState(false);
-    const close = () => {
-        setModalOpen(false);
-        navigate('/', { replace: true });
-    }
-    const open = () => setModalOpen(true);
-
-    useEffect(() => {
-        if (modalOpen) {
-            document.body.classList.add('no-scroll');
-        } else {
-            document.body.classList.remove('no-scroll');
-        }
-
-        // Čisti efekat prilikom demontaže komponenta
-        return () => {
-            document.body.classList.remove('no-scroll');
-        };
-    }, [modalOpen]);
+    const { modalOpen, open, close } = useModal()
 
 
     //UseEffect for moving data 
@@ -164,9 +145,8 @@ export default function ReservationForm() {
     return (
         <div>
             <AnimatePresence initial={false} mode='wait'>
-                {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} />}
+                {modalOpen && <Modal type={'succesful'} modalOpen={modalOpen} handleClose={close} > <SuccesfulReservation handleClose={close} /></Modal>}
             </AnimatePresence>
-            <GoBack />
 
             <form className="reservation-form" onSubmit={handleSubmit}>
                 <h1>Rezervacija</h1>

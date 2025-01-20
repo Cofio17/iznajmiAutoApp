@@ -1,13 +1,21 @@
-import { NavLink, useLocation } from "react-router-dom"
+import { NavLink, useLocation, useNavigate } from "react-router-dom"
 import logo from '../../assets/images/logo.png'
 import DropDownMenu from "../DropDownMenu/DropDownMenu"
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { stack as Menu } from 'react-burger-menu'
-import './burgerMenu.scss'
+import BurgerMenu from "./BurgerMenu"
+import { useContext } from "react"
+import { AuthContext } from "../../Contexts/AuthContextHelper"
 
-export default function Header() {
+
+export default function Header({ onClick }) {
     const [activeDropDown, setActiveDropDown] = useState(false);
+    const { token, isTokenValid } = useContext(AuthContext);
+
+    const savedToken = localStorage.getItem('token')
+    const isAuthenticated = isTokenValid(savedToken);
+    const navigate = useNavigate();
+
     let timer;
 
     const location = useLocation();
@@ -18,9 +26,12 @@ export default function Header() {
             //window.location.reload();
         }
     };
+
+    const navigateTo = () => {
+        navigate('/dashboard');
+    }
     return (
         <header>
-
             <nav>
 
                 <ul className="navlist">
@@ -28,7 +39,7 @@ export default function Header() {
                     {/* Desktop devices  */}
                     <li><NavLink to='/'><img src={logo} alt="logo" /></NavLink></li>
                     <div className="navlinks">
-                        <li><NavLink to='/'  >Home</NavLink></li>
+                        <li><NavLink to='/'  >Početna</NavLink></li>
                         <li onMouseLeave={() => {
                             timer = setTimeout(() => setActiveDropDown(false), 300);
                         }} onMouseEnter={() => {
@@ -37,11 +48,13 @@ export default function Header() {
                         }}>
                             <NavLink onClick={() => { handleRefresh('/cars') }} aria-haspopup={true} to='/cars' >Rent a Car </NavLink>
                             <DropDownMenu isActive={activeDropDown} /></li>
-                        <li><NavLink to='/about_us' >About us</NavLink></li>
+                        <li><NavLink to='/about_us' >O nama</NavLink></li>
                     </div>
+
 
                     <div className="navlinks-button">
                         <motion.button
+                            onClick={isAuthenticated ? navigateTo : onClick}
                             whileTap={{ scale: 1.1 }}
                             whileHover={{
                                 scale: 0.95,
@@ -49,27 +62,18 @@ export default function Header() {
                             }}
                             id="login"
                         >
-                            Login/Register
+                            {isAuthenticated ? ' Profil' : 'Login'}
                         </motion.button>
                     </div>
                 </ul>
 
 
                 {/* Mobile devices  */}
-                <Menu className="contaner-burger-menu" left>
-                    <NavLink to="/" className="menu-item">
-                        Home
-                    </NavLink>
-                    <NavLink to="/cars" className="menu-item">
-                        Rent a Car
-                    </NavLink>
-                    <NavLink to="/about_us" className="menu-item">
-                        About us
-                    </NavLink>
-                    <button id="login" className="menu-item">Login/Register</button>
-                </Menu>
+                <BurgerMenu handleRefresh={handleRefresh} onClick={onClick} />
+
             </nav>
 
         </header>
+
     )
 }

@@ -4,6 +4,9 @@ import FilterGroup from "./FilterGroup";
 import countMatchingValues from "./countMatchingValues";
 import { useLocation } from "react-router-dom";
 import './filter.scss'
+import kofer from '../../assets/images/kofer.svg'
+
+
 
 export default function Filter() {
   const location = useLocation();
@@ -20,8 +23,13 @@ export default function Filter() {
       inputs: ["Limuzina", "HecBek", "Prikolica", "SUV", "Karavan"],
     },
     {
-      legend: "Gepek(L)",
-      inputs: ["0-250L", "251L-350L", "351L-550L", "preko 550L"],
+      legend: "Gepek",
+      inputs: [
+        '1',
+        '2',
+        '3',
+        '4'
+      ],
     },
     {
       legend: "Prenos",

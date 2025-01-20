@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import BackDrop from '../BackDrop/Backdrop'
 import './modal.scss'
-export default function Modal({ handleClose, text }) {
+export default function Modal({ handleClose, children, type }) {
 
     const dropIn = {
         hidden: {
@@ -26,22 +26,8 @@ export default function Modal({ handleClose, text }) {
     return (
         <BackDrop>
 
-            <motion.div initial='hidden' animate='visible' exit='exit' variants={dropIn} className='modal' onClick={(e) => e.stopPropagation()}>
-
-                <div className="heading">
-                    <h2>Čestitamo!</h2>
-                    <p>Vaša rezervacija je uspešno završena!</p>
-                </div>
-                <div className="main-content">
-                    <p>
-                        Detalji vaše rezervacije su poslati na vašu email adresu.
-                        Hvala što ste odabrali našu uslugu. Želimo vam srećnu vožnju!
-                    </p>
-                    <p>Ako imate dodatna pitanja, slobodno nas kontaktirajte.</p>
-                </div>
-                <button className='button' onClick={handleClose}>U redu</button>
-
-
+            <motion.div initial='hidden' animate='visible' exit='exit' variants={dropIn} className={type === 'succesful' ? ' modal succesful' : 'modal login'} onClick={(e) => e.stopPropagation()}>
+                {children}
             </motion.div>
         </BackDrop>
     )

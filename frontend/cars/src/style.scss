@@ -37,12 +37,16 @@ body{
 }
 
 main{
-    margin-top: 70px ;  
+    // margin-top: 70px ;  
    
 }
 
 .active{
     color: $primary-color !important;
+}
+
+.no-scroll {
+    overflow: hidden;
 }
 
 %box-shadow{
@@ -315,6 +319,7 @@ h2{
 
 /*Car Component*/
 .container-car{
+    margin-top: 60px;
     // place-items: center;
 p, span ul, li, label,h2{
     color: black;
@@ -486,7 +491,7 @@ h2 span{
 #search-bar{
     @include flex-row();
     justify-content: center;
-    
+    margin-top: 100px;
     gap: 1rem;
     input{
         width:150px ;
@@ -592,10 +597,15 @@ h2 span{
 .hero-header-image{
    
     object-fit: cover;
-    height: 400px;
+    height: 200px;
     width: 90%;
     border-radius: 15px;
     }
+
+.image-main-page{
+    height: 400px;
+    }
+
 
 .overlay {
     position: absolute;
@@ -679,26 +689,36 @@ h2 span{
         flex-wrap: nowrap !important;
         gap: 1rem;
         width: 90%;
-        margin: 0 auto;
-      
+        margin: 0 30px;
+    
        
         
         .info {
             display: flex;
             flex-direction: column; /* Poređuje elemente unutar sekcije vertikalno */
-            gap: 0.3rem; /* Razmak između redova */
-            align-items: center;
+            gap: 0.4rem; /* Razmak između redova */
+            
+            p{
+                display: inline-block;
+            }
         }
+        
        
          p {
             display: flex;
             align-items: center; /* Vertikalno centriranje ikone i teksta */
             font-size: 10px;
             color: $text-color-headers;
+            font-size: 15px;
+            
         }
           .icon {
             font-size: 0.8rem;
             color: #555; 
+          }
+
+          .right{
+          width: 50px;
           }
 
     }
@@ -761,7 +781,7 @@ h2 span{
     border-radius: 0 0 5px 5px;
     overflow: hidden;
     z-index: 1;
-    left: 80px;
+    left: 100px;
   
     li {
       color: $header-color;
@@ -901,6 +921,7 @@ h2 span{
  .sidebar-cars-list{
     display: flex;
     justify-content: space-between;
+    margin-top: 70px;
 
     @media screen and (max-width:768px) {
         flex-direction: column;
@@ -927,6 +948,27 @@ h2 span{
     }
 }
 
+
+.MuiFormGroup-root:nth-of-type(2){
+
+   
+span:nth-of-type(2)::after{
+    
+
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 20px;
+    background-image: url('/kofer.svg');
+    background-size: cover;
+    background-position: center;
+}
+}
+
+
+
+
+//nez sta je
 // .outer-div-filter-container{
 //     @media screen and (max-width:768px) {
 //         opacity: auto;

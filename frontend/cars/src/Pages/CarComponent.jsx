@@ -3,13 +3,12 @@ import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom'
 import ErrorPage from './ErrorPage';
 import CalendarComponent from '../Components/Calendar/CalendarComponent';
-import Header from '../Components/Header/Header';
 import ImageSlider from '../Components/ImageSlider/ImageSlider';
 import CategoryInfo from '../Components/Car/CategoryInfo,';
 import { useNavigate } from 'react-router-dom';
-import Footer from '../Components/Footer';
 import GoBack from '../Components/GoBack/GoBack';
 import dayjs from 'dayjs';
+import Layout from '../Components/Layout/Layout';
 
 
 export default function Car() {
@@ -88,28 +87,23 @@ export default function Car() {
     }
 
     return (
-        <>
-            <Header />
-            <main>
-                <div className='container-car'>
-                    <GoBack />
-                    <div className="container-car-upper">
-                        <ImageSlider carData={carData} />
-                        <div className='container-car-calendar'>
-                            <div id='price'><p>{carData.pricePerDay}€ / Dan </p></div>
-                            {/* fetchDates prop receives a fuctions that handles the selected dates and brings back to the this/parent component */}
-                            <CalendarComponent calendarId={carData.calendarId} fetchDates={handleSelectedData} carId={params.carId} />
-                            {errorText && <p>{errorText}</p>}
+        <Layout>
+            <div className='container-car'>
+                <GoBack />
+                <div className="container-car-upper">
+                    <ImageSlider carData={carData} />
+                    <div className='container-car-calendar'>
+                        <div id='price'><p>{carData.pricePerDay}€ / Dan </p></div>
+                        {/* fetchDates prop receives a fuctions that handles the selected dates and brings back to the this/parent component */}
+                        <CalendarComponent calendarId={carData.calendarId} fetchDates={handleSelectedData} carId={params.carId} />
+                        {errorText && <p>{errorText}</p>}
 
-                            <button className='button' onClick={handleNavigate}><Link>Dalje</Link></button>
-                            {priceTotal && <span style={{ color: "#444" }}>Cena za izabrane dane <del>{priceTotal}€</del> {priceTotal * 0.95}€ </span>}
-                        </div>
+                        <button className='button' onClick={handleNavigate}><Link>Dalje</Link></button>
+                        {priceTotal && <span style={{ fontWeight: 'bold', fontSize: 18, color: "#444" }}>Cena za izabrane dane <del>{priceTotal}€</del> {priceTotal * 0.98}€ </span>}
                     </div>
-                    <CategoryInfo carData={carData} />
                 </div>
-            </main>
-            <Footer />
-        </>
-
+                <CategoryInfo carData={carData} />
+            </div>
+        </Layout>
     )
 }

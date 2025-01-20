@@ -3,7 +3,9 @@ const { Schema } = mongoose;
 
 const companySchema = new Schema({
     name: { type: String, required: true },
-    location: { type: String, required: true }
+    location: { type: String, required: true },
+    email: { type: String },
+    role: { type: String }
 })
 
 const Company = mongoose.model('Company', companySchema);

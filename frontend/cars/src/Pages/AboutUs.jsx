@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import HeroHeader from "../Components/HeroHeader/HeroHeader";
-import Header from "../Components/Header/Header";
-import Footer from "../Components/Footer";
+import Layout from "../Components/Layout/Layout";
+import { useEffect } from "react";
 
 export default function AboutUs() {
     const companyInfo = [
@@ -32,10 +31,13 @@ export default function AboutUs() {
         { title: "Odgovornost veb stranice", link: "/odgovornost" },
     ];
 
+    useEffect(() => {
+        document.title = 'Iznajmi me - O nama'
+    })
+
+
     return (
-        <>
-            <Header />
-            <HeroHeader header={"O nama"} />
+        <Layout heroHeader={true} header={'O nama'}>
             <div className="about-us-container">
                 {/* Informacije o kompaniji */}
                 <div className="about-us">
@@ -74,7 +76,7 @@ export default function AboutUs() {
                     </ul>
                 </div>
             </div>
-            <Footer />
-        </>
+        </Layout>
+
     );
 }

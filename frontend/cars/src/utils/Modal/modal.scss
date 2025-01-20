@@ -1,7 +1,6 @@
 .modal{
-    width: clamp(50%, 700px, 90%);
-    height: min(50%,300px);
-
+    width: clamp(300px, 40%, 400px);
+    height: min(60%,500px);
     margin: auto;
     padding: 0 2rem;
     border-radius: 12px;
@@ -11,6 +10,67 @@
     background-color: white;
     justify-content: space-around;
 }
+
+
+.succesful{
+    width: clamp(50%, 700px, 90%);
+    height: min(50%,300px);
+}
+
+.login{
+    display: flex;
+    width: clamp(300px, 40%, 400px);
+    height: min(50%,500px);
+}
+.login-form{
+    display: flex;
+    height: 100%;
+    width: 80%;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    img{
+        width: 50%;
+    }
+    .inputs{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 80%;
+    }
+    .buttons {
+        display: flex; 
+        justify-content: space-between; /* Raspoređuje elemente na krajeve */
+        align-items: center; 
+        margin-top: 1rem; 
+        width: 100%; /* Osiguraj da kontejner zauzme celu širinu */
+    }
+    
+    .close-text {
+        cursor: pointer; 
+        color: #444;
+    }
+    
+    .login-container {
+        flex: 1; 
+        display: flex; 
+        justify-content: center; 
+    }
+    
+    .login-button {
+        margin-right: 2rem; /* Razmak između dugmeta i eventualnog sadržaja */
+        width: 9rem;
+    }
+
+   .div-pass{
+    
+    svg{
+        margin: 0 45%;
+    }
+   }
+    
+}
+
 
 .heading{
     text-align: center;
