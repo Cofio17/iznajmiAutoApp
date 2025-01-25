@@ -57,7 +57,7 @@ export default function DropDownMenu({ isActive }) {
                 >
                     {list.map((item) => (
                         <li key={item.id}>
-                            <NavLink onClick={handleClick} to={`/cars?tip=${encodeURIComponent(item.naziv)}`}>
+                            <NavLink onClick={handleClick} to={`/rent-a-car?tip=${encodeURIComponent(item.naziv)}`}>
                                 <span>{item.naziv}</span>
                             </NavLink>
                         </li>

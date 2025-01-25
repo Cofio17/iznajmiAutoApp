@@ -35,25 +35,28 @@ export default function LoginModal({ handleClose }) {
     };
     return (
         <div className="login-form">
-            <img src={logo} alt="logo" />
 
-            <div className="inputs">
-                <TextField value={email} onChange={(e) => { setEmail(e.target.value) }} className="mui-input" fullWidth id="username" type="email" variant="outlined" label={'Korisničko ime'} />
+            <form onSubmit={handleSubmit}>
+                <img src={logo} alt="logo" />
 
-                <div className="div-pass" >
-                    <TextField value={password} onChange={(e) => { setPassword(e.target.value) }} className="mui-input" fullWidth id="password" type={showPassword ? 'text' : 'password'} variant="outlined" label={'Šifra'} />
-                    <FontAwesomeIcon onClick={handlePassVisibilty} color="#6b6b6b" icon={showPassword ? faEyeSlash : faEye} />
+                <div className="inputs">
+                    <TextField autoComplete="on" value={email} onChange={(e) => { setEmail(e.target.value) }} className="mui-input" fullWidth id="username" type="email" variant="outlined" label={'Korisničko ime'} />
+
+                    <div className="div-pass" >
+                        <TextField autoComplete="on" value={password} onChange={(e) => { setPassword(e.target.value) }} className="mui-input" fullWidth id="password" type={showPassword ? 'text' : 'password'} variant="outlined" label={'Šifra'} />
+                        <FontAwesomeIcon onClick={handlePassVisibilty} color="#6b6b6b" icon={showPassword ? faEyeSlash : faEye} />
+                    </div>
+
                 </div>
 
-            </div>
+                <div className="buttons">
+                    <span onClick={handleClose} className="close-text">Izlaz</span>
+                    <div className="login-container">
+                        <button type="submit" className="button login-button">Login</button>
+                    </div>
 
-            <div className="buttons">
-                <span onClick={handleClose} className="close-text">Izlaz</span>
-                <div className="login-container">
-                    <button onClick={handleSubmit} className="button login-button">Login</button>
                 </div>
-
-            </div>
+            </form>
         </div>
 
     )

@@ -49,7 +49,10 @@ export default function Search() {
 
     useEffect(() => {
         const handleSearchParams = () => {
-            if (location.pathname === '/cars') {
+            if (location.pathname === '/rent-a-car') {
+                //setting url params
+
+
                 // getting from url params
                 const startDateParam = searchParams.get('start-date');
                 const endDateParam = searchParams.get('end-date');
@@ -80,19 +83,24 @@ export default function Search() {
         resetFilters();
         setFilterListData([]);
         setSearchListData([]);
+        const params = new URLSearchParams();
+
         try {
             await getCars();
-            if (location.pathname === '/') {
-                const params = new URLSearchParams();
-                if (startDate) params.set('start-date', encodeURIComponent(startDate));
-                if (endDate) params.set('end-date', encodeURIComponent(endDate));
-                if (city) params.set('City', encodeURIComponent(city))
-                navigate(`/cars?${params.toString()}`, { state: { city } });
-            }
+
+            // Dodavanje parametara u URL
+            if (startDate) params.set('start-date', encodeURIComponent(startDate));
+            if (endDate) params.set('end-date', encodeURIComponent(endDate));
+            if (city) params.set('City', encodeURIComponent(city));
+
+            // Postavljanje nove URL adrese
+            const newPath = location.pathname === '/' ? '/rent-a-car' : location.pathname;
+            navigate(`${newPath}?${params.toString()}`, { state: { city } });
         } catch (error) {
             console.log('Error during redirection:', error);
         }
-    }
+    };
+
 
     const getCars = async (e) => {
         setLoading(true);
@@ -122,6 +130,7 @@ export default function Search() {
                     onChange={(newValue) => { setStartDate(newValue) }}
                     format='DD/MM/YYYY'
                     className='mui-input city'
+                    name='date-picker-start'
 
 
                 />
@@ -133,10 +142,12 @@ export default function Search() {
                     onChange={(newValue) => { setEndDate(newValue) }}
                     format='DD/MM/YYYY'
                     className='mui-input city'
+                    name='date-picker-end'
 
                 />
             </LocalizationProvider>
             <Autocomplete
+
                 value={city}
                 options={cities}
                 getOptionLabel={(option) => option}

@@ -37,7 +37,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/cars",
+    path: "/rent-a-car",
     element: (
       <SearchProvider>
         <ScrollToTop />
@@ -47,7 +47,7 @@ const router = createBrowserRouter([
     loader: fetchCars, // Loader za učitavanje podataka
   },
   {
-    path: 'cars/car/:carId',
+    path: 'rent-a-car/car/:carId',
     element: <Car />,
     errorElement: <ErrorPage />
   },

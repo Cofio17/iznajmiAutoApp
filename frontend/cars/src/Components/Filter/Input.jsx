@@ -9,6 +9,7 @@ export default function Input({ value, label, onFilterChange, checked }) {
         <FormControlLabel
             control={
                 <Checkbox
+                    name={label}
                     onChange={handleChange}
                     checked={checked}
                     size="medium"

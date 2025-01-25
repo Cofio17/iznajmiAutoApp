@@ -42,7 +42,7 @@ export default function CityComponent({ itemData }) {
   }
 
   return (
-    <Link to={`/cars?City=${encodeURIComponent(itemData.title)}`}>
+    <Link to={`/rent-a-car?City=${encodeURIComponent(itemData.title)}`}>
       <motion.div
         ref={ref}
         initial={{ opacity: 0 }}

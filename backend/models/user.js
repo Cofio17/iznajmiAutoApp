@@ -6,11 +6,12 @@ const userSchema = new Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     role: { type: String, enum: ['admin', 'user', 'agency'], default: 'user' },
-    agency: {
-        type: Schema.Types.ObjectId, ref: 'Agency', required: function () {
+    companyId: {
+        type: Schema.Types.ObjectId, ref: 'Company', required: function () {
             return this.role === 'agency';
         }
     }
+
 });
 
 const User = mongoose.model('User', userSchema);

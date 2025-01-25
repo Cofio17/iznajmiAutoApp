@@ -3,13 +3,11 @@ import { jwtDecode } from 'jwt-decode'
 import axios from "axios";
 // import { AuthContext } from "../Hooks/useAuth";
 import { AuthContext } from "./AuthContextHelper";
-import Cookies from 'js-cookie'
-
 
 const AuthProvider = ({ children }) => {
     const localhost = import.meta.env.VITE_LOCAL_HOST;
     const [token, setToken] = useState("");
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState();
 
     const login = async (email, password) => {
         try {
@@ -26,6 +24,7 @@ const AuthProvider = ({ children }) => {
                 setToken(res.data.accessToken);
                 localStorage.setItem('token', res.data.accessToken);
                 localStorage.setItem('user', JSON.stringify(res.data.userData._id));
+                await getUser();
                 ;
 
 
@@ -68,8 +67,19 @@ const AuthProvider = ({ children }) => {
         }
     }
 
+    const getUser = async () => {
+        try {
+            const res = await axios.get(`${localhost}users/${JSON.parse(localStorage.getItem('user'))}`, { withCredentials: true })
+            console.log(res.data);
+            setUser(res.data);
+
+        } catch (error) {
+
+        }
+    }
+
     return (
-        <AuthContext.Provider value={{ login, logout, token, user, isTokenValid }}>
+        <AuthContext.Provider value={{ login, logout, token, user, isTokenValid, getUser }}>
             {children}
         </AuthContext.Provider>
     );

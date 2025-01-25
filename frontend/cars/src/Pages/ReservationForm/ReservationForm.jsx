@@ -10,13 +10,12 @@ import { AnimatePresence } from "framer-motion";
 import GoBack from "../../Components/GoBack/GoBack";
 import useModal from "../../Hooks/useModal";
 import SuccesfulReservation from "../../utils/Modal/ModalTypes/SuccesfulReservation";
-
-
+import { createDate } from "../../utils/createDate";
 
 export default function ReservationForm() {
     const location = useLocation();
     const navigate = useNavigate();
-    const { car, selectedDate, carId } = location.state || {};
+    const { car, selectedDate, carId, priceTotal, daysTotal, selectedTimes } = location.state || {};
     const localhost = import.meta.env.VITE_LOCAL_HOST;
 
 
@@ -35,7 +34,7 @@ export default function ReservationForm() {
 
     //UseEffect for moving data 
     useEffect(() => {
-        if (!car || !selectedDate || !carId) {
+        if (!car || !selectedDate || !carId || !priceTotal) {
             navigate('/');
         }
     }, [car, selectedDate, carId, navigate]);
@@ -67,6 +66,7 @@ export default function ReservationForm() {
         return Object.keys(newErrors).length === 0;
     };
 
+
     /**
      * If validateForm() is true Google calendar API triggers and if succesful, event is being created in the  calendar
      * @param {Event} event 
@@ -77,11 +77,14 @@ export default function ReservationForm() {
             setIsSubmitting(true);
             try {
                 const [startDate, endDate] = selectedDate;
+                const startHours = selectedTimes.startHours;
+                const endHours = selectedTimes.endHours;
+
                 const reservationData = {
-                    summary: { carId: carId, email, number, firstName, lastName, jmbg },
+                    summary: { carId: carId, email, number, firstName, lastName, jmbg, priceTotal, daysTotal, brand: car.brand, model: car.model },
                     description: `Zakazan Auto: ${car.brand}: ${car.licensePlate}`,
-                    start: { dateTime: formatDate(startDate) },
-                    end: { dateTime: formatDate(endDate) },
+                    start: { dateTime: createDate(startDate, startHours) },
+                    end: { dateTime: createDate(endDate, endHours) },
                     calendarId: car.calendarId,
                 };
                 console.log(reservationData);
@@ -127,12 +130,12 @@ export default function ReservationForm() {
             const response = await axios.post(
                 `${localhost}email/send-email`,
                 {
-                    to: email, // Dinamička adresa korisnika
+                    to: email,
                     subject: "Uspešna rezervacija! Iznajmi.me",
-                    html: emailHtml, // Prosleđivanje generisanog HTML sadržaja
+                    html: emailHtml,
                 },
                 {
-                    headers: { "Content-Type": "application/json" }, // Ispravno postavljanje zaglavlja
+                    headers: { "Content-Type": "application/json" },
                 }
             );
             console.log("Email sent:", response.data);
@@ -142,11 +145,13 @@ export default function ReservationForm() {
     };
 
 
+
     return (
         <div>
             <AnimatePresence initial={false} mode='wait'>
                 {modalOpen && <Modal type={'succesful'} modalOpen={modalOpen} handleClose={close} > <SuccesfulReservation handleClose={close} /></Modal>}
             </AnimatePresence>
+            <GoBack />
 
             <form className="reservation-form" onSubmit={handleSubmit}>
                 <h1>Rezervacija</h1>
@@ -163,14 +168,14 @@ export default function ReservationForm() {
                 <TextField error={error} fullWidth id="number" required={true} variant="outlined" type="tel" value={number} label={'mobilni telefon...'} onChange={(e) => setNumber(e.target.value)} className="mui-input reservation-form-input" />
                 {errors.number && <p style={{ color: 'red' }}>{errors.number}</p>}
 
-                <TextField error={error} fullWidth id="email" required={true} variant="outlined" type="email" value={email} label={'Email'} onChange={(e) => setEmail(e.target.value)} className="mui-input reservation-form-input" />
+                <TextField autoComplete="on" error={error} fullWidth id="email" required={true} variant="outlined" type="email" value={email} label={'Email'} onChange={(e) => setEmail(e.target.value)} className="mui-input reservation-form-input" />
                 {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
 
 
 
                 <FormControlLabel required control={
                     <Checkbox
-
+                        name="terms"
                         onChange={(e) => { setTermsAccepted(e.target.checked) }}
                         size="small"
                         sx={{

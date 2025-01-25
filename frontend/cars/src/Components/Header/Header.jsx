@@ -10,15 +10,11 @@ import { AuthContext } from "../../Contexts/AuthContextHelper"
 
 export default function Header({ onClick }) {
     const [activeDropDown, setActiveDropDown] = useState(false);
-    const { token, isTokenValid } = useContext(AuthContext);
-
-    const savedToken = localStorage.getItem('token')
-    const isAuthenticated = isTokenValid(savedToken);
-    const navigate = useNavigate();
-
-    let timer;
-
     const location = useLocation();
+    const { token, isTokenValid } = useContext(AuthContext);
+    const isAuthenticated = isTokenValid(token);
+    const navigate = useNavigate();
+    let timer;
 
     const handleRefresh = (path) => {
         if (location.pathname === path) {
@@ -46,7 +42,7 @@ export default function Header({ onClick }) {
                             clearTimeout(timer);
                             setActiveDropDown(true);
                         }}>
-                            <NavLink onClick={() => { handleRefresh('/cars') }} aria-haspopup={true} to='/cars' >Rent a Car </NavLink>
+                            <NavLink onClick={() => { handleRefresh('/rent-a-car') }} aria-haspopup={true} to='/rent-a-car' >Rent a Car </NavLink>
                             <DropDownMenu isActive={activeDropDown} /></li>
                         <li><NavLink to='/about_us' >O nama</NavLink></li>
                     </div>
@@ -69,7 +65,7 @@ export default function Header({ onClick }) {
 
 
                 {/* Mobile devices  */}
-                <BurgerMenu handleRefresh={handleRefresh} onClick={onClick} />
+                <BurgerMenu handleRefresh={handleRefresh} navigateToDash={navigateTo} onClick={onClick} />
 
             </nav>
 

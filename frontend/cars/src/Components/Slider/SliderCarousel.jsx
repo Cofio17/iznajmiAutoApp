@@ -99,7 +99,7 @@ export default function SliderCarousel() {
             <Slider {...settings}>
                 {carTypes.map((car) => {
                     return <div className='slider-container-item' key={car.naziv}>
-                        <Link onClick={handleClick} to={`/cars?tip=${encodeURIComponent(car.naziv)}`}>
+                        <Link onClick={handleClick} to={`/rent-a-car?tip=${encodeURIComponent(car.naziv)}`}>
                             <img src={car.image} alt="car" />
                             <h3>{car.naziv}</h3>
                         </Link>

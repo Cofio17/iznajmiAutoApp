@@ -1,4 +1,5 @@
 const { writeFile } = require('fs');
+const reservationService = require('../service/reservationService');
 
 //method for saving reservtions data- incomplete
 function reservationsPost(req, res) {
@@ -12,5 +13,21 @@ function reservationsPost(req, res) {
     res.status(200).json({ message: 'Reservation received' });
 }
 
-module.exports = { reservationsPost };
+const findReservationsByCompanyId = async (req, res) => {
+    const { companyId } = req.params
+    if (!companyId) {
+        res.status(404).json({ message: "No company found!" })
+    }
+    try {
+        const reservations = await reservationService.findReservationsByCompanyId(companyId);
+        res.status(200).json({ message: "Reserations found", data: reservations });
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: "Internal server error", details: error.message });
+    }
+}
+
+
+module.exports = { reservationsPost, findReservationsByCompanyId };
 

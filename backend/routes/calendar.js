@@ -25,9 +25,17 @@ router.post("/create-event", async (req, res) => {
         },
         calendarId: calendarId
     };
+
+    const reservationDetails = {
+        summary,
+        description,
+        start,
+        end,
+    }
+
     try {
         //creating an event
-        const event = await createEvent(eventDetails);
+        const event = await createEvent(eventDetails, reservationDetails);
         console.log(`event created: ${event}`);
         res.status(200).json({ message: "Event created", eventLink: event.htmlLink });
     } catch (error) {

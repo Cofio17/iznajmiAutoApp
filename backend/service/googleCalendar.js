@@ -1,5 +1,6 @@
 const { google } = require('googleapis');
 const addingXMonths = require('../utils/addingMonths.js');
+const reservationServcice = require('./reservationService.js');
 
 //setting current date
 const todayISO = new Date().toISOString();
@@ -7,7 +8,9 @@ const todayISO = new Date().toISOString();
 const endDate = addingXMonths(3);
 
 
-// authentification using client email and client private key and scope definition
+/**
+ * // authentification using client email and client private key and scope definition
+ */
 const auth = new google.auth.JWT(
     process.env.CLIENT_RENTACAR_EMAIL,
     null,
@@ -15,10 +18,25 @@ const auth = new google.auth.JWT(
     ["https://www.googleapis.com/auth/calendar"]
 );
 
-// method for event creation
-async function createEvent(eventDetails) {
+/**
+ * Creates an event in Google Calendar and saves the corresponding reservation in the database.
+ * 
+ * @param {Object} eventDetails - The details of the event to be created.
+ * @param {string} eventDetails.calendarId - ID of the Google Calendar where the event will be created.
+ * @param {string} eventDetails.start - Start time of the event (ISO 8601 format).
+ * @param {string} eventDetails.end - End time of the event (ISO 8601 format).
+ * @param {string} eventDetails.summary - Event summary or title.
+ * @param {string} eventDetails.description - Description of the event.
+ * @returns {Object} Google Calendar event data.
+ * @throws {Error} If the event creation or reservation saving fails.
+ */
+async function createEvent(eventDetails, reservationDetailsParam) {
     console.log("event details: ", JSON.stringify(eventDetails, null, 2));
     console.log(eventDetails.calendarId);
+
+    if (!eventDetails || !eventDetails.calendarId) {
+        throw new Error("Invalid event details: Missing calendarId or eventDetails.");
+    }
 
     //calendar = object of a calendar
     //google.calendar = function from googleapis library
@@ -29,6 +47,13 @@ async function createEvent(eventDetails) {
             calendarId: eventDetails.calendarId, //dynamic calendar id change
             requestBody: eventDetails,
         });
+        console.log("Event successfully created in Google Calendar:", response.data);
+
+        const reservationDetails = buildReservationDetails(reservationDetailsParam);
+
+        const reservationResponse = await reservationServcice.saveReservation(reservationDetails, eventDetails.calendarId);
+        console.log("Reservation saved successfully:", reservationResponse);
+
         return response.data;
     } catch (error) {
         console.error("Error creating event:", error);
@@ -37,7 +62,11 @@ async function createEvent(eventDetails) {
 }
 
 
-//method for accessing busy days in a calendar 
+/**
+ * //Accessing busy days in a specific calendar
+ * @param {string} calendarId -calendar ID 
+ * @returns {Promise<Array>} -array of busy events
+ */
 async function accessBusyDates(calendarId) {
 
     //creating calendar object 
@@ -88,6 +117,27 @@ async function searchCarsByDate(cars, timeMin, timeMax) {
 
 
     return freeCars;
+}
+
+/**
+ * Helper function for creating reservation object
+ * @param {Object} eventDetails - event details
+ * @returns {Object} - reservation details
+ */
+function buildReservationDetails(eventDetails) {
+    return {
+        startDate: eventDetails.start.dateTime,
+        endDate: eventDetails.end.dateTime,
+        licensePlate: eventDetails.summary.carId || 'Unknown licensePlate',
+        brand: eventDetails.summary.brand || "Unknown Brand",
+        model: eventDetails.summary.model || "Unknown Model",
+        pricePerDay: eventDetails.summary.priceTotal / eventDetails.summary.daysTotal || 0,
+        priceTotal: eventDetails.summary.priceTotal || 0,
+        duration: eventDetails.summary.daysTotal || 0,
+        buyer: eventDetails.summary.firstName || "Unknown Buyer",
+        jmbg: eventDetails.summary.jmbg || "Unknown JMBG",
+        number: eventDetails.summary.number || "Unknown Contact",
+    };
 }
 
 module.exports = { createEvent, accessBusyDates, searchCarsByDate };

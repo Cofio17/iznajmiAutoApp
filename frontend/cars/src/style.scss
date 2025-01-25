@@ -560,8 +560,15 @@ h2 span{
     &.city{
         width: 205px;
     }
-  
 }
+.time-pickers-container{
+    @include flex-row();
+    gap: 10px;
+    .mui-time-picker{
+        width: 170px;
+    }
+}
+
 
 /*HERO HEADER STYLE*/
 
@@ -1064,6 +1071,13 @@ p{
     font-size: 1rem;
     margin-bottom: 1rem;
 }
+}
+
+
+.dashboard{
+    background: linear-gradient(45deg, #3b8ea3, #1a2239);
+    height: 100vh;
+ 
 }
 
   

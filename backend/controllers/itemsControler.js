@@ -1,8 +1,11 @@
 const { default: mongoose } = require('mongoose');
 const Car = require('../models/car');
+const carService = require('../service/carsService');
 
 //get all cars from the db
 const getAllCars = async (req, res) => {
+    console.log(req.cookies);
+
     try {
         const response = await Car.find().populate('companyId');
         res.status(200).json({ message: 'Succesfull', data: response })
@@ -200,11 +203,43 @@ const insertCars = async (req, res) => { //incomplete
     }
 };
 
+/**
+ * User Logout
+ * @param {import('express').Request} req - HTTP request object
+ * @param {import('express').Response} res - HTTP response object
+ */
+const getCarByCompanyId = async (req, res) => {
+    const { companyId } = req.body;
+
+    try {
+        const totalCars = await carService.filterCarsById(companyId);
+
+        res.status(200).json({ count: totalCars.length, cars: totalCars })
+    } catch (error) {
+        res.status(500).json({ message: 'Error counting cars' });
+    }
+
+}
+
+const updateCarsWithNullCompanyId = async (req, res) => {
+    const { newCompanyId } = req.body;
+    try {
+        const result = await carService.updateCarsWithNullCompanyId(newCompanyId);
+        res.status(200).json({ message: 'Cars updated successfully', result });
+    } catch (error) {
+        res.status(500).json({ message: 'Error updating cars' });
+    }
+}
+
+
+
 
 module.exports = {
     getAllCars,
     getCarById,
-    insertCars
+    insertCars,
+    getCarByCompanyId,
+    updateCarsWithNullCompanyId
 }
 
 

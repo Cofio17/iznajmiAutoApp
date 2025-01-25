@@ -5,7 +5,8 @@ const companySchema = new Schema({
     name: { type: String, required: true },
     location: { type: String, required: true },
     email: { type: String },
-    role: { type: String }
+    role: { type: String },
+    calendarIds: { type: Schema.Types.Array }
 })
 
 const Company = mongoose.model('Company', companySchema);

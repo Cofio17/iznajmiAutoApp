@@ -1,16 +1,15 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import ErrorPage from './ErrorPage';
 import CalendarComponent from '../Components/Calendar/CalendarComponent';
 import ImageSlider from '../Components/ImageSlider/ImageSlider';
 import CategoryInfo from '../Components/Car/CategoryInfo,';
-import { useNavigate } from 'react-router-dom';
 import GoBack from '../Components/GoBack/GoBack';
 import dayjs from 'dayjs';
 import Layout from '../Components/Layout/Layout';
-
-
+import TimePickerManager from '../Components/TimePicker/TimePickerManager';
+import { createDate, hoursInPeriod, calculatePriceBasedOnHours } from "../utils/createDate"
 export default function Car() {
     const params = useParams();
     const carId = params.carId;
@@ -20,7 +19,12 @@ export default function Car() {
     const [loading, setLoading] = useState(true);
     const [selectedDate, setSelectedDate] = useState([]);
     const [priceTotal, setPriceTotal] = useState();
+    const [days, setDays] = useState();
     const navigate = useNavigate();
+    const [selectedTimes, setSelectedTimes] = useState({
+        startHours: null,
+        endHours: null,
+    });
 
     const localhost = import.meta.env.VITE_LOCAL_HOST;
 
@@ -51,33 +55,49 @@ export default function Car() {
         const dataToPass = {
             car: carData,
             carId: carId,
-            selectedDate: selectedDate
+            selectedDate: selectedDate,
+            priceTotal: priceTotal,
+            daysTotal: days,
+            selectedTimes: selectedTimes
         }
         setErrorText('');
         navigate('/reservation', { state: dataToPass });
     }
+    const handleTimesChange = ({ startHours, endHours }) => {
+        setSelectedTimes({ startHours, endHours });
+    };
+
+    useEffect(() => {
+        if (!selectedDate[0] || !selectedDate[1] || !selectedTimes.startHours || !selectedTimes.endHours) {
+            return;
+        }
+
+        const handlePriceChange = () => {
+            // Kreiraj datume uključujući sate
+            const startDate = createDate(selectedDate[0], selectedTimes.startHours);
+            const endDate = createDate(selectedDate[1], selectedTimes.endHours);
+
+            console.log(`handle price change`);
+
+            const { hours, minutes } = hoursInPeriod(dayjs(startDate), dayjs(endDate)); // Uzimanje sati i minuta
+            const totalPrice = calculatePriceBasedOnHours({ hours, minutes }, carData.pricePerDay); // Ažuriranje poziva
+            setPriceTotal(totalPrice);
+
+            // Debugging
+            console.log(`Ukupno sati: ${hours}h ${minutes}m`);
+            console.log(`Ukupna cena: ${totalPrice}`);
+            // Resetovanje greške
+            setErrorText("");
+        };
+
+        handlePriceChange();
+
+    }, [selectedDate, selectedTimes]);
 
 
-
-    //fetching data from child/calendar component
     const handleSelectedData = (date) => {
         setSelectedDate(date);
-        // Izračunavanje broja dana
-        const daysTotal = dayjs(date[1]).diff(dayjs(date[0]), 'days') + 1;
-
-        // Izračunavanje ukupne cene
-        const totalPrice = carData.pricePerDay * daysTotal;
-
-        // Ažuriranje stanja
-        setPriceTotal(totalPrice);
-
-        // Debugging
-        console.log(carData.pricePerDay);
-        console.log(`Price total: ${totalPrice}, Days total: ${daysTotal}`);
-
-        // Resetovanje greške
-        setErrorText('');
-    }
+    };
 
     if (loading) {
         return <p>Data is loading</p>
@@ -98,8 +118,10 @@ export default function Car() {
                         <CalendarComponent calendarId={carData.calendarId} fetchDates={handleSelectedData} carId={params.carId} />
                         {errorText && <p>{errorText}</p>}
 
+                        <TimePickerManager onTimesChange={handleTimesChange} />
+
                         <button className='button' onClick={handleNavigate}><Link>Dalje</Link></button>
-                        {priceTotal && <span style={{ fontWeight: 'bold', fontSize: 18, color: "#444" }}>Cena za izabrane dane <del>{priceTotal}€</del> {priceTotal * 0.98}€ </span>}
+                        {priceTotal && <span style={{ fontWeight: 'bold', fontSize: 18, color: "#444" }}>Cena za izabrani period: {priceTotal}€ </span>}
                     </div>
                 </div>
                 <CategoryInfo carData={carData} />
