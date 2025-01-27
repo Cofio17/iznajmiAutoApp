@@ -6,7 +6,7 @@ import LoadingCircle from "../utils/LoadingCircle/LoadingCircle";
 import CarList from "../Components/CarList/CarList";
 import Sidebar from "../Components/Sidebar/Sidebar";
 import Filter from "../Components/Filter/Filter";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useLocation } from "react-router-dom";
 import Layout from "../Components/Layout/Layout";
 
 function App() {
@@ -16,9 +16,12 @@ function App() {
     searchListData,
     filterListData,
     filtersContext,
+    hasSearched
   } = useContext(SearchContext);
   const carsData = useLoaderData();
   const [initialLoad, setInitialLoad] = useState(true); // Track initial load
+  const location = useLocation();
+
 
   const header = 'Pronadji Idealan Auto';
 
@@ -26,9 +29,8 @@ function App() {
     document.title = "Izaberite Vas Auto";
 
     // Only set the initial data if searchListData is empty and it's the initial load
-    if (initialLoad && searchListData.length === 0) {
+    if (!hasSearched && searchListData.length === 0) {
       setSearchListData(carsData);
-      setInitialLoad(false); // Mark initial load as complete
     }
   }, [carsData, setSearchListData, searchListData, initialLoad]);
 

@@ -24,7 +24,7 @@ export default function Search() {
 
     const location = useLocation();
     const navigate = useNavigate();
-
+    const [redirect, setRedirect] = useState(false);
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const maxDate = dayjs().add(3, 'month');
@@ -40,7 +40,7 @@ export default function Search() {
     //search params for cities
     const searchParams = new URLSearchParams(location.search);
     const [city, setCity] = useState(null);
-    const { loading, setLoading, setSearchListData, setFilterListData, setFiltersContext } = useContext(SearchContext);
+    const { loading, setLoading, setSearchListData, setFilterListData, setFiltersContext, setHasSearched } = useContext(SearchContext);
 
     const resetFilters = () => {
         setFilterListData([]);
@@ -87,11 +87,14 @@ export default function Search() {
 
         try {
             await getCars();
+
             // Dodavanje parametara u URL
             if (startDate) params.set('start-date', encodeURIComponent(startDate));
             if (endDate) params.set('end-date', encodeURIComponent(endDate));
             if (city) params.set('City', encodeURIComponent(city));
 
+            // Determine if has search should be true
+            setHasSearched(true);
             // Postavljanje nove URL adrese
             const newPath = location.pathname === '/' ? '/rent-a-car' : location.pathname;
             navigate(`${newPath}?${params.toString()}`, { state: { city } });
@@ -99,7 +102,6 @@ export default function Search() {
             console.log('Error during redirection:', error);
         }
     };
-
 
     const getCars = async (e) => {
         setLoading(true);
@@ -165,10 +167,3 @@ export default function Search() {
         </div>
     );
 }
-
-//formating date into appropriate format so it can be sent to google api
-// const formatDate = (date) => {
-//     if (!date) return 'None';
-//     const formattedDate = date.format('DD-MM-YYYYT10:00:00');
-//     return formattedDate;
-// };
