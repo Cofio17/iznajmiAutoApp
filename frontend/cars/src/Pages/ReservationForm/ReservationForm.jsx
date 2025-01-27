@@ -51,14 +51,15 @@ export default function ReservationForm() {
             newErrors.lastName = 'Prezime je obavezno.';
         }
         if (!/^\d{13}$/.test(jmbg)) {
-            newErrors.jmbg = 'JMBG mora imati tačno 13 cifara.';
+            newErrors.jmbg = 'Neispravan format JMBG.';
         }
         if (!email.includes('@')) {
             newErrors.email = 'Email mora biti validan.';
         }
-        if (!/^\d+$/.test(number) || number.length < 10) {
+        if (!/^\+\d+$/.test(number) || number.length < 9) {
             newErrors.number = 'Neispravan format broja';
         }
+
         if (!termsAccepted) {
             newErrors.termsAccepted = 'Morate prihvatiti uslove.';
         }
@@ -144,6 +145,44 @@ export default function ReservationForm() {
         }
     };
 
+    const handleBlur = (fieldName, value) => {
+        const newErrors = { ...errors };
+
+        // Provera validacije za svako polje
+        if (fieldName === 'firstName' && !value.trim()) {
+            newErrors.firstName = 'Ime je obavezno.';
+        } else if (fieldName === 'firstName') {
+            delete newErrors.firstName;
+        }
+
+        if (fieldName === 'lastName' && !value.trim()) {
+            newErrors.lastName = 'Prezime je obavezno.';
+        } else if (fieldName === 'lastName') {
+            delete newErrors.lastName;
+        }
+
+        if (fieldName === 'jmbg' && !/^\d{13}$/.test(value)) {
+            newErrors.jmbg = 'Neispravan format JMBG.';
+        } else if (fieldName === 'jmbg') {
+            delete newErrors.jmbg;
+        }
+
+        if (fieldName === 'email' && !value.includes('@')) {
+            newErrors.email = 'Email mora biti validan.';
+        } else if (fieldName === 'email') {
+            delete newErrors.email;
+        }
+
+        if (fieldName === 'number' && (!/^\+\d+$/.test(value) || value.length < 9)) {
+            newErrors.number = 'Neispravan format broja.';
+        } else if (fieldName === 'number') {
+            delete newErrors.number;
+        }
+
+        setErrors(newErrors); // Ažuriraj greške
+    };
+
+
 
 
     return (
@@ -162,14 +201,14 @@ export default function ReservationForm() {
                 <TextField error={error} fullWidth id="firstname" required={true} variant="outlined" type="text" value={firstName} label={'Ime'} onChange={(e) => setFirstName(e.target.value)} className="mui-input reservation-form-input" />
                 <TextField error={error} fullWidth id="lastName" required={true} variant="outlined" type="text" value={lastName} label={'Prezime'} onChange={(e) => setLastName(e.target.value)} className="mui-input reservation-form-input" />
 
-                <TextField error={error} fullWidth id="jmbg" required={true} variant="outlined" type="text" value={jmbg} label={'unesite JMBG'} onChange={(e) => setJmbg(e.target.value)} className="mui-input reservation-form-input" />
-                {errors.jmbg && <p style={{ color: 'red' }}>{errors.jmbg}</p>}
 
-                <TextField error={error} fullWidth id="number" required={true} variant="outlined" type="tel" value={number} label={'mobilni telefon...'} onChange={(e) => setNumber(e.target.value)} className="mui-input reservation-form-input" />
-                {errors.number && <p style={{ color: 'red' }}>{errors.number}</p>}
+                <TextField onBlur={(e) => handleBlur('jmbg', e.target.value)} error={Boolean(errors.jmbg)} helperText={errors.jmbg || ''} fullWidth id="jmbg" required={true} variant="outlined" type="text" value={jmbg} label={'unesite JMBG'} onChange={(e) => setJmbg(e.target.value)} className="mui-input reservation-form-input" />
 
-                <TextField autoComplete="on" error={error} fullWidth id="email" required={true} variant="outlined" type="email" value={email} label={'Email'} onChange={(e) => setEmail(e.target.value)} className="mui-input reservation-form-input" />
-                {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
+
+                <TextField onBlur={(e) => handleBlur('number', e.target.value)} error={Boolean(errors.number)} helperText={errors.number || 'unesite broj u formatu +381123456789'} placeholder="+3816" fullWidth id="number" required={true} variant="outlined" type="tel" value={number} label={'Mobilni'} onChange={(e) => setNumber(e.target.value)} className="mui-input reservation-form-input" />
+
+                <TextField error={Boolean(errors.email)} helperText={errors.email || ''} onBlur={(e) => handleBlur('email', e.target.value)} autoComplete="on" placeholder="email@example.com" fullWidth id="email" required={true} variant="outlined" type="email" value={email} label={'Email'} onChange={(e) => setEmail(e.target.value)} className="mui-input reservation-form-input" />
+
 
 
 

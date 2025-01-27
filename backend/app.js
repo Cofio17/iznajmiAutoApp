@@ -48,14 +48,6 @@ app.use("/api/calendar", calendarRoute); //calendar route
 app.use('/company', companyRouter); // companies route
 app.use('/email', emailRouter);
 
-
-// // GET ruta za prikaz kolačića
-// app.get('/get-cookies', (req, res) => {
-//     const cookies = req.cookies; // Dobavljanje kolačića iz zahteva
-//     console.log('Cookies:', cookies); // Štampanje kolačića u konzoli
-//     res.json({ cookies }); // Slanje kolačića kao JSON odgovor
-// });
-
 app.get('/', (req, res) => {
     res.send('home page');
 })

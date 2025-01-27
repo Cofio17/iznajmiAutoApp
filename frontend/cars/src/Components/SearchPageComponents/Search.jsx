@@ -87,7 +87,6 @@ export default function Search() {
 
         try {
             await getCars();
-
             // Dodavanje parametara u URL
             if (startDate) params.set('start-date', encodeURIComponent(startDate));
             if (endDate) params.set('end-date', encodeURIComponent(endDate));

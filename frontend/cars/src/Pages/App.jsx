@@ -1,5 +1,5 @@
 import "../App.css";
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import { SearchContext } from "../Contexts/SearchContext";
 import AlertBox from "../utils/Alert/Alert";
 import LoadingCircle from "../utils/LoadingCircle/LoadingCircle";
@@ -8,7 +8,6 @@ import Sidebar from "../Components/Sidebar/Sidebar";
 import Filter from "../Components/Filter/Filter";
 import { useLoaderData } from "react-router-dom";
 import Layout from "../Components/Layout/Layout";
-import { useLocation } from "react-router-dom";
 
 function App() {
   const {
@@ -19,30 +18,22 @@ function App() {
     filtersContext,
   } = useContext(SearchContext);
   const carsData = useLoaderData();
+  const [initialLoad, setInitialLoad] = useState(true); // Track initial load
 
   const header = 'Pronadji Idealan Auto';
 
-
   useEffect(() => {
     document.title = "Izaberite Vas Auto";
-    console.log(searchListData);
 
-    if (searchListData.length === 0) {
-      setSearchListData(carsData); // Postavi učitane podatke u kontekst
+    // Only set the initial data if searchListData is empty and it's the initial load
+    if (initialLoad && searchListData.length === 0) {
+      setSearchListData(carsData);
+      setInitialLoad(false); // Mark initial load as complete
     }
-  }, [carsData, setSearchListData, searchListData]);
+  }, [carsData, setSearchListData, searchListData, initialLoad]);
 
   useEffect(() => {
-
-    const savedSearchListData = localStorage.getItem("searchListData");
-    if (!savedSearchListData || JSON.parse(savedSearchListData).length === 0) {
-      setSearchListData(carsData); // Postavi učitane podatke u kontekst
-    } else {
-      setSearchListData(JSON.parse(savedSearchListData));
-    }
-  }, [carsData, setSearchListData]);
-
-  useEffect(() => {
+    // Save searchListData to localStorage whenever it changes
     if (searchListData.length > 0) {
       localStorage.setItem("searchListData", JSON.stringify(searchListData));
     }
@@ -51,7 +42,6 @@ function App() {
   const areFiltersActive = filtersContext && filtersContext.length > 0;
 
   return (
-
     <Layout header={header} appjsx={true}>
       <Sidebar filter={true}>
         <Filter />
@@ -79,7 +69,6 @@ function App() {
       )}
       <Sidebar />
     </Layout>
-
   );
 }
 
