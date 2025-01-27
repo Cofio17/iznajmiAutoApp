@@ -9,7 +9,7 @@ import axios from "axios";
 export default function CityComponent({ itemData }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-  const [hasAnimated, setHasAnimated] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(true);
   const { searchListData, setSearchListData, setLoading } = useContext(SearchContext);
   const localhost = import.meta.env.VITE_LOCAL_HOST;
 

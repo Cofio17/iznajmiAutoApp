@@ -9,6 +9,8 @@ import ReservationForm from './Pages/ReservationForm/ReservationForm.jsx'
 import { SearchProvider } from './Contexts/SearchContext.jsx'
 import { AuthProvider } from './Contexts/AuthContext.jsx'
 import ScrollToTop from './utils/ScrollToTop.jsx'
+
+//politike
 import AboutUs from './Pages/AboutUs.jsx'
 import PolitikaPrivatnosti from './Pages/Policies/PolitikaPrivatnosti.jsx'
 import PolitikaReklamacije from './Pages/Policies/PolitikaReklamacije.jsx'
@@ -48,7 +50,10 @@ const router = createBrowserRouter([
   },
   {
     path: 'rent-a-car/car/:carId',
-    element: <Car />,
+    element:
+      <SearchProvider>
+        <Car />
+      </SearchProvider>,
     errorElement: <ErrorPage />
   },
   {

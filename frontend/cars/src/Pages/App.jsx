@@ -1,5 +1,5 @@
-import { useEffect, useContext } from "react";
 import "../App.css";
+import { useEffect, useContext } from "react";
 import { SearchContext } from "../Contexts/SearchContext";
 import AlertBox from "../utils/Alert/Alert";
 import LoadingCircle from "../utils/LoadingCircle/LoadingCircle";
@@ -8,6 +8,7 @@ import Sidebar from "../Components/Sidebar/Sidebar";
 import Filter from "../Components/Filter/Filter";
 import { useLoaderData } from "react-router-dom";
 import Layout from "../Components/Layout/Layout";
+import { useLocation } from "react-router-dom";
 
 function App() {
   const {
@@ -21,6 +22,7 @@ function App() {
 
   const header = 'Pronadji Idealan Auto';
 
+
   useEffect(() => {
     document.title = "Izaberite Vas Auto";
     console.log(searchListData);
@@ -31,6 +33,7 @@ function App() {
   }, [carsData, setSearchListData, searchListData]);
 
   useEffect(() => {
+
     const savedSearchListData = localStorage.getItem("searchListData");
     if (!savedSearchListData || JSON.parse(savedSearchListData).length === 0) {
       setSearchListData(carsData); // Postavi učitane podatke u kontekst

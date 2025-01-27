@@ -168,8 +168,8 @@ export default function Search() {
 }
 
 //formating date into appropriate format so it can be sent to google api
-const formatDate = (date) => {
-    if (!date) return 'None';
-    const formattedDate = date.format('DD-MM-YYYYT10:00:00');
-    return formattedDate;
-};
+// const formatDate = (date) => {
+//     if (!date) return 'None';
+//     const formattedDate = date.format('DD-MM-YYYYT10:00:00');
+//     return formattedDate;
+// };

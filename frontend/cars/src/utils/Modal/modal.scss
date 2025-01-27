@@ -52,6 +52,7 @@
     }
     
     .login-container {
+       
         flex: 1; 
         display: flex; 
         justify-content: center; 
@@ -72,10 +73,25 @@
     }
 
    .div-pass{
-    
+    display: flex;
+    align-items: center;
+    width: 258px;
     svg{
-        margin: 0 45%;
+      
+        position: relative;
+        left: 6%;
+        width: fit-content;
+
     }
+    @media screen and (max-width:768px) {
+        width: auto;
+       svg{
+        position: absolute;
+        left: 185px;
+
+       }
+       
+   }
    }
 
    @media screen and (max-width:768px) {

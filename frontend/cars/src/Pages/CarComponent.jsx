@@ -10,7 +10,9 @@ import dayjs from 'dayjs';
 import Layout from '../Components/Layout/Layout';
 import TimePickerManager from '../Components/TimePicker/TimePickerManager';
 import { createDate, hoursInPeriod, calculatePriceBasedOnHours } from "../utils/createDate"
+
 export default function Car() {
+
     const params = useParams();
     const carId = params.carId;
     const [carData, setCarData] = useState({});
@@ -33,6 +35,7 @@ export default function Car() {
             try {
                 setLoading(true);
                 const response = await axios.get(`${localhost}cars/${params.carId}`)
+
 
                 setCarData(response.data.data);
                 setError(false);
@@ -73,7 +76,7 @@ export default function Car() {
         }
 
         const handlePriceChange = () => {
-            // Kreiraj datume uključujući sate
+
             const startDate = createDate(selectedDate[0], selectedTimes.startHours);
             const endDate = createDate(selectedDate[1], selectedTimes.endHours);
 

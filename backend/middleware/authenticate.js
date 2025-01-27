@@ -5,7 +5,7 @@ const authenticateToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1]; // Token iz Authorization zaglavlja
     const cookieToken = req.cookies?.token; // Token iz kolačića
-    console.log('TOken from cookies:', cookieToken);
+
 
     if (!token && !cookieToken) {
         return res.status(401).json({ message: 'No token provided' });

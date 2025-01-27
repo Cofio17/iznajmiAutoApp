@@ -6,6 +6,15 @@ export default function ImageSlider({ carData }) {
     const bigImg = '?';
     const smallImg = '?';
 
+    let imagesOriginal;
+    if (carData.images) {
+        imagesOriginal = carData.images.map((image) => ({
+            original: image,
+            thumbnail: image,
+        }));
+    }
+
+
     const imagess = [
         {
             original: `https://i.imgur.com/VRpF2MI.jpeg${bigImg}`,
@@ -43,7 +52,7 @@ export default function ImageSlider({ carData }) {
                 </p>
             </div>
 
-            <ImageGallery items={imagess} autoPlay={false} showBullets={true} showIndex={false} showNav={true} showFullscreenButton={false} showPlayButton={false} />;
+            <ImageGallery items={carData.images.length > 0 ? imagesOriginal : imagess} autoPlay={false} showBullets={true} showIndex={false} showNav={true} showFullscreenButton={true} showPlayButton={false} />;
         </div>
     )
 

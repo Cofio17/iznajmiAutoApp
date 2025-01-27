@@ -4,7 +4,7 @@ const carService = require('../service/carsService');
 
 //get all cars from the db
 const getAllCars = async (req, res) => {
-    console.log(req.cookies);
+
 
     try {
         const response = await Car.find().populate('companyId');

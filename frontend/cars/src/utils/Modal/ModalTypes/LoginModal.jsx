@@ -35,9 +35,9 @@ export default function LoginModal({ handleClose }) {
     };
     return (
         <div className="login-form">
-
+            <img src={logo} alt="logo" />
             <form onSubmit={handleSubmit}>
-                <img src={logo} alt="logo" />
+
 
                 <div className="inputs">
                     <TextField autoComplete="on" value={email} onChange={(e) => { setEmail(e.target.value) }} className="mui-input" fullWidth id="username" type="email" variant="outlined" label={'Korisničko ime'} />

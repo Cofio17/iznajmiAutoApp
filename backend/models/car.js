@@ -22,7 +22,9 @@ const carSchema = new Schema({
     description: { type: String },
     companyId: { type: Schema.Types.ObjectId, ref: 'Company' },
     categoryId: { type: Schema.Types.ObjectId, ref: 'Category' },
-    calendarId: { type: String }
+    calendarId: { type: String },
+    images: { type: Schema.Types.Array, required: true },
+    gepek: { type: String, required: true }
 });
 
 const Car = mongoose.model('Car', carSchema);

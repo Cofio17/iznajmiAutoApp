@@ -4,7 +4,7 @@ import FilterGroup from "./FilterGroup";
 import countMatchingValues from "./countMatchingValues";
 import { useLocation } from "react-router-dom";
 import './filter.scss'
-import kofer from '../../assets/images/kofer.svg'
+
 
 
 
@@ -13,6 +13,7 @@ export default function Filter() {
   const {
     searchListData,
     setFilterListData,
+    filterListData,
     filtersContext,
     setFiltersContext
   } = useContext(SearchContext);
@@ -72,11 +73,14 @@ export default function Filter() {
     });
 
     setFilterListData(filteredCars);
+
+
   };
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const tip = searchParams.get("tip");
+
     if (tip && !filtersContext.includes(tip)) {
       const updatedFilters = [...filtersContext, tip];
       setFiltersContext(updatedFilters);

@@ -18,7 +18,7 @@ export default function CarCard({ carData }) {
                 <div className="car-card-info">
                     <div className="info left">
                         <p> <FontAwesomeIcon className='icon' icon={faCar} /> <span>: {carData.transmission}</span></p>
-                        <p> <FontAwesomeIcon className='icon' icon={faGasPump} /><span>: {carData.fuelType}</span></p>
+                        <p> <FontAwesomeIcon className='icon' icon={faGasPump} /><span> : {carData.fuelType}</span></p>
 
                     </div>
                     <div className="info right">

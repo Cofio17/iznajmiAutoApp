@@ -24,7 +24,7 @@ export default function GoogleMap({ positionVariable, header }) {
             <div className="map-container" style={{ height: 600, width: '80%' }}>
                 <h3>{header}</h3>
                 <p>Bulevar Oslobodjenja 198, Novi Sad</p>
-                <Map options={mapOptions} style={{ height: '90%' }} mapId='da3459a73aa9fb5' zoom={15} center={position}>
+                <Map options={mapOptions} style={{ height: '90%' }} mapId='6517e52e7a8475cc' defaultZoom={17} defaultCenter={position}>
                     <AdvancedMarker position={position} onClick={handleMarkerClick}>
                         <Pin background={'red'} borderColor={'red'} glyphColor={'#fff'} />
                     </AdvancedMarker>
