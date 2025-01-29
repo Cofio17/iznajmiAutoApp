@@ -1,4 +1,4 @@
-import { renderToStaticMarkup } from 'react-dom/server'
+
 import {
 
     Body,
@@ -11,12 +11,13 @@ import {
     Section,
     Text,
 } from "@react-email/components";
-import * as React from "react";
+
 
 export const ReservationEmail = ({
     userFirstname,
     brand,
     model,
+    reservationData
 
 
 }) => (
@@ -35,13 +36,20 @@ export const ReservationEmail = ({
                     alt="logo"
                     style={logo}
                 />
-                <Text style={paragraph}>Hi {userFirstname || "Osoba"},</Text>
+                <Text style={paragraph}>Hi {userFirstname || "Osoba"} {reservationData.summary.lastName},</Text>
                 <Text style={paragraph}>
                     Uspešno ste rezervisali Vaš automobil {brand || 'Brand'} {model || 'Model'}
+                </Text>
+                <Text>
+                    Cena: {reservationData.summary.priceTotal}e
+                </Text>
+                <Text>
+                    Početak: {reservationData.start.dateTime}
+                    Kraj :{reservationData.end.dateTime}
 
                 </Text>
                 <Text style={paragraph}>
-                    ID vase rezervacije je:#12456312
+                    ID vaše rezervacije je:{reservationData.reservationId}
 
                 </Text>
 
@@ -62,18 +70,6 @@ export const ReservationEmail = ({
         </Body>
     </Html>
 );
-
-export const generateReservationEmailHtml = (userFirstname, model, brand) => {
-    const emailComponent = (
-        <ReservationEmail
-            userFirstname={userFirstname}
-            model={model}
-            brand={brand}
-        />
-    );
-    return renderToStaticMarkup(emailComponent);
-};
-
 
 export default ReservationEmail;
 

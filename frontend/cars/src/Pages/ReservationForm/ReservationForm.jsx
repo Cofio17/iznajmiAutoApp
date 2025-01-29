@@ -4,13 +4,14 @@ import { useEffect, useState } from "react";
 import formatDate from "../../utils/convertDate";
 import './reservationForm.scss'
 import { TextField, FormControlLabel, Checkbox } from '@mui/material'
-import { generateReservationEmailHtml } from "../../utils/emails/ReservationEmail";
+import { generateReservationEmailHtml } from "../../utils/emails/emailUtils";
 import Modal from "../../utils/Modal/Modal";
 import { AnimatePresence } from "framer-motion";
 import GoBack from "../../Components/GoBack/GoBack";
 import useModal from "../../Hooks/useModal";
 import SuccesfulReservation from "../../utils/Modal/ModalTypes/SuccesfulReservation";
 import { createDate } from "../../utils/createDate";
+import generateReservationId from "../../utils/generateId";
 
 export default function ReservationForm() {
     const location = useLocation();
@@ -87,6 +88,7 @@ export default function ReservationForm() {
                     start: { dateTime: createDate(startDate, startHours) },
                     end: { dateTime: createDate(endDate, endHours) },
                     calendarId: car.calendarId,
+                    reservationId: generateReservationId()
                 };
                 console.log(reservationData);
 
@@ -94,7 +96,7 @@ export default function ReservationForm() {
                     headers: { 'Content-Type': 'application/json' },
                 });
                 if (response.status === 200) {
-                    await sendEmail(car.brand, car.model);
+                    await sendEmail(car.brand, car.model, reservationData);
                     open();
 
                 }
@@ -121,11 +123,11 @@ export default function ReservationForm() {
      * @param {string} brand - brand of a car
      * @param {string} model  - model of a car
      */
-    const sendEmail = async (brand, model) => {
+    const sendEmail = async (brand, model, reservationData) => {
         const userFirstname = firstName;
 
         // Generisanje HTML sadržaja
-        const emailHtml = generateReservationEmailHtml(userFirstname, brand, model);
+        const emailHtml = generateReservationEmailHtml(userFirstname, brand, model, reservationData);
 
         try {
             const response = await axios.post(
