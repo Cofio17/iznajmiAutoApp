@@ -244,7 +244,7 @@ header {
     display: flex;
     height: 70px;
     width: 70px;
-    background-color: #48AD7E;
+    background-color: $darker-primary-color;
     border-radius: 50%;
     align-items: center;
 justify-content: center;    
@@ -400,7 +400,7 @@ h2 span{
     height: auto;
     background-color: $text-color;
     border-radius: 15px;
-    width: 40%;
+    width: 20%;
     gap: 1.2rem;
     padding: 1.5rem;
     margin: 2rem auto;
@@ -722,6 +722,9 @@ h2 span{
           .icon {
             font-size: 0.8rem;
             color: #555; 
+            height: 10px;
+            width: 10px;
+            margin-right: 5px;
           }
 
           .right{
@@ -905,9 +908,18 @@ h2 span{
         color: $text-color-headers;
         font-weight: bold;
         font-size: 1rem;
-        margin-bottom: 1rem;
+        margin-bottom: 2.5rem;
+        #filter-button-text{
+            margin-right: 5px;
+        }
         @media screen and (max-width:768px) {
             display: inline-block;
+            
+       }
+       img{
+        height: 1rem;
+        width: 1rem;
+        
        }
     }
 
@@ -921,7 +933,9 @@ h2 span{
          align-self: center;
          height: auto;
          width: auto;
-        
+         text-align: center;
+         margin-left: 0;
+         margin-right: 0;
     }
  }
 
@@ -951,37 +965,37 @@ h2 span{
 .filters-container{
 
     @media screen and (max-width:$small-screen) {
-        display: block;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 30px;
+        justify-content: center;
+
+
     }
 }
 
 
+.css-j204z7-MuiFormControlLabel-root .MuiFormControlLabel-label {
+}
+
 .MuiFormGroup-root:nth-of-type(2){
 
-   
+    span:nth-of-type(2){
+        
+    }
+
 span:nth-of-type(2)::after{
-    
 
     content: '';
     display: inline-block;
-    width: 30px;
-    height: 20px;
-    background-image: url('/kofer.svg');
+    width: 20px;
+    height: 30px;
+    background-image: url('/lugg.png');
     background-size: cover;
     background-position: center;
 }
 }
-
-
-
-
-//nez sta je
-// .outer-div-filter-container{
-//     @media screen and (max-width:768px) {
-//         opacity: auto;
-       
-//     }
-// }
 
 
 .go-back-container{
@@ -1078,6 +1092,12 @@ p{
     background: linear-gradient(45deg, #3b8ea3, #1a2239);
     height: 100vh;
  
+}
+
+.icon{
+    height: 15px;
+    width: 15px;
+    margin-right: 5px;
 }
 
   

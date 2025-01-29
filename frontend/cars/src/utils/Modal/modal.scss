@@ -40,9 +40,10 @@
     }
     .buttons {
         display: flex; 
-        justify-content: space-between; /* Raspoređuje elemente na krajeve */
+        flex-direction: column-reverse;
+        justify-content: space-around; /* Raspoređuje elemente na krajeve */
         align-items: center; 
-        margin-top: 1rem; 
+        margin-top: 2rem; 
         width: 100%; /* Osiguraj da kontejner zauzme celu širinu */
     }
     
@@ -52,23 +53,21 @@
     }
     
     .login-container {
-       
         flex: 1; 
         display: flex; 
         justify-content: center; 
 
         .login-button {
-            margin-right: 3em; /* Razmak između dugmeta i eventualnog sadržaja */
-            width: 9rem;
+            width: 13rem;
+          
         }
 
         @media screen and (max-width:768px) {
             display: block;
+            margin-bottom: 20px;
        }
 
-       .login-button{
-        margin-right: 4.8em;
-       }
+       
     
     }
 
@@ -115,6 +114,7 @@ form{
         width: clamp(300px, 40%, 400px);
         justify-content:flex-start;
         gap: 50px;
+        margin-top: 30px !important;
    }
     
 }

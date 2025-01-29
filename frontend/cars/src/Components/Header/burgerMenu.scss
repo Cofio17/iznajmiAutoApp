@@ -1,5 +1,17 @@
 /* Globalni stilovi za react-burger-menu */
+//colors
+$white-color:#fff;
 $primary-color:#48AD7E;
+$darker-primary-color:#2D6A4F;
+$black-color: #081C15;
+$light-primary:#99D6B5;
+$yellow-color:#B69121;
+$gray: #6b6b6b;
+$text-color: #ebebeb;
+$text-color-headers: #444;
+$header-color: rgba(15, 23, 39, 0.85);
+$text-color-light: rgba(15, 23, 39, 0.45);
+$small-screen:768px;
 
 .bm-burger-button {
     display: none;
@@ -28,6 +40,7 @@ $primary-color:#48AD7E;
 .bm-burger-bars {
     background: #373a47;
     background: $primary-color;
+    border-radius: 5px;
 }
 
 .bm-menu {

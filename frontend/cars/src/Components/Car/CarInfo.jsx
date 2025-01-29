@@ -1,5 +1,11 @@
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import groupIcon from '../../assets/icons/group.png'
+import listIcon from '../../assets/icons/list.png'
+import benzinIcon from '../../assets/icons/benzin.png'
+import doorIcon from '../../assets/icons/door.png'
+import carIcon from '../../assets/icons/small-car.png'
+
 import { faGasPump, faDoorOpen, faCar, faLocationDot, faList, faUsers, faCarBurst } from '@fortawesome/free-solid-svg-icons'
 export default function CarInfo({ carData, header }) {
 
@@ -12,14 +18,14 @@ export default function CarInfo({ carData, header }) {
             <div className="content">
                 <div>
 
-                    <p> <FontAwesomeIcon className='icon' icon={faCar} /> <b>Prenos</b><span>: {carData.transmission}</span></p>
+                    <p> <img className='icon' src={carIcon} alt="icon " /> <b></b><span> {carData.transmission}</span></p>
                     <hr />
-                    <p> <FontAwesomeIcon className='icon' icon={faGasPump} /><b>Gorivo</b><span>: {carData.fuelType}</span></p>
+                    <p> <img className='icon' src={benzinIcon} alt="icon " /><b></b><span>{carData.fuelType}</span></p>
                     <hr />
-                    <p> <FontAwesomeIcon className='icon' icon={faUsers} /><b>Sedišta</b><span>: {carData.seats}</span></p>
+                    <p> <img className='icon' src={groupIcon} alt="icon " /><b></b><span>{carData.seats}</span></p>
                     <hr />
                     <div>
-                        <p> <FontAwesomeIcon className='icon' icon={faList} /><b>Oprema</b>:</p>
+                        <p><img className='icon' src={listIcon} alt="icon " /><b></b></p>
                         <ul className='features-list'>
 
                             {carData.features.map((feature, index) => {
@@ -31,11 +37,11 @@ export default function CarInfo({ carData, header }) {
 
 
                 <div>
-                    <p> <FontAwesomeIcon className='icon' icon={faDoorOpen} /><b>Vrata</b><span>: {carData.doors}</span></p>
+                    <p><img className='icon' src={doorIcon} alt="icon " /><b></b><span> {carData.doors}</span></p>
                     <hr />
-                    <p> <FontAwesomeIcon className='icon' icon={faCarBurst} /><b>Osiguranje</b><span>: {carData.insuranceIncluded ? 'Da' : 'Ne'}</span></p>
+                    <p><img className='icon' src={groupIcon} alt="icon " /><b></b><span>{carData.insuranceIncluded ? 'Da' : 'Ne'}</span></p>
                     <hr />
-                    <p> <FontAwesomeIcon className='icon' icon={faLocationDot} /><b>Lokacija </b><span>: {carData.location}</span></p>
+                    <p><FontAwesomeIcon color='#2D6A4F' icon={faLocationDot} /><b> </b><span> {carData.location}</span></p>
                     <hr />
 
                 </div>

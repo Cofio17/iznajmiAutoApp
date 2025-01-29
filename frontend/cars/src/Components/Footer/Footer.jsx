@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import image from '../../assets//images/logo.png'
+import image from '../../assets//images/iznajmi-07.png'
 import ScrollToTop from "../../utils/ScrollToTop";
 
 export default function Footer() {

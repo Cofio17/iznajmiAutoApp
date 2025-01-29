@@ -28,6 +28,10 @@ export default function SliderCarousel() {
         slidesToShow: 4,
         slidesToScroll: 1,
         initialSlide: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        cssEase: "linear",
+
         responsive: [
             {
                 breakpoint: 1024,
@@ -96,7 +100,7 @@ export default function SliderCarousel() {
                 <h1>Upoznajte našu flotu</h1>
 
             </div>
-            <Slider {...settings}>
+            <Slider  {...settings}>
                 {carTypes.map((car) => {
                     return <div className='slider-container-item' key={car.naziv}>
                         <Link onClick={handleClick} to={`/rent-a-car?tip=${encodeURIComponent(car.naziv)}`}>

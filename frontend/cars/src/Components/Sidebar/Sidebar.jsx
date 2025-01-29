@@ -3,6 +3,7 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { motion, useAnimationControls } from 'framer-motion';
 import { useState } from 'react';
 import { useMediaQuery } from '@mui/material';
+import triangleIcon from '../../assets/icons/triangle.png'
 
 export default function Sidebar({ children, filter }) {
     const [collapsed, setCollapsed] = useState(true);
@@ -37,14 +38,15 @@ export default function Sidebar({ children, filter }) {
             {filter && (
                 <div>
                     <span onClick={handleClick} id='filter-button'>
-                        Napredno filtriranje
+                        <span id='filter-button-text'>Napredno filtriranje</span>
                         <motion.span
 
                             animate={{ rotate: collapsed ? 180 : 0 }}
                             transition={{ duration: 0.2 }}
                             style={{ display: 'inline-block' }}
                         >
-                            <FontAwesomeIcon icon={faChevronDown} />
+                            {/* <FontAwesomeIcon icon={faChevronDown} /> */}
+                            <img src={triangleIcon} alt="" />
                         </motion.span>
                     </span>
                     <motion.div

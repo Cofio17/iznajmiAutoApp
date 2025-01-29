@@ -11,6 +11,7 @@ import Layout from '../Components/Layout/Layout';
 import TimePickerManager from '../Components/TimePicker/TimePickerManager';
 import { createDate, hoursInPeriod, calculatePriceBasedOnHours } from "../utils/createDate"
 
+
 export default function Car() {
 
     const params = useParams();

@@ -22,11 +22,14 @@ button{
     height: 25px;
     width: 25px;
     color: white !important;
-   
+
+
 
     &::before{
         font-size: 25px;
-        color: #48AD7E;   
+        color: $darker-primary-color;   
+       
+        
     }
 
 }

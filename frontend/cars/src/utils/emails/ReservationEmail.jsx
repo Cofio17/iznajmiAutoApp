@@ -11,7 +11,7 @@ import {
     Section,
     Text,
 } from "@react-email/components";
-
+import dayjs from "dayjs";
 
 export const ReservationEmail = ({
     userFirstname,
@@ -36,17 +36,19 @@ export const ReservationEmail = ({
                     alt="logo"
                     style={logo}
                 />
-                <Text style={paragraph}>Hi {userFirstname || "Osoba"} {reservationData.summary.lastName},</Text>
+                <Text style={paragraph}>Pozdrav, {userFirstname || "Osoba"} {reservationData.summary.lastName},</Text>
                 <Text style={paragraph}>
                     Uspešno ste rezervisali Vaš automobil {brand || 'Brand'} {model || 'Model'}
                 </Text>
                 <Text>
-                    Cena: {reservationData.summary.priceTotal}e
+                    Ukupna cena: {reservationData.summary.priceTotal}€
                 </Text>
                 <Text>
-                    Početak: {reservationData.start.dateTime}
-                    Kraj :{reservationData.end.dateTime}
+                    Početak: {dayjs(reservationData.start.dateTime).format('DD/MM/YYYY')}
+                </Text>
 
+                <Text>
+                    Kraj :{dayjs(reservationData.end.dateTime).format('DD/MM/YYYY')}
                 </Text>
                 <Text style={paragraph}>
                     ID vaše rezervacije je:{reservationData.reservationId}

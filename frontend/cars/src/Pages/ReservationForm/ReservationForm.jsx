@@ -13,6 +13,7 @@ import SuccesfulReservation from "../../utils/Modal/ModalTypes/SuccesfulReservat
 import { createDate } from "../../utils/createDate";
 import generateReservationId from "../../utils/generateId";
 
+
 export default function ReservationForm() {
     const location = useLocation();
     const navigate = useNavigate();
