@@ -69,7 +69,6 @@ export default function ReservationForm() {
         return Object.keys(newErrors).length === 0;
     };
 
-
     /**
      * If validateForm() is true Google calendar API triggers and if succesful, event is being created in the  calendar
      * @param {Event} event 
@@ -127,7 +126,6 @@ export default function ReservationForm() {
     const sendEmail = async (brand, model, reservationData) => {
         const userFirstname = firstName;
 
-        // Generisanje HTML sadržaja
         const emailHtml = generateReservationEmailHtml(userFirstname, brand, model, reservationData);
 
         try {
@@ -184,9 +182,6 @@ export default function ReservationForm() {
 
         setErrors(newErrors); // Ažuriraj greške
     };
-
-
-
 
     return (
         <div>

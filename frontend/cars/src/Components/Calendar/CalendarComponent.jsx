@@ -4,7 +4,7 @@ import 'react-calendar/dist/Calendar.css';
 import { Alert } from '@mui/material';
 import axios from 'axios';
 import './calendar.scss'
-import { hoursInPeriod } from '../../utils/createDate'
+
 
 export default function CalendarComponent({ calendarId, carId, fetchDates }) {
     const [date, setDate] = useState([]);
@@ -40,7 +40,11 @@ export default function CalendarComponent({ calendarId, carId, fetchDates }) {
 
     }, []);
 
-    // Functions for disabling specific days in a calendar
+    /**
+     * DisableDays - iterating through busy events in the calendar and return true if date param is in busy days and false if not
+     * @param {Date} param0 - date range which users selects
+     * @returns 
+     */
     const disableDays = ({ date }) => {
         return busyDays.some((busyEvent) => {
             let { start, end } = busyEvent;
@@ -59,7 +63,11 @@ export default function CalendarComponent({ calendarId, carId, fetchDates }) {
         });
     };
 
-    //iteration through busy days
+    /**
+     * Iteration through disabled days
+     * @param {Date} date - 
+     * @returns -true if date range is busy and returns false if range is not busy
+     */
     const iteratediabledDays = (date) => {
         let isBusy = false;
         busyDays.forEach((busyEvent) => {
@@ -130,8 +138,7 @@ export default function CalendarComponent({ calendarId, carId, fetchDates }) {
 
             />
             {date.length > 1 &&
-                <Alert variant='outlined' severity='success'><b>{`${date[0].toDateString()} - ${date[1].toDateString()}`}</b></Alert>
-                // <p>Selected date: <b>{`${date[0].toDateString()} - ${date[1].toDateString()}`}</b> </p>
+                <Alert className='alert-lib' variant='outlined' severity='success'><b>{`${date[0].toDateString()} - ${date[1].toDateString()}`}</b></Alert>
             }
             {error && <Alert variant='outlined' severity='info'>{error}</Alert>}
         </div>

@@ -23,25 +23,36 @@ export function createDate(date, hours) {
 
 
 
+// export function hoursInPeriod(startDate, endDate) {
+//     const diffInMinutes = endDate.diff(startDate, "minute"); // Razlika u minutima
+//     const hours = Math.floor(diffInMinutes / 60); // Celi sati
+//     const minutes = diffInMinutes % 60; // Preostale minute
+//     return { hours, minutes }; // Vraća objekat sa satima i minutama
+// }
+
+
+// export function calculatePriceBasedOnHours({ hours, minutes }, pricePerDay) {
+//     let totalDays = Math.floor(hours / 24); // Potpuni dani
+//     let additionalCharge = 0;
+
+//     // Ako su preostali sati, dodaj dodatnu cenu
+//     if (hours % 24 > 0 || minutes > 0) {
+//         additionalCharge = pricePerDay; // Naplati još jedan dan
+//     }
+
+//     return (totalDays + (additionalCharge > 0 ? 1 : 0)) * pricePerDay; // Ukupna cena
+// }
+
 export function hoursInPeriod(startDate, endDate) {
-    const diffInMinutes = endDate.diff(startDate, "minute"); // Razlika u minutima
-    const hours = Math.floor(diffInMinutes / 60); // Celi sati
-    const minutes = diffInMinutes % 60; // Preostale minute
-    return { hours, minutes }; // Vraća objekat sa satima i minutama
+    return endDate.diff(startDate, "hour");
 }
 
 
-export function calculatePriceBasedOnHours({ hours, minutes }, pricePerDay) {
-    let totalDays = Math.floor(hours / 24); // Potpuni dani
-    let additionalCharge = 0;
-
-    // Ako su preostali sati, dodaj dodatnu cenu
-    if (hours % 24 > 0 || minutes > 0) {
-        additionalCharge = pricePerDay; // Naplati još jedan dan
-    }
-
-    return (totalDays + (additionalCharge > 0 ? 1 : 0)) * pricePerDay; // Ukupna cena
+export function calculatePriceBasedOnHours(hours, pricePerDay) {
+    let totalDays = Math.ceil(hours / 24); // Zaokružuje naviše ako je prekoračen bilo koji sat preko 24h
+    return totalDays * pricePerDay; // Ukupna cena
 }
+
 
 
 

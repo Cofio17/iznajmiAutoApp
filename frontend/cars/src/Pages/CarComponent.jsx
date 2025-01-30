@@ -83,14 +83,11 @@ export default function Car() {
 
             console.log(`handle price change`);
 
-            const { hours, minutes } = hoursInPeriod(dayjs(startDate), dayjs(endDate)); // Uzimanje sati i minuta
-            const totalPrice = calculatePriceBasedOnHours({ hours, minutes }, carData.pricePerDay); // Ažuriranje poziva
+            const hours = hoursInPeriod(dayjs(startDate), dayjs(endDate));
+            const totalPrice = calculatePriceBasedOnHours(hours, carData.pricePerDay);
             setPriceTotal(totalPrice);
 
-            // Debugging
-            console.log(`Ukupno sati: ${hours}h ${minutes}m`);
             console.log(`Ukupna cena: ${totalPrice}`);
-            // Resetovanje greške
             setErrorText("");
         };
 

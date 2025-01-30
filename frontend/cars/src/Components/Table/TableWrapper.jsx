@@ -10,10 +10,10 @@ export const TableWrapper = ({ data }) => {
     // Proveri da li je data definisano i da li ima elemenata
     const columns = data && data.length > 0
         ? Object.keys(data[0])
-            .filter((key) => !excludeKeys.includes(key)) // Filtriranje ključeva
+            .filter((key) => !excludeKeys.includes(key))
             .map((key) => ({
                 name: key,
-                width: 100, // Možeš promeniti širinu po potrebi
+                width: 100,
             }))
         : []; // Ako je data prazna, vraća prazan niz
 

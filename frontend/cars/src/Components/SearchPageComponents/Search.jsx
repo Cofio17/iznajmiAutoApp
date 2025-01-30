@@ -125,7 +125,7 @@ export default function Search() {
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker
                     value={startDate}
-                    label="Starting Date"
+                    label="Početni datum"
                     disablePast={true}
                     maxDate={maxDate}
                     onChange={(newValue) => { setStartDate(newValue) }}
@@ -137,7 +137,7 @@ export default function Search() {
                 />
                 <DatePicker
                     value={endDate}
-                    label="Ending Date"
+                    label="Krajnji datum"
                     disablePast={true}
                     maxDate={maxDate}
                     onChange={(newValue) => { setEndDate(newValue) }}
@@ -156,7 +156,7 @@ export default function Search() {
                     setCity(newValue);
                 }}
                 renderInput={(params) => (
-                    <TextField {...params} label="Choose a city" variant="outlined" />
+                    <TextField {...params} label="Izaberite grad.." variant="outlined" />
                 )}
                 className='mui-input'
             />

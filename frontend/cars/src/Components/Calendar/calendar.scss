@@ -1,6 +1,26 @@
 $primary-color:#48AD7E;
+
+
+abbr{
+    font-weight: 600;
+}
+
+abbr[title] {
+    text-decoration: underline;
+}
+
+.react-calendar{
+    border-radius: 15px;
+   
+}
+
+.react-calendar__tile{
+    margin-bottom: 10px !important;
+}
+
 .react-calendar__tile:disabled {
 
+    background-color: #fff;
     abbr{
        opacity: 0.3;
        text-decoration: line-through;
@@ -36,6 +56,26 @@ button.react-calendar__tile.react-calendar__tile--active.react-calendar__tile--r
 .react-calendar__tile:enabled:hover{
     border-radius:  15px !important;  
 }
+.react-calendar__navigation__prev-button{
+    border-radius: 15px 0 15px 0 !important;
+}
+
+.react-calendar__navigation__next-button{
+    border-radius:0 15px 0 15px !important;
+}
+
+.react-calendar__navigation__label{
+
+
+    &:hover{
+        background-color: #fff !important;
+    }
+}
+
+.alert-lib{
+border-radius: 5px;    
+}
+
 
 
 
