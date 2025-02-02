@@ -45,7 +45,7 @@ button{
 
     img{
         max-height: 80%;
-        max-width: 80%;
+        max-width: 100%;
         align-self: center;
         justify-self: center;
     }
@@ -71,7 +71,7 @@ p{
     display: inline-block; /* Omogućava kontrolisanu širinu */
     width: 60px; 
     height: 5px; 
-    background-color: $yellow-color; 
+    background-color: #2D6A4F; 
     border-radius: 2px; 
     margin: 0 auto; 
 }

@@ -28,7 +28,7 @@ export default function CarCard({ carData }) {
                 </div>
                 <div className="car-card-price">
                     <hr />
-                    <p>{carData.pricePerDay}€/Day</p>
+                    <p>{carData.pricePerDay}€/Dan</p>
                 </div>
 
             </div>

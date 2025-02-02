@@ -25,11 +25,11 @@ export default function SliderCarousel() {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 4,
+        slidesToShow: 3,
         slidesToScroll: 1,
         initialSlide: 1,
         autoplay: true,
-        autoplaySpeed: 3000,
+        autoplaySpeed: 1900,
         cssEase: "linear",
 
         responsive: [
@@ -53,8 +53,8 @@ export default function SliderCarousel() {
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2
+                    slidesToShow: 1,
+                    slidesToScroll: 1
                 }
             }
         ]

@@ -6,14 +6,14 @@ import axios from 'axios';
 import './calendar.scss'
 
 
-export default function CalendarComponent({ calendarId, carId, fetchDates }) {
+
+export default function CalendarComponent({ calendarId, fetchDates }) {
     const [date, setDate] = useState([]);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
     const [busyDays, setBusyDays] = useState([]);
 
     const localhost = import.meta.env.VITE_LOCAL_HOST;
-
 
     useEffect(() => {
 
@@ -38,9 +38,30 @@ export default function CalendarComponent({ calendarId, carId, fetchDates }) {
         }
         getBusyDates();
 
+
     }, []);
 
-    /**
+    //stored dates
+    useEffect(() => {
+        if (busyDays.length > 0) {
+            const storedDateRange = localStorage.getItem('dateRange');
+            if (storedDateRange) {
+                const { start, end } = JSON.parse(storedDateRange);
+                const parsedDates = [new Date(start), new Date(end)];
+
+                let invalidRange = parsedDates.some(date => iteratediabledDays(date));
+
+                if (!invalidRange) {
+                    handleDateChange(parsedDates);
+                } else {
+                    localStorage.removeItem('dateRange'); // Ako su zauzeti, obriši ih iz localStorage
+                }
+            }
+        }
+    }, [busyDays]);
+
+
+    /** 
      * DisableDays - iterating through busy events in the calendar and return true if date param is in busy days and false if not
      * @param {Date} param0 - date range which users selects
      * @returns 
@@ -69,28 +90,27 @@ export default function CalendarComponent({ calendarId, carId, fetchDates }) {
      * @returns -true if date range is busy and returns false if range is not busy
      */
     const iteratediabledDays = (date) => {
-        let isBusy = false;
-        busyDays.forEach((busyEvent) => {
-            let { start, end } = busyEvent;
-            while (new Date(start).toDateString() !== new Date(end).toDateString()) {
-                const day = new Date(start);
-                if (date.toDateString() === day.toDateString()) {
-                    isBusy = true;
-                    break;
-                }
+        return busyDays.some(({ start, end }) => {
+            let current = new Date(start);
+            let lastDate = new Date(end);
 
-                day.setDate(day.getDate() + 1); //increase day for 1
-                start = day;
+            while (current <= lastDate) {
+                if (date.toDateString() === current.toDateString()) {
+                    return true; // Ako je datum zauzet, vrati true
+                }
+                current.setDate(current.getDate() + 1);
             }
-        })
-        return isBusy;
-    }
+            return false;
+        });
+    };
+
 
     // Funkcija za odabir datuma, proverava da li je opseg validan
     const handleDateChange = (selectedDate) => {
         // Ako se odabere opseg, proveri sve datume u tom opsegu
         if (Array.isArray(selectedDate) && selectedDate.length === 2) {
             const [startDate, endDate] = selectedDate;
+
             let invalidRange = false;
             let datum = new Date(startDate);
 
@@ -121,6 +141,8 @@ export default function CalendarComponent({ calendarId, carId, fetchDates }) {
         console.log(error);
 
     }
+
+
 
     return (
         <div className="calendar-wrapper">

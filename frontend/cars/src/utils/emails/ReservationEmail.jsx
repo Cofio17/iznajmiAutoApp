@@ -65,7 +65,7 @@ export const ReservationEmail = ({
                 </Text>
                 <Hr style={hr} />
                 <Text style={footer}>
-                    Ulica Novosadskog Sajma 714, Beograd
+                    Senćanski put 63, Subotica, 24000
                     iznajmi@info.com
                 </Text>
             </Container>

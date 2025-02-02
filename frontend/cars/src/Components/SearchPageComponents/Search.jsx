@@ -84,7 +84,6 @@ export default function Search() {
         setFilterListData([]);
         setSearchListData([]);
         const params = new URLSearchParams();
-
         try {
             await getCars();
 
@@ -101,6 +100,11 @@ export default function Search() {
         } catch (error) {
             console.log('Error during redirection:', error);
         }
+        const dateRange = {
+            start: startDate,
+            end: endDate
+        }
+        localStorage.setItem('dateRange', JSON.stringify(dateRange));
     };
 
     const getCars = async (e) => {
@@ -132,7 +136,6 @@ export default function Search() {
                     format='DD/MM/YYYY'
                     className='mui-input city'
                     name='date-picker-start'
-
 
                 />
                 <DatePicker

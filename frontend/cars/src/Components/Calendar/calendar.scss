@@ -27,7 +27,9 @@ abbr[title] {
     }
 }
 
-.react-calendar__tile--active {
+.react-calendar__tile--active, 
+.react-calendar__tile--hasActive
+ {
     background-color: $primary-color !important;
     abbr{
         color: #fff !important;
@@ -46,7 +48,10 @@ button.react-calendar__tile.react-calendar__tile--active.react-calendar__tile--r
     border-radius: 15px 0 0 15px !important;
 }
 
-button.react-calendar__tile.react-calendar__tile--active.react-calendar__tile--range.react-calendar__tile--rangeEnd{
+button.react-calendar__tile.react-calendar__tile--active.react-calendar__tile--range.react-calendar__tile--rangeEnd, 
+.react-calendar__tile--hasActive
+
+{
     border-radius: 0 15px 15px 0 !important;  
 }
 button.react-calendar__tile.react-calendar__tile--active.react-calendar__tile--range.react-calendar__tile--rangeStart.react-calendar__tile--rangeEnd.react-calendar__tile--rangeBothEnds{
