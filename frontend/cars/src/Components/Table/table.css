@@ -1,49 +1,49 @@
 .table-1-wrapper {
-    overflow: auto;
-    position: relative;
-    z-index: 2;
-    width: fit-content;
-    min-width: 440px;
-    max-width: 1640px;
-  }
+  overflow: auto;
+  position: relative;
+  z-index: 2;
+  width: fit-content;
+  min-width: 440px;
+  max-width: 1800px;
+  max-height: 800px; /* Dodajte fiksnu visinu */
+  overflow-y: auto; /* Omogućite vertikalni skrol */
+}
 
-  @media screen and (max-width:768px) {
-    .table-1-wrapper{
+@media screen and (max-width:768px) {
+  .table-1-wrapper{
       max-width: 300px !important;
       overflow: scroll;
-    
-    }
   }
-  
-  .table-1-card table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
+}
 
-  }
-  
-  .table-1-card table th {
-    opacity: 0.5;
-    font-weight: 400;
-    user-select: none;
-    text-transform: capitalize;
-    background: rgb(255 255 255 / 6%);
-  }
-  
-  .table-1-card table :is(th, td) {
-    position: relative;
-    overflow: hidden;
-    white-space: nowrap;
-    height: 36px;
-    padding: 0 10px;
-    border: 1px solid rgb(255 255 255 / 10%);
-  }
-  
-  .table-1-card table th .draggable {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 6px;
-    cursor: col-resize;
-  }
+.table-1-card table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table-1-card table th {
+  opacity: 0.5;
+  font-weight: 400;
+  user-select: none;
+  text-transform: capitalize;
+  background: rgb(255 255 255 / 6%);
+}
+
+.table-1-card table :is(th, td) {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid rgb(255 255 255 / 10%);
+}
+
+.table-1-card table th .draggable {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 6px;
+  cursor: col-resize;
+}

@@ -29,14 +29,14 @@ export const ReservationEmail = ({
         </Preview>
         <Body style={main}>
             <Container style={container}>
-                <Img
+                {/* <Img
                     src="https://i.imgur.com/L04IlJ8.png"
                     width="170"
                     height="50"
                     alt="logo"
                     style={logo}
-                />
-                <Text style={paragraph}>Pozdrav, {userFirstname || "Osoba"} {reservationData.summary.lastName},</Text>
+                /> */}
+                <Text style={paragraph}>Pozdrav, {userFirstname || "Osoba"} {reservationData.summary.lastName}</Text>
                 <Text style={paragraph}>
                     Uspešno ste rezervisali Vaš automobil {brand || 'Brand'} {model || 'Model'}
                 </Text>

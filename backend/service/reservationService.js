@@ -75,7 +75,11 @@ const saveReservation = async (reservationDetails, calendarId) => {
             duration: reservationDetails.duration,
             buyer: reservationDetails.buyer,
             jmbg: reservationDetails.jmbg,
+            email: reservationDetails.email,
             number: reservationDetails.number,
+            eventId: reservationDetails.eventId,
+            reservationId: reservationDetails.reservationId,
+            calendarId: reservationDetails.calendarId,
             companyId: company._id
         });
 
@@ -95,7 +99,22 @@ const saveReservation = async (reservationDetails, calendarId) => {
  */
 const findReservationsByCompanyId = async (id) => {
     try {
-        const res = await Reservation.find({ companyId: id })
+        const res = await Reservation.find({ companyId: id }).sort({ createdAt: -1 });
+        return res;
+    } catch (error) {
+        console.error(`Error while making a reservation: ${error.message}`);
+        throw error;
+    }
+}
+
+/**
+ * Finds reservation by reservation id (example of reservation id: R-768391-906)
+ * @param {String} id -reservation id 
+ * @returns 
+ */
+const findReservationByReservationId = async (id) => {
+    try {
+        const res = await Reservation.findOne({ reservationId: id });
         return res;
     } catch (error) {
         console.error(`Error while making a reservation: ${error.message}`);
@@ -105,7 +124,9 @@ const findReservationsByCompanyId = async (id) => {
 
 
 
+
 module.exports = {
     saveReservation,
-    findReservationsByCompanyId
+    findReservationsByCompanyId,
+    findReservationByReservationId
 }

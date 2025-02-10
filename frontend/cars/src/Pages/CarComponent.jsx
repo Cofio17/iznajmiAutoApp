@@ -9,7 +9,7 @@ import GoBack from '../Components/GoBack/GoBack';
 import dayjs from 'dayjs';
 import Layout from '../Components/Layout/Layout';
 import TimePickerManager from '../Components/TimePicker/TimePickerManager';
-import { createDate, hoursInPeriod, calculatePriceBasedOnHours } from "../utils/createDate"
+import { createDate, hoursInPeriod, calculatePriceBasedOnHours, calculateTotalDaysBasedOnHours } from "../utils/createDate"
 
 
 export default function Car() {
@@ -81,11 +81,11 @@ export default function Car() {
             const startDate = createDate(selectedDate[0], selectedTimes.startHours);
             const endDate = createDate(selectedDate[1], selectedTimes.endHours);
 
-            console.log(`handle price change`);
-
             const hours = hoursInPeriod(dayjs(startDate), dayjs(endDate));
             const totalPrice = calculatePriceBasedOnHours(hours, carData.pricePerDay);
+            const totalDays = calculateTotalDaysBasedOnHours(hours);
             setPriceTotal(totalPrice);
+            setDays(totalDays);
 
             console.log(`Ukupna cena: ${totalPrice}`);
             setErrorText("");
@@ -121,7 +121,7 @@ export default function Car() {
 
                         <TimePickerManager onTimesChange={handleTimesChange} />
 
-                        <button className='button' onClick={handleNavigate}><Link>Dalje</Link></button>
+                        <button id='to-reservation-page' className='button' onClick={handleNavigate}><Link>Dalje</Link></button>
                         {priceTotal && <span style={{ fontWeight: 'bold', fontSize: 18, color: "#444" }}>Cena za izabrani period: {priceTotal}€ </span>}
                     </div>
                 </div>

@@ -28,6 +28,23 @@ const findReservationsByCompanyId = async (req, res) => {
     }
 }
 
+const findReservByReservId = async (req, res) => {
+    const { reservationId } = req.params;
+    if (!reservationId) {
+        return res.status(404).json({ message: "No Reservation provided!" });
+    }
+    try {
+        const reservation = await reservationService.findReservationByReservationId(reservationId);
+        if (!reservation) {
+            return res.status(404).json({ message: "Reservation not found" });
+        }
+        res.status(200).json({ message: "Reservations found", data: reservation });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: "Internal server error", details: error.message });
+    }
+}
 
-module.exports = { reservationsPost, findReservationsByCompanyId };
+
+module.exports = { reservationsPost, findReservationsByCompanyId, findReservByReservId };
 

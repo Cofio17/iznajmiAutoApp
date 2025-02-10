@@ -1,7 +1,5 @@
 const { Resend } = require("resend");
 const express = require('express');
-const router = express.Router();
-
 
 const sendEmail = async (req, res) => {
     const resend = new Resend(process.env.EMAIL_RESEND_API_KEY);
@@ -17,7 +15,7 @@ const sendEmail = async (req, res) => {
 
         // Slanje e-maila
         await resend.emails.send({
-            from: 'onboarding@resend.dev',
+            from: 'rezervacije@iznajmi.me',
             to: to,
             subject: subject,
             html: html

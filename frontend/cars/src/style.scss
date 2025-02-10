@@ -360,11 +360,12 @@ h2 span{
 }
 
 }
-
-
-
 .button{
     @include button-style();
+}
+
+#to-reservation-page{
+    width: 200px;
 }
 
 .company-name{

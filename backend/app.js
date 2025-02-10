@@ -5,18 +5,15 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser')
 
-
 const app = express();
+
 //middleware
 app.use(express.json()); //needed so the server can receive json data in post request
 app.use(cookieParser());
-
-
-
 app.use(cors({
-    origin: true,
+    origin: ["https://iznajmi.me", "https://www.iznajmi.me", "http://192.168.0.17:5173"],
     credentials: true,
-    sameSite: 'lax'
+    sameSite: 'none'
 }));
 
 

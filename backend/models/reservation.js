@@ -12,7 +12,11 @@ const reservationSchema = new Schema({
     duration: { type: Number },
     buyer: { type: String },
     jmbg: { type: String },
+    email: { type: String },
     number: { type: String },
+    eventId: { type: String },
+    reservationId: { type: String },
+    calendarId: { type: String },
     companyId: { type: Schema.Types.ObjectId, ref: 'Company' }
 }, { timestamps: true })
 

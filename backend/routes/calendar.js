@@ -1,5 +1,5 @@
 const express = require("express");
-const { createEvent, accessBusyDates, searchCarsByDate } = require("../service/googleCalendar.js");
+const { createEvent, accessBusyDates, searchCarsByDate, cancelEvent, changeEvent } = require("../service/googleCalendar.js");
 const Car = require('../models/car.js');
 
 const router = express.Router();
@@ -10,11 +10,11 @@ const router = express.Router();
  */
 router.post("/create-event", async (req, res) => {
     //necessary data for creating an event
-    const { summary, description, start, end, calendarId } = req.body;
+    const { summary, description, start, end, calendarId, reservationId } = req.body;
 
     const eventDetails = {
         summary: description || "default description details",
-        description: `Auto ID:${summary.carId} ${summary.email}, kontakt telefon: ${summary.number}` || "default summary details",
+        description: `Auto ID:${summary.carId} ${summary.email}, kontakt telefon: ${summary.number}. Ukupna cena: ${summary.priceTotal}` || "default summary details",
         start: {
             dateTime: start.dateTime, // Korišćenje tačnog formata sa vremenskom zonom
             timeZone: "Europe/Belgrade"  // Postavljamo vremensku zonu kao "Europe/Belgrade"
@@ -31,6 +31,8 @@ router.post("/create-event", async (req, res) => {
         description,
         start,
         end,
+        reservationId,
+        calendarId
     }
 
     try {
@@ -97,5 +99,34 @@ router.post('/search', async (req, res) => {
         res.status(500).json({ message: "error", er: error });
     }
 })
+
+/**
+ * DELETE Method for deleting an event
+ * cancelling a reservation
+ */
+router.delete('/cancel/:calendarId/:eventId', async (req, res) => {
+
+    const { calendarId, eventId } = req.params
+
+    try {
+        await cancelEvent(calendarId, eventId);
+        res.status(200).json({ message: "Događaj uspešno obrisan." });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+router.patch('/change/:calendarId/:eventId', async (req, res) => {
+    const { calendarId, eventId } = req.params
+    const { startDate, endDate } = req.body
+    try {
+        await changeEvent(calendarId, eventId, startDate, endDate);
+        res.status(200).json({ message: "Događaj uspešno modifikovan." });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+
+})
+
 
 module.exports = router;

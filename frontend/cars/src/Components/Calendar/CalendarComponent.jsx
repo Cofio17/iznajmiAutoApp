@@ -4,6 +4,7 @@ import 'react-calendar/dist/Calendar.css';
 import { Alert } from '@mui/material';
 import axios from 'axios';
 import './calendar.scss'
+import LoadingCircle from '../../utils/LoadingCircle/LoadingCircle';
 
 
 
@@ -17,18 +18,16 @@ export default function CalendarComponent({ calendarId, fetchDates }) {
 
     useEffect(() => {
 
-        //function that returns busy dates for specific car/calendar depending on calendar ID 
+        /**
+         *returns busy dates for specific car/calendar depending on calendar ID 
+         */
         const getBusyDates = async () => {
             try {
                 console.log(calendarId);
-
                 setLoading(true);
                 const response = await axios.post(`${localhost}api/calendar/get-busy-dates`, { calendarId: calendarId });
-                console.log(response.data.dates.calendars[calendarId].busy);
                 const busyDates = response.data.dates.calendars[calendarId].busy
                 setBusyDays(busyDates);
-
-
             } catch (err) {
                 setError(err)
             }
@@ -37,8 +36,6 @@ export default function CalendarComponent({ calendarId, fetchDates }) {
             }
         }
         getBusyDates();
-
-
     }, []);
 
     //stored dates
@@ -142,8 +139,12 @@ export default function CalendarComponent({ calendarId, fetchDates }) {
 
     }
 
+    if (loading) {
+        return (
+            <LoadingCircle />
 
-
+        )
+    }
     return (
         <div className="calendar-wrapper">
             <Calendar

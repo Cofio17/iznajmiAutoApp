@@ -6,6 +6,9 @@ import Car from './Pages/CarComponent.jsx'
 import ErrorPage from './Pages/ErrorPage.jsx'
 import HomePage from './Pages/HomePage.jsx'
 import ReservationForm from './Pages/ReservationForm/ReservationForm.jsx'
+
+import MyReservation from './Pages/MyReservation/MyReservation.jsx'
+import ReservationDetails from './Pages/MyReservation/ReservationDetails.jsx'
 import { SearchProvider } from './Contexts/SearchContext.jsx'
 import { AuthProvider } from './Contexts/AuthContext.jsx'
 import ScrollToTop from './utils/ScrollToTop.jsx'
@@ -73,6 +76,16 @@ const router = createBrowserRouter([
       <ProtectedRoute>
         <DashBoard />
       </ProtectedRoute>
+  },
+  {
+    path: '/my-reservation',
+    element: <MyReservation />,
+    children: [{
+      path: ':reservationId',
+      element: <ReservationDetails />
+
+    }
+    ]
   },
   {
     path: '/politika-privatnosti',

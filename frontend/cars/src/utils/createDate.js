@@ -21,6 +21,19 @@ export function createDate(date, hours) {
     return newDate.toISOString();
 }
 
+export function hoursInPeriod(startDate, endDate) {
+    return endDate.diff(startDate, "hour");
+}
+
+
+export function calculatePriceBasedOnHours(hours, pricePerDay) {
+    let totalDays = Math.ceil(hours / 24); // Zaokružuje naviše ako je prekoračen bilo koji sat preko 24h
+    return totalDays * pricePerDay; // Ukupna cena
+}
+
+export function calculateTotalDaysBasedOnHours(hours) {
+    return Math.ceil(hours / 24);
+}
 
 
 // export function hoursInPeriod(startDate, endDate) {
@@ -42,16 +55,6 @@ export function createDate(date, hours) {
 
 //     return (totalDays + (additionalCharge > 0 ? 1 : 0)) * pricePerDay; // Ukupna cena
 // }
-
-export function hoursInPeriod(startDate, endDate) {
-    return endDate.diff(startDate, "hour");
-}
-
-
-export function calculatePriceBasedOnHours(hours, pricePerDay) {
-    let totalDays = Math.ceil(hours / 24); // Zaokružuje naviše ako je prekoračen bilo koji sat preko 24h
-    return totalDays * pricePerDay; // Ukupna cena
-}
 
 
 

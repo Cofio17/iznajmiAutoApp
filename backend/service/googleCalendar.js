@@ -31,8 +31,6 @@ const auth = new google.auth.JWT(
  * @throws {Error} If the event creation or reservation saving fails.
  */
 async function createEvent(eventDetails, reservationDetailsParam) {
-    console.log("event details: ", JSON.stringify(eventDetails, null, 2));
-    console.log(eventDetails.calendarId);
 
     if (!eventDetails || !eventDetails.calendarId) {
         throw new Error("Invalid event details: Missing calendarId or eventDetails.");
@@ -44,12 +42,12 @@ async function createEvent(eventDetails, reservationDetailsParam) {
 
     try {
         const response = await calendar.events.insert({
-            calendarId: eventDetails.calendarId, //dynamic calendar id change
+            calendarId: eventDetails.calendarId,
             requestBody: eventDetails,
         });
         console.log("Event successfully created in Google Calendar:", response.data);
 
-        const reservationDetails = buildReservationDetails(reservationDetailsParam);
+        const reservationDetails = buildReservationDetails(reservationDetailsParam, response.data.id);
 
         const reservationResponse = await reservationServcice.saveReservation(reservationDetails, eventDetails.calendarId);
         console.log("Reservation saved successfully:", reservationResponse);
@@ -98,6 +96,10 @@ async function accessBusyDates(calendarId) {
 async function searchCarsByDate(cars, timeMin, timeMax) {
     const calendar = google.calendar({ version: "v3", auth });
 
+    //korigovano-potrebno mozda povecati
+    const adjustedTimeMax = new Date(new Date(timeMax).getTime() + 12 * 60 * 60 * 1000).toISOString();
+
+
     //making array of objects with pair of id:calendarId <String>
     const calendarIds = cars.map((car) => {
         return ({ id: car.calendarId });
@@ -106,7 +108,7 @@ async function searchCarsByDate(cars, timeMin, timeMax) {
     const response = await calendar.freebusy.query({
         requestBody: {
             timeMin: timeMin,
-            timeMax: timeMax,
+            timeMax: adjustedTimeMax,
             items: [...calendarIds]
         }
     })
@@ -122,9 +124,10 @@ async function searchCarsByDate(cars, timeMin, timeMax) {
 /**
  * Helper function for creating reservation object
  * @param {Object} eventDetails - event details
+ * @param {String} eventId - event id 
  * @returns {Object} - reservation details
  */
-function buildReservationDetails(eventDetails) {
+function buildReservationDetails(eventDetails, eventId) {
     return {
         startDate: eventDetails.start.dateTime,
         endDate: eventDetails.end.dateTime,
@@ -136,8 +139,72 @@ function buildReservationDetails(eventDetails) {
         duration: eventDetails.summary.daysTotal || 0,
         buyer: eventDetails.summary.firstName || "Unknown Buyer",
         jmbg: eventDetails.summary.jmbg || "Unknown JMBG",
+        email: eventDetails.summary.email || "Unknown email",
         number: eventDetails.summary.number || "Unknown Contact",
+        eventId: eventId || "Unknown event id",
+        reservationId: eventDetails.reservationId,
+        calendarId: eventDetails.calendarId
     };
 }
 
-module.exports = { createEvent, accessBusyDates, searchCarsByDate };
+/**
+ * Deleting an event/Cancel a reservation
+ * @param {String} calendarId - calendar ID
+ * @param {String} eventId  - event ID
+ * @returns 
+ */
+async function cancelEvent(calendarId, eventId) {
+    const calendar = google.calendar({ version: 'v3', auth });
+
+    try {
+        const res = await calendar.events.delete({
+            calendarId: calendarId,
+            eventId: eventId
+        })
+        console.log(`event deleted!`);
+        return res;
+    } catch (error) {
+        console.log(`error while deleting an event  ${error}`);
+        throw new Error("Nije moguće obrisati događaj. Pokušajte ponovo.");
+    }
+}
+/**
+ * Change reservation period of a existing reservation
+ * @param {String} calendarId - calendar ID
+ * @param {String} eventId - event ID
+ * @param {Date} start - start date- must be ISO String
+ * @param {Date} end - end date - must be ISO String
+ * @returns 
+ */
+async function changeEvent(calendarId, eventId, startDate, endDate) {
+    const calendar = google.calendar({ version: 'v3', auth });
+
+
+    if (!startDate || !endDate) {
+        return res.status(400).json({ error: "Oba datuma (startDate i endDate) su obavezna." });
+    }
+
+    try {
+        const res = await calendar.events.patch({
+            calendarId: calendarId,
+            eventId: eventId,
+            resource: {
+                start: {
+                    dateTime: startDate,
+                    timeZone: "Europe/Belgrade"
+                },
+                end: {
+                    dateTime: endDate,
+                    timeZone: "Europe/Belgrade"
+                }
+            }
+        });
+        console.log(`event changed!`);
+        return res;
+    } catch (error) {
+        console.log(`error while changing an event  ${error}`);
+        throw new Error("Nije moguće menjati događaj. Pokušajte ponovo.");
+    }
+}
+
+module.exports = { createEvent, accessBusyDates, searchCarsByDate, cancelEvent, changeEvent };
