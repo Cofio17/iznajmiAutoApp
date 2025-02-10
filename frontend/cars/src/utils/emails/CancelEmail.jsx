@@ -11,45 +11,22 @@ import {
 } from "@react-email/components";
 import dayjs from "dayjs";
 
-export const ReservationEmail = ({
-    userFirstname,
-    brand,
-    model,
-    reservationData
-
-
+export const CancelEmail = ({ name
 }) => (
 
     <Html>
         <Head />
         <Preview>
-            Uspešno ste rezervisali Vaš auto
+            Uspešno ste otkazali auto
         </Preview>
         <Body style={main}>
             <Container style={container}>
 
-                <Text style={paragraph}>Pozdrav, {userFirstname || "Osoba"} {reservationData.summary.lastName}</Text>
+                <Text style={paragraph}>Pozdrav, {name || 'Osobo'}</Text>
                 <Text style={paragraph}>
-                    Uspešno ste rezervisali Vaš automobil {brand || 'Brand'} {model || 'Model'}
-                </Text>
-                <Text>
-                    Ukupna cena: {reservationData.summary.priceTotal}€
-                </Text>
-                <Text>
-                    Početak: {dayjs(reservationData.start.dateTime).format('DD/MM/YYYY')}
+                    Uspešno ste otkazali auto
                 </Text>
 
-                <Text>
-                    Kraj :{dayjs(reservationData.end.dateTime).format('DD/MM/YYYY')}
-                </Text>
-                <Text style={paragraph}>
-                    ID vaše rezervacije je:{reservationData.reservationId}
-
-                </Text>
-
-                <Section style={btnContainer}>
-
-                </Section>
                 <Text style={paragraph}>
                     Srdačno
                     <br />
@@ -65,7 +42,7 @@ export const ReservationEmail = ({
     </Html>
 );
 
-export default ReservationEmail;
+export default CancelEmail;
 
 const main = {
     backgroundColor: "#ffffff",

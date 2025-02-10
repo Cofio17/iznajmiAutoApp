@@ -1,3 +1,63 @@
 .find-reservation-container{
-    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    margin: 90px 20px;
+    align-items: center;
+    
+    h1{
+        align-self: center;
+        margin-bottom: 20px;
+    }
+
+    h2{
+        font-size: 22px;
+    }
+
+    ul{
+        list-style: none;
+    }
+
+    li{
+        margin-bottom: 5px;
+    }
+
+    .search-bar-button{
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+        @media screen and (max-width:768px) {
+            width: 100%;
+        }
+    }
+}
+
+.reservation-details-container{
+    color: black;
+    margin-top: 30px;
+    place-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#cancel-change-reservation-button{
+margin-top: 30px;
+}
+
+#cancel{
+    background-color: #f0524a;
+    &:hover{
+        border: #ff6961;
+    }
+}
+
+.buttons{
+    button{
+        margin: 10px;
+    }
+
+    @media screen and (max-width:768px) {
+        button{
+            width: 130px;
+        }
+    }
 }

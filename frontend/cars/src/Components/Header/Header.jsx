@@ -4,28 +4,24 @@ import DropDownMenu from "../DropDownMenu/DropDownMenu"
 import { useState } from "react"
 import { motion } from "framer-motion"
 import BurgerMenu from "./BurgerMenu"
-import { useContext } from "react"
-import { AuthContext } from "../../Contexts/AuthContextHelper"
-
 
 export default function Header({ onClick }) {
     const [activeDropDown, setActiveDropDown] = useState(false);
     const location = useLocation();
-    const { token, isTokenValid } = useContext(AuthContext);
-    const isAuthenticated = isTokenValid(token);
     const navigate = useNavigate();
     let timer;
 
     const handleRefresh = (path) => {
         if (location.pathname === path) {
             localStorage.removeItem("searchListData");
-            //window.location.reload();
         }
     };
 
     const navigateTo = () => {
-        navigate('/dashboard');
+        navigate('/moja-rezervacija');
     }
+
+
     return (
         <header>
             <nav>
@@ -49,23 +45,25 @@ export default function Header({ onClick }) {
 
 
                     <div className="navlinks-button">
+
                         <motion.button
-                            onClick={isAuthenticated ? navigateTo : onClick}
+                            id='my-reservation-button'
+                            className="button"
+                            onClick={navigateTo}
                             whileTap={{ scale: 1.1 }}
                             whileHover={{
                                 scale: 0.95,
                                 transition: { duration: 0.05 },
                             }}
-                            id="login"
                         >
-                            {isAuthenticated ? ' Profil' : 'Login'}
+                            Proveri Rezervaciju
                         </motion.button>
                     </div>
                 </ul>
 
 
                 {/* Mobile devices  */}
-                <BurgerMenu handleRefresh={handleRefresh} navigateToDash={navigateTo} onClick={onClick} />
+                <BurgerMenu handleRefresh={handleRefresh} onClickMyReservation={navigateTo} onClick={onClick} />
 
             </nav>
 

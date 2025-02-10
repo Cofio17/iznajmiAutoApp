@@ -5,6 +5,15 @@ import Modal from "../../utils/Modal/Modal";
 import { AnimatePresence } from "framer-motion";
 import LoginModal from "../../utils/Modal/ModalTypes/LoginModal";
 import useModal from "../../Hooks/useModal";
+
+
+/**
+ * @param {Object} props
+ * @param {string} [props.header] - Optional header text (string)
+ * @param {boolean} [props.appjsx] - Optional boolean for appjsx
+ * @param {React.ReactNode} props.children - JSX elements as children
+ * @returns {JSX.Element}
+ */
 export default function Layout({ header, children, appjsx }) {
 
     const { modalOpen, open, close } = useModal();
@@ -21,7 +30,7 @@ export default function Layout({ header, children, appjsx }) {
                 </AnimatePresence>
                 {children}
             </main>
-            <Footer />
+            <Footer onClick={open} />
         </>
     )
 }

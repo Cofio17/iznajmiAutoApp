@@ -1,9 +1,16 @@
 import { Link } from "react-router-dom";
 import image from '../../assets//images/iznajmi-07.png'
 import ScrollToTop from "../../utils/ScrollToTop";
-
-export default function Footer() {
+import { NavLink, useLocation, useNavigate } from "react-router-dom"
+import { motion } from "framer-motion"
+import { useContext } from "react"
+import { AuthContext } from "../../Contexts/AuthContextHelper"
+export default function Footer({ onClick }) {
+    const navigate = useNavigate();
     const email = "info@iznajmi.me";
+    const { token, isTokenValid } = useContext(AuthContext);
+    const isAuthenticated = isTokenValid(token);
+
 
     const sectionLogo = {
         image: image,
@@ -32,6 +39,9 @@ export default function Footer() {
             ]
         }
     ];
+    const navigateTo = () => {
+        navigate('/dashboard');
+    }
 
     return (
         <footer>
@@ -44,6 +54,20 @@ export default function Footer() {
                         {sectionLogo.content}
                         <a href={`mailto:${email}`}>{email}</a>
                     </p>
+                    <div className="navlinks-button">
+                        <motion.button
+                            onClick={isAuthenticated ? navigateTo : onClick}
+                            whileTap={{ scale: 1.1 }}
+                            whileHover={{
+                                scale: 0.95,
+                                transition: { duration: 0.05 },
+                            }}
+                            id="login"
+                        >
+                            {isAuthenticated ? ' Profil' : 'Login'}
+                        </motion.button>
+                    </div>
+
                 </div>
                 {sections.map((section) => (
                     <div key={section.id} className="footer-section">

@@ -122,11 +122,28 @@ const findReservationByReservationId = async (id) => {
     }
 }
 
-
-
+/**
+ * Finds and deletes one reservation by eventId
+ * @param {String} id - eventId 
+ * @returns {Object} - Deletion result or null if not found
+ */
+const findAndDeleteReservation = async (id) => {
+    try {
+        const res = await Reservation.deleteOne({ eventId: id });
+        if (res.deletedCount === 0) {
+            console.warn(`Reservation with ID ${id} not found.`);
+            return null;
+        }
+        return res;
+    } catch (error) {
+        console.error(`Error while deleting reservation: ${error.message}`);
+        throw error;
+    }
+};
 
 module.exports = {
     saveReservation,
     findReservationsByCompanyId,
-    findReservationByReservationId
+    findReservationByReservationId,
+    findAndDeleteReservation
 }

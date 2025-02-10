@@ -5,7 +5,7 @@ import "./tablewrapper.css";
 
 export const TableWrapper = ({ data }) => {
     // Uzimamo prvi objekat iz data za generisanje kolona
-    const excludeKeys = ["__v", "_id", "updatedAt", 'calendarId']; // Izuzmi neželjene ključeve
+    const excludeKeys = ["__v", "_id", "updatedAt"]; // Izuzmi neželjene ključeve
 
     // Proveri da li je data definisano i da li ima elemenata
     const columns = data && data.length > 0

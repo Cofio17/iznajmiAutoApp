@@ -1,6 +1,6 @@
 const { google } = require('googleapis');
 const addingXMonths = require('../utils/addingMonths.js');
-const reservationServcice = require('./reservationService.js');
+const reservationService = require('./reservationService.js');
 
 //setting current date
 const todayISO = new Date().toISOString();
@@ -49,7 +49,7 @@ async function createEvent(eventDetails, reservationDetailsParam) {
 
         const reservationDetails = buildReservationDetails(reservationDetailsParam, response.data.id);
 
-        const reservationResponse = await reservationServcice.saveReservation(reservationDetails, eventDetails.calendarId);
+        const reservationResponse = await reservationService.saveReservation(reservationDetails, eventDetails.calendarId);
         console.log("Reservation saved successfully:", reservationResponse);
 
         return response.data;
@@ -161,7 +161,20 @@ async function cancelEvent(calendarId, eventId) {
             calendarId: calendarId,
             eventId: eventId
         })
+        if (res.status !== 204) {
+            throw new Error("Error while deleting an event from the google calendar");
+        }
         console.log(`event deleted!`);
+
+        const deletedReservation = await reservationService.findAndDeleteReservation(eventId);
+
+        if (!deletedReservation) {
+            console.warn(`Reservation with ${eventId} could not be found in database`);
+        } else {
+            console.log(`Reservation deleted from database!`);
+        }
+        return { success: true, message: "Događaj i rezervacija uspešno obrisani." };
+
         return res;
     } catch (error) {
         console.log(`error while deleting an event  ${error}`);

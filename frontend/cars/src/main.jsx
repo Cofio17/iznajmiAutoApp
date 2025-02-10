@@ -78,7 +78,7 @@ const router = createBrowserRouter([
       </ProtectedRoute>
   },
   {
-    path: '/my-reservation',
+    path: '/moja-rezervacija',
     element: <MyReservation />,
     children: [{
       path: ':reservationId',

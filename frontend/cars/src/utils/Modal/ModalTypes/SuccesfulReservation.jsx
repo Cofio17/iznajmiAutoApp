@@ -1,7 +1,4 @@
 export default function SuccesfulReservation({ handleClose }) {
-
-
-
     return (
         <>
             <div className="heading">
