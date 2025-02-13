@@ -36,6 +36,12 @@ $small-screen:768px;
     width: clamp(300px, 40%, 400px);
     height: min(50%,500px);
 }
+
+.cancel-reservation{
+    display: flex;
+    width: clamp(300px, 40%, 400px);
+    height: min(33%,500px);
+}
 .login-form{
     display: flex;
     height: 100%;
@@ -147,12 +153,18 @@ button{
 }
 
 #cancel-button{
-    background-color: #f0524a;
+    background-color: #d41f16;
     color: #fff;
-    border: #f0524a;
+    background-color: #d41f16;
+    width: 130px;
+    font-size: 12px;
+    height: 60px;
 }
 #second-thought-button{
     background-color: $primary-color !important;
+    width: 130px;
+    font-size: 12px;
+    height: 60px;
 }
 
 

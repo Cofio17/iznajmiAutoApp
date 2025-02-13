@@ -46,10 +46,6 @@ export default function ImageSlider({ carData }) {
         <div className="container-image-slider-custom">
             <div className="car-name-company-name">
                 <h2>{carData.brand} {carData.model} <span>{carData.year}</span></h2>
-
-                <p className='company-name'>
-                    {carData?.companyId?.name || 'Naziv Agencije'}
-                </p>
             </div>
 
             <ImageGallery items={carData.images.length > 0 ? imagesOriginal : imagess} autoPlay={false} showBullets={true} showIndex={false} showNav={true} showFullscreenButton={true} showPlayButton={false} />;

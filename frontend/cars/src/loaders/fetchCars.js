@@ -1,12 +1,10 @@
-import axios from 'axios';
+import { apiRequest } from '../utils/Api/apiService';
 
 export const fetchCars = async () => {
-  const localhost = import.meta.env.VITE_LOCAL_HOST;
   try {
-    const response = await axios.get(`${localhost}cars`);
-    return response.data.data;
+    const response = await apiRequest("GET", 'cars');
+    return response.data
   } catch (error) {
     throw new Response('Error fetching cars', { status: 500 });
   }
-
-};
+}

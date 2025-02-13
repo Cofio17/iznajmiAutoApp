@@ -12,7 +12,7 @@ export default function CarInfo({ carData, header }) {
 
     return (
 
-        <div className="container-car-data">
+        <div className="container-car-data car-info">
             <h3>{header}</h3>
 
             <div className="content">

@@ -1,33 +1,26 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useContext } from 'react';
 import { SearchContext } from '../../Contexts/SearchContext';
 import { fetchCars } from '../../loaders/fetchCars';
 
-
-
-
-
+const variants = {
+    open: {
+        padding: 20,
+        height: "auto",
+        opacity: 1,
+        transition: { duration: 0.2 }
+    },
+    closed: {
+        padding: 0,
+        height: 0,
+        opacity: 0,
+        transition: { duration: 0.2 }
+    },
+};
 
 export default function DropDownMenu({ isActive }) {
     const { setSearchListData, searchListData } = useContext(SearchContext);
-    const localhost = import.meta.env.VITE_LOCAL_HOST;
-
-    //Animations
-    const variants = {
-        open: {
-            padding: 20,
-            height: "auto",
-            opacity: 1,
-            transition: { duration: 0.2 }
-        },
-        closed: {
-            padding: 0,
-            height: 0,
-            opacity: 0,
-            transition: { duration: 0.2 }
-        },
-    };
 
     //Needs API- SET
     const list = [
@@ -43,7 +36,6 @@ export default function DropDownMenu({ isActive }) {
             setSearchListData(res);
         }
     }
-
 
     return (
         <AnimatePresence>

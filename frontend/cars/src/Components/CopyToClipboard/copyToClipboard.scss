@@ -1,0 +1,20 @@
+.copy-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    color: #28a745; /* Zelena boja za potvrdu kopiranja */
+    transition: color 0.3s ease;
+
+    @media screen and (max-width:768px) {
+        margin-left: 0;
+    }
+}
+
+.copy-button:hover {
+    color: #04731e; /* Zelena boja za potvrdu kopiranja */
+}
+
+.copied {
+    color: #28a745; /* Zelena boja za potvrdu kopiranja */
+}

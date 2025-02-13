@@ -5,11 +5,8 @@ import PickingUp from "./PickingUp";
 
 export default function CategoryInfo({ carData }) {
     const [activeIndex, setActiveIndex] = useState(0);
-    const categories = ["Opšte Informacije", "O Izdavaču", "Korisne Informacije"];
+    const categories = ["O automobilu", "Mesto Preuzimanja", "Korisne Informacije"];
 
-    // const renderCarInfo = () => {
-    //     return <CarInfo carData={carData} header={categories[activeIndex]} />;
-    // };
     const renderSegment = (index) => {
         switch (index) {
             case 0:

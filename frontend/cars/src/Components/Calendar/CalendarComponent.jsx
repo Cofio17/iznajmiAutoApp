@@ -2,19 +2,18 @@ import { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { Alert } from '@mui/material';
-import axios from 'axios';
 import './calendar.scss'
 import LoadingCircle from '../../utils/LoadingCircle/LoadingCircle';
+import { apiRequest } from '../../utils/Api/apiService';
+import dayjs from 'dayjs';
 
 
 
-export default function CalendarComponent({ calendarId, fetchDates }) {
+export default function CalendarComponent({ calendarId, fetchDates, isReservationPage = false }) {
     const [date, setDate] = useState([]);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
     const [busyDays, setBusyDays] = useState([]);
-
-    const localhost = import.meta.env.VITE_LOCAL_HOST;
 
     useEffect(() => {
 
@@ -25,8 +24,28 @@ export default function CalendarComponent({ calendarId, fetchDates }) {
             try {
                 console.log(calendarId);
                 setLoading(true);
-                const response = await axios.post(`${localhost}api/calendar/get-busy-dates`, { calendarId: calendarId });
-                const busyDates = response.data.dates.calendars[calendarId].busy
+                const response = await apiRequest("POST", "api/calendar/get-busy-dates", { calendarId: calendarId });
+                const busyDates = response.dates.calendars[calendarId].busy
+                console.log(busyDates);
+                if (isReservationPage) {
+                    const storedReservationDate = JSON.parse(localStorage.getItem('dateRange'));
+                    if (storedReservationDate) {
+                        const { start, end } = storedReservationDate;
+
+                        const filteredBusyDates = busyDates.filter(({ start: busyStart, end: busyEnd }) =>
+                            !(
+                                dayjs(busyStart).isSame(dayjs(start)) && dayjs(busyEnd).isSame(dayjs(end)) // Tačno isti period
+                                || dayjs(busyStart).isBetween(dayjs(start), dayjs(end), null, '[]') // busyStart unutar rezervacije
+                                || dayjs(busyEnd).isBetween(dayjs(start), dayjs(end), null, '[]')   // busyEnd unutar rezervacije
+                                || (dayjs(start).isBetween(dayjs(busyStart), dayjs(busyEnd), null, '[]') && dayjs(end).isBetween(dayjs(busyStart), dayjs(busyEnd), null, '[]')) // storedReservation unutar busy perioda
+                            )
+                        );
+                        setBusyDays(filteredBusyDates);
+                        console.log(busyDates);
+                        return;
+
+                    }
+                }
                 setBusyDays(busyDates);
             } catch (err) {
                 setError(err)
@@ -36,7 +55,7 @@ export default function CalendarComponent({ calendarId, fetchDates }) {
             }
         }
         getBusyDates();
-    }, []);
+    }, [isReservationPage]);
 
     //stored dates
     useEffect(() => {
@@ -47,6 +66,7 @@ export default function CalendarComponent({ calendarId, fetchDates }) {
                 const parsedDates = [new Date(start), new Date(end)];
 
                 let invalidRange = parsedDates.some(date => iteratediabledDays(date));
+
 
                 if (!invalidRange) {
                     handleDateChange(parsedDates);
@@ -158,6 +178,7 @@ export default function CalendarComponent({ calendarId, fetchDates }) {
                 prev2Label={null}
                 next2Label={null}
                 maxDate={new Date(new Date().setMonth(new Date().getMonth() + 3))}
+
 
             />
             {date.length > 1 &&

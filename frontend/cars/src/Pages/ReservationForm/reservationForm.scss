@@ -16,6 +16,7 @@ form {
     @media screen and (max-width: 768px) {
         height: 90vh;
         gap: 10px;
+
       }
     
 
@@ -54,7 +55,10 @@ form {
         justify-content: flex-start;
     }
 
-  
+}
+
+.selected-dates{
+    font-size: 15px;
 }
 
 

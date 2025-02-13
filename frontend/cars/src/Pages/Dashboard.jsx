@@ -3,6 +3,7 @@ import { AuthContext } from "../Contexts/AuthContextHelper";
 import { TableWrapper } from "../Components/Table/TableWrapper";
 import { useContext, useState, useEffect } from "react";
 import GoBack from "../Components/GoBack/GoBack";
+import MuiTable from "../Components/MuiTable/MuiTable";
 import axios from "axios";
 const data = {
     "licensePlate": "Provera1",
@@ -116,11 +117,12 @@ export default function DashBoard() {
             <h1>Korisnički profil</h1>
             <h2>{user.name}</h2>
             <p>Ukupno Objavljeno automobila: {totalCars}</p>
-            <TableWrapper data={reservations} />
+            {/* <TableWrapper data={reservations} /> */}
+            <MuiTable reservations={reservations} />
 
             <div className="buttons">
                 <button onClick={handleLogout}>Izlogujte se</button>
-                <button onClick={addACar}>Dodajte auto</button>
+                <button>Dodajte auto</button>
 
             </div>
 

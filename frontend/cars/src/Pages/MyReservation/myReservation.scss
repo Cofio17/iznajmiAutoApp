@@ -3,6 +3,8 @@
     flex-direction: column;
     margin: 90px 20px;
     align-items: center;
+    margin-bottom: 400px;
+    margin-top: 200px;
     
     h1{
         align-self: center;
@@ -25,9 +27,13 @@
         display: flex;
         flex-direction: column;
         width: 30%;
-        @media screen and (max-width:768px) {
+    }
+    @media screen and (max-width:768px) {
+        margin-top: 90px;
+        .search-bar-button{
             width: 100%;
         }
+       
     }
 }
 
@@ -39,18 +45,15 @@
     flex-direction: column;
 }
 
-#cancel-change-reservation-button{
-margin-top: 30px;
-}
-
 #cancel{
-    background-color: #f0524a;
+    background-color: #d41f16;
     &:hover{
-        border: #ff6961;
+        border:  #d41f16;;
     }
 }
 
 .buttons{
+    margin-top: 30px;
     button{
         margin: 10px;
     }
@@ -60,4 +63,24 @@ margin-top: 30px;
             width: 130px;
         }
     }
+}
+
+.reservation-info-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.reservation-info-table th, .reservation-info-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.reservation-info-table th {
+    background-color: #f2f2f2;
+    color: black;
+}
+
+
+.bold {
+    font-weight: bold;
 }

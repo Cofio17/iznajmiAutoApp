@@ -1,4 +1,5 @@
 const Company = require('../models/company');
+const companyService = require('../service/comapanyService');
 
 //Get all companies from db 
 const getAllCompanies = async (req, res) => {
@@ -31,4 +32,27 @@ const insertCompany = async (req, res) => {
     }
 }
 
-module.exports = { getAllCompanies, insertCompany };
+/**
+ * Returns Company
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
+const getCompany = async (req, res) => {
+    const { companyId } = req.params
+    if (!companyId) {
+        return res.status(404).json({ message: "No Company ID provided!" });
+    }
+    try {
+        const company = await companyService.findCompanyById(companyId);
+        if (!company) {
+            return res.status(404).json({ message: "Company not found" });
+        }
+        res.status(200).json({ message: "Reservations found", data: company });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: "Internal server error", details: error.message });
+    }
+}
+
+module.exports = { getAllCompanies, insertCompany, getCompany };

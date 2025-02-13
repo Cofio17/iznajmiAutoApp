@@ -159,7 +159,7 @@ export default function Search() {
                     setCity(newValue);
                 }}
                 renderInput={(params) => (
-                    <TextField {...params} label="Izaberite grad.." variant="outlined" />
+                    <TextField {...params} label="Izaberite grad" variant="outlined" />
                 )}
                 className='mui-input'
             />

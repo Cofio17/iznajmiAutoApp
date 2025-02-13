@@ -1,15 +1,15 @@
-import axios from 'axios';
+
 import { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import ErrorPage from './ErrorPage';
 import CalendarComponent from '../Components/Calendar/CalendarComponent';
 import ImageSlider from '../Components/ImageSlider/ImageSlider';
 import CategoryInfo from '../Components/Car/CategoryInfo,';
-import GoBack from '../Components/GoBack/GoBack';
 import dayjs from 'dayjs';
 import Layout from '../Components/Layout/Layout';
 import TimePickerManager from '../Components/TimePicker/TimePickerManager';
 import { createDate, hoursInPeriod, calculatePriceBasedOnHours, calculateTotalDaysBasedOnHours } from "../utils/createDate"
+import { apiRequest } from '../utils/Api/apiService';
 
 
 export default function Car() {
@@ -17,39 +17,37 @@ export default function Car() {
     const params = useParams();
     const carId = params.carId;
     const [carData, setCarData] = useState({});
+    const navigate = useNavigate();
+
     const [error, setError] = useState();
     const [errorText, setErrorText] = useState('');
     const [loading, setLoading] = useState(true);
+
     const [selectedDate, setSelectedDate] = useState([]);
     const [priceTotal, setPriceTotal] = useState();
     const [days, setDays] = useState();
-    const navigate = useNavigate();
+
     const [selectedTimes, setSelectedTimes] = useState({
         startHours: null,
         endHours: null,
     });
 
-    const localhost = import.meta.env.VITE_LOCAL_HOST;
-
     useEffect(() => {
-        const fetchCarData = async () => {
-            try {
-                setLoading(true);
-                const response = await axios.get(`${localhost}cars/${params.carId}`)
+        setLoading(true);
 
-
-                setCarData(response.data.data);
-                setError(false);
-            }
-            catch (err) {
+        apiRequest("GET", `cars/${carId}`)
+            .then((data) => {
+                setCarData(data.data);
+                setError(null);
+            })
+            .catch((err) => {
                 setError(err);
-            }
-            finally {
-                setLoading(false);
-            }
-        }
-        fetchCarData();
-    }, [])
+                console.error("Greška pri učitavanju auta:", err);
+            })
+            .finally(() => setLoading(false));
+
+    }, [carId]);
+
 
     const handleNavigate = () => {
         if (selectedDate.length < 2) {
@@ -84,6 +82,7 @@ export default function Car() {
             const hours = hoursInPeriod(dayjs(startDate), dayjs(endDate));
             const totalPrice = calculatePriceBasedOnHours(hours, carData.pricePerDay);
             const totalDays = calculateTotalDaysBasedOnHours(hours);
+
             setPriceTotal(totalPrice);
             setDays(totalDays);
 
@@ -95,7 +94,10 @@ export default function Car() {
 
     }, [selectedDate, selectedTimes]);
 
-
+    /**
+     * Fetch dates from child component
+     * @param {Array} date 
+     */
     const handleSelectedData = (date) => {
         setSelectedDate(date);
     };
@@ -110,7 +112,7 @@ export default function Car() {
     return (
         <Layout>
             <div className='container-car'>
-                <GoBack />
+
                 <div className="container-car-upper">
                     <ImageSlider carData={carData} />
                     <div className='container-car-calendar'>

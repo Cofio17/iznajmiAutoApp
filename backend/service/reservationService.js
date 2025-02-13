@@ -62,6 +62,8 @@ const saveReservation = async (reservationDetails, calendarId) => {
         }
 
         console.log("Company found:", company);
+        console.log(`company number!!! ${company.contact}`);
+
 
 
         const reservation = new Reservation({
@@ -80,7 +82,8 @@ const saveReservation = async (reservationDetails, calendarId) => {
             eventId: reservationDetails.eventId,
             reservationId: reservationDetails.reservationId,
             calendarId: reservationDetails.calendarId,
-            companyId: company._id
+            companyId: company._id,
+            companyContact: company.contact
         });
 
         const response = await reservation.save();

@@ -325,7 +325,7 @@ h2{
 
 /*Car Component*/
 .container-car{
-    margin-top: 60px;
+    margin-top: 90px;
     // place-items: center;
 p, span ul, li, label,h2{
     color: black;
@@ -399,6 +399,9 @@ h2 span{
     text-align: center;
 
 }
+.car-info{
+    width: 50%;
+}
 
 .container-car-data{
     @include flex-column();
@@ -407,7 +410,6 @@ h2 span{
     height: auto;
     background-color: $text-color;
     border-radius: 15px;
-    width: 20%;
     gap: 1.2rem;
     padding: 1.5rem;
     margin: 2rem auto;
@@ -439,6 +441,21 @@ h2 span{
         }
     } 
 }
+
+.picking-up{
+text-align: center;
+ width: 60%;
+ @media screen and (max-width : 1050px) {
+    width: 80%;
+    align-items: center;
+    .content{
+        justify-content: center;
+        
+    }
+} 
+}
+
+
 
 .calendar-wrapper button{
     border-radius: 0;
@@ -1092,7 +1109,6 @@ p{
 
 
 .dashboard{
-    background: linear-gradient(45deg, #3b8ea3, #1a2239);
     height: 100vh;
  
 }
@@ -1106,6 +1122,17 @@ p{
 #my-reservation-button{
     font-size: 14px;
 }
+
+.disabled {
+   pointer-events: none;
+    opacity: 0.5; // Čini div da izgleda "onemogućen"
+    user-select: none; // Sprečava selektovanje teksta
+   
+  }
+
+  .cursor-not-allowed{
+    cursor: not-allowed;
+  }
 
   
   

@@ -17,6 +17,7 @@ const reservationSchema = new Schema({
     eventId: { type: String },
     reservationId: { type: String },
     calendarId: { type: String },
+    companyContact: { type: String },
     companyId: { type: Schema.Types.ObjectId, ref: 'Company' }
 }, { timestamps: true })
 

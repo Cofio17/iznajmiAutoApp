@@ -25,10 +25,17 @@ export default function Modal({ handleClose, children, type }) {
     }
     return (
         <BackDrop>
-
-            <motion.div initial='hidden' animate='visible' exit='exit' variants={dropIn} className={type === 'succesful' ? ' modal succesful' : 'modal login'} onClick={(e) => e.stopPropagation()}>
+            <motion.div
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                variants={dropIn}
+                className={`modal ${type}`}
+                onClick={(e) => e.stopPropagation()}
+            >
                 {children}
             </motion.div>
+
         </BackDrop>
     )
 }
