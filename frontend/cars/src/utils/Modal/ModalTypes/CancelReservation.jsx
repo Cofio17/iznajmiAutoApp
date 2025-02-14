@@ -1,4 +1,3 @@
-import { Button } from "@mui/material";
 import { useState } from "react";
 import { generateCanceEmailHtml } from "../../emails/emailUtils";
 import SuccesfulCancel from "./SuccesfulCancel";

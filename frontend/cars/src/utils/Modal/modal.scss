@@ -29,9 +29,6 @@ $small-screen:768px;
 .succesful{
     width: clamp(50%, 700px, 90%);
     height: min(50%,300px);
-
-    width: clamp(300px, 40%, 400px);
-    height: min(33%,500px);
 }
 
 .login{
@@ -73,6 +70,11 @@ $small-screen:768px;
         margin: 0;
         font-size: 12px;
         justify-content: space-between;
+    }
+
+    @media screen and (max-width:768px) {
+        max-height: 95% !important;
+        height: auto;
     }
 }
 .login-form{

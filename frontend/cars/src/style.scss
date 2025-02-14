@@ -672,7 +672,7 @@ text-align: center;
 .container-car-cards{
     @include flex-row();
     gap: 2rem;
-    max-width: 900px;
+    max-width: 1300px;
     justify-self: center;
     align-self: center;
 
@@ -966,7 +966,7 @@ text-align: center;
 
  .sidebar-cars-list{
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     margin-top: 70px;
 
     @media screen and (max-width:768px) {

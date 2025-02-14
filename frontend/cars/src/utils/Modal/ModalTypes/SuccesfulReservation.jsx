@@ -8,7 +8,7 @@ export default function SuccesfulReservation({ handleClose }) {
             <div className="main-content">
                 <p>
                     Detalji vaše rezervacije su poslati na vašu email adresu.
-                    Hvala što ste odabrali našu uslugu. Želimo vam srećnu vožnju!
+                    Hvala što ste odabrali našu uslugu. Želimo vam ugodnu vožnju!
                 </p>
                 <p>Ako imate dodatna pitanja, slobodno nas kontaktirajte.</p>
                 <button className='button' onClick={handleClose}>U redu</button>

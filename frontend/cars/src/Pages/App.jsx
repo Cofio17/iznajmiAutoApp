@@ -69,7 +69,6 @@ function App() {
       ) : (
         <CarList list={filterListData} />
       )}
-      <Sidebar />
     </Layout>
   );
 }

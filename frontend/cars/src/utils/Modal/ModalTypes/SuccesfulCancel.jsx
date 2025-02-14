@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { Button } from "@mui/material";
+import MotionButton from "../../../Components/MotionButton/MotionButton";
 
 export default function SuccesfulCancel() {
 
@@ -13,9 +14,8 @@ export default function SuccesfulCancel() {
             </div>
             <div className="main-content">
                 <div className="buttons">
-                    <Button id="second-thought-button" variant="contained" onClick={() => { navigate('/') }}>
-                        Povratak na početnu stranicu
-                    </Button>
+
+                    <MotionButton text={" Povratak na početnu stranicu"} id={"second-thought-button"} onClick={() => { navigate('/'); window.location.reload() }} />
                 </div>
             </div>
         </>
