@@ -1,7 +1,6 @@
 import API from "./api";
 
 export const apiRequest = async (method, url, data = null, config = {}) => {
-    console.log("Full URL:", API.defaults.baseURL + url); // Dodajte ovu liniju za debug
 
     try {
         const response = await API({

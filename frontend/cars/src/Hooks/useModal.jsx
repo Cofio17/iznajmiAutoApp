@@ -5,6 +5,7 @@ export default function useModal() {
     const [modalOpen, setModalOpen] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
+    const [modalType, setModalType] = useState(null);
 
     useEffect(() => {
 
@@ -23,5 +24,15 @@ export default function useModal() {
         setModalOpen(true);
     }
 
-    return { modalOpen, open, close };
+
+    /**
+     *Opens a modal of the given type.
+     * @param {string} type - Modal type that needs to be opened (e.g. "cancel-reservation" ili "calendar-modal").
+     */
+    const openModals = (type) => {
+        open();
+        setModalType(type);
+    }
+
+    return { modalOpen, open, close, openModals, modalType };
 }

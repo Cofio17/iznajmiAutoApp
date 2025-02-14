@@ -175,7 +175,6 @@ async function cancelEvent(calendarId, eventId) {
         }
         return { success: true, message: "Događaj i rezervacija uspešno obrisani." };
 
-        return res;
     } catch (error) {
         console.log(`error while deleting an event  ${error}`);
         throw new Error("Nije moguće obrisati događaj. Pokušajte ponovo.");
@@ -189,9 +188,10 @@ async function cancelEvent(calendarId, eventId) {
  * @param {Date} end - end date - must be ISO String
  * @returns 
  */
-async function changeEvent(calendarId, eventId, startDate, endDate) {
+async function changeEvent(calendarId, eventId, startDate, endDate, priceTotal, daysTotal) {
     const calendar = google.calendar({ version: 'v3', auth });
 
+    console.log(`event id ${eventId}`);
 
     if (!startDate || !endDate) {
         return res.status(400).json({ error: "Oba datuma (startDate i endDate) su obavezna." });
@@ -212,8 +212,20 @@ async function changeEvent(calendarId, eventId, startDate, endDate) {
                 }
             }
         });
-        console.log(`event changed!`);
-        return res;
+
+        // if (res.status !== 204) {
+        //     throw new Error("Error while modifing an event from the google calendar");
+        // }
+        console.log(`event changed in google calendar!`);
+        const updatedReservation = await reservationService.findAndUpdateReservationByReservationId(eventId, startDate, endDate, priceTotal, daysTotal);
+
+        if (!updatedReservation) {
+            console.warn(`Reservation with ${eventId} could not be found in database`);
+        } else {
+            console.log(`Reservation changed in database!`);
+        }
+        return { success: true, message: "Događaj i rezervacija uspešno modifikovani." };
+
     } catch (error) {
         console.log(`error while changing an event  ${error}`);
         throw new Error("Nije moguće menjati događaj. Pokušajte ponovo.");

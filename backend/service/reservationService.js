@@ -126,6 +126,37 @@ const findReservationByReservationId = async (id) => {
 }
 
 /**
+ * Finds a reservation by reservation id (example of reservation id: R-768391-906) and updates it in the database.
+ * 
+ * @param {String} reservationId -  reservation id
+ * @param {String} startDate - The new start date for the reservation
+ * @param {String} endDate - The new end date for the reservation
+ * @returns {Object} The updated reservation object or an error message if the operation fails.
+ */
+const findAndUpdateReservationByReservationId = async (eventId, startDate, endDate, priceTotal, daysTotal) => {
+    try {
+
+        // const updatedReservation = await Reservation.findOneAndUpdate(
+        //     { reservationId },
+        //     { startDate, endDate },
+        //     { new: true } // Option to return the updated document
+        // );
+
+        const updatedReservation = await Reservation.findOneAndUpdate({ eventId: eventId }, { startDate: startDate, endDate: endDate, priceTotal: priceTotal, duration: daysTotal });
+
+        if (!updatedReservation) {
+            throw new Error('Reservation not found');
+        }
+
+        return updatedReservation;
+    } catch (error) {
+
+        console.error(`Error updating reservation: ${error.message}`);
+        throw new Error('Failed to update reservation');
+    }
+};
+
+/**
  * Finds and deletes one reservation by eventId
  * @param {String} id - eventId 
  * @returns {Object} - Deletion result or null if not found
@@ -148,5 +179,6 @@ module.exports = {
     saveReservation,
     findReservationsByCompanyId,
     findReservationByReservationId,
-    findAndDeleteReservation
+    findAndDeleteReservation,
+    findAndUpdateReservationByReservationId
 }

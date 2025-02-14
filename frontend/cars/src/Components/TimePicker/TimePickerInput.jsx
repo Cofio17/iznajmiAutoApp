@@ -11,6 +11,7 @@ export default function TimePickerInput({ value, onChange, label }) {
                 value={value}
                 onChange={onChange}
                 ampm={false}
+
             />
         </LocalizationProvider>
     );

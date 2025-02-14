@@ -6,8 +6,8 @@ import { AnimatePresence } from "framer-motion";
 import Modal from "../../utils/Modal/Modal";
 import MotionButton from "../../Components/MotionButton/MotionButton";
 import ReservationInfoList from "./ReservationInfoList";
-import CalendarComponent from "../../Components/Calendar/CalendarComponent";
 import dayjs from "dayjs";
+import CalendarModal from "../../utils/Modal/ModalTypes/CalendarModal";
 import { apiRequest } from "../../utils/Api/apiService";
 
 
@@ -15,12 +15,7 @@ export default function ReservationDetails() {
 
     const { reservationId } = useParams();
     const [data, setData] = useState({});
-    const { modalOpen, open, close } = useModal();
-    const [selectedDate, setSelectedDate] = useState([]);
-
-    const handleSelectedData = (date) => {
-        setSelectedDate(date);
-    };
+    const { modalOpen, close, openModals, modalType } = useModal();
 
     useEffect(() => {
         const fetchReservation = async () => {
@@ -54,28 +49,23 @@ export default function ReservationDetails() {
                 <>
                     <ReservationInfoList data={data} />
                     <div className="buttons">
-                        <MotionButton className='button' id='change-reservation-button' text={'Zameni Termin'} />
-                        <MotionButton onClick={open} className='button' id='cancel' text=' Otkaži Rezervaciju' />
+                        <MotionButton onClick={() => openModals("calendar-modal")} className='button' id='change-reservation-button' text={'Zameni Termin'} />
+                        <MotionButton onClick={() => openModals("cancel-reservation")} className='button' id='cancel' text=' Otkaži Rezervaciju' />
                     </div>
                 </>
             )}
-
-            {data.calendarId && (
-                <div className="cursor-not-allowed">
-                    <div className="disabled">
-                        <CalendarComponent
-                            calendarId={data.calendarId}
-                            fetchDates={handleSelectedData}
-                            isReservationPage={true}
-                        />
-                    </div>
-                </div>
-
-
-            )}
-
             <AnimatePresence initial={false} mode='wait'>
-                {modalOpen && <Modal type={'cancel-reservation'} modalOpen={modalOpen} handleClose={close} > <CancelReservation personData={data} eventId={data.eventId} calendarId={data.calendarId} email={data.email} handleClose={close} /></Modal>}
+                {modalOpen && modalType === "cancel-reservation" && (
+                    <Modal type="cancel-reservation" modalOpen={modalOpen} handleClose={close}>
+                        <CancelReservation personData={data} eventId={data.eventId} calendarId={data.calendarId} email={data.email} handleClose={close} />
+                    </Modal>
+                )}
+
+                {modalOpen && modalType === "calendar-modal" && (
+                    <Modal type="calendar-modal" modalOpen={modalOpen} handleClose={close}>
+                        <CalendarModal personData={data} eventId={data.eventId} calendarId={data.calendarId} handleClose={close} reservationId={reservationId} />
+                    </Modal>
+                )}
             </AnimatePresence>
 
         </div>

@@ -6,9 +6,18 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.extend(duration);
 
+
+/**
+ * Creates a new date-time by combining a given date and a specific time (hours and minutes).
+ * 
+ * @param {string | object} date - The base date, which is set to the start of the day in the 'Europe/Belgrade' time zone.
+ * @param {object} hours - An object containing the hour and minute values to be added to the base date.
+ * @returns {string} The new date-time in ISO format.
+ */
 export function createDate(date, hours) {
 
-    const sdate = dayjs(date).tz('Europe/Belgrade').startOf('day');
+    //const sdate = dayjs(date).tz('Europe/Belgrade').startOf('day');
+    const sdate = dayjs(date).startOf('day');
     // console.log("Originalni datum:", sdate.format());
 
     const newDate = sdate
@@ -22,6 +31,8 @@ export function createDate(date, hours) {
 }
 
 export function hoursInPeriod(startDate, endDate) {
+    console.log(endDate.diff(startDate, "hour"));
+
     return endDate.diff(startDate, "hour");
 }
 
@@ -35,26 +46,10 @@ export function calculateTotalDaysBasedOnHours(hours) {
     return Math.ceil(hours / 24);
 }
 
+export function getHoursOfDate(date) {
+    return dayjs(date).tz("Europe/Belgrade");
+}
 
-// export function hoursInPeriod(startDate, endDate) {
-//     const diffInMinutes = endDate.diff(startDate, "minute"); // Razlika u minutima
-//     const hours = Math.floor(diffInMinutes / 60); // Celi sati
-//     const minutes = diffInMinutes % 60; // Preostale minute
-//     return { hours, minutes }; // Vraća objekat sa satima i minutama
-// }
-
-
-// export function calculatePriceBasedOnHours({ hours, minutes }, pricePerDay) {
-//     let totalDays = Math.floor(hours / 24); // Potpuni dani
-//     let additionalCharge = 0;
-
-//     // Ako su preostali sati, dodaj dodatnu cenu
-//     if (hours % 24 > 0 || minutes > 0) {
-//         additionalCharge = pricePerDay; // Naplati još jedan dan
-//     }
-
-//     return (totalDays + (additionalCharge > 0 ? 1 : 0)) * pricePerDay; // Ukupna cena
-// }
 
 
 

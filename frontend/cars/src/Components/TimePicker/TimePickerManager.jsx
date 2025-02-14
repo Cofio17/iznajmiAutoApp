@@ -1,14 +1,19 @@
 import { useState, useEffect } from "react";
 import dayjs from "dayjs";
 import TimePickerInput from "./TimePickerInput";
+import { getHoursOfDate } from "../../utils/createDate";
 
-export default function TimePickerManager({ onTimesChange }) {
-    const [startHours, setStartHours] = useState(dayjs().set("hour", 10).set("minute", 0));
-    const [endHours, setEndHours] = useState(dayjs().set("hour", 10).set("minute", 0));
+
+export default function TimePickerManager({ onTimesChange, startDateHours = undefined, endDateHours = undefined }) {
+    const [startHours, setStartHours] = useState(startDateHours ? getHoursOfDate(startDateHours) : dayjs().set("hour", 10).set("minute", 0));
+    const [endHours, setEndHours] = useState(endDateHours ? getHoursOfDate(endDateHours) : dayjs().set("hour", 10).set("minute", 0));
+
+    // console.log(`start ${getHoursOfDate(startDateHours)}`);
+    // console.log(`end ${getHoursOfDate(endDateHours)}`);
+
 
 
     useEffect(() => {
-        console.log(startHours);
 
         onTimesChange({ startHours, endHours });
     }, [startHours, endHours,]);
@@ -26,6 +31,7 @@ export default function TimePickerManager({ onTimesChange }) {
                     setStartHours(value);
                     handleTimesChange();
                 }}
+
             />
             <TimePickerInput
                 label="Vreme vraćanja"

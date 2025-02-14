@@ -1,12 +1,13 @@
 import dayjs from "dayjs";
+import timezone from 'dayjs/plugin/timezone';
 import CopyToClipboard from "../../Components/CopyToClipboard/CopyToClipboard";
 import { Tooltip } from "@mui/material";
 import { useState } from "react";
 const excludeKeys = ["__v", "_id", "updatedAt", "calendarId", "jmbg", "email", "number", "eventId", "reservationId", "companyId", "createdAt", 'licensePlate'];
+dayjs.extend(timezone);
 export default function ReservationInfoList({ data }) {
     //TO DO - prepraviti bazu da se dodaje tamo 2h da ne mora ovde
     const [copied, setCopied] = useState(false);
-    const [tooltipOpen, setTooltipOpen] = useState(false);
 
     const handleCopyChange = (copy) => {
         setCopied(copy);
@@ -33,7 +34,7 @@ export default function ReservationInfoList({ data }) {
                     .filter((key) => !excludeKeys.includes(key))
                     .map((key) => {
                         const value = key.includes("Date")
-                            ? dayjs(data[key]).add(2, "hours").format("DD/MM/YYYY HH:mm")
+                            ? dayjs(data[key]).tz("Europe/Belgrade").format("DD/MM/YYYY HH:mm")
                             : data[key];
 
                         return (

@@ -104,14 +104,6 @@ router.post('/search', async (req, res) => {
  * DELETE Method for deleting an event
  * cancelling a reservation
  */
-
-// router.options('/cancel/:calendarId/:eventId', (req, res) => {
-//     res.header('Access-Control-Allow-Origin', 'http://192.168.0.17:5173');
-//     res.header('Access-Control-Allow-Methods', 'DELETE');
-//     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-//     res.status(200).send();
-// });
-
 router.delete('/cancel/:calendarId/:eventId', async (req, res) => {
 
     const { calendarId, eventId } = req.params
@@ -126,9 +118,9 @@ router.delete('/cancel/:calendarId/:eventId', async (req, res) => {
 
 router.patch('/change/:calendarId/:eventId', async (req, res) => {
     const { calendarId, eventId } = req.params
-    const { startDate, endDate } = req.body
+    const { startDate, endDate, priceTotal, daysTotal } = req.body
     try {
-        await changeEvent(calendarId, eventId, startDate, endDate);
+        await changeEvent(calendarId, eventId, startDate, endDate, priceTotal, daysTotal);
         res.status(200).json({ message: "Događaj uspešno modifikovan." });
     } catch (error) {
         res.status(500).json({ error: error.message });

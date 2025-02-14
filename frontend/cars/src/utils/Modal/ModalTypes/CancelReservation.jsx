@@ -3,6 +3,7 @@ import { useState } from "react";
 import { generateCanceEmailHtml } from "../../emails/emailUtils";
 import SuccesfulCancel from "./SuccesfulCancel";
 import { apiRequest } from "../../Api/apiService";
+import MotionButton from "../../../Components/MotionButton/MotionButton";
 
 export default function CancelReservation({ handleClose, calendarId, eventId, email, personData }) {
 
@@ -66,7 +67,7 @@ export default function CancelReservation({ handleClose, calendarId, eventId, em
 
                     <div className="main-content">
                         <div className="buttons">
-                            <Button
+                            {/* <Button
                                 id="cancel-button"
                                 variant="outlined"
                                 onClick={cancelAReservation}
@@ -76,7 +77,10 @@ export default function CancelReservation({ handleClose, calendarId, eventId, em
                             </Button>
                             <Button id="second-thought-button" variant="contained" onClick={handleClose}>
                                 Ne želim, predomislio sam se
-                            </Button>
+                            </Button> */}
+                            <MotionButton text={loading ? "Otkazivanje..." : "Da, otkazujem"} id='cancel-button' onClick={cancelAReservation} disabled={loading} />
+                            <MotionButton text={"Ne želim, predomislio sam se"} id='second-thought-button' onClick={handleClose} disabled={loading} />
+
                         </div>
                     </div>
                 </div>
