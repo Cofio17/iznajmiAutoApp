@@ -24,10 +24,9 @@ export default function DropDownMenu({ isActive }) {
 
     //Needs API- SET
     const list = [
-        { id: 1, naziv: "Limuzina" },
-        { id: 2, naziv: "HecBek" },
-        { id: 3, naziv: "Prikolica" },
-        { id: 4, naziv: "Karavan" },
+        { id: 1, naziv: "Automobili" },
+        { id: 2, naziv: "Prikolice" },
+
     ];
 
     const handleClick = async () => {

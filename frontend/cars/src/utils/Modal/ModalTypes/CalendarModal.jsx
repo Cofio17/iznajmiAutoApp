@@ -6,6 +6,7 @@ import { apiRequest } from "../../Api/apiService";
 import { createDate, hoursInPeriod, calculatePriceBasedOnHours, calculateTotalDaysBasedOnHours } from "../../createDate";
 import SuccesfulChangeModal from "./SuccesfulChangeModal";
 import dayjs from "dayjs";
+import { generateUpdateReservationEmail } from "../../emails/emailUtils";
 export default function CalendarModal({ handleClose, calendarId, eventId, email, personData, reservationId }) {
 
     const [selectedDate, setSelectedDate] = useState([]);
@@ -58,6 +59,30 @@ export default function CalendarModal({ handleClose, calendarId, eventId, email,
     };
 
 
+    const sendEmail = async () => {
+        const name = personData.buyer;
+        const newDates = {
+            start: createDate(selectedDate[0], selectedTimes.startHours),
+            end: createDate(selectedDate[1], selectedTimes.endHours)
+        }
+        const emailContent = {
+            to: personData.email,
+            subject: "Uspešno pomeranje rezervacije! Iznajmi.me",
+            html: generateUpdateReservationEmail(name, personData, newDates)
+        }
+
+        try {
+            const response = await apiRequest("POST", "email/send-email", emailContent);
+            console.log("Email sent:", response);
+
+        } catch (error) {
+            console.error("Error sending email:", error);
+        }
+
+
+    };
+
+
     /**
      * Handles the updating of a reservation by sending a PATCH request to the server.
      * This function constructs the reservation dates using the selected date and time,
@@ -76,6 +101,7 @@ export default function CalendarModal({ handleClose, calendarId, eventId, email,
         try {
             const response = await apiRequest("PATCH", `api/calendar/change/${calendarId}/${eventId}`, reservationDate);
             console.log(`Reservation Date Changed!`, response);
+            await sendEmail();
             setChangedReservation(true);
 
         } catch (error) {
