@@ -57,6 +57,13 @@ $small-screen:768px;
     padding: 2% 7%;
     justify-content: flex-start;
 
+    h2{
+        span{
+            font-size: 16px;
+        }
+    }
+
+   
     .time-pickers-container{
        margin-top: 2rem;
 
@@ -201,5 +208,7 @@ button{
     font-size: 12px;
     height: 60px;
 }
+
+
 
 

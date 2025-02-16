@@ -120,8 +120,8 @@ export default function CalendarModal({ handleClose, calendarId, eventId, email,
                 <SuccesfulChangeModal reservationId={reservationId} />
                 : (<>
                     <div className="heading">
-                        <h2>Zamena termina</h2>
-                        <h3>{personData.brand} {personData.model}</h3>
+                        <h2>Zamena termina  <span>{personData.brand} {personData.model}</span></h2>
+
                     </div>
                     <CalendarComponent
                         calendarId={calendarId}

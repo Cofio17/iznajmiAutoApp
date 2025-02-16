@@ -54,25 +54,16 @@ button.react-calendar__tile--active:first-of-type {
 
 button.react-calendar__tile.react-calendar__tile--active.react-calendar__tile--range.react-calendar__tile--rangeStart{
     border-radius: 15px 0 0 15px !important;
-    // background-color: $darker-primary-color !important;
-    background: linear-gradient(
-        to right,
-        $darker-primary-color 45%,
-        $primary-color 85%
-    );
+     background-color: $darker-primary-color !important;
+  
 }
 
 button.react-calendar__tile.react-calendar__tile--active.react-calendar__tile--range.react-calendar__tile--rangeEnd, 
 .react-calendar__tile--hasActive
 {
-    // background-color: $darker-primary-color !important;
+     background-color: $darker-primary-color !important;
     border-radius: 0 15px 15px 0 !important;  
-    background: linear-gradient(
-        to left,
-        $darker-primary-color 45%,
-        $primary-color 85%
-    );
-
+   
    
 }
 button.react-calendar__tile.react-calendar__tile--active.react-calendar__tile--range.react-calendar__tile--rangeStart.react-calendar__tile--rangeEnd.react-calendar__tile--rangeBothEnds{
@@ -109,19 +100,11 @@ border-radius: 5px;
 
 .react-calendar__tile--rangeStart{
     border-radius: 15px 0 0 15px !important;
-    background: linear-gradient(
-        to right,
-        $darker-primary-color 45%,
-        $primary-color 85%
-    );
+    background-color: $darker-primary-color !important;
 
     &:hover{
         border-radius: 15px 0 0 15px !important;
-        background: linear-gradient(
-            to right,
-            $darker-primary-color 45%,
-            $primary-color 85%
-        ) !important;
+       
     }
 }
 
@@ -131,11 +114,7 @@ border-radius: 5px;
 
     &:hover{
         border-radius: 0 15px 15px 0 !important;
-        background: linear-gradient(
-            to lefts,
-            $darker-primary-color 45%,
-            $primary-color 85%
-        ) !important;
+     
     }
 }
 
