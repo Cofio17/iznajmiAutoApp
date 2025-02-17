@@ -65,6 +65,15 @@ body{
     height: fit-content;
 }
 
+.loader{
+   
+}
+.loader-wrapper{
+    display: flex;
+    width: 60%;
+    justify-content: center;
+}
+
 .no-scroll {
     overflow: hidden;
     height: 100vh;
@@ -417,7 +426,7 @@ h2 span{
     .content{
         @include flex-row();
         justify-content: space-around;
-        gap: 2rem;
+        gap: 1rem;
         hr{
             margin: 0 0rem 0.5rem 0;
             color: lightgray;
@@ -425,9 +434,30 @@ h2 span{
         svg{
             margin-right: 3px;
         }
-        .features-list{
-            list-style: none;
+        .features-list {
+            list-style-type: none;
             padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .feature-item {
+            background-color: #dcd4d4;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+     .info-divider {
+            border: 0;
+            height: 1px;
+            background: #d2cccc;
+            margin: 10px 0;
+        }
+
+        .content-data{
+            width: 250px;
         }
 
        
@@ -510,6 +540,7 @@ text-align: center;
         }
        
     }
+
 
 
 #search-bar{
@@ -969,6 +1000,8 @@ text-align: center;
     // justify-content: space-between;
     margin-top: 70px;
 
+  
+
     @media screen and (max-width:768px) {
         flex-direction: column;
         place-items: center; //dodato
@@ -979,9 +1012,11 @@ text-align: center;
  .cars-list-error{
     @include flex-row();
     justify-content: center;
+    margin: 0 20%;
 
     @media screen and (max-width:768px) {
         margin-top: 130px;
+        margin: auto auto;
        
     }
  }
@@ -1114,8 +1149,8 @@ p{
 }
 
 .icon{
-    height: 15px;
-    width: 15px;
+    height: 20px;
+    width: 20px;
     margin-right: 5px;
 }
 

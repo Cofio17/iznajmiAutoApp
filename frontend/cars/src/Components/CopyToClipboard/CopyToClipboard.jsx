@@ -38,7 +38,8 @@ const CopyToClipboard = ({ text, handleCopyChange }) => {
     // const handleCopy = () => {
     //     navigator.clipboard.writeText(text).then(() => {
     //         setIsCopied(true);
-    //         setTimeout(() => setIsCopied(false), 2000);
+    //         handleCopyState(true);
+    //         setTimeout(() => { setIsCopied(false); handleCopyState(false) }, 2000);
     //     });
     // };
 

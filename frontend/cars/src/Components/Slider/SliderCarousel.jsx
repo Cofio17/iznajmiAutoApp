@@ -9,6 +9,7 @@ import porodicanImg from '../../assets/sliderCars/Porodican.png';
 import sportskiImg from '../../assets/sliderCars/Sportski.png';
 import miniImg from '../../assets/sliderCars/Mini.png';
 import kompaktanImg from '../../assets/sliderCars/Kompaktan.png';
+import limuzinaImgNew from '../../assets/sliderCars/carLimuzina.png';
 import { fetchCars } from '../../loaders/fetchCars';
 import { useContext } from 'react';
 import { SearchContext } from '../../Contexts/SearchContext';

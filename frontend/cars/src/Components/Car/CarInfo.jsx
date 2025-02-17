@@ -16,34 +16,33 @@ export default function CarInfo({ carData, header }) {
             <h3>{header}</h3>
 
             <div className="content">
-                <div>
+                <div className='content-data'>
 
                     <p> <img className='icon' src={carIcon} alt="icon " /> <b></b><span> {carData.transmission}</span></p>
-                    <hr />
+                    <hr className='info-divider' />
                     <p> <img className='icon' src={benzinIcon} alt="icon " /><b></b><span>{carData.fuelType}</span></p>
-                    <hr />
+                    <hr className='info-divider' />
                     <p> <img className='icon' src={groupIcon} alt="icon " /><b></b><span>{carData.seats}</span></p>
-                    <hr />
-                    <div>
-                        <p><img className='icon' src={listIcon} alt="icon " /><b></b></p>
-                        <ul className='features-list'>
+                    <hr className='info-divider' />
 
-                            {carData.features.map((feature, index) => {
-                                return <li key={index}>{feature}</li>
-                            })}
-                        </ul>
-                    </div>
                 </div>
 
 
-                <div>
+                <div className='content-data'>
                     <p><img className='icon' src={doorIcon} alt="icon " /><b></b><span> {carData.doors}</span></p>
-                    <hr />
+                    <hr className='info-divider' />
                     <p><img className='icon' src={groupIcon} alt="icon " /><b></b><span>{carData.insuranceIncluded ? 'Da' : 'Ne'}</span></p>
-                    <hr />
+                    <hr className='info-divider' />
                     <p><FontAwesomeIcon color='#2D6A4F' icon={faLocationDot} /><b> </b><span> {carData.location}</span></p>
-                    <hr />
-
+                    <hr className='info-divider' />
+                    <ul className='features-list'>
+                        <div>
+                            <p><img className='icon' src={listIcon} alt="icon " /><b></b></p>
+                        </div>
+                        {carData.features.map((feature, index) => {
+                            return <li className='feature-item' key={index}>{feature}</li>
+                        })}
+                    </ul>
                 </div>
             </div>
 
