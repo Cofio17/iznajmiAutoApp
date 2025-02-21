@@ -9,6 +9,7 @@ import ReservationInfoList from "./ReservationInfoList";
 import dayjs from "dayjs";
 import CalendarModal from "../../utils/Modal/ModalTypes/CalendarModal";
 import { apiRequest } from "../../utils/Api/apiService";
+import { calculateTotalDaysBasedOnHours, hoursInPeriod } from "../../utils/createDate";
 
 
 export default function ReservationDetails() {
@@ -16,7 +17,7 @@ export default function ReservationDetails() {
     const { reservationId } = useParams();
     const [data, setData] = useState({});
     const { modalOpen, close, openModals, modalType } = useModal();
-
+    const [isRestrictedPeriod, setIsRestrictedPeriod] = useState(false);
     useEffect(() => {
         const fetchReservation = async () => {
             try {
@@ -36,8 +37,24 @@ export default function ReservationDetails() {
         };
 
         fetchReservation();
+
+
+
     }, [reservationId]);
 
+    useEffect(() => {
+        const totalDays = calculateTotalDaysBasedOnHours(hoursInPeriod(dayjs(), dayjs(data.startDate)));
+
+        if (data.startDate) {
+            if (totalDays <= 7) {
+                setIsRestrictedPeriod(true);
+            }
+            else {
+                setIsRestrictedPeriod(false);
+            }
+        }
+
+    }, [data.startDate, reservationId]);
 
 
     return (
@@ -48,9 +65,12 @@ export default function ReservationDetails() {
             ) : (
                 <>
                     <ReservationInfoList data={data} />
+
                     <div className="buttons">
-                        <MotionButton onClick={() => openModals("calendar-modal")} className='button' id='change-reservation-button' text={'Zameni Termin'} />
-                        <MotionButton onClick={() => openModals("cancel-reservation")} className='button' id='cancel' text=' Otkaži Rezervaciju' />
+                        {isRestrictedPeriod && <p>Menjanje termina je onemoguceno</p>}
+                        <MotionButton onClick={() => openModals("calendar-modal")} className={`button ${isRestrictedPeriod ? "disabled" : ""}`} id='change-reservation-button' text={'Zameni Termin'} />
+                        <MotionButton onClick={() => openModals("cancel-reservation")} className={`button ${isRestrictedPeriod ? "disabled" : ""}`} id='cancel' text=' Otkaži Rezervaciju' />
+
                     </div>
                 </>
             )}

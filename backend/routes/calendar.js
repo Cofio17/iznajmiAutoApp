@@ -75,11 +75,13 @@ router.post('/get-busy-dates', async (req, res) => {
  * 
  */
 router.post('/search', async (req, res) => {
-    const { timeMin, timeMax, location } = req.body;
+    const { timeMin, timeMax, location, companyId } = req.body;
     let filteredCars = [];
 
     console.log(`timeMin ${timeMin}`);
     console.log(`timeMin ${timeMax}`);
+    console.log(companyId);
+
 
     try {
         const cars = await Car.find();
@@ -88,6 +90,14 @@ router.post('/search', async (req, res) => {
         if (location) {
             filteredCars = response.filter((car) => {
                 return (car.location === location)
+            })
+            res.status(200).json({ message: "Cars have been accessed", cars: filteredCars })
+            return;
+        }
+
+        if (companyId) {
+            filteredCars = response.filter((car) => {
+                return (car.companyId.toString() === companyId)
             })
             res.status(200).json({ message: "Cars have been accessed", cars: filteredCars })
             return;

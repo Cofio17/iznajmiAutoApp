@@ -25,7 +25,7 @@ export const ReservationEmail = ({
             <Container style={styles.container}>
                 <Text style={styles.greeting}>Pozdrav, {userFirstname || "Osoba"} {reservationData.summary.lastName}</Text>
                 <Text style={styles.text}>
-                    Hvala vam što ste odabrali Iznajmi Me! Vaša rezervacija je uspešno potvrđena.
+                    Hvala vam što ste odabrali iznajmi.me! Vaša rezervacija je uspešno potvrđena.
                     Detalji rezervacije su u nastavku:
                 </Text>
                 <Section style={styles.detailsSection}>
@@ -41,7 +41,7 @@ export const ReservationEmail = ({
                 </Text>
                 <Hr style={styles.hr} />
                 <Text style={styles.footer}>
-                    🚗 Iznajmi Me | Senćanski put 63, Subotica, 24000 | iznajmi@info.com
+                    🚗 iznajmi.me | Senćanski put 63, Subotica, 24000 | iznajmi@info.com
                 </Text>
             </Container>
         </Body>

@@ -92,6 +92,9 @@ button.react-calendar__tile.react-calendar__tile--active.react-calendar__tile--r
 
 .alert-lib{
 border-radius: 5px;    
+display: flex;
+align-items: center;
+justify-content: center;
 }
 
 .react-calendar__tile--active:hover{

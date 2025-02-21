@@ -15,8 +15,8 @@ export default function Input({ value, label, onFilterChange, checked }) {
                     size="medium"
                     sx={{
                         marginLeft: 2,
-                        color: '#B69121',
-                        '&.Mui-checked': { color: '#B69121' }
+                        color: '#2D6A4F',
+                        '&.Mui-checked': { color: '#2D6A4F' }
                     }}
                 />
             }

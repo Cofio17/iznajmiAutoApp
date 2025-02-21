@@ -140,7 +140,7 @@ export default function CalendarComponent({ calendarId, fetchDates, isReservatio
             }
 
             if (invalidRange) {
-                setError('Please select diffrent date');
+                setError('Molimo Vas izaberite drugi datum');
                 setDate([]); // Reseting selected dates
                 fetchDates([]);//sending selected dates to a parent component
             } else {
@@ -162,7 +162,6 @@ export default function CalendarComponent({ calendarId, fetchDates, isReservatio
     if (loading) {
         return (
             <LoadingCircle />
-
         )
     }
     return (
@@ -178,11 +177,10 @@ export default function CalendarComponent({ calendarId, fetchDates, isReservatio
                 prev2Label={null}
                 next2Label={null}
                 maxDate={new Date(new Date().setMonth(new Date().getMonth() + 3))}
-
-
+                locale='sr-Latn'
             />
             {date.length > 1 &&
-                <Alert className='alert-lib' variant='outlined' severity='success'><b>{`${date[0].toDateString()} - ${date[1].toDateString()}`}</b></Alert>
+                <Alert className='alert-lib' variant='outlined' severity='success'><b>{`${dayjs(date[0]).format("DD/MM/YYYY")} - ${dayjs(date[1]).format("DD/MM/YYYY")}`}</b></Alert>
             }
             {error && <Alert variant='outlined' severity='info'>{error}</Alert>}
         </div>

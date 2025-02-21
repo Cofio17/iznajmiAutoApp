@@ -1,0 +1,68 @@
+//colors
+$white-color:#fff;
+$primary-color:#48AD7E;
+$darker-primary-color:#2D6A4F;
+$black-color: #081C15;
+
+
+
+
+
+ .Mui-selected{
+    background-color: $darker-primary-color !important;
+    border-radius: 15px !important;
+    margin: 0 auto !important;
+    width: 100px !important;
+    margin-bottom: 3px !important;
+
+    
+}
+
+.MuiMultiSectionDigitalClock-root{
+    .MuiList-root{
+        width: 120px !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 5px !important;
+        
+        .MuiButtonBase-root {
+            &:hover{
+                border-radius: 15px !important;
+                width: 100px !important;  
+            }
+        }
+    
+     
+         
+         
+        
+         
+         .Mui-disabled{
+             display: none !important;
+         }
+         
+    }
+    
+}
+
+
+
+.MuiList-root::-webkit-scrollbar {
+    display: none !important;
+ }
+ 
+ .MuiDialogActions-root {
+     .MuiButtonBase-root{
+         color: $darker-primary-color !important;
+     }
+     
+ }
+
+ .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
+    border-color: $darker-primary-color !important;
+}
+.css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused{
+    color: $darker-primary-color !important;
+}

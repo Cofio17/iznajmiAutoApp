@@ -54,8 +54,10 @@
 
 .buttons{
     margin-top: 30px;
+    text-align: center;
     button{
         margin: 10px;
+       
     }
 
     @media screen and (max-width:768px) {
@@ -83,4 +85,9 @@
 
 .bold {
     font-weight: bold;
+}
+
+.disabled{
+    background-color: gray !important;
+    cursor: not-allowed;
 }

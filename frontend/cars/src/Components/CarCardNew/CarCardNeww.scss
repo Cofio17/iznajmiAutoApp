@@ -4,7 +4,7 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    width: 350px;
+    width: 450px;
     text-align: center;
     position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -13,7 +13,8 @@
     height: 100%; /* Popuni dostupnu visinu */
 
     @media screen and (max-width:768px) {
-        max-width: 320px;
+        max-width: 350px;
+       
     }
   }
   
@@ -74,8 +75,8 @@
   
   /* Stilovi za naslov */
   .card-title_new {
-    margin: 15px 0 10px;
-    font-size: 1.3em;
+    margin: 5px 0 5px;
+    font-size: 1.5em;
     color: #333;
     padding: 0 15px; /* Dodajem padding da tekst ne bude uz rub */
     flex-shrink: 0; /* Spriječi smanjivanje visine */

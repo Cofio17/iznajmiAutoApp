@@ -475,6 +475,7 @@ h2 span{
 .picking-up{
 text-align: center;
  width: 60%;
+
  @media screen and (max-width : 1050px) {
     width: 80%;
     align-items: center;
@@ -703,7 +704,7 @@ text-align: center;
 .container-car-cards{
     @include flex-row();
     gap: 2rem;
-    max-width: 1300px;
+    // max-width: 1300px;
     justify-self: center;
     align-self: center;
 
@@ -1144,9 +1145,24 @@ p{
 
 
 .dashboard{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     height: 100vh;
- 
+    margin: 2rem;
+   
+
 }
+
+#long-menu{
+    .css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper{
+        width: fit-content !important;
+    }
+
+}
+
+   
+
 
 .icon{
     height: 20px;
@@ -1168,6 +1184,17 @@ p{
   .cursor-not-allowed{
     cursor: not-allowed;
   }
+
+.row{
+    position: relative;
+    
+}
+.menu-long{
+    position: absolute;
+    left: 2%;
+   
+}
+  
 
   
   

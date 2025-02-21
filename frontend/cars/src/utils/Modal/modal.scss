@@ -65,23 +65,38 @@ $small-screen:768px;
 
    
     .time-pickers-container{
-       margin-top: 2rem;
+       margin-top: 1rem;
 
        .mui-time-picker{
         width: 140px ;
+       
        }
+      
     }
+
+   
 
     .buttons{
         display: flex;
         margin: 0;
-        font-size: 12px;
+        font-size: 13px;
         justify-content: space-between;
+
+        
     }
 
     @media screen and (max-width:768px) {
         max-height: 95% !important;
         height: auto;
+
+       
+        .buttons{
+            font-size: 10px;
+
+            button{
+                margin-top: 0;
+            }
+        }
     }
 }
 .login-form{
