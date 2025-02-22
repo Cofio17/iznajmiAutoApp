@@ -5,16 +5,16 @@ import PickingUp from "./PickingUp";
 
 export default function CategoryInfo({ carData }) {
     const [activeIndex, setActiveIndex] = useState(0);
-    const categories = ["O Automobilu", "Mesto Preuzimanja", "Korisne Informacije"];
+    const categories = ["O Automobilu", "Mesto Preuzimanja", "Dodatne Informacije"];
 
     const renderSegment = (index) => {
         switch (index) {
             case 0:
                 return <CarInfo carData={carData} header={categories[activeIndex]} />
             case 1:
-                return <GoogleMap header={categories[activeIndex]} />
+                return <GoogleMap carData={carData} header={categories[activeIndex]} />
             case 2:
-                return <PickingUp header={categories[activeIndex]} />
+                return <PickingUp carData={carData} header={categories[activeIndex]} />
             default:
                 break;
         }

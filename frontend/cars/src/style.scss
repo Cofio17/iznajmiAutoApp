@@ -447,6 +447,9 @@ h2 span{
             padding: 6px 12px;
             border-radius: 5px;
             font-size: 14px;
+            b{
+                color: $darker-primary-color;
+            }
         }
         
      .info-divider {
@@ -520,7 +523,7 @@ text-align: center;
             }
     
             &.active {
-                background-color: #fff;
+                // background-color: #fff;
                 &::after {
                     content: '';
                     position: absolute;
@@ -535,6 +538,7 @@ text-align: center;
         }
 
         @media screen and (max-width:768px) {
+            width: 250px;
             h3{
                 font-size: 1rem
             }
@@ -543,6 +547,22 @@ text-align: center;
     }
 
 
+.search-bar-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+
+    .loader-wrapper{
+        margin-top: 10px;
+        .loader{
+            height: 25px !important;
+            width: 25px !important;
+        }
+        
+    }
+}
 
 #search-bar{
     @include flex-row();
@@ -872,6 +892,7 @@ text-align: center;
     width: 100%;
     color: $text-color-light;
     margin-top: 3rem;
+    
   
 
   

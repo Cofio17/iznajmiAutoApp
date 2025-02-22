@@ -125,48 +125,52 @@ export default function Search() {
     }
 
     return (
-        <div className="search-bar" id="search-bar">
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DatePicker
-                    value={startDate}
-                    label="Početni datum"
-                    disablePast={true}
-                    maxDate={maxDate}
-                    onChange={(newValue) => { setStartDate(newValue) }}
-                    format='DD/MM/YYYY'
-                    className='mui-input city'
-                    name='date-picker-start'
+        <div className="search-bar-wrapper">
+            <div className="search-bar" id="search-bar">
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePicker
+                        value={startDate}
+                        label="Početni datum"
+                        disablePast={true}
+                        maxDate={maxDate}
+                        onChange={(newValue) => { setStartDate(newValue) }}
+                        format='DD/MM/YYYY'
+                        className='mui-input city'
+                        name='date-picker-start'
 
+                    />
+                    <DatePicker
+                        value={endDate}
+                        label="Krajnji datum"
+                        disablePast={true}
+                        maxDate={maxDate}
+                        onChange={(newValue) => { setEndDate(newValue) }}
+                        format='DD/MM/YYYY'
+                        className='mui-input city'
+                        name='date-picker-end'
+
+                    />
+                </LocalizationProvider>
+                <Autocomplete
+
+                    value={city}
+                    options={cities}
+                    getOptionLabel={(option) => option}
+                    onChange={(e, newValue) => {
+                        setCity(newValue);
+                    }}
+                    renderInput={(params) => (
+                        <TextField {...params} label="Izaberite grad" variant="outlined" />
+                    )}
+                    className='mui-input'
                 />
-                <DatePicker
-                    value={endDate}
-                    label="Krajnji datum"
-                    disablePast={true}
-                    maxDate={maxDate}
-                    onChange={(newValue) => { setEndDate(newValue) }}
-                    format='DD/MM/YYYY'
-                    className='mui-input city'
-                    name='date-picker-end'
+                <div onClick={handleSearch} className='search-bar-icon' >
+                    <FontAwesomeIcon icon={faMagnifyingGlass} color='black' size='1x' />
+                </div>
 
-                />
-            </LocalizationProvider>
-            <Autocomplete
-
-                value={city}
-                options={cities}
-                getOptionLabel={(option) => option}
-                onChange={(e, newValue) => {
-                    setCity(newValue);
-                }}
-                renderInput={(params) => (
-                    <TextField {...params} label="Izaberite grad" variant="outlined" />
-                )}
-                className='mui-input'
-            />
-            <div onClick={handleSearch} className='search-bar-icon' >
-                <FontAwesomeIcon icon={faMagnifyingGlass} color='black' size='1x' />
             </div>
             {loading && location.pathname === '/' && <LoadingCircle />}
         </div>
+
     );
 }

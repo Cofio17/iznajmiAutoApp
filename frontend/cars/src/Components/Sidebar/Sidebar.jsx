@@ -1,5 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { motion, useAnimationControls } from 'framer-motion';
 import { useState } from 'react';
 import { useMediaQuery } from '@mui/material';
@@ -9,7 +7,7 @@ export default function Sidebar({ children, filter }) {
     const [collapsed, setCollapsed] = useState(true);
     const controls = useAnimationControls();
 
-    const isMobile = useMediaQuery('(max-width:600px)'); // ili drugi breakpoint koji vam odgovara
+    const isMobile = useMediaQuery('(max-width:600px)');
 
     const variants = {
         open: {

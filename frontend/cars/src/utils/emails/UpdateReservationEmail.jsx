@@ -34,13 +34,15 @@ export const UpdateReservationEmail = ({
         </Preview>
         <Body style={styles.body}>
             <Container style={styles.container}>
-                <Text style={styles.greeting}> <span style={{ color: '#2D6A4F' }}>Pozdrav</span>, {personData.buyer}</Text>
+                <Text style={styles.greeting}> {personData.buyer}</Text>
+                <Text style={styles.greeting}> Poštovani korisniče</Text>
+
                 <Text style={styles.text}>
-                    Hvala vam što ste odabrali iznajmi.me! Vaša rezervacija je uspešno izmenjena.
+                    Hvala Vam što ste odabrali iznajmi.me. Vaša rezervacija je uspešno promenjena.
                     Detalji nove rezervacije su u nastavku:
                 </Text>
                 <Section style={styles.detailsSection}>
-                    <Text style={styles.details}> <strong>🚗 Vozilo:</strong> {personData.brand} {personData.model}</Text>
+                    <Text style={styles.details}> <strong>🚗 Vozilo:</strong>  {personData.brand} {personData.model}</Text>
                     <Text style={styles.details}><strong>💰 Ukupna cena:</strong> {personData.priceTotal}€</Text>
 
                     <Text style={styles.details}><strong>📅 Novi datum početka:</strong> <span style={styles.highlight}>{dayjs(newDates.start).format('DD/MM/YYYY  HH:mm')}</span></Text>
@@ -51,8 +53,7 @@ export const UpdateReservationEmail = ({
                     <Text style={styles.details}><strong>🆔 ID rezervacije:</strong> {personData.reservationId}</Text>
                 </Section>
                 <Text style={styles.text}>
-                    Ako imate bilo kakvih pitanja, slobodno nas kontaktirajte.
-                    Radujemo se vašoj vožnji!
+                    Vašom rezervacijom možete lako upravljati  putem našeg sajta.
                 </Text>
                 <Hr style={styles.hr} />
                 <Text style={styles.footer}>
@@ -97,6 +98,7 @@ const styles = {
         padding: "10px",
         borderRadius: "5px",
         marginBottom: "15px",
+
     },
     details: {
         fontSize: "14px",

@@ -4,6 +4,7 @@ import FilterGroup from "./FilterGroup";
 import countMatchingValues from "./countMatchingValues";
 import { useLocation } from "react-router-dom";
 import './filter.scss'
+import PriceSlider from "./Slider";
 
 
 
@@ -29,7 +30,9 @@ export default function Filter() {
         '1',
         '2',
         '3',
-        '4'
+        '4',
+        '5',
+        '6'
       ],
     },
     {
@@ -89,15 +92,20 @@ export default function Filter() {
   }, [location.search]);
 
   return (
-    <div className="filters-container">
-      {filterGroups.map((group, index) => (
-        <FilterGroup
-          key={index}
-          group={group}
-          onFilterChange={onFilterChange}
-          selectedFilters={filtersContext}
-        />
-      ))}
+    <div className="filters-container-wrapper">
+      <PriceSlider />
+      <div className="filters-container">
+        {filterGroups.map((group, index) => (
+          <FilterGroup
+            key={index}
+            group={group}
+            onFilterChange={onFilterChange}
+            selectedFilters={filtersContext}
+          />
+        ))}
+
+      </div>
     </div>
+
   );
 }

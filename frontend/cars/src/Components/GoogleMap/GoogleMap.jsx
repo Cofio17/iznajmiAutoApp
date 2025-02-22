@@ -1,6 +1,6 @@
 import { APIProvider, Map, AdvancedMarker, Pin } from "@vis.gl/react-google-maps";
 
-export default function GoogleMap({ positionVariable, header }) {
+export default function GoogleMap({ positionVariable, header, carData }) {
     const apiKey = import.meta.env.VITE_GOOGLE_MAP_API_KEY;
     const position = { lat: 45.24539277681039, lng: 19.84245677719107 };
 

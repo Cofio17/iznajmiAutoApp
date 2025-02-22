@@ -67,7 +67,7 @@ export default function CalendarModal({ handleClose, calendarId, eventId, email,
         }
         const emailContent = {
             to: personData.email,
-            subject: "Uspešno pomeranje rezervacije! Iznajmi.me",
+            subject: "Uspešno pomeranje rezervacije!",
             html: generateUpdateReservationEmail(name, personData, newDates)
         }
 

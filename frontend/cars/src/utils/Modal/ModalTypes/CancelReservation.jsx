@@ -18,7 +18,7 @@ export default function CancelReservation({ handleClose, calendarId, eventId, em
         const name = personData.buyer;
         const emailContent = {
             to: email,
-            subject: "Uspešno otkazivanje! Iznajmi.me",
+            subject: "Uspešno otkazivanje!",
             html: generateCanceEmailHtml(name, personData)
         }
 

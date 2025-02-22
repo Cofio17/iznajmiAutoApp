@@ -10,6 +10,8 @@ import useModal from "../../Hooks/useModal";
 import SuccesfulReservation from "../../utils/Modal/ModalTypes/SuccesfulReservation";
 import { createDate } from "../../utils/createDate";
 import generateReservationId from "../../utils/generateId";
+import MotionButton from "../../Components/MotionButton/MotionButton";
+import Input from "../../Components/Filter/Input";
 
 
 export default function ReservationForm() {
@@ -49,15 +51,16 @@ export default function ReservationForm() {
         if (!lastName.trim()) {
             newErrors.lastName = 'Prezime je obavezno.';
         }
-        if (!/^\d{13}$/.test(jmbg)) {
-            newErrors.jmbg = 'Neispravan format JMBG.';
+        if (!/^\d{9}(\d{4})?$/.test(jmbg)) {
+            newErrors.jmbg = 'Neispravan format matičnog broja.';
         }
         if (!email.includes('@')) {
             newErrors.email = 'Email mora biti validan.';
         }
-        if (!/^\+\d+$/.test(number) || number.length < 9) {
+        if (!/^\+?\d+$/.test(number) || number.length < 9) {
             newErrors.number = 'Neispravan format broja';
         }
+
 
         if (!termsAccepted) {
             newErrors.termsAccepted = 'Morate prihvatiti uslove.';
@@ -124,7 +127,7 @@ export default function ReservationForm() {
 
         const emailContent = {
             to: email,
-            subject: "Uspešna rezervacija! Iznajmi.me",
+            subject: "Uspešna rezervacija!",
             html: generateReservationEmailHtml(firstName, brand, model, reservationData)
         }
         try {
@@ -151,7 +154,7 @@ export default function ReservationForm() {
             delete newErrors.lastName;
         }
 
-        if (fieldName === 'jmbg' && !/^\d{13}$/.test(value)) {
+        if (fieldName === 'jmbg' && !/^\d{9}(\d{4})?$/.test(jmbg)) {
             newErrors.jmbg = 'Neispravan format JMBG.';
         } else if (fieldName === 'jmbg') {
             delete newErrors.jmbg;
@@ -163,7 +166,7 @@ export default function ReservationForm() {
             delete newErrors.email;
         }
 
-        if (fieldName === 'number' && (!/^\+\d+$/.test(value) || value.length < 9)) {
+        if (fieldName === 'number' && (!/^\+?\d+$/.test(number) || value.length < 9)) {
             newErrors.number = 'Neispravan format broja.';
         } else if (fieldName === 'number') {
             delete newErrors.number;
@@ -182,29 +185,34 @@ export default function ReservationForm() {
             <form className="reservation-form" onSubmit={handleSubmit}>
                 <h1>Rezervacija</h1>
                 <p>Automobil: {car?.brand} {car?.model} {car.year}</p>
-                <p className="selected-dates">{selectedDate[0].toDateString()} - {selectedDate[1].toDateString()}</p>
+                <p className="selected-dates">
+                    {selectedDate[0].toLocaleDateString("sr-Latn-RS", { weekday: "short", day: "numeric", month: "short", year: "numeric" })}{'-'}
+                    {selectedDate[1].toLocaleDateString("sr-Latn-RS", { weekday: "short", day: "numeric", month: "short", year: "numeric" })}
+
+                </p>
+                <h3><b>Ukupna cena:</b> {priceTotal}€</h3>
 
 
                 <TextField error={error} fullWidth id="firstname" required={true} variant="outlined" type="text" value={firstName} label={'Ime'} onChange={(e) => setFirstName(e.target.value)} className="mui-input reservation-form-input" />
                 <TextField error={error} fullWidth id="lastName" required={true} variant="outlined" type="text" value={lastName} label={'Prezime'} onChange={(e) => setLastName(e.target.value)} className="mui-input reservation-form-input" />
-                <TextField onBlur={(e) => handleBlur('jmbg', e.target.value)} error={Boolean(errors.jmbg)} helperText={errors.jmbg || ''} fullWidth id="jmbg" required={true} variant="outlined" type="text" value={jmbg} label={'unesite JMBG'} onChange={(e) => setJmbg(e.target.value)} className="mui-input reservation-form-input" />
-                <TextField onBlur={(e) => handleBlur('number', e.target.value)} error={Boolean(errors.number)} helperText={errors.number || 'unesite broj u formatu +381123456789'} placeholder="+3816" fullWidth id="number" required={true} variant="outlined" type="tel" value={number} label={'Mobilni'} onChange={(e) => setNumber(e.target.value)} className="mui-input reservation-form-input" />
-                <TextField error={Boolean(errors.email)} helperText={errors.email || ''} onBlur={(e) => handleBlur('email', e.target.value)} autoComplete="on" placeholder="email@example.com" fullWidth id="email" required={true} variant="outlined" type="email" value={email} label={'Email'} onChange={(e) => setEmail(e.target.value)} className="mui-input reservation-form-input" />
+                <TextField onBlur={(e) => handleBlur('jmbg', e.target.value)} error={Boolean(errors.jmbg)} helperText={errors.jmbg || 'JBMG ili PIB firme'} fullWidth id="jmbg" required={true} variant="outlined" type="text" value={jmbg} label={'JMBG/PIB'} onChange={(e) => setJmbg(e.target.value)} className="mui-input reservation-form-input" />
+                <TextField onBlur={(e) => handleBlur('number', e.target.value)} error={Boolean(errors.number)} helperText={errors.number || ''} placeholder="06..." fullWidth id="number" required={true} variant="outlined" type="tel" value={number} label={'Mobilni'} onChange={(e) => setNumber(e.target.value)} className="mui-input reservation-form-input" />
+                <TextField onBlur={(e) => handleBlur('email', e.target.value)} error={Boolean(errors.email)} helperText={errors.email || ''} autoComplete="on" placeholder="email@example.com" fullWidth id="email" required={true} variant="outlined" type="email" value={email} label={'Email'} onChange={(e) => setEmail(e.target.value)} className="mui-input reservation-form-input" />
 
-                <FormControlLabel required control={
+                {/* <FormControlLabel required control={
                     <Checkbox
                         name="terms"
                         onChange={(e) => { setTermsAccepted(e.target.checked) }}
                         size="small"
                         sx={{
                             marginLeft: 2,
-                            color: '#B69121',
-                            '&.Mui-checked': { color: '#B69121' }
-                        }} />} label={'Prihvatam uslove korišćenja'} />
+                            color: '#2D6A4F',
+                            '&.Mui-checked': { color: '#2D6A4F' }
+                        }} />} label={'Prihvatam uslove korišćenja'} /> */}
+                <Input required={true} label={'Prihvatam uslove korišćenja'} checked={termsAccepted} onChangeProp={(e) => { setTermsAccepted(e.target.checked) }} />
 
-                <button type="submit" className="button" disabled={isSubmitting}>
-                    {isSubmitting ? 'Slanje...' : 'Rezerviši'}
-                </button>
+                <MotionButton type="submit" className="button" disabled={isSubmitting} text={isSubmitting ? 'Slanje...' : 'Rezerviši'} />
+
                 {errors.server && <p style={{ color: 'red' }}>{errors.server}</p>}
 
             </form>

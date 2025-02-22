@@ -1,5 +1,16 @@
-
+$darker-primary-color:#2D6A4F;
     /* CSS Stilovi */
+
+    .filters-container-wrapper{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+      
+      
+      
+    }
     .filters-container {
       padding: 20px;
       background-color: #f9f9f9;
@@ -16,3 +27,10 @@
       border-radius: 8px;
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
+
+    .css-188mx6n-MuiSlider-root , .MuiSlider-root{
+      color: $darker-primary-color !important;
+      width: 250px !important;
+    }
+
+   

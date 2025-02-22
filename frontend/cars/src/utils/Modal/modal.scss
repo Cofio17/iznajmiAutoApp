@@ -27,8 +27,14 @@ $small-screen:768px;
 
 
 .succesful{
-    width: clamp(50%, 700px, 90%);
-    height: min(50%,300px);
+    width: clamp(50%, 550px, 90%);
+    height: min(40%,300px);
+    justify-content:space-around;
+   
+
+    #uRedu{
+     margin-top: 1rem;
+    }
 }
 
 .login{

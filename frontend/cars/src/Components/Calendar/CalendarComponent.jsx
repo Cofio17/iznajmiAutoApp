@@ -1,87 +1,113 @@
-import { useState, useEffect } from 'react';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import { Alert } from '@mui/material';
-import './calendar.scss'
-import LoadingCircle from '../../utils/LoadingCircle/LoadingCircle';
-import { apiRequest } from '../../utils/Api/apiService';
-import dayjs from 'dayjs';
+import { useState, useEffect } from "react";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import { Alert } from "@mui/material";
+import "./calendar.scss";
+import LoadingCircle from "../../utils/LoadingCircle/LoadingCircle";
+import { apiRequest } from "../../utils/Api/apiService";
+import dayjs from "dayjs";
 
-
-
-export default function CalendarComponent({ calendarId, fetchDates, isReservationPage = false }) {
+export default function CalendarComponent({
+    calendarId,
+    fetchDates,
+    isReservationPage = false,
+}) {
     const [date, setDate] = useState([]);
-    const [error, setError] = useState('');
+    const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
     const [busyDays, setBusyDays] = useState([]);
 
     useEffect(() => {
-
         /**
-         *returns busy dates for specific car/calendar depending on calendar ID 
+         *returns busy dates for specific car/calendar depending on calendar ID
          */
         const getBusyDates = async () => {
             try {
                 console.log(calendarId);
                 setLoading(true);
-                const response = await apiRequest("POST", "api/calendar/get-busy-dates", { calendarId: calendarId });
-                const busyDates = response.dates.calendars[calendarId].busy
+                const response = await apiRequest(
+                    "POST",
+                    "api/calendar/get-busy-dates",
+                    { calendarId: calendarId }
+                );
+                const busyDates = response.dates.calendars[calendarId].busy;
                 console.log(busyDates);
                 if (isReservationPage) {
-                    const storedReservationDate = JSON.parse(localStorage.getItem('dateRange'));
+                    const storedReservationDate = JSON.parse(
+                        localStorage.getItem("dateRange")
+                    );
                     if (storedReservationDate) {
                         const { start, end } = storedReservationDate;
 
-                        const filteredBusyDates = busyDates.filter(({ start: busyStart, end: busyEnd }) =>
-                            !(
-                                dayjs(busyStart).isSame(dayjs(start)) && dayjs(busyEnd).isSame(dayjs(end)) // Tačno isti period
-                                || dayjs(busyStart).isBetween(dayjs(start), dayjs(end), null, '[]') // busyStart unutar rezervacije
-                                || dayjs(busyEnd).isBetween(dayjs(start), dayjs(end), null, '[]')   // busyEnd unutar rezervacije
-                                || (dayjs(start).isBetween(dayjs(busyStart), dayjs(busyEnd), null, '[]') && dayjs(end).isBetween(dayjs(busyStart), dayjs(busyEnd), null, '[]')) // storedReservation unutar busy perioda
-                            )
+                        const filteredBusyDates = busyDates.filter(
+                            ({ start: busyStart, end: busyEnd }) =>
+                                !(
+                                    (dayjs(busyStart).isSame(dayjs(start)) &&
+                                        dayjs(busyEnd).isSame(dayjs(end))) || // Tačno isti period
+                                    dayjs(busyStart).isBetween(
+                                        dayjs(start),
+                                        dayjs(end),
+                                        null,
+                                        "[]"
+                                    ) || // busyStart unutar rezervacije
+                                    dayjs(busyEnd).isBetween(
+                                        dayjs(start),
+                                        dayjs(end),
+                                        null,
+                                        "[]"
+                                    ) || // busyEnd unutar rezervacije
+                                    (dayjs(start).isBetween(
+                                        dayjs(busyStart),
+                                        dayjs(busyEnd),
+                                        null,
+                                        "[]"
+                                    ) &&
+                                        dayjs(end).isBetween(
+                                            dayjs(busyStart),
+                                            dayjs(busyEnd),
+                                            null,
+                                            "[]"
+                                        )) // storedReservation unutar busy perioda
+                                )
                         );
                         setBusyDays(filteredBusyDates);
                         console.log(busyDates);
                         return;
-
                     }
                 }
                 setBusyDays(busyDates);
             } catch (err) {
-                setError(err)
-            }
-            finally {
+                setError(err);
+            } finally {
                 setLoading(false);
             }
-        }
+        };
         getBusyDates();
     }, [isReservationPage]);
 
     //stored dates
     useEffect(() => {
         if (busyDays.length > 0) {
-            const storedDateRange = localStorage.getItem('dateRange');
+            const storedDateRange = localStorage.getItem("dateRange");
             if (storedDateRange) {
                 const { start, end } = JSON.parse(storedDateRange);
                 const parsedDates = [new Date(start), new Date(end)];
 
-                let invalidRange = parsedDates.some(date => iteratediabledDays(date));
-
+                let invalidRange = parsedDates.some((date) => iteratediabledDays(date));
 
                 if (!invalidRange) {
                     handleDateChange(parsedDates);
                 } else {
-                    localStorage.removeItem('dateRange'); // Ako su zauzeti, obriši ih iz localStorage
+                    localStorage.removeItem("dateRange"); // Ako su zauzeti, obriši ih iz localStorage
                 }
             }
         }
     }, [busyDays]);
 
-
-    /** 
+    /**
      * DisableDays - iterating through busy events in the calendar and return true if date param is in busy days and false if not
      * @param {Date} param0 - date range which users selects
-     * @returns 
+     * @returns
      */
     const disableDays = ({ date }) => {
         return busyDays.some((busyEvent) => {
@@ -103,7 +129,7 @@ export default function CalendarComponent({ calendarId, fetchDates, isReservatio
 
     /**
      * Iteration through disabled days
-     * @param {Date} date - 
+     * @param {Date} date -
      * @returns -true if date range is busy and returns false if range is not busy
      */
     const iteratediabledDays = (date) => {
@@ -120,7 +146,6 @@ export default function CalendarComponent({ calendarId, fetchDates, isReservatio
             return false;
         });
     };
-
 
     // Funkcija za odabir datuma, proverava da li je opseg validan
     const handleDateChange = (selectedDate) => {
@@ -140,13 +165,13 @@ export default function CalendarComponent({ calendarId, fetchDates, isReservatio
             }
 
             if (invalidRange) {
-                setError('Molimo Vas izaberite drugi datum');
+                setError("Molimo Vas izaberite drugi datum");
                 setDate([]); // Reseting selected dates
-                fetchDates([]);//sending selected dates to a parent component
+                fetchDates([]); //sending selected dates to a parent component
             } else {
-                setError('');
+                setError("");
                 setDate(selectedDate); // if range is valid, set it
-                fetchDates(selectedDate);//sending selected dates to a parent component
+                fetchDates(selectedDate); //sending selected dates to a parent component
             }
         } else {
             setDate(selectedDate); // if only 1 date is selected
@@ -156,13 +181,10 @@ export default function CalendarComponent({ calendarId, fetchDates, isReservatio
 
     if (error) {
         console.log(error);
-
     }
 
     if (loading) {
-        return (
-            <LoadingCircle />
-        )
+        return <LoadingCircle />;
     }
     return (
         <div className="calendar-wrapper">
@@ -177,12 +199,21 @@ export default function CalendarComponent({ calendarId, fetchDates, isReservatio
                 prev2Label={null}
                 next2Label={null}
                 maxDate={new Date(new Date().setMonth(new Date().getMonth() + 3))}
-                locale='sr-Latn'
+                locale="sr-Latn"
             />
-            {date.length > 1 &&
-                <Alert className='alert-lib' variant='outlined' severity='success'><b>{`${dayjs(date[0]).format("DD/MM/YYYY")} - ${dayjs(date[1]).format("DD/MM/YYYY")}`}</b></Alert>
-            }
-            {error && <Alert variant='outlined' severity='info'>{error}</Alert>}
+            {date.length > 1 && (
+                <Alert className="alert-lib" variant="outlined" severity="success">
+                    <b>
+                        {`${date[0].toLocaleDateString("sr-Latn-RS", { weekday: "short", day: "numeric", month: "short", year: "numeric" })} - 
+                          ${date[1].toLocaleDateString("sr-Latn-RS", { weekday: "short", day: "numeric", month: "short", year: "numeric" })}`}
+                    </b>
+                </Alert>
+            )}
+            {error && (
+                <Alert variant="outlined" severity="info">
+                    {error}
+                </Alert>
+            )}
         </div>
     );
 }

@@ -51,7 +51,7 @@ export default function Car() {
 
     const handleNavigate = () => {
         if (selectedDate.length < 2) {
-            setErrorText('Please, selected the reservation date');
+            setErrorText('Molimo Vas, odaberite datum');
             return null;
         }
         const dataToPass = {
