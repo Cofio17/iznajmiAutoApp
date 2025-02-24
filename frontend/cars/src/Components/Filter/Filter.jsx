@@ -5,16 +5,17 @@ import countMatchingValues from "./countMatchingValues";
 import { useLocation } from "react-router-dom";
 import './filter.scss'
 import PriceSlider from "./Slider";
+import { useState } from "react";
 
 
 
 
 export default function Filter() {
   const location = useLocation();
+  const [maxPrice, setMaxPrice] = useState(100);
   const {
     searchListData,
     setFilterListData,
-    filterListData,
     filtersContext,
     setFiltersContext
   } = useContext(SearchContext);
@@ -57,6 +58,8 @@ export default function Filter() {
 
   const updateList = (updatedFilters) => {
     const numberOfTypes = countMatchingValues(filterGroups, updatedFilters, 0);
+    const numberOfTypesTrunk = countMatchingValues(filterGroups, updatedFilters, 1);
+
 
     const filteredCars = searchListData.filter((car) => {
       return updatedFilters.every((filter) => {
@@ -67,12 +70,16 @@ export default function Filter() {
             return car.type === filter;
           }
         } else if (filterGroups[1].inputs.includes(filter)) {
-          return updatedFilters.some((groupFilter) => groupFilter === car.gepek);
+          if (numberOfTypesTrunk > 1) {
+            return updatedFilters.some((typeFilter) => parseInt(typeFilter) === car.trunkCapacity);
+          } else {
+            return car.trunkCapacity === parseInt(filter);
+          }
         } else if (filterGroups[2].inputs.includes(filter)) {
           return car.transmission === filter;
         }
         return true;
-      });
+      }) && car.pricePerDay <= maxPrice;
     });
 
     setFilterListData(filteredCars);
@@ -91,9 +98,15 @@ export default function Filter() {
     }
   }, [location.search]);
 
+  //price change
+  useEffect(() => {
+
+    updateList(filtersContext)
+  }, [maxPrice])
+
   return (
     <div className="filters-container-wrapper">
-      <PriceSlider />
+      <PriceSlider maxPrice={maxPrice} setMaxPrice={setMaxPrice} />
       <div className="filters-container">
         {filterGroups.map((group, index) => (
           <FilterGroup

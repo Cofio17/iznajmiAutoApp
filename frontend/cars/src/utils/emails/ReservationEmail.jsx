@@ -33,7 +33,11 @@ export const ReservationEmail = ({
                     <Text style={styles.details}><strong>💰 Ukupna cena:</strong> {reservationData.summary.priceTotal}€</Text>
                     <Text style={styles.details}><strong>📅 Početak:</strong> {dayjs(reservationData.start.dateTime).format('DD/MM/YYYY  HH:mm')}</Text>
                     <Text style={styles.details}><strong>⏳ Kraj:</strong> {dayjs(reservationData.end.dateTime).format('DD/MM/YYYY  HH:mm')}</Text>
+                    <Text style={styles.details}><strong>📍 Lokacija:</strong> {reservationData.companyData.address}</Text>
                     <Text style={styles.details}><strong>🆔 ID rezervacije:</strong> {reservationData.reservationId}</Text>
+
+                    <Text style={styles.details}><strong>🏢 Agencija:</strong> {reservationData.companyData.name}</Text>
+                    <Text style={styles.details}><strong>📞 Kontakt broj:</strong> {reservationData.companyData.contact}</Text>
                 </Section>
                 <Text style={styles.text}>
                     Ako imate bilo kakvih pitanja, slobodno nas kontaktirajte.

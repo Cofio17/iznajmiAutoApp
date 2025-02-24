@@ -1,5 +1,5 @@
 const express = require("express");
-const { createEvent, accessBusyDates, searchCarsByDate, cancelEvent, changeEvent } = require("../service/googleCalendar.js");
+const { createEvent, accessBusyDates, searchCarsByDate, cancelEvent, changeEvent, cancelEventOnly, moveEvent } = require("../service/googleCalendar.js");
 const Car = require('../models/car.js');
 
 const router = express.Router();
@@ -137,6 +137,19 @@ router.patch('/change/:calendarId/:eventId', async (req, res) => {
     }
 
 })
+
+router.post('/move/:calendarId/:eventId/:toCalendarId', async (req, res) => {
+    console.clear();
+    const { calendarId, eventId, toCalendarId } = req.params
+    const car = req.body;
+
+    try {
+        const response = await moveEvent(calendarId, eventId, toCalendarId, car);
+        res.status(200).json({ message: "Event moved succesfully.", data: response });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
 
 
 module.exports = router;

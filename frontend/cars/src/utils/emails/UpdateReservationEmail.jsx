@@ -11,16 +11,40 @@ import {
 import * as React from 'react';
 import dayjs from "dayjs";
 
+function pozdrav(ime) {
+    const poslednjiKarakter = ime.charAt(ime.length - 1).toLowerCase();
+    let pozdrav = "";
+    if (poslednjiKarakter === 'a') {
+        pozdrav = "Poštovana ";
+    } else {
+        pozdrav = "Poštovani ";
+    }
+
+
+    if ('aeiou'.includes(poslednjiKarakter)) {
+        pozdrav += ime + "!";
+    } else {
+        pozdrav += ime + "e!";
+    }
+
+    return pozdrav;
+}
+
 export const UpdateReservationEmail = ({
     name = "Marko Petrović", // Dummy ime
     personData = {
-        buyer: "Marko", // Dummy kupac
+        buyer: ("Filip"), // Dummy kupac
         brand: "Ford", // Dummy marka
         model: "Focus", // Dummy model
         priceTotal: 150, // Dummy ukupna cena
         startDate: new Date("2025-02-20T10:00:00"), // Dummy stari datum početka
         endDate: new Date("2025-02-25T10:00:00"), // Dummy stari datum kraja
         reservationId: "ABC123", // Dummy ID rezervacije
+        companyId: {
+            name: "Dummy Company",
+            contact: "06123456",
+            address: "Dummy address"
+        }
     },
     newDates = {
         start: new Date("2025-02-22T10:00:00"), // novi datum
@@ -34,14 +58,15 @@ export const UpdateReservationEmail = ({
         </Preview>
         <Body style={styles.body}>
             <Container style={styles.container}>
-                <Text style={styles.greeting}> {personData.buyer}</Text>
-                <Text style={styles.greeting}> Poštovani korisniče</Text>
+
+                <Text style={styles.greeting}> {pozdrav(personData.buyer)}</Text>
 
                 <Text style={styles.text}>
                     Hvala Vam što ste odabrali iznajmi.me. Vaša rezervacija je uspešno promenjena.
                     Detalji nove rezervacije su u nastavku:
                 </Text>
                 <Section style={styles.detailsSection}>
+
                     <Text style={styles.details}> <strong>🚗 Vozilo:</strong>  {personData.brand} {personData.model}</Text>
                     <Text style={styles.details}><strong>💰 Ukupna cena:</strong> {personData.priceTotal}€</Text>
 
@@ -50,7 +75,11 @@ export const UpdateReservationEmail = ({
 
                     <Text style={styles.details}><strong>📅 Stari datum početka:</strong> <span style={styles.strikethrough}>{dayjs(personData.startDate).format('DD/MM/YYYY  HH:mm')}</span></Text>
                     <Text style={styles.details}><strong>⏳ Stari datum kraja:</strong> <span style={styles.strikethrough}>{dayjs(personData.endDate).format('DD/MM/YYYY  HH:mm')}</span></Text>
+                    <Text style={styles.details}><strong>📍 Lokacija:</strong> {personData.companyId.address}</Text>
                     <Text style={styles.details}><strong>🆔 ID rezervacije:</strong> {personData.reservationId}</Text>
+                    <Hr style={styles.hr} />
+                    <Text style={styles.details}><strong>🏢 Agencija:</strong> {personData.companyId.name}</Text>
+                    <Text style={styles.details}><strong>📞 Kontakt broj:</strong> {personData.companyId.contact}</Text>
                 </Section>
                 <Text style={styles.text}>
                     Vašom rezervacijom možete lako upravljati  putem našeg sajta.

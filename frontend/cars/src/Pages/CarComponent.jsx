@@ -17,6 +17,7 @@ export default function Car() {
     const params = useParams();
     const carId = params.carId;
     const [carData, setCarData] = useState({});
+    const [companyData, setCompanyData] = useState();
     const navigate = useNavigate();
 
     const [error, setError] = useState();
@@ -38,6 +39,8 @@ export default function Car() {
         apiRequest("GET", `cars/${carId}`)
             .then((data) => {
                 setCarData(data.data);
+                setCompanyData(data.data.companyId)
+
                 setError(null);
             })
             .catch((err) => {
@@ -60,7 +63,8 @@ export default function Car() {
             selectedDate: selectedDate,
             priceTotal: priceTotal,
             daysTotal: days,
-            selectedTimes: selectedTimes
+            selectedTimes: selectedTimes,
+            companyData: companyData
         }
         setErrorText('');
         navigate('/reservation', { state: dataToPass });

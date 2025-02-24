@@ -17,7 +17,7 @@ import Input from "../../Components/Filter/Input";
 export default function ReservationForm() {
     const location = useLocation();
     const navigate = useNavigate();
-    const { car, selectedDate, carId, priceTotal, daysTotal, selectedTimes } = location.state || {};
+    const { car, selectedDate, carId, priceTotal, daysTotal, selectedTimes, companyData } = location.state || {};
 
 
     //wall of state- FORM STATES
@@ -97,6 +97,7 @@ export default function ReservationForm() {
                 start: { dateTime: createDate(startDate, startHours) },
                 end: { dateTime: createDate(endDate, endHours) },
                 calendarId: car.calendarId,
+                companyData: companyData,
                 reservationId: generateReservationId()
             };
 

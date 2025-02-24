@@ -5,18 +5,41 @@ $darker-primary-color:#2D6A4F;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
+      align-items:center;
       margin-top: 20px;
+      width: 300px;
+
+      //za scroll unutar sidebar
+      max-height: 60vh; // Ograniči visinu u odnosu na viewport
+      min-height: 400px; // Osigurava da ne bude premalo
+      overflow-y: auto; // Omogućava unutrašnje skrolovanje
+      padding-top: 200px; // Umesto negativne vrednosti u `calc()`
+      &::-webkit-scrollbar {
+        display: none !important;
+     }
+     
+
+      @media screen and (max-width: 768px) {
       
-      
-      
+            max-height: unset;
+            min-height: unset;
+            overflow-y: unset;
+            padding-top: 0; // Reset padding-a
+        
+    }
+    
     }
     .filters-container {
       padding: 20px;
       background-color: #f9f9f9;
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      max-width: 300px;
+      max-width: 350px;
+      margin-bottom: 20px;
+
+      .MuiTypography-root{
+        display: flex;
+      }
 
     }
 
@@ -30,7 +53,11 @@ $darker-primary-color:#2D6A4F;
 
     .css-188mx6n-MuiSlider-root , .MuiSlider-root{
       color: $darker-primary-color !important;
-      width: 250px !important;
+      width: 200px !important;
+    }
+
+    .MuiBox-root{
+      align-self: center !important;
     }
 
    

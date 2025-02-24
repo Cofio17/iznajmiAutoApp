@@ -3,10 +3,11 @@ import { Button, Dialog, DialogTitle, DialogContent, DialogActions, Select, Menu
 import './dialog.scss';
 import { apiRequest } from '../Api/apiService';
 
-const DialogSelect = ({ openProp, onClose, selectedCar }) => {
+const DialogSelect = ({ openProp, onClose, selectedCar, setReservations }) => {
     const [open, setOpen] = useState(openProp);
     const [selectedOption, setSelectedOption] = useState('');
     const [freeCars, setFreeCars] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         setOpen(openProp);
@@ -14,9 +15,8 @@ const DialogSelect = ({ openProp, onClose, selectedCar }) => {
 
     useEffect(() => {
         if (open) {
-
             const loadFreeCars = async () => {
-
+                //TO DO - change company id
                 const dataTime = {
                     timeMin: selectedCar.startDate,
                     timeMax: selectedCar.endDate,
@@ -45,10 +45,34 @@ const DialogSelect = ({ openProp, onClose, selectedCar }) => {
 
     };
 
-    const handleConfirm = () => {
+    /**
+     * Selected Car - car that has been clicked before drop down menu
+     * Selected option - car that has been selected in the free cars drop down menu
+     */
+    const handleConfirm = async () => {
         console.log('Selected option:', selectedOption);
-        handleClose();
+        setLoading(true);
+        try {
+            const response = await apiRequest("POST", `api/calendar/move/${selectedCar.calendarId}/${selectedCar.eventId}/${selectedOption.calendarId}`, selectedOption);
+            console.log(response.data.updatedReservation);
+            updateReservationInTable(response.data.updatedReservation)
+        } catch (error) {
+            console.log(`Error while changing cars ${error}`)
+        }
+        finally {
+            setLoading(false);
+            handleClose();
+        }
     };
+
+    const updateReservationInTable = (updatedReservation) => {
+        setReservations(prevReservations =>
+            prevReservations.map(res =>
+                res.reservationId === updatedReservation.reservationId ? updatedReservation : res
+            )
+        );
+    };
+
 
     return (
         <Dialog className='dialog' open={open} onClose={handleClose}>
@@ -59,7 +83,6 @@ const DialogSelect = ({ openProp, onClose, selectedCar }) => {
                     onChange={handleSelectChange}
                     fullWidth
                 >
-
                     {freeCars.map((car) => {
                         return <MenuItem key={car.licensePlate} value={car}>{car.brand} {car.model}</MenuItem>
                     })}
@@ -69,8 +92,8 @@ const DialogSelect = ({ openProp, onClose, selectedCar }) => {
                 <Button onClick={handleClose}>
                     Otkaži
                 </Button>
-                <Button onClick={handleConfirm}>
-                    Potvrdi
+                <Button disabled={loading} className={loading ? 'disabled' : ''} onClick={handleConfirm}>
+                    {loading ? 'Ažuriranje' : 'Potvrdi'}
                 </Button>
             </DialogActions>
         </Dialog>

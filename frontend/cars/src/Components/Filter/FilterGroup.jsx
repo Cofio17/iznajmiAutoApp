@@ -1,4 +1,4 @@
-import { FormLabel, FormGroup } from "@mui/material";
+import { FormLabel, FormGroup, Typography } from "@mui/material";
 import Input from "./Input";
 
 export default function FilterGroup({
@@ -6,14 +6,15 @@ export default function FilterGroup({
   onFilterChange,
   selectedFilters,
 }) {
-  
+
   return (
     <FormGroup>
-      <FormLabel style={{ fontSize: 20 }} component="legend">
+      <FormLabel style={{ fontSize: 17 }} component="legend">
         {group.legend || "Kategorija"}
       </FormLabel>
       {group.inputs.map((input) => (
         <Input
+          groupLegend={group.legend}
           key={input}
           label={input}
           value={input}

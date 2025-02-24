@@ -117,7 +117,7 @@ const MuiTable = ({ reservations, setReservations }) => {
 
     return (
         <TableContainer component={Paper}>
-            {selectedCar && <DialogSelect selectedCar={selectedCar} openProp={dialogOpen} onClose={() => setIsDialogOpen(false)} />}
+            {selectedCar && <DialogSelect setReservations={setReservations} selectedCar={selectedCar} openProp={dialogOpen} onClose={() => setIsDialogOpen(false)} />}
 
             <Table>
                 <TableHead>

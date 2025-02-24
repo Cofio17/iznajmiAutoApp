@@ -977,9 +977,10 @@ text-align: center;
  .sidebar{
     position: sticky;
     top: 55px;
-    height: 500px;
-    width: 200px;
-    margin:0px 70px ;
+    height: 600px;
+    width: fit-content;
+    
+    
     
     #filter-button{
         display: none;
@@ -1056,24 +1057,6 @@ text-align: center;
 
     }
 }
-
-
-
-
-.MuiFormGroup-root:nth-of-type(2){
-
-span:nth-of-type(2)::after{
-
-    content: '';
-    display: inline-block;
-    width: 20px;
-    height: 30px;
-    background-image: url('/lugg.png');
-    background-size: cover;
-    background-position: center;
-}
-}
-
 
 .go-back-container{
 font-size: 1rem;
@@ -1182,6 +1165,11 @@ p{
 
 }
 
+.flex-text-icon{
+    display: flex;
+    align-items: center;
+}
+
    
 
 
@@ -1189,6 +1177,11 @@ p{
     height: 20px;
     width: 20px;
     margin-right: 5px;
+}
+.font-awsome-icon{
+    height: 20px;
+    width: 20px;
+    color: $darker-primary-color;
 }
 
 #my-reservation-button{

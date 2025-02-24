@@ -1,50 +1,28 @@
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-import Typography from '@mui/material/Typography';
+import Typography from '@mui/material/Typography'
+import { useState } from 'react';
 
-export default function PriceSlider() {
 
+export default function PriceSlider({ maxPrice, setMaxPrice }) {
+
+    const [price, setPrice] = useState(200);
     const marks = [
-        {
-            value: 0,
-            label: '0°C',
-        },
-        {
-            value: 10,
-            label: '10€',
-        },
-        {
-            value: 20,
-
-        },
-        {
-            value: 30,
-
-        },
-        {
-            value: 50,
-            label: '50€',
-        },
-        {
-            value: 100,
-            label: '100€',
-        },
-        {
-            value: 200,
-            label: '200€',
-        },
+        { value: 30, label: "30€" },
+        { value: 50, label: "" },
+        { value: 100, label: "100€" },
+        { value: 200, label: "200€" },
     ];
-    function valuetext(value) {
-        return `${value}`;
-    }
-
     return (
-        <Box sx={{ maxWidth: 250 }}>
-            <Typography gutterBottom>Cena</Typography> {/* Oznaka za slider */}
+        <Box sx={{ maxWidth: 300 }}>
+            <Typography gutterBottom>Cena/Dan</Typography> {/* Oznaka za slider */}
             <Slider
                 aria-label="Price"
-                defaultValue={200}
-                getAriaValueText={valuetext}
+                value={maxPrice}
+                onChangeCommitted={(e, newValue) => {
+                    setMaxPrice(newValue);
+                    console.log("Cena potvrđena:", newValue); // Loguje konačan izbor
+                }}
                 valueLabelDisplay="auto"
                 step={null}
                 marks={marks}

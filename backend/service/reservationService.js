@@ -117,7 +117,7 @@ const findReservationsByCompanyId = async (id) => {
  */
 const findReservationByReservationId = async (id) => {
     try {
-        const res = await Reservation.findOne({ reservationId: id });
+        const res = await Reservation.findOne({ reservationId: id }).populate('companyId');
         return res;
     } catch (error) {
         console.error(`Error while making a reservation: ${error.message}`);
@@ -133,14 +133,8 @@ const findReservationByReservationId = async (id) => {
  * @param {String} endDate - The new end date for the reservation
  * @returns {Object} The updated reservation object or an error message if the operation fails.
  */
-const findAndUpdateReservationByReservationId = async (eventId, startDate, endDate, priceTotal, daysTotal) => {
+const findAndUpdateReservationByEventId = async (eventId, startDate, endDate, priceTotal, daysTotal) => {
     try {
-
-        // const updatedReservation = await Reservation.findOneAndUpdate(
-        //     { reservationId },
-        //     { startDate, endDate },
-        //     { new: true } // Option to return the updated document
-        // );
 
         const updatedReservation = await Reservation.findOneAndUpdate({ eventId: eventId }, { startDate: startDate, endDate: endDate, priceTotal: priceTotal, duration: daysTotal });
 
@@ -151,6 +145,40 @@ const findAndUpdateReservationByReservationId = async (eventId, startDate, endDa
         return updatedReservation;
     } catch (error) {
 
+        console.error(`Error updating reservation: ${error.message}`);
+        throw new Error('Failed to update reservation');
+    }
+};
+
+/**
+ * Finds and updates a reservation by its reservationId.
+ * 
+ * @param {string} reservationId -*EventID* The unique identifier of the reservation to be updated.
+ * @param {Object} updateFields - An object containing the fields to be updated with their new values.
+ * @returns {Promise<Object>} The updated reservation object if found and successfully updated.
+ * @throws {Error} If the reservation is not found or if an error occurs during the update process.
+ */
+const findAndUpdateReservationByReservationId = async (eventId, updateFields) => {
+    try {
+
+        const updateObject = {};
+        for (const key in updateFields) {
+            if (updateFields.hasOwnProperty(key)) {
+                updateObject[key] = updateFields[key];
+            }
+        }
+        const updatedReservation = await Reservation.findOneAndUpdate(
+            { eventId: eventId },
+            updateObject,
+            { new: true }
+        );
+
+        if (!updatedReservation) {
+            throw new Error('Reservation not found');
+        }
+
+        return updatedReservation;
+    } catch (error) {
         console.error(`Error updating reservation: ${error.message}`);
         throw new Error('Failed to update reservation');
     }
@@ -180,5 +208,6 @@ module.exports = {
     findReservationsByCompanyId,
     findReservationByReservationId,
     findAndDeleteReservation,
+    findAndUpdateReservationByEventId,
     findAndUpdateReservationByReservationId
 }
