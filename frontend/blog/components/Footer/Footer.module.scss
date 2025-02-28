@@ -1,0 +1,97 @@
+//colors
+$white-color:#fff;
+$primary-color:#48AD7E;
+$darker-primary-color:#2D6A4F;
+$black-color: #081C15;
+$light-primary:#99D6B5;
+$yellow-color:#B69121;
+$gray: #6b6b6b;
+$text-color: #ebebeb;
+$text-color-headers: #444;
+$header-color: rgba(15, 23, 39, 0.85);
+$text-color-light: rgba(15, 23, 39, 0.45);
+$small-screen:768px;
+
+.footer {
+    width: 100%;
+    color: $text-color-light;
+    margin-top: 3rem;
+    
+  
+
+  h2{
+    color: $header-color;
+  }
+
+    hr {
+      margin: 0 10%;
+      border: 0;
+      border-top: 1px solid $text-color-light;
+    }
+  
+    .content {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap; /* Omogućava prelamanje */
+      padding: 20px 0;
+      align-items: center;
+      
+  
+      .footer-section {
+        max-width: 20%;
+        min-width: 250px; /* Minimalna širina za bolje prilagođavanje */
+        margin: 10px 0;
+        text-align: center;
+  
+        img {
+          max-width: 200px;
+          margin-bottom: 10px;
+          height: 90px;
+          object-fit: contain;
+        }
+  
+        p {
+          margin-bottom: 15px;
+        }
+  
+        .links {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+  
+          a {
+            color: $text-color-light;
+            text-decoration: none;
+  
+            &:hover {
+              color: $primary-color; 
+            }
+          }
+        }
+      }
+    }
+  
+    @media (max-width: 960px) {
+      .content {
+        flex-direction: column;
+        align-items: center;
+        img {
+            width: 230px;
+            display: block; /* Uklanja inline padding/margine slike */
+            margin: 0 auto; /* Centriranje slike horizontalno */
+
+          }
+      }
+  
+      .footer-section {
+        max-width: 100%;
+
+        
+      }
+  
+      hr {
+        margin: 20px 10%;
+      }
+    }
+  }

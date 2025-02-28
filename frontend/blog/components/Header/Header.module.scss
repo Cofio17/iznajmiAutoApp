@@ -1,0 +1,59 @@
+//colors
+$white-color:#fff;
+$primary-color:#48AD7E;
+$darker-primary-color:#2D6A4F;
+$black-color: #081C15;
+$light-primary:#99D6B5;
+$yellow-color:#B69121;
+$gray: #6b6b6b;
+$text-color: #ebebeb;
+$text-color-headers: #444;
+$header-color: rgba(15, 23, 39, 0.85);
+$text-color-light: rgba(15, 23, 39, 0.45);
+$small-screen:768px;
+
+.header{
+    display: flex;
+    max-width: 950px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5%;
+    height: 70px;
+    width: 900px;
+    
+
+    @media (max-width: $small-screen) {
+        width: unset;
+    }
+
+.navlist{
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    justify-content: space-between;
+    @media (max-width: 768px) {
+        display: none !important; // Sakrij desktop navigaciju na manjim ekranima
+    }
+
+}
+
+.listitem{
+    color: $text-color-headers;
+    font-weight: 600;
+    &:hover{
+        color: $primary-color;
+    }
+}
+
+.logo{
+    object-fit: contain;
+
+    @media (max-width: 768px) {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+}
+}
+  
