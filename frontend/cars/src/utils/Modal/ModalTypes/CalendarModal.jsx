@@ -65,10 +65,19 @@ export default function CalendarModal({ handleClose, calendarId, eventId, email,
             start: createDate(selectedDate[0], selectedTimes.startHours),
             end: createDate(selectedDate[1], selectedTimes.endHours)
         }
+
+        const updatedPersonData = {
+            ...personData,
+            priceTotal: priceTotal
+        };
+
+        console.log(updatedPersonData);
+
+
         const emailContent = {
             to: personData.email,
             subject: "Uspešno pomeranje rezervacije!",
-            html: generateUpdateReservationEmail(name, personData, newDates)
+            html: generateUpdateReservationEmail(name, updatedPersonData, newDates)
         }
 
         try {
