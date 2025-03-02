@@ -13,7 +13,7 @@ import ReservationDetails from './Pages/MyReservation/ReservationDetails.jsx'
 import AboutUs from './Pages/AboutUs.jsx'
 import DashBoard from './Pages/Dashboard.jsx'
 import policyRoutes from './Routes/PolicyRoutes.jsx'
-import BlogDefault from './Pages/Blog/BlogDefault.jsx'
+
 
 //Context API
 import { SearchProvider } from './Contexts/SearchContext.jsx'
@@ -84,10 +84,6 @@ const router = createBrowserRouter([
 
     }
     ]
-  },
-  {
-    path: '/blog',
-    element: <BlogDefault />
   },
 
   ...policyRoutes,

@@ -1,12 +1,11 @@
-// PostPreview.jsx
 import Link from 'next/link';
 import styles from './PostPreview.module.scss';
 
 export default function PostPreview({ slug, date, title, tags, desc }) {
-
     return (
         <article className={styles.postOverview}>
-            <Link href={`/blog/${slug}`} className={styles.title}>
+            {/* Popravljeno - koristi /blog/ */}
+            <Link href={`/${slug}/`} className={styles.title}>
                 {title}
             </Link>
 
@@ -20,8 +19,8 @@ export default function PostPreview({ slug, date, title, tags, desc }) {
             </div>
             <p className={styles.description}>{desc}</p>
 
+            {/* Popravljeno - koristi /blog/ */}
             <Link className={styles.link} href={`/blog/${slug}`}>Pročitajte više →</Link>
-
         </article>
     );
 }

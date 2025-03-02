@@ -15,7 +15,7 @@ export default function BurgerMenu() {
             <Link href="/blog" className="menu-item" onClick={closeMenu}>
                 Blog
             </Link>
-            <Link href="https://iznajmi.me" className="menu-item" onClick={closeMenu}>
+            <Link href="/" className="menu-item" onClick={closeMenu}>
                 Rent a Car
             </Link>
 

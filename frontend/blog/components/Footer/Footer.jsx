@@ -37,7 +37,7 @@ export default function Footer() {
             <hr />
             <div className={styles.content}>
                 <div className={styles['footer-section']} >
-                    <img src={sectionLogo.image} alt="logo 300x50" />
+                    <img src='/logo.png' alt="logo 300x50" />
                     <p>
                         {sectionLogo.content}
                         <a href={`mailto:${email}`}>{email}</a>

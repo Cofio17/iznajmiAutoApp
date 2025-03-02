@@ -6,7 +6,7 @@ export default function Header() {
 
     return (
         <header className={styles.header}>
-            <Image
+            <img
                 src='/logo.png'
                 alt="logo"
                 width={170}
@@ -16,8 +16,8 @@ export default function Header() {
             />
             <nav>
                 <ul className={styles.navlist}>
-                    <ListItem to={'https:/iznajmi.me'} text={'Rent a Car'} />
-                    <ListItem to={'/blog'} text={'Blog'} />
+                    <ListItem to={'https://iznajmi.me/'} text={'Rent a Car'} />
+                    <ListItem to={'https://iznajmi.me/blog/'} text={'Blog'} />
                 </ul>
                 <BurgerMenu />
             </nav>

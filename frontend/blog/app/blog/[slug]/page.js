@@ -3,7 +3,7 @@ import { getPostData, getSortedPostsData } from "@/lib/posts";
 export default async function BlogPost({ params }) {
 
     // Učitajte podatke o postu na osnovu sluga
-    const slug = await params?.slug;
+    const { slug } = await params;
 
 
     const post = await getPostData(slug)

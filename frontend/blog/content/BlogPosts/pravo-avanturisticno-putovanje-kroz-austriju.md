@@ -2,7 +2,7 @@
 title: "Avanturističko Putovanje kroz Austriju: Vodič za Muškarce 🍻"
 date: "2025-03-20"
 desc: "Austrija je zemlja bogate istorije, zadivljujuće prirode i kulturnih znamenitosti. Za muškarce uzrasta od 25 do 40 godina koji planiraju dinamično putovanje, iznajmljivanje automobila preko iznajmi.me pruža slobodu i fleksibilnost da istraže sve što Austrija nudi."
-slug: "avanturisticno-putovanje-kroz-austriju"
+slug: "pravo-avanturisticno-putovanje-kroz-austriju"
 tags: ["Austrija", "Putovanja", "Iznajmljivanje", "Avantura", "Pivo", "Alpi"]
 ---
 
