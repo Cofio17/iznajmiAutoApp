@@ -1,6 +1,10 @@
-
-import { redirect } from 'next/navigation';
+import BlogPostLayout from "@/layouts/BlogPostLayout";
+import { getSortedPostsData } from "@/lib/posts";
 
 export default function Home() {
-    redirect('/blog');
+    const posts = getSortedPostsData();
+
+    return (
+        <BlogPostLayout posts={posts} />
+    );
 }

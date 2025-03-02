@@ -20,7 +20,7 @@ export default function PostPreview({ slug, date, title, tags, desc }) {
             <p className={styles.description}>{desc}</p>
 
             {/* Popravljeno - koristi /blog/ */}
-            <Link className={styles.link} href={`/blog/${slug}`}>Pročitajte više →</Link>
+            <Link className={styles.link} href={`/${slug}`}>Pročitajte više →</Link>
         </article>
     );
 }

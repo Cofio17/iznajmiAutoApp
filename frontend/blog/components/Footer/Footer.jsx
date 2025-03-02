@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from './Footer.module.scss'
+import Image from "next/image";
 export default function Footer() {
 
     const email = "info@iznajmi.me";
@@ -37,7 +38,7 @@ export default function Footer() {
             <hr />
             <div className={styles.content}>
                 <div className={styles['footer-section']} >
-                    <img src='/logo.png' alt="logo 300x50" />
+                    <img src='/blog/logo.png' alt="logo 300x50" />
                     <p>
                         {sectionLogo.content}
                         <a href={`mailto:${email}`}>{email}</a>

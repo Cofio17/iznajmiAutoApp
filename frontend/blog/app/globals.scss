@@ -71,10 +71,17 @@ a {
       font-size: 2.5rem;
       color: $header-color;
       text-transform: uppercase;
+
     }
     p{
       color: $text-color-light;
     }
+
+    @media (max-width: 768px) {
+      h1{
+        font-size: 2.2rem;
+      }
+   }
   }
 }
 
@@ -95,7 +102,8 @@ p{
     text-align: justify;
 
     @media (max-width: 768px) {
-      text-align: left;
+      text-align: justify;
+      word-spacing: unset;
    }
     
   }
@@ -104,6 +112,11 @@ p{
     color: $header-color;
     margin-bottom: 1rem;
     text-transform: uppercase;
+
+    @media (max-width: 768px) {
+      font-size: 1.2rem;
+      text-align: center;
+   }
    
   }
 
