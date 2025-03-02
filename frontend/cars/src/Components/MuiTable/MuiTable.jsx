@@ -137,8 +137,8 @@ const MuiTable = ({ reservations, setReservations }) => {
                     {reservations.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((reservation) => (
                         <TableRow onClick={checkClickedRow} key={reservation._id}>
                             <TableCell className="row">  <div className="menu-long"><LongMenu options={options} /></div> {reservation.reservationId}</TableCell>
-                            <TableCell>{dayjs(reservation.startDate).format("DD/MM/YYYY HH:ss")}</TableCell>
-                            <TableCell>{dayjs(reservation.endDate).format("DD/MM/YYYY HH:ss")}</TableCell>
+                            <TableCell>{dayjs(reservation.startDate).format("DD/MM/YYYY HH:mm")}</TableCell>
+                            <TableCell>{dayjs(reservation.endDate).format("DD/MM/YYYY HH:mm")}</TableCell>
                             <TableCell>{reservation.licensePlate}</TableCell>
                             <TableCell>{reservation.brand} {reservation.model}</TableCell>
                             <TableCell>{reservation.buyer}</TableCell>
