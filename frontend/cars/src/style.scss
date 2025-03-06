@@ -320,8 +320,15 @@ h2{
     width: 100%;
     height: 100%;
     object-fit: cover; 
-    
 }
+
+//Remove text from dom
+.section-container:nth-of-type(2) {
+    p:first-child {
+        display: none;
+    }
+}
+
 
 .text-overlay {
     position: absolute;
