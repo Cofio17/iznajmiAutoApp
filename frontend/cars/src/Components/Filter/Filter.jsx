@@ -5,52 +5,59 @@ import countMatchingValues from "./countMatchingValues";
 import { useLocation } from "react-router-dom";
 import './filter.scss'
 import PriceSlider from "./Slider";
-import { useState } from "react";
 
+const transmissionMap = {
+  "Automatski": "Automatic",
+  "Manuelni": "Manual"
+};
 
+const displayMap = {
+  "Automatic": "Automatski",
+  "Manual": "Manuelni"
+};
 
+// NEW LINE: Added helper function to parse ranges for trunk capacity
+const isInRange = (rangeStr, value) => {
+  if (rangeStr === "5+") {
+    return value >= 5;
+  }
+  const [min, max] = rangeStr.split('-').map(Number);
+  return value >= min && value <= max;
+};
 
 export default function Filter() {
   const location = useLocation();
-  const [maxPrice, setMaxPrice] = useState(100);
+
   const {
     searchListData,
     setFilterListData,
     filtersContext,
-    setFiltersContext
+    setFiltersContext,
+    maxPrice,
+    setMaxPrice,
+    filterListData
   } = useContext(SearchContext);
 
   const filterGroups = [
     {
       legend: "Karoserija",
-      inputs: ["Limuzina", "HecBek", "Prikolica", "SUV", "Karavan"],
+      inputs: ["Limuzina", "Kompaktan", "Premium", "SUV", "Mini", "Porodičan"],
     },
     {
       legend: "Gepek",
-      inputs: [
-        '1',
-        '2',
-        '3',
-        '4',
-        '5',
-        '6'
-      ],
+      inputs: ['1-2', '3-4', '5+'],
     },
     {
       legend: "Prenos",
-      inputs: ["Automatic", "Manual"],
+      inputs: ["Automatski", "Manuelni"],
     },
   ];
 
-  /**
-    * Handles changes in filter checkboxes.
-    * @param {string} value - The label of the checkbox.
-    * @param {boolean} checked - Indicates whether the checkbox is checked or not.
-  */
   const onFilterChange = (value, checked) => {
+    const dbValue = transmissionMap[value] || value;
     const updatedFilters = checked
-      ? [...filtersContext, value] // Dodaj filter ako je selektovano
-      : filtersContext.filter((item) => item !== value); // Ukloni filter ako nije selektovano
+      ? [...filtersContext, dbValue]
+      : filtersContext.filter((item) => item !== dbValue);
 
     setFiltersContext(updatedFilters);
     updateList(updatedFilters);
@@ -59,7 +66,6 @@ export default function Filter() {
   const updateList = (updatedFilters) => {
     const numberOfTypes = countMatchingValues(filterGroups, updatedFilters, 0);
     const numberOfTypesTrunk = countMatchingValues(filterGroups, updatedFilters, 1);
-
 
     const filteredCars = searchListData.filter((car) => {
       return updatedFilters.every((filter) => {
@@ -70,12 +76,18 @@ export default function Filter() {
             return car.type === filter;
           }
         } else if (filterGroups[1].inputs.includes(filter)) {
+          // NEW LINE: Updated logic to use isInRange for trunk capacity filtering
           if (numberOfTypesTrunk > 1) {
-            return updatedFilters.some((typeFilter) => parseInt(typeFilter) === car.trunkCapacity);
+            // NEW LINE: Added range checking for multiple trunk selections
+            return updatedFilters.some((typeFilter) =>
+              filterGroups[1].inputs.includes(typeFilter) &&
+              isInRange(typeFilter, car.trunkCapacity)
+            );
           } else {
-            return car.trunkCapacity === parseInt(filter);
+            // NEW LINE: Single trunk filter now uses range checking
+            return isInRange(filter, car.trunkCapacity);
           }
-        } else if (filterGroups[2].inputs.includes(filter)) {
+        } else if (Object.values(transmissionMap).includes(filter)) {
           return car.transmission === filter;
         }
         return true;
@@ -83,8 +95,6 @@ export default function Filter() {
     });
 
     setFilterListData(filteredCars);
-
-
   };
 
   useEffect(() => {
@@ -98,11 +108,9 @@ export default function Filter() {
     }
   }, [location.search]);
 
-  //price change
   useEffect(() => {
-
-    updateList(filtersContext)
-  }, [maxPrice])
+    updateList(filtersContext);
+  }, [maxPrice]);
 
   return (
     <div className="filters-container-wrapper">
@@ -113,12 +121,12 @@ export default function Filter() {
             key={index}
             group={group}
             onFilterChange={onFilterChange}
-            selectedFilters={filtersContext}
+            selectedFilters={filtersContext.map(filter =>
+              displayMap[filter] || filter
+            )}
           />
         ))}
-
       </div>
     </div>
-
   );
 }

@@ -66,13 +66,11 @@ export default function CalendarModal({ handleClose, calendarId, eventId, email,
             end: createDate(selectedDate[1], selectedTimes.endHours)
         }
 
+        //update price
         const updatedPersonData = {
             ...personData,
             priceTotal: priceTotal
         };
-
-        console.log(updatedPersonData);
-
 
         const emailContent = {
             to: personData.email,

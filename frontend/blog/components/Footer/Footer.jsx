@@ -1,6 +1,5 @@
 import Link from "next/link";
 import styles from './Footer.module.scss'
-import Image from "next/image";
 export default function Footer() {
 
     const email = "info@iznajmi.me";

@@ -40,11 +40,13 @@ export default function Search() {
     //search params for cities
     const searchParams = new URLSearchParams(location.search);
     const [city, setCity] = useState(null);
-    const { loading, setLoading, setSearchListData, setFilterListData, setFiltersContext, setHasSearched } = useContext(SearchContext);
+    const { loading, setLoading, setSearchListData, setFilterListData, setFiltersContext, setHasSearched, setMaxPrice } = useContext(SearchContext);
 
     const resetFilters = () => {
+        setMaxPrice(200);
         setFilterListData([]);
         setFiltersContext([]);
+
     }
 
     useEffect(() => {

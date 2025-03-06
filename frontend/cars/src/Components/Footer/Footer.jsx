@@ -33,7 +33,6 @@ export default function Footer({ onClick }) {
             header: "Uslovi Veb Stranice",
             links: [
                 { text: "Uslovi rezervacije", url: "/uslovi-rezervacije" },
-                { text: "Uslovi registracije", url: "/uslovi-registracije" },
                 { text: "Uslovi plaćanja", url: "/uslovi-placanja" },
                 { text: "Odgovornost veb stranice", url: "/odgovornost" }
             ]
@@ -64,7 +63,7 @@ export default function Footer({ onClick }) {
                             }}
                             id="login"
                         >
-                            {isAuthenticated ? ' Profil' : 'Login'}
+                            {isAuthenticated ? ' Portal' : 'Login'}
                         </motion.button>
                     </div>
 

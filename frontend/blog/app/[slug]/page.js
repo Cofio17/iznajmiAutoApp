@@ -19,6 +19,8 @@ export default async function BlogPost({ params }) {
             <div className="header-title">
                 <p>{post.date}</p>
                 <h1>{post.title}</h1>
+                <img className="blog-image" src={`https://storage.googleapis.com/iznajmimeprobabucket/blog/${slug}.webp`} alt="blog image" />
+
             </div>
 
             <div className="markdown-content" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />

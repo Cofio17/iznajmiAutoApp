@@ -14,7 +14,6 @@ app.use(cors({
     origin: ["http://localhost:5173", "https://iznajmi.me", "https://www.iznajmi.me", "http://192.168.0.17:5173", "http://192.168.1.90:5173"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-    sameSite: "none"
 }));
 
 

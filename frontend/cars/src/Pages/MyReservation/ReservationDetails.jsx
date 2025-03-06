@@ -46,7 +46,7 @@ export default function ReservationDetails() {
         const totalDays = calculateTotalDaysBasedOnHours(hoursInPeriod(dayjs(), dayjs(data.startDate)));
 
         if (data.startDate) {
-            if (totalDays <= 7) {
+            if (totalDays <= 3) {
                 setIsRestrictedPeriod(true);
             }
             else {

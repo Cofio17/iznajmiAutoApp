@@ -10,14 +10,17 @@ $darker-primary-color:#2D6A4F;
       width: 300px;
 
       //za scroll unutar sidebar
-      max-height: 60vh; // Ograniči visinu u odnosu na viewport
-      min-height: 400px; // Osigurava da ne bude premalo
+      max-height: 30vh; // Ograniči visinu u odnosu na viewport
+      min-height: 350px; // Osigurava da ne bude premalo
       overflow-y: auto; // Omogućava unutrašnje skrolovanje
-      padding-top: 200px; // Umesto negativne vrednosti u `calc()`
+      padding-top: 250px; // Umesto negativne vrednosti u `calc()`
+
+    
       &::-webkit-scrollbar {
         display: none !important;
      }
      
+
 
       @media screen and (max-width: 768px) {
       

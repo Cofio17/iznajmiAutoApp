@@ -34,7 +34,8 @@ export default function LongMenu({ options }) {
                 aria-expanded={open ? 'true' : undefined}
                 aria-haspopup="true"
                 onClick={handleClick}
-                style={{ cursor: 'pointer' }}
+                style={{ cursor: 'pointer', height: '20px' }}
+
             />
 
             <Menu
@@ -48,8 +49,8 @@ export default function LongMenu({ options }) {
                 slotProps={{
                     paper: {
                         style: {
-                            maxHeight: ITEM_HEIGHT * 4.5,
-                            width: '20ch',
+                            maxHeight: ITEM_HEIGHT * 7.5,
+                            width: '30ch',
                         },
                     },
                 }}

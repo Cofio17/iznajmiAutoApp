@@ -6,7 +6,7 @@ import LoadingCircle from "../utils/LoadingCircle/LoadingCircle";
 import CarList from "../Components/CarList/CarList";
 import Sidebar from "../Components/Sidebar/Sidebar";
 import Filter from "../Components/Filter/Filter";
-import { useLoaderData, useLocation } from "react-router-dom";
+import { useLoaderData, useLocation } from "react-router-dom"; // Add useLocation
 import Layout from "../Components/Layout/Layout";
 
 function App() {
@@ -15,27 +15,47 @@ function App() {
     setSearchListData,
     searchListData,
     filterListData,
+    setFilterListData,
     filtersContext,
-    hasSearched
+    setFiltersContext, // Add this to update filters
+    hasSearched,
+    maxPrice,
   } = useContext(SearchContext);
   const carsData = useLoaderData();
-  const [initialLoad, setInitialLoad] = useState(true); // Track initial load
-  const location = useLocation();
+  const location = useLocation(); // To read URL parameters
+  const [initialLoad, setInitialLoad] = useState(true);
 
-
-  const header = 'Pronadji Idealan Auto';
+  const header = "Pronadji Idealan Auto";
 
   useEffect(() => {
     document.title = "Izaberite Vas Auto";
 
-    // Only set the initial data if searchListData is empty and it's the initial load
-    if (!hasSearched && searchListData.length === 0) {
+    // Parse URL parameters
+    const searchParams = new URLSearchParams(location.search);
+    const carType = searchParams.get("tip");
+
+    if (initialLoad && !hasSearched) {
       setSearchListData(carsData);
+
+      // If there's a car type in the URL, apply it as a filter
+      if (carType) {
+        const filteredByType = carsData.filter((car) => car.type === carType);
+        setFilterListData(filteredByType);
+        setFiltersContext([carType]); // Use string array
+      }
+      setInitialLoad(false);
     }
-  }, [carsData, setSearchListData, searchListData, initialLoad]);
+  }, [
+    carsData,
+    setSearchListData,
+    setFilterListData,
+    setFiltersContext,
+    location.search,
+    initialLoad,
+    hasSearched,
+  ]);
 
   useEffect(() => {
-    // Save searchListData to localStorage whenever it changes
     if (searchListData.length > 0) {
       localStorage.setItem("searchListData", JSON.stringify(searchListData));
     }

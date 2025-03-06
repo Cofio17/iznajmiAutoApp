@@ -18,26 +18,26 @@ export default function CarInfo({ carData, header }) {
             <div className="content">
                 <div className='content-data'>
 
-                    <p className='flex-text-icon'> <img className='icon' src={shiftIcon} alt="icon " /> <b>Prenos:</b><span> {carData.transmission}</span></p>
+                    <p className='flex-text-icon'> <img className='icon' src={shiftIcon} alt="icon " /> <b>Prenos :&nbsp;</b><span> {carData.transmission}</span></p>
                     <hr className='info-divider' />
 
-                    <p className='flex-text-icon'> <img className='icon' src={benzinIcon} alt="icon " /><b>Gorivo:</b><span>{carData.fuelType}</span></p>
+                    <p className='flex-text-icon'> <img className='icon' src={benzinIcon} alt="icon " /><b>Gorivo :&nbsp;</b><span>{carData.fuelType}</span></p>
                     <hr className='info-divider' />
 
-                    <p className='flex-text-icon'> <img className='icon' src={groupIcon} alt="icon " /><b>Broj Putnika:</b><span>{carData.seats}</span></p>
+                    <p className='flex-text-icon'> <img className='icon' src={groupIcon} alt="icon " /><b>Broj Putnika :&nbsp;</b><span>{carData.seats}</span></p>
                     <hr className='info-divider' />
 
                 </div>
 
                 <div className='content-data'>
 
-                    <p className='flex-text-icon'> <img className='icon' src={engineIcon} alt="icon " /><b>Snaga:</b><span>{carData.enginePower || "80"}kWh</span></p>
+                    <p className='flex-text-icon'> <img className='icon' src={engineIcon} alt="icon " /><b>Snaga :&nbsp;</b><span>{carData.enginePower || "80"}kWh</span></p>
                     <hr className='info-divider' />
 
-                    <p className='flex-text-icon'><img className='icon' src={doorIcon} alt="icon " /><b>Broj Vrata:</b><span> {carData.doors}</span></p>
+                    <p className='flex-text-icon'><img className='icon' src={doorIcon} alt="icon " /><b>Broj Vrata :&nbsp;</b><span> {carData.doors}</span></p>
                     <hr className='info-divider' />
 
-                    <p className='flex-text-icon'><img className='icon' src={trunkIcon} alt="icon " /><b>Prtljažni prostor:</b><span> {carData.trunkCapacity || 4} <FontAwesomeIcon color='#2D6A4F' icon={faSuitcaseRolling} /></span></p>
+                    <p className='flex-text-icon'><img className='icon' src={trunkIcon} alt="icon " /><b>Prtljažni prostor :&nbsp;</b><span> {carData.trunkCapacity || 4} <FontAwesomeIcon color='#2D6A4F' icon={faSuitcaseRolling} /></span></p>
                     <hr className='info-divider' />
 
                 </div>

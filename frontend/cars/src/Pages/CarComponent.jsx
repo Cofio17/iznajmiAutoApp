@@ -127,7 +127,7 @@ export default function Car() {
 
                         <TimePickerManager onTimesChange={handleTimesChange} />
 
-                        <button id='to-reservation-page' className='button' onClick={handleNavigate}><Link>Dalje</Link></button>
+                        <button id='to-reservation-page' className='button' onClick={handleNavigate}><Link>Rezerviši</Link></button>
                         {priceTotal && <span style={{ fontWeight: 'bold', fontSize: 18, color: "#444" }}>Cena za izabrani period: {priceTotal}€ </span>}
                     </div>
                 </div>

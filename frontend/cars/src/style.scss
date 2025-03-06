@@ -236,6 +236,7 @@ header {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    
 }
 
 .section-container-item{
@@ -282,11 +283,11 @@ h2{
 .section-container-image {
     position: relative;
     cursor: pointer;
-    width: 330px;
-    height: 330px; 
+    width: 380px;
+    height: 380px; 
     overflow: hidden;
     border-radius: 15px;
-    margin: 1rem;
+    margin: 1.5rem;
     transition: all 0.3s ease;
     &:hover{
         transform: scale(1.05);
@@ -305,7 +306,13 @@ h2{
         background-color: rgba(0, 0, 0, 0.3); /* Zatamnjivanje sa 40% crne boje */
         z-index: 1; /* Overlay će biti iznad slike */
     }
-   
+
+    @media screen and (max-width:768px) {
+        &{
+            width: 330px;
+            height: 330px; 
+        }
+       }
 }
 
 
@@ -467,6 +474,7 @@ h2 span{
         align-items: center;
         .content{
             justify-content: center;
+            align-items: center;
             
         }
     } 
@@ -594,7 +602,7 @@ text-align: center;
             }
         }
         .search-bar-icon::before{
-            content: 'Search';
+            content: 'Pretraži';
             text-align: center;
             margin: 0 auto;
             
@@ -725,6 +733,10 @@ text-align: center;
     justify-self: center;
     align-self: center;
 
+    @media screen and (max-width:1300px) {
+       gap: 1em;
+       }
+
    @media screen and (max-width:768px) {
     padding: 0;
     align-items: center;
@@ -734,8 +746,8 @@ text-align: center;
 
 .car-card{
     @include flex-row();
-    max-width: 270px;
-    height: 350px;
+    max-width: 270px; //270
+    height: 350px; //350
     @extend %box-shadow;
     border-radius: 30px;
     align-items: center;
@@ -905,6 +917,8 @@ text-align: center;
       justify-content: space-around;
       flex-wrap: wrap; /* Omogućava prelamanje */
       padding: 20px 0;
+      align-items: center;
+    
       
   
       .footer-section {
@@ -1020,9 +1034,13 @@ text-align: center;
     // justify-content: space-between;
     margin-top: 70px;
 
+    .css-hu7tqv-MuiPaper-root-MuiAlert-root {
+        margin:  0 25%;
+    }
+
   
 
-    @media screen and (max-width:768px) {
+    @media screen and (max-width:804px) {
         flex-direction: column;
         place-items: center; //dodato
        
@@ -1144,6 +1162,11 @@ p{
 }
 }
 
+.footer-gap{
+    margin-bottom: 150px !important;
+}
+
+
 
 .dashboard{
     display: flex;
@@ -1165,6 +1188,13 @@ p{
 .flex-text-icon{
     display: flex;
     align-items: center;
+    @media screen and (max-width:$small-screen) {
+        font-size: 13px;
+        justify-self: center;
+        align-self: center;
+           
+       }
+   
 }
 
    
@@ -1203,7 +1233,12 @@ p{
 .menu-long{
     position: absolute;
     left: 2%;
+    
    
+}
+
+#agency-name{
+    color: $darker-primary-color !important;
 }
   
 

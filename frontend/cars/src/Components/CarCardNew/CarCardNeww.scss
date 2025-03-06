@@ -12,10 +12,25 @@
     flex-direction: column; /* Kartica je flex container */
     height: 100%; /* Popuni dostupnu visinu */
 
+
+  @media screen and (max-width:1750px) {
+    width: 350px;
+    }
+
+    @media screen and (max-width:1460px) {
+      max-width: 300px;
+     
+  }
+
+  @media screen and (min-width: 1070px) and (max-width: 1280px) {
+    /* Stilovi unutar ovog bloka će se primeniti kada je širina ekrana između 1070px i 1450px */
+  }
+  
     @media screen and (max-width:768px) {
         max-width: 350px;
        
     }
+ 
   }
   
   .card_new:hover {
@@ -125,8 +140,15 @@
     transition: background-color 0.3s ease, transform 0.3s ease;
     cursor: pointer;
 
+    @media screen and (max-width:1440px) {
+      font-size: 0.7em;
+      padding: 5px 8px;
+      gap: 5px;
+  }
+
     @media screen and (max-width:768px) {
         font-size: 0.7em;
+        padding: 8px 12px;
     }
 
   }

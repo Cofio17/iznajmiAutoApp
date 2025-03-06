@@ -38,8 +38,9 @@ export default function Header({ onClick }) {
                             clearTimeout(timer);
                             setActiveDropDown(true);
                         }}>
-                            <NavLink onClick={() => { handleRefresh('/rent-a-car') }} aria-haspopup={true} to='/rent-a-car' >Rent a Car </NavLink>
-                            <DropDownMenu isActive={activeDropDown} /></li>
+                            <NavLink onClick={() => { handleRefresh('/rent-a-car') }} to='/rent-a-car' >Rent a Car </NavLink>
+                            {/* <DropDownMenu isActive={activeDropDown} /> */}
+                        </li>
                         <li><NavLink to='/about_us' >O nama</NavLink></li>
                     </div>
 

@@ -141,7 +141,7 @@ const MuiTable = ({ reservations, setReservations }) => {
                             <TableCell>{dayjs(reservation.endDate).format("DD/MM/YYYY HH:mm")}</TableCell>
                             <TableCell>{reservation.licensePlate}</TableCell>
                             <TableCell>{reservation.brand} {reservation.model}</TableCell>
-                            <TableCell>{reservation.buyer}</TableCell>
+                            <TableCell sx={{ paddingRight: '30px' }}>{reservation.buyer}</TableCell>
                             <TableCell>{reservation.email}</TableCell>
                             <TableCell>{reservation.priceTotal} €</TableCell>
 
@@ -157,6 +157,7 @@ const MuiTable = ({ reservations, setReservations }) => {
                 page={page}
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
+                labelRowsPerPage='Broj redova na stranici'
             />
         </TableContainer>
     );

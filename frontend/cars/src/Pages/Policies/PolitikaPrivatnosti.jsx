@@ -27,7 +27,7 @@ export default function PolitikaPrivatnosti() {
 
                 <h2>Promena politike privatnosti</h2>
                 <p>
-                    Mi se zadržavamo pravo da promenimo ovu politiku privatnosti u bilo kom trenutku. Ukoliko promenimo našu politiku privatnosti, mi ćemo objaviti promene na ovom sajtu i informisati korisnike o promenama. Korisnici su odgovorni da redovno proveravaju ovu politiku privatnosti kako bi bili obavešteni o svim promenama.
+                    Mi zadržavamo pravo da promenimo ovu politiku privatnosti u bilo kom trenutku.
                 </p>
 
                 <h2>Pitanja i komentari</h2>
@@ -37,7 +37,7 @@ export default function PolitikaPrivatnosti() {
 
                 <h2>Pristup i ažuriranje informacija</h2>
                 <p>
-                    Korisnici imaju pravo da pristupe i ažuriraju svoje informacije koje su nam dostavljene prilikom korišćenja sajta. Korisnici mogu pristupiti i ažurirati svoje informacije preko svog korisničkog naloga na sajtu ili kontaktiranjem putem e-pošte ili telefona koji su navedeni na sajtu.
+                    Korisnici mogu pristupiti i ažurirati svoje informacije kontaktiranjem putem e-pošte ili telefona koji su navedeni na sajtu.
                 </p>
 
                 <h2>Odricanje od odgovornosti</h2>

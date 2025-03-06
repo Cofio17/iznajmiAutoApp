@@ -41,16 +41,37 @@ $small-screen:768px;
     display: flex;
     width: clamp(300px, 40%, 400px);
     height: min(50%,500px);
+
+    @media screen and (max-height:960px) {
+        justify-content: center !important;
+        height: min(80%,600px);
+
+        form{
+            align-items: center;
+            justify-content: center;
+        }
+
+    }
+
+    @media screen and (max-height:600px) {
+        height: min(50%,500px) ;
+
+    }
 }
 
 .cancel-reservation{
     display: flex;
     width: clamp(300px, 40%, 400px);
     height: min(33%,500px);
-
+  
     .buttons{
         display: flex;
         justify-content: center;
+        margin-top: 10px;
+    }
+
+    h3{
+        margin-bottom: 10px;
     }
 }
 
@@ -92,15 +113,18 @@ $small-screen:768px;
     }
 
     @media screen and (max-width:768px) {
-        max-height: 95% !important;
+        max-height: 100% !important;
         height: auto;
+        position: absolute;
+        top: 0;
+        height: clamp(100px, 800px,100%);
 
-       
         .buttons{
             font-size: 10px;
 
             button{
-                margin-top: 0;
+                margin-top: 10px;
+                padding: 15px;
             }
         }
     }
@@ -220,13 +244,13 @@ button{
     color: #fff;
     background-color: #d41f16;
     width: 130px;
-    font-size: 12px;
+    font-size: 14px;
     height: 60px;
 }
 #second-thought-button{
     background-color: $primary-color !important;
     width: 130px;
-    font-size: 12px;
+    font-size: 15px;
     height: 60px;
 }
 

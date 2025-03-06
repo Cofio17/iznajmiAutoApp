@@ -32,6 +32,18 @@ body {
   overflow-x: hidden;
 }
 
+.blog-image {
+  width: 100%;              /* Slika zauzima punu širinu kontejnera */
+  max-width: 1200px;        /* Ograničava maksimalnu širinu za veće ekrane */
+  height: auto;             /* Visina se automatski prilagođava da očuva proporcije */
+  max-height: 600px;        /* Ograničava maksimalnu visinu */
+  object-fit: cover;        /* Osigurava da slika popuni prostor bez izobličenja */
+  display: block;           /* Uklanja nepotrebne margine ispod slike */
+  margin: 0 auto;           /* Centrira sliku horizontalno */
+  border-radius: 8px;       /* Dodaje blagi zaobljeni ugao za estetiku (opciono) */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Dodaje suptilnu senku (opciono) */
+}
+
 body {
   color: var(--foreground);
   background: var(--background);

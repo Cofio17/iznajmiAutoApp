@@ -78,7 +78,7 @@ export default function CancelReservation({ handleClose, calendarId, eventId, em
                                 Ne želim, predomislio sam se
                             </Button> */}
                             <MotionButton text={loading ? "Otkazivanje..." : "Da, otkazujem"} id='cancel-button' onClick={cancelAReservation} disabled={loading} />
-                            <MotionButton text={"Ne želim, predomislio sam se"} id='second-thought-button' onClick={handleClose} disabled={loading} />
+                            <MotionButton text={"Ne želim"} id='second-thought-button' onClick={handleClose} disabled={loading} />
 
                         </div>
                     </div>

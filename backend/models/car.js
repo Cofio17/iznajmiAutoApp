@@ -24,8 +24,10 @@ const carSchema = new Schema({
     categoryId: { type: Schema.Types.ObjectId, ref: 'Category' },
     calendarId: { type: String },
     images: { type: Schema.Types.Array, required: true },
-    gepek: { type: String, required: true }
+    trunkCapacity: { type: Number, required: true },
+    enginePower: { type: Number, required: true },
 });
 
 const Car = mongoose.model('Car', carSchema);
+
 module.exports = Car

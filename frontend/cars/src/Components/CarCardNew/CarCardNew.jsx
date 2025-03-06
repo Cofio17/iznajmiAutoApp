@@ -6,6 +6,8 @@ import petrolIcon from '../../assets/icons/benzin.png'
 import userIcon from '../../assets/icons/user.png'
 import doorIcon from '../../assets/icons/door.png'
 import electricIcon from '../../assets/icons/elektrican.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSuitcaseRolling } from "@fortawesome/free-solid-svg-icons";
 
 const CarCardNew = ({ carData }) => {
     return (
@@ -36,8 +38,8 @@ const CarCardNew = ({ carData }) => {
                         <span>{carData.seats}</span>
                     </div>
                     <div className="spec-item_new">
-                        <img src={doorIcon} alt="door icon" className="spec-icon_new" />
-                        <span>{carData.doors}</span>
+                        <FontAwesomeIcon className="font-awsome-icon" color="#2D6A4F" icon={faSuitcaseRolling} />
+                        <span>{carData.trunkCapacity || '1'}</span>
                     </div>
                 </div>
             </div>

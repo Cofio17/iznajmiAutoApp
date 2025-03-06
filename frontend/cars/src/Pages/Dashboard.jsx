@@ -69,8 +69,8 @@ export default function DashBoard() {
     return (
         <div className="dashboard">
 
-            <h1>Korisnički profil</h1>
-            <h2>{user.name}</h2>
+            <h1>Portal agencije</h1>
+            <h2 id="agency-name">{user.name}</h2>
             <p>Ukupno Objavljeno automobila: {totalCars}</p>
             <MuiTable reservations={reservations} setReservations={setReservations} />
 

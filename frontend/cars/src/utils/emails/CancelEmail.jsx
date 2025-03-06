@@ -28,8 +28,7 @@ export const CancelEmail = ({ name, personData
                     <Text style={styles.details}><strong>Vozilo:</strong> {personData.brand} {personData.model}</Text>
                     <Text style={styles.details}><strong>Bilo zakazano za:</strong>{dayjs(personData.startDate).format("DD/MM/YYYY")}-{dayjs(personData.endDate).format("DD/MM/YYYY")} </Text>
                     <Text style={styles.text}>
-                        Ako se predomislite ili vam zatreba vozilo u nekom drugom terminu, uvek smo tu za vas!
-                        Slobodno nam pišite ili nas pozovite.
+                        Razumemo da se planovi menjaju. Zato, ako se odlučite za novu rezervaciju, javite nam se što pre!
                     </Text>
                     <Text style={styles.footer}>Nadamo se da ćemo sarađivati nekom drugom prilikom!</Text>
                     <Text style={styles.company}>Iznajmi.me</Text>

@@ -11,9 +11,10 @@ export function SearchProvider({ children }) {
     const [filterListData, setFilterListData] = useState([]);
     const [filtersContext, setFiltersContext] = useState([]);
     const [hasSearched, setHasSearched] = useState(false);
+    const [maxPrice, setMaxPrice] = useState(200);
     return (
         // Provide the search data and its updater to child components
-        <SearchContext.Provider value={{ loading, setLoading, searchListData, setSearchListData, filterListData, setFilterListData, filtersContext, setFiltersContext, hasSearched, setHasSearched }}>
+        <SearchContext.Provider value={{ loading, setLoading, searchListData, setSearchListData, filterListData, setFilterListData, filtersContext, setFiltersContext, hasSearched, setHasSearched, maxPrice, setMaxPrice }}>
             {children}
         </SearchContext.Provider>
     )

@@ -121,6 +121,24 @@ justify-content: center;
     }
 }
 
+.find-reservation-container{
+
+    @media screen and (max-width:768px) {
+        
+        .react-calendar{
+            transform: scale(0.9); /* Smanji na 80% */
+         
+        }
+
+        .MuiAlert-root{
+            margin-top: -17px;
+            transform: scale(0.9); /* Smanji na 80% */
+
+        }
+    }
+  
+}
+
 
     
    
