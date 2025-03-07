@@ -6,7 +6,7 @@ import Head from "next/head";
 export const metadata = {
   title: "Iznajmi me Blog",
   description: "Pročitajte sve što Vas zanima o automobilima na jednom mestu",
-  icons: '/favicon.ico'
+  icons: '/blog/favicon.svg'
 };
 
 

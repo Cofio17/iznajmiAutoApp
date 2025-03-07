@@ -288,11 +288,11 @@ h2{
     overflow: hidden;
     border-radius: 15px;
     margin: 1.5rem;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     &:hover{
         transform: scale(1.05);
         .text-overlay{
-            color: $yellow-color !important;
+            color: $primary-color !important;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
         }
        

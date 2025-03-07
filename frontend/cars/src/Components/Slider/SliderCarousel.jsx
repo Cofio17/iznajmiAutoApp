@@ -53,7 +53,20 @@ export default function SliderCarousel() {
 
     const carTypes = [
         {
+            naziv: "Mini",
+            image: "https://storage.googleapis.com/iznajmimeprobabucket/carSlider/Auti/Set1/Limuzina-04.webp",
+        },
+        {
+            naziv: "Kompaktan",
+            image: "https://storage.googleapis.com/iznajmimeprobabucket/carSlider/Auti/Set1/Limuzina-03.webp",
+        },
+
+        {
             naziv: "SUV",
+            image: "https://storage.googleapis.com/iznajmimeprobabucket/carSlider/Auti/Set1/Limuzina-06.webp",
+        },
+        {
+            naziv: "Porodičan",
             image: "https://storage.googleapis.com/iznajmimeprobabucket/carSlider/Auti/Set1/Limuzina-05.webp",
         },
         {
@@ -61,21 +74,10 @@ export default function SliderCarousel() {
             image: "https://storage.googleapis.com/iznajmimeprobabucket/carSlider/Auti/Set1/Limuzina-01.webp",
         },
         {
-            naziv: "Kompaktan",
-            image: "https://storage.googleapis.com/iznajmimeprobabucket/carSlider/Auti/Set1/Limuzina-03.webp",
-        },
-        {
             naziv: "Premium",
             image: "https://storage.googleapis.com/iznajmimeprobabucket/carSlider/Auti/Set1/Limuzina-02.webp",
         },
-        {
-            naziv: "Porodican",
-            image: "https://storage.googleapis.com/iznajmimeprobabucket/carSlider/Auti/Set1/Limuzina-06.webp",
-        },
-        {
-            naziv: "Mini",
-            image: "https://storage.googleapis.com/iznajmimeprobabucket/carSlider/Auti/Set1/Limuzina-04.webp",
-        },
+
     ];
 
 

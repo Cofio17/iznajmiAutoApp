@@ -38,12 +38,12 @@ export default function AboutUs() {
     return (
         <Layout heroHeader={true} header={'O nama'}>
             <div className="about-us-container">
-                <p>
+                <p style={{ marginTop: '30px', marginBottom: '20px' }}>
                     Iznajmi.me is a platform with a goal to solve a simple problem, renting vehicles, we aim to streamline the entire process and make it much easier for everyone. By having every trusted agency on one platform, you don't have to search various questionable websites, trying to find a trustworthy car rental agency
 
                 </p>
 
-                <p style={{ marginTop: '20px', marginBottom: '20px' }}>
+                <p style={{ marginTop: '20px', marginBottom: '40px' }}>
                     Iznajmi.me je platforma osnovana da resi jedan jednostavan problem, širok i nesiguran izbor iznajmljivanja vozila, nas cilj jeste da olaksamo ceo proces za sve, tako sto okupljamo sve proverene i pouzdane agencije na jedno mesto, bez da pretrazujete nepoznate sajtove pokusavajuci da nadjete rent a car agenciju kojoj mozete verovati
                 </p>
                 {/* <div className="about-us">

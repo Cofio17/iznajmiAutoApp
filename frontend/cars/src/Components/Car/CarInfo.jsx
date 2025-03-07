@@ -6,9 +6,19 @@ import doorIcon from '../../assets/icons/door.png'
 import shiftIcon from '../../assets/icons/shift.png'
 import engineIcon from '../../assets/svgIcons/engine.svg'
 import trunkIcon from '../../assets/svgIcons/trunk.svg'
-import { faLocationDot, faSuitcaseRolling } from '@fortawesome/free-solid-svg-icons'
+import { faSuitcaseRolling } from '@fortawesome/free-solid-svg-icons'
+
 export default function CarInfo({ carData, header }) {
 
+    const mappedTrans = {
+        Automatic: "Automatski",
+        Manual: "Manuelni"
+    }
+
+    const mappedFuel = {
+        Diesel: "Dizel",
+        Petrol: "Benzin"
+    }
 
     return (
 
@@ -18,10 +28,10 @@ export default function CarInfo({ carData, header }) {
             <div className="content">
                 <div className='content-data'>
 
-                    <p className='flex-text-icon'> <img className='icon' src={shiftIcon} alt="icon " /> <b>Prenos :&nbsp;</b><span> {carData.transmission}</span></p>
+                    <p className='flex-text-icon'> <img className='icon' src={shiftIcon} alt="icon " /> <b>Prenos :&nbsp;</b><span> {mappedTrans[carData.transmission] || carData.transmission}</span></p>
                     <hr className='info-divider' />
 
-                    <p className='flex-text-icon'> <img className='icon' src={benzinIcon} alt="icon " /><b>Gorivo :&nbsp;</b><span>{carData.fuelType}</span></p>
+                    <p className='flex-text-icon'> <img className='icon' src={benzinIcon} alt="icon " /><b>Gorivo :&nbsp;</b><span>{mappedFuel[carData.fuelType] || carData.fuelType}</span></p>
                     <hr className='info-divider' />
 
                     <p className='flex-text-icon'> <img className='icon' src={groupIcon} alt="icon " /><b>Broj Putnika :&nbsp;</b><span>{carData.seats}</span></p>

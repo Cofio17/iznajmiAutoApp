@@ -24,7 +24,6 @@ export default function Footer() {
             header: "Uslovi Veb Stranice",
             links: [
                 { text: "Uslovi rezervacije", url: "/uslovi-rezervacije" },
-                { text: "Uslovi registracije", url: "/uslovi-registracije" },
                 { text: "Uslovi plaćanja", url: "/uslovi-placanja" },
                 { text: "Odgovornost veb stranice", url: "/odgovornost" }
             ]
@@ -48,9 +47,9 @@ export default function Footer() {
                         <h2>{section.header}</h2>
                         <div className={styles.links}>
                             {section.links.map((link, index) => (
-                                <Link key={index} href={link.url}>
+                                <a key={index} href={link.url}>
                                     {link.text}
-                                </Link>
+                                </a>
                             ))}
                         </div>
                     </div>
