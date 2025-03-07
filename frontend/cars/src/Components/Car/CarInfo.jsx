@@ -17,7 +17,8 @@ export default function CarInfo({ carData, header }) {
 
     const mappedFuel = {
         Diesel: "Dizel",
-        Petrol: "Benzin"
+        Petrol: "Benzin",
+        Hybrid: "Hibrid"
     }
 
     return (
