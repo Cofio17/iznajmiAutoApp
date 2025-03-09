@@ -58,6 +58,11 @@ body{
     font-weight: bold;
 }
 
+.darker-primary-color{
+    color: $darker-primary-color;
+    font-weight: bold;
+}
+
 
 .fit-content{
     width:fit-content;
@@ -292,7 +297,7 @@ h2{
     &:hover{
         transform: scale(1.05);
         .text-overlay{
-            color: $primary-color !important;
+            color: $darker-primary-color !important;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
         }
        
@@ -692,10 +697,16 @@ text-align: center;
 .hero-header-image{
    
     object-fit: cover;
+    object-position: center 60%; // Pomera prikaz slike na donji deo
     height: 200px;
     width: 90%;
     border-radius: 15px;
+    @media screen and (max-width:$small-screen) {
+       object-position: 53% ;
     }
+    }
+
+    
 
 .image-main-page{
     height: 400px;

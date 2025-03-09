@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import image from '../../assets//images/iznajmi-07.png'
+import logo from '../../assets//images/logo.webp'
 import ScrollToTop from "../../utils/ScrollToTop";
-import { NavLink, useLocation, useNavigate } from "react-router-dom"
-import { motion } from "framer-motion"
+import { useNavigate } from "react-router-dom"
 import { useContext } from "react"
 import { AuthContext } from "../../Contexts/AuthContextHelper"
+import MotionButton from "../MotionButton/MotionButton";
 export default function Footer({ onClick }) {
     const navigate = useNavigate();
     const email = "info@iznajmi.me";
@@ -13,7 +13,7 @@ export default function Footer({ onClick }) {
 
 
     const sectionLogo = {
-        image: image,
+        logo: logo,
         content: `Ako imate bilo kakva pitanja ili potrebu za pomoć, molimo Vas da nas kontaktirate putem mejla `
     };
 
@@ -38,7 +38,7 @@ export default function Footer({ onClick }) {
             ]
         }
     ];
-    const navigateTo = () => {
+    const navigateToDashboard = () => {
         navigate('/dashboard');
     }
 
@@ -48,23 +48,13 @@ export default function Footer({ onClick }) {
             <hr />
             <div className="content">
                 <div className="footer-section logo">
-                    <img src={sectionLogo.image} alt="logo 300x50" />
+                    <img src={sectionLogo.logo} alt="logo 300x50" />
                     <p>
                         {sectionLogo.content}
                         <a href={`mailto:${email}`}>{email}</a>
                     </p>
                     <div className="navlinks-button">
-                        <motion.button
-                            onClick={isAuthenticated ? navigateTo : onClick}
-                            whileTap={{ scale: 1.1 }}
-                            whileHover={{
-                                scale: 0.95,
-                                transition: { duration: 0.05 },
-                            }}
-                            id="login"
-                        >
-                            {isAuthenticated ? ' Portal' : 'Login'}
-                        </motion.button>
+                        <MotionButton id='login' onClick={isAuthenticated ? navigateToDashboard : onClick} text={isAuthenticated ? ' Portal' : 'Login'} />
                     </div>
 
                 </div>

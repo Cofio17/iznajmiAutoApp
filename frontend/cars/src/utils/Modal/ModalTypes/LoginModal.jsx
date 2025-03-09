@@ -1,10 +1,11 @@
 import { TextField } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
-import logo from '../../../assets/images/logo.png'
+import logo from '../../../assets/images/logo.webp'
 import { useState, useContext } from "react";
 import { useAuth } from "../../../Hooks/useAuth";
 import { AuthContext } from "../../../Contexts/AuthContextHelper";
+import MotionButton from "../../../Components/MotionButton/MotionButton";
 
 export default function LoginModal({ handleClose }) {
     // <TextField error={error} fullWidth id="firstname" required={true} variant="outlined" type="text" value={firstName} label={'Ime'} onChange={(e) => setFirstName(e.target.value)} className="mui-input reservation-form-input" />
@@ -52,7 +53,8 @@ export default function LoginModal({ handleClose }) {
                 <div className="buttons">
                     <span onClick={handleClose} className="close-text">Izlaz</span>
                     <div className="login-container">
-                        <button type="submit" className="button login-button">Login</button>
+                        {/* <button type="submit" className="button login-button">Login</button> */}
+                        <MotionButton type="submit" className='button login-button' text={loading ? "Logovanje" : "Login"} disabled={loading} />
                     </div>
 
                 </div>

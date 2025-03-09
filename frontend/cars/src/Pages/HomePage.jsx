@@ -2,7 +2,7 @@ import '../style.scss'
 import SectionComponent from '../Components/HomeSections/SectionComponent'
 import CityComponent from '../Components/CityComponent/CityComponent'
 import SectionItem from '../Components/HomeSections/SectionItem'
-import { faComputerMouse, faKey, faBookmark } from '@fortawesome/free-solid-svg-icons'
+import { faKey, faCar, faHandshake } from '@fortawesome/free-solid-svg-icons'
 import Search from '../Components/SearchPageComponents/Search';
 import { useEffect } from 'react';
 import SliderCarousel from '../Components/Slider/SliderCarousel'
@@ -24,14 +24,14 @@ export default function HomePage() {
                 title: "Pronađite",
                 description:
                     " Prosto kliknite na 'Rent a car', podesite filtere i pronađite vozilo koje vam najviše odgovara.",
-                icon: faComputerMouse
+                icon: faCar
             },
             {
                 id: "02",
                 title: "Rezervišite",
                 description:
                     "Nakon odabira datuma i provere da vozilo ispunjava vaše potrebe, kliknite na 'Rezerviši' i unesite svoje podatke. Ubrzo ćete dobiti e-mail sa potvrdom.",
-                icon: faBookmark
+                icon: faHandshake
             },
             {
                 id: "03",

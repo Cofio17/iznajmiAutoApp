@@ -1,5 +1,5 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom"
-import logo from '../../assets/images/logo.png'
+import logo from '../../assets/images/logo.webp'
 import DropDownMenu from "../DropDownMenu/DropDownMenu"
 import { useState } from "react"
 import { motion } from "framer-motion"
