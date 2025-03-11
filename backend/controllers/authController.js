@@ -37,6 +37,31 @@ const handleLogin = async (req, res) => {
     }
 };
 
+
+const handleRegister = async (req, res) => {
+    try {
+        const { email, password, role, name, companyId } = req.body;
+
+        // Proverite da li su email i lozinka prisutni
+        if (!email || !password) {
+            return res.status(400).json({ error: "Email and password are required" });
+        }
+
+        // Pozovite funkciju za registraciju korisnika
+        const { success, message } = await authService.registerUser(email, password, role, companyId, name);
+
+        if (!success) {
+            return res.status(400).json({ success, message });
+        }
+
+        res.status(201).json({ message: "User registered successfully" });
+
+    } catch (error) {
+        console.error(error); // Log greške za debagovanje
+        res.status(500).json({ error: "Internal server error", details: error.message });
+    }
+};
+
 /**
  * User Logout
  * @param {import('express').Request} req - HTTP request object
@@ -60,5 +85,6 @@ const handleLogout = async (req, res) => {
 
 module.exports = {
     handleLogin,
-    handleLogout
+    handleLogout,
+    handleRegister
 }

@@ -4,6 +4,31 @@ const User = require('../models/user')
 require('dotenv').config();
 
 
+const registerUser = async (email, password, role, companyId, name) => {
+
+    try {
+        const existingUser = await User.findOne({ email: email });
+        if (existingUser) {
+            return { success: false, message: 'User already exists' };
+        }
+        const hashedPassword = await bcrypt.hash(password, 10)
+        const newUser = new User({
+            email: email,
+            password: hashedPassword,
+            role: role,
+            name: name,
+            companyId: companyId,
+
+        })
+
+        await newUser.save();
+        return { success: true, message: 'User registered successfully' };
+    } catch (error) {
+        console.error('Error during registration:', error);
+        throw new Error('Registration failed');
+    }
+}
+
 const authenticateUser = async (email, password) => {
     try {
         const user = await User.findOne({ email: email });
@@ -32,5 +57,6 @@ const generateAccessToken = (user) => {
 }
 
 module.exports = {
-    authenticateUser
+    authenticateUser,
+    registerUser
 }
