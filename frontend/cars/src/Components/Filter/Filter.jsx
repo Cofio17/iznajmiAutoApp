@@ -3,7 +3,7 @@ import { SearchContext } from "../../Contexts/SearchContext";
 import FilterGroup from "./FilterGroup";
 import countMatchingValues from "./countMatchingValues";
 import { useLocation } from "react-router-dom";
-import './filter.scss'
+import './filter.scss';
 import PriceSlider from "./Slider";
 
 const transmissionMap = {
@@ -16,7 +16,6 @@ const displayMap = {
   "Manual": "Manuelni"
 };
 
-// NEW LINE: Added helper function to parse ranges for trunk capacity
 const isInRange = (rangeStr, value) => {
   if (rangeStr === "5+") {
     return value >= 5;
@@ -64,34 +63,27 @@ export default function Filter() {
   };
 
   const updateList = (updatedFilters) => {
-    const numberOfTypes = countMatchingValues(filterGroups, updatedFilters, 0);
     const numberOfTypesTrunk = countMatchingValues(filterGroups, updatedFilters, 1);
 
     const filteredCars = searchListData.filter((car) => {
-      return updatedFilters.every((filter) => {
-        if (filterGroups[0].inputs.includes(filter)) {
-          if (numberOfTypes > 1) {
-            return updatedFilters.some((typeFilter) => typeFilter === car.type);
-          } else {
-            return car.type === filter;
-          }
-        } else if (filterGroups[1].inputs.includes(filter)) {
-          // NEW LINE: Updated logic to use isInRange for trunk capacity filtering
-          if (numberOfTypesTrunk > 1) {
-            // NEW LINE: Added range checking for multiple trunk selections
-            return updatedFilters.some((typeFilter) =>
-              filterGroups[1].inputs.includes(typeFilter) &&
-              isInRange(typeFilter, car.trunkCapacity)
-            );
-          } else {
-            // NEW LINE: Single trunk filter now uses range checking
-            return isInRange(filter, car.trunkCapacity);
-          }
-        } else if (Object.values(transmissionMap).includes(filter)) {
-          return car.transmission === filter;
-        }
-        return true;
-      }) && car.pricePerDay <= maxPrice;
+      const categoryFilters = updatedFilters.filter((f) => filterGroups[0].inputs.includes(f));
+      const trunkFilters = updatedFilters.filter((f) => filterGroups[1].inputs.includes(f));
+      const transmissionFilters = updatedFilters.filter((f) => Object.values(transmissionMap).includes(f));
+
+      // Handle cases where type might be undefined or not an array
+      const matchesCategory = categoryFilters.length === 0 || (
+        Array.isArray(car.type) && categoryFilters.some((filter) => car.type.includes(filter))
+      );
+
+      const matchesTrunk = trunkFilters.length === 0 || (
+        numberOfTypesTrunk > 1
+          ? trunkFilters.some((filter) => isInRange(filter, car.trunkCapacity))
+          : trunkFilters.every((filter) => isInRange(filter, car.trunkCapacity))
+      );
+
+      const matchesTransmission = transmissionFilters.length === 0 || transmissionFilters.every((filter) => car.transmission === filter);
+
+      return matchesCategory && matchesTrunk && matchesTransmission && car.pricePerDay <= maxPrice;
     });
 
     setFilterListData(filteredCars);
