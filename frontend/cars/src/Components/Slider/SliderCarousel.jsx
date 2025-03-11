@@ -8,7 +8,7 @@ import { SearchContext } from "../../Contexts/SearchContext";
 import { apiRequest } from "../../utils/Api/apiService";
 
 export default function SliderCarousel() {
-    const { setSearchListData, setFilterListData, setFiltersContext, setLoading } =
+    const { setSearchListData, setFilterListData, setFiltersContext, setLoading, filterListData, loading } =
         useContext(SearchContext);
     const navigate = useNavigate(); // For programmatic navigation
 
@@ -85,7 +85,9 @@ export default function SliderCarousel() {
         try {
             setLoading(true);
             const response = await apiRequest("GET", "cars");
-            const filteredByType = response.data.filter((car) => car.type === naziv);
+            const filteredByType = response.data.filter((car) => car.type.includes(naziv));
+            console.log(filteredByType);
+
 
             // Update context with all cars and filtered cars
             setSearchListData(response.data);
@@ -93,9 +95,11 @@ export default function SliderCarousel() {
 
             // Update filtersContext to reflect the selected car type (this checks the checkbox)
             setFiltersContext([naziv]);
-
+            if (filterListData && !loading) {
+                navigate(`/rent-a-car?tip=${encodeURIComponent(naziv)}`);
+            }
             // Navigate with the filter applied in the URL
-            navigate(`/rent-a-car?tip=${encodeURIComponent(naziv)}`);
+
         } catch (error) {
             console.log(`Error fetching data: ${error}`);
         } finally {

@@ -39,7 +39,7 @@ function App() {
 
       // If there's a car type in the URL, apply it as a filter
       if (carType) {
-        const filteredByType = carsData.filter((car) => car.type === carType);
+        const filteredByType = carsData.filter((car) => car.type.includes(carType));
         setFilterListData(filteredByType);
         setFiltersContext([carType]); // Use string array
       }

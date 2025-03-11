@@ -93,6 +93,7 @@ export default function Filter() {
     const searchParams = new URLSearchParams(location.search);
     const tip = searchParams.get("tip");
 
+
     if (tip && !filtersContext.includes(tip)) {
       const updatedFilters = [...filtersContext, tip];
       setFiltersContext(updatedFilters);
