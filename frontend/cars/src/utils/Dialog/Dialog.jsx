@@ -2,12 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions, Select, MenuItem } from '@mui/material';
 import './dialog.scss';
 import { apiRequest } from '../Api/apiService';
+import { sendEmailHelper } from '../emails/sendEmail';
+import { generateUpdateCarEmail } from '../emails/emailUtils';
+
 
 const DialogSelect = ({ openProp, onClose, selectedCar, setReservations }) => {
     const [open, setOpen] = useState(openProp);
     const [selectedOption, setSelectedOption] = useState('');
     const [freeCars, setFreeCars] = useState([]);
     const [loading, setLoading] = useState(false);
+
 
     useEffect(() => {
         setOpen(openProp);
@@ -55,7 +59,9 @@ const DialogSelect = ({ openProp, onClose, selectedCar, setReservations }) => {
         try {
             const response = await apiRequest("POST", `api/calendar/move/${selectedCar.calendarId}/${selectedCar.eventId}/${selectedOption.calendarId}`, selectedOption);
             console.log(response.data.updatedReservation);
-            updateReservationInTable(response.data.updatedReservation)
+            updateReservationInTable(response.data.updatedReservation);
+            await sendEmail();
+
         } catch (error) {
             console.log(`Error while changing cars ${error}`)
         }
@@ -63,6 +69,22 @@ const DialogSelect = ({ openProp, onClose, selectedCar, setReservations }) => {
             setLoading(false);
             handleClose();
         }
+    };
+
+    const sendEmail = async () => {
+
+        const personData = {
+            email: selectedCar.email,
+            buyer: selectedCar.buyer,
+            licensePlate: selectedOption.licensePlate,
+            brand: selectedOption.brand,
+            model: selectedOption.model
+        }
+        console.log(personData);
+
+        const email = await sendEmailHelper(generateUpdateCarEmail, personData, "Vaša rezervacija je uspešno izmenjenja");
+        console.log(`email : ${email}`);
+
     };
 
     const updateReservationInTable = (updatedReservation) => {

@@ -66,4 +66,20 @@ form {
     font-size: 17px;
 }
 
+.drivesLicense-wrapper{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+  
+
+}
+
+.driversLicense-warning{
+    color: oklch(.551 .027 264.364);
+    font-size: 14px;
+    text-align: center;
+}
+
+
 

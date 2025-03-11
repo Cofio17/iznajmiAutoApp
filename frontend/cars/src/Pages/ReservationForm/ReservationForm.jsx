@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { apiRequest } from "../../utils/Api/apiService";
 import { useEffect, useState } from "react";
 import './reservationForm.scss'
-import { TextField, FormControlLabel, Checkbox } from '@mui/material'
+import { TextField } from '@mui/material'
 import { generateReservationEmailHtml } from "../../utils/emails/emailUtils";
 import Modal from "../../utils/Modal/Modal";
 import { AnimatePresence } from "framer-motion";
@@ -12,6 +12,10 @@ import { createDate } from "../../utils/createDate";
 import generateReservationId from "../../utils/generateId";
 import MotionButton from "../../Components/MotionButton/MotionButton";
 import Input from "../../Components/Filter/Input";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import dayjs from "dayjs";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import DatePickerExp from "../../Components/DatePicker/DatePicker";
 
 
 export default function ReservationForm() {
@@ -26,10 +30,12 @@ export default function ReservationForm() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [jmbg, setJmbg] = useState('');
+    const [driversLicense, setDriversLicense] = useState('');
     const [termsAccepted, setTermsAccepted] = useState(false);
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState(false);
+    const [dateExp, setDateExp] = useState('');
     const { modalOpen, open, close } = useModal()
 
 
@@ -61,6 +67,14 @@ export default function ReservationForm() {
             newErrors.number = 'Neispravan format broja';
         }
 
+        if (!/^\d{9}$/.test(driversLicense)) {
+            newErrors.driversLicense = 'Neispravan format vozačke dozvole';
+        }
+
+        if (!/^\d{5}$|^\d{2}\/\d{2}$/.test(dateExp)) {
+            newErrors.dateExp = 'Neispravan format. Očekuje se 5 cifara ili format MM/YY.';
+        }
+
 
         if (!termsAccepted) {
             newErrors.termsAccepted = 'Morate prihvatiti uslove.';
@@ -76,6 +90,8 @@ export default function ReservationForm() {
         setLastName('');
         setJmbg('');
         setTermsAccepted(false);
+        setDriversLicense('');
+        setDateExp('')
     }
 
     /**
@@ -166,6 +182,20 @@ export default function ReservationForm() {
         } else if (fieldName === 'email') {
             delete newErrors.email;
         }
+        if (fieldName === 'driversLicense' && !/^\d{9}$/.test(driversLicense)) {
+            newErrors.driversLicense = 'Neispravan format vozačke dozvole'
+        } else if (fieldName === 'driversLicense') {
+            delete newErrors.driversLicense;
+        }
+        if (fieldName === 'dateExp' && !/^\d{5}$/.test(dateExp)) {
+            newErrors.dateExp = 'Neispravan format';
+        }
+        else if
+            (fieldName === 'dateExp') {
+            delete newErrors.driversLicense;
+        }
+
+
 
         if (fieldName === 'number' && (!/^\+?\d+$/.test(number) || value.length < 9)) {
             newErrors.number = 'Neispravan format broja.';
@@ -194,25 +224,111 @@ export default function ReservationForm() {
                 <h3><b>Ukupna cena:</b> {priceTotal}€</h3>
 
 
-                <TextField error={error} fullWidth id="firstname" required={true} variant="outlined" type="text" value={firstName} label={'Ime'} onChange={(e) => setFirstName(e.target.value)} className="mui-input reservation-form-input" />
+                {/* <TextField error={error} fullWidth id="firstname" required={true} variant="outlined" type="text" value={firstName} label={'Ime'} onChange={(e) => setFirstName(e.target.value)} className="mui-input reservation-form-input" />
                 <TextField error={error} fullWidth id="lastName" required={true} variant="outlined" type="text" value={lastName} label={'Prezime'} onChange={(e) => setLastName(e.target.value)} className="mui-input reservation-form-input" />
                 <TextField onBlur={(e) => handleBlur('jmbg', e.target.value)} error={Boolean(errors.jmbg)} helperText={errors.jmbg || 'JBMG ili PIB firme'} fullWidth id="jmbg" required={true} variant="outlined" type="text" value={jmbg} label={'JMBG/PIB'} onChange={(e) => setJmbg(e.target.value)} className="mui-input reservation-form-input" />
-                <TextField onBlur={(e) => handleBlur('number', e.target.value)} error={Boolean(errors.number)} helperText={errors.number || ''} placeholder="06..." fullWidth id="number" required={true} variant="outlined" type="tel" value={number} label={'Mobilni'} onChange={(e) => setNumber(e.target.value)} className="mui-input reservation-form-input" />
-                <TextField onBlur={(e) => handleBlur('email', e.target.value)} error={Boolean(errors.email)} helperText={errors.email || ''} autoComplete="on" placeholder="email@example.com" fullWidth id="email" required={true} variant="outlined" type="email" value={email} label={'Email'} onChange={(e) => setEmail(e.target.value)} className="mui-input reservation-form-input" />
 
-                {/* <FormControlLabel required control={
-                    <Checkbox
-                        name="terms"
-                        onChange={(e) => { setTermsAccepted(e.target.checked) }}
-                        size="small"
-                        sx={{
-                            marginLeft: 2,
-                            color: '#2D6A4F',
-                            '&.Mui-checked': { color: '#2D6A4F' }
-                        }} />} label={'Prihvatam uslove korišćenja'} /> */}
+                <TextField id="driversLicense" onBlur={(e) => { handleBlur('driversLicense', e.target.value) }} error={Boolean(errors.driversLicense)} helperText={errors.driversLicense || 'Broj vozačke dozvole'} fullWidth required={true} variant="outlined" type="text" value={driversLicense} label={'Broj vozačke dozvole'} onChange={(e) => setDriversLicense(e.target.value)} className="mui-input reservation-form-input" />
+
+                <TextField onBlur={(e) => handleBlur('number', e.target.value)} error={Boolean(errors.number)} helperText={errors.number || ''} placeholder="06..." fullWidth id="number" required={true} variant="outlined" type="tel" value={number} label={'Mobilni'} onChange={(e) => setNumber(e.target.value)} className="mui-input reservation-form-input" />
+                <TextField onBlur={(e) => handleBlur('email', e.target.value)} error={Boolean(errors.email)} helperText={errors.email || ''} autoComplete="on" placeholder="email@example.com" fullWidth id="email" required={true} variant="outlined" type="email" value={email} label={'Email'} onChange={(e) => setEmail(e.target.value)} className="mui-input reservation-form-input" /> */}
+                <TextField
+                    id="firstname"
+                    label="Ime"
+                    type="text"
+                    variant="outlined"
+                    fullWidth
+                    required
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    error={error}
+                    className="mui-input reservation-form-input"
+                />
+
+                <TextField
+                    id="lastName"
+                    label="Prezime"
+                    type="text"
+                    variant="outlined"
+                    fullWidth
+                    required
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    error={error}
+                    className="mui-input reservation-form-input"
+                />
+
+                <TextField
+                    id="jmbg"
+                    label="JMBG/PIB"
+                    type="text"
+                    variant="outlined"
+                    fullWidth
+                    required
+                    value={jmbg}
+                    onChange={(e) => setJmbg(e.target.value)}
+                    onBlur={(e) => handleBlur('jmbg', e.target.value)}
+                    error={Boolean(errors.jmbg)}
+                    helperText={errors.jmbg || 'JBMG ili PIB firme'}
+                    className="mui-input reservation-form-input"
+                />
+
+                <div className="drivesLicense-wrapper">
+                    <TextField
+                        id="driversLicense"
+                        label="Broj vozačke dozvole"
+                        type="text"
+                        variant="outlined"
+                        required
+                        value={driversLicense}
+                        onChange={(e) => setDriversLicense(e.target.value)}
+                        onBlur={(e) => handleBlur('driversLicense', e.target.value)}
+                        error={Boolean(errors.driversLicense)}
+                        helperText={errors.driversLicense || 'Broj vozačke dozvole'}
+                        className="mui-input reservation-form-input"
+                    />
+
+                    <DatePickerExp handleBlur={(e) => handleBlur('expDate', e.target.value)} error={Boolean(errors.dateExp)} helperText={errors.dateExp || ''} id='driversLicense-exp' dateExp={dateExp} setDateExp={setDateExp} />
+                </div>
+
+                <TextField
+                    id="number"
+                    label="Mobilni"
+                    type="tel"
+                    variant="outlined"
+                    fullWidth
+                    required
+                    placeholder="06..."
+                    value={number}
+                    onChange={(e) => setNumber(e.target.value)}
+                    onBlur={(e) => handleBlur('number', e.target.value)}
+                    error={Boolean(errors.number)}
+                    helperText={errors.number || ''}
+                    className="mui-input reservation-form-input"
+                />
+
+                <TextField
+                    id="email"
+                    label="Email"
+                    type="email"
+                    variant="outlined"
+                    fullWidth
+                    required
+                    autoComplete="on"
+                    placeholder="email@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    onBlur={(e) => handleBlur('email', e.target.value)}
+                    error={Boolean(errors.email)}
+                    helperText={errors.email || ''}
+                    className="mui-input reservation-form-input"
+                />
+
                 <Input required={true} label={'Prihvatam uslove korišćenja'} checked={termsAccepted} onChangeProp={(e) => { setTermsAccepted(e.target.checked) }} />
 
                 <MotionButton type="submit" className="button" disabled={isSubmitting} text={isSubmitting ? 'Slanje...' : 'Rezerviši'} />
+
+                <p className="driversLicense-warning">*Obavezno proverite da Vam nije istekla vozačka dozvola i da vozač ne koristi probnu vozačku dozvolu.</p>
 
                 {errors.server && <p style={{ color: 'red' }}>{errors.server}</p>}
 

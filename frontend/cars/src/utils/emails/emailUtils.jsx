@@ -2,6 +2,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import ReservationEmail from "./ReservationEmail";
 import { CancelEmail } from "./CancelEmail";
 import UpdateReservationEmail from "./UpdateReservationEmail";
+import UpdateCarEmail from "./UpdateCarEmail";
 
 export const generateReservationEmailHtml = (userFirstname, model, brand, reservationData) => {
     const emailComponent = (
@@ -32,4 +33,15 @@ export const generateUpdateReservationEmail = (name, personData, newDates) => {
             newDates={newDates} />
     )
     return renderToStaticMarkup(emailComponent)
+}
+
+export const generateUpdateCarEmail = (name, personData) => {
+    const emailComponent = (
+        <UpdateCarEmail
+            name={name}
+            personData={personData}
+        />
+    )
+
+    return renderToStaticMarkup(emailComponent);
 }

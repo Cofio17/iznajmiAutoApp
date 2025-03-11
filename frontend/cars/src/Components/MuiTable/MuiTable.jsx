@@ -123,6 +123,7 @@ const MuiTable = ({ reservations, setReservations }) => {
                 <TableHead>
                     <TableRow>
                         <TableCell>ID rezervacije</TableCell>
+                        <TableCell>Datum kreiranja</TableCell>
                         <TableCell>Početak</TableCell>
                         <TableCell>Kraj</TableCell>
                         <TableCell>Tablice</TableCell>
@@ -137,6 +138,7 @@ const MuiTable = ({ reservations, setReservations }) => {
                     {reservations.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((reservation) => (
                         <TableRow onClick={checkClickedRow} key={reservation._id}>
                             <TableCell className="row">  <div className="menu-long"><LongMenu options={options} /></div> {reservation.reservationId}</TableCell>
+                            <TableCell>{dayjs(reservation.createdAt).format("DD/MM/YYYY HH:mm")}</TableCell>
                             <TableCell>{dayjs(reservation.startDate).format("DD/MM/YYYY HH:mm")}</TableCell>
                             <TableCell>{dayjs(reservation.endDate).format("DD/MM/YYYY HH:mm")}</TableCell>
                             <TableCell>{reservation.licensePlate}</TableCell>

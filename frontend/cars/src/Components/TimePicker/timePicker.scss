@@ -13,9 +13,7 @@ $black-color: #081C15;
     border-radius: 15px !important;
     margin: 0 auto !important;
     width: 100px !important;
-    margin-bottom: 3px !important;
-
-    
+    margin-bottom: 3px !important;   
 }
 
 .MuiMultiSectionDigitalClock-root{
@@ -65,4 +63,29 @@ $black-color: #081C15;
 }
 .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused{
     color: $darker-primary-color !important;
+}
+
+
+
+//DATE PICKERS
+
+/* DATE PICKERS */
+
+.MuiPickersMonth-monthButton.Mui-selected,
+.MuiPickersYear-yearButton.Mui-selected {
+    padding: 0 !important;
+    height: 29px !important;
+    width: 50px !important;
+    outline: 0 !important;
+}
+
+.MuiPickersMonth-monthButton,
+.MuiPickersYear-yearButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.Mui-selected {
+        padding: 2px; /* Ovo se sada odnosi samo na selektovane mesece i godine */
+    }
 }

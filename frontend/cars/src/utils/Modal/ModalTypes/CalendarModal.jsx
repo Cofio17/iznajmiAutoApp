@@ -7,6 +7,8 @@ import { createDate, hoursInPeriod, calculatePriceBasedOnHours, calculateTotalDa
 import SuccesfulChangeModal from "./SuccesfulChangeModal";
 import dayjs from "dayjs";
 import { generateUpdateReservationEmail } from "../../emails/emailUtils";
+import { sendEmailHelper } from "../../emails/sendEmail";
+
 export default function CalendarModal({ handleClose, calendarId, eventId, email, personData, reservationId }) {
 
     const [selectedDate, setSelectedDate] = useState([]);
@@ -72,20 +74,8 @@ export default function CalendarModal({ handleClose, calendarId, eventId, email,
             priceTotal: priceTotal
         };
 
-        const emailContent = {
-            to: personData.email,
-            subject: "Uspešno pomeranje rezervacije!",
-            html: generateUpdateReservationEmail(name, updatedPersonData, newDates)
-        }
-
-        try {
-            const response = await apiRequest("POST", "email/send-email", emailContent);
-            console.log("Email sent:", response);
-
-        } catch (error) {
-            console.error("Error sending email:", error);
-        }
-
+        const res = await sendEmailHelper(generateUpdateReservationEmail, updatedPersonData, "Uspešno pomeranje rezervacije!")
+        console.log("Email sent:", res);
 
     };
 

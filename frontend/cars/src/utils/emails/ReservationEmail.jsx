@@ -43,6 +43,11 @@ export const ReservationEmail = ({
                     Ako imate bilo kakvih pitanja, slobodno nas kontaktirajte.
                     Radujemo se vašoj vožnji!
                 </Text>
+
+                <Text style={styles.text}>
+                    Obavezno proverite da Vam nije istekla vozačka dozvola i da vozač ne koristi probnu vozačku dozvolu.
+                </Text>
+
                 <Hr style={styles.hr} />
                 <Text style={styles.footer}>
                     🚗 iznajmi.me | Senćanski put 63, Subotica, 24000 | iznajmi@info.com
