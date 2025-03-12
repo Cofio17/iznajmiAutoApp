@@ -129,6 +129,7 @@ const MuiTable = ({ reservations, setReservations }) => {
                         <TableCell>Tablice</TableCell>
                         <TableCell>Model</TableCell>
                         <TableCell>Kupac</TableCell>
+                        <TableCell>Broj telefona</TableCell>
                         <TableCell>Email</TableCell>
                         <TableCell>Ukupna Cena (€)</TableCell>
 
@@ -144,6 +145,7 @@ const MuiTable = ({ reservations, setReservations }) => {
                             <TableCell>{reservation.licensePlate}</TableCell>
                             <TableCell>{reservation.brand} {reservation.model}</TableCell>
                             <TableCell sx={{ paddingRight: '30px' }}>{reservation.buyer}</TableCell>
+                            <TableCell>{reservation.number}</TableCell>
                             <TableCell>{reservation.email}</TableCell>
                             <TableCell>{reservation.priceTotal} €</TableCell>
 

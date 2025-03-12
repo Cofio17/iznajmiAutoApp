@@ -178,11 +178,10 @@ function buildReservationDetails(eventDetails, eventId) {
         licensePlate: eventDetails.summary.carId || "Unknown licensePlate",
         brand: eventDetails.summary.brand || "Unknown Brand",
         model: eventDetails.summary.model || "Unknown Model",
-        pricePerDay:
-            eventDetails.summary.priceTotal / eventDetails.summary.daysTotal || 0,
+        pricePerDay: eventDetails.summary.priceTotal / eventDetails.summary.daysTotal || 0,
         priceTotal: eventDetails.summary.priceTotal || 0,
         duration: eventDetails.summary.daysTotal || 0,
-        buyer: eventDetails.summary.firstName || "Unknown Buyer",
+        buyer: `${eventDetails.summary.firstName || "Unknown"} ${eventDetails.summary.lastName || "Buyer"}`,
         jmbg: eventDetails.summary.jmbg || "Unknown JMBG",
         email: eventDetails.summary.email || "Unknown email",
         number: eventDetails.summary.number || "Unknown Contact",
