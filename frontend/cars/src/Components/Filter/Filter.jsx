@@ -7,13 +7,8 @@ import './filter.scss';
 import PriceSlider from "./Slider";
 
 const transmissionMap = {
-  "Automatski": "Automatic",
-  "Manuelni": "Manual"
-};
-
-const displayMap = {
-  "Automatic": "Automatski",
-  "Manual": "Manuelni"
+  "Automatski": "Automatik",
+  "Manuelni": "Manuel"
 };
 
 const isInRange = (rangeStr, value) => {
@@ -48,7 +43,7 @@ export default function Filter() {
     },
     {
       legend: "Prenos",
-      inputs: ["Automatski", "Manuelni"],
+      inputs: ["Automatski", "Manuelni"],  // Display values for UI
     },
   ];
 
@@ -68,7 +63,8 @@ export default function Filter() {
     const filteredCars = searchListData.filter((car) => {
       const categoryFilters = updatedFilters.filter((f) => filterGroups[0].inputs.includes(f));
       const trunkFilters = updatedFilters.filter((f) => filterGroups[1].inputs.includes(f));
-      const transmissionFilters = updatedFilters.filter((f) => Object.values(transmissionMap).includes(f));
+      const transmissionFilters = updatedFilters.filter((f) =>
+        Object.values(transmissionMap).includes(f));
 
       // Handle cases where type might be undefined or not an array
       const matchesCategory = categoryFilters.length === 0 || (
@@ -81,7 +77,8 @@ export default function Filter() {
           : trunkFilters.every((filter) => isInRange(filter, car.trunkCapacity))
       );
 
-      const matchesTransmission = transmissionFilters.length === 0 || transmissionFilters.every((filter) => car.transmission === filter);
+      const matchesTransmission = transmissionFilters.length === 0 ||
+        transmissionFilters.every((filter) => car.transmission === filter);
 
       return matchesCategory && matchesTrunk && matchesTransmission && car.pricePerDay <= maxPrice;
     });
@@ -92,7 +89,6 @@ export default function Filter() {
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const tip = searchParams.get("tip");
-
 
     if (tip && !filtersContext.includes(tip)) {
       const updatedFilters = [...filtersContext, tip];
@@ -115,7 +111,7 @@ export default function Filter() {
             group={group}
             onFilterChange={onFilterChange}
             selectedFilters={filtersContext.map(filter =>
-              displayMap[filter] || filter
+              Object.keys(transmissionMap).find(key => transmissionMap[key] === filter) || filter
             )}
           />
         ))}
