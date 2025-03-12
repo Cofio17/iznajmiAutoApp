@@ -150,6 +150,7 @@ export default function Search() {
                         format='DD/MM/YYYY'
                         className='mui-input city'
                         name='date-picker-end'
+                        minDate={startDate || null}
 
                     />
                 </LocalizationProvider>
