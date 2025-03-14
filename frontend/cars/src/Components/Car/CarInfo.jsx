@@ -12,7 +12,7 @@ export default function CarInfo({ carData, header }) {
 
     const mappedTrans = {
         Automatic: "Automatski",
-        Manual: "Manuelni"
+        Manuel: "Manuelni"
     }
 
     const mappedFuel = {

@@ -26,6 +26,7 @@ const companyRouter = require('./routes/companyRoute.js');
 const emailRouter = require('./routes/email.js');
 const userRouter = require('./routes/userRoute.js');
 const auth = require('./routes/auth.js');
+const sitemap = require('./routes/sitemap.js');
 
 //connection to database
 mongoose.connect(process.env.MONGO_URL)
@@ -44,6 +45,7 @@ app.use('/reservations', reservationsRouter);
 app.use("/api/calendar", calendarRoute); //calendar route
 app.use('/company', companyRouter); // companies route
 app.use('/email', emailRouter);
+app.use('/', sitemap)
 
 app.get('/', (req, res) => {
     res.send('home page');

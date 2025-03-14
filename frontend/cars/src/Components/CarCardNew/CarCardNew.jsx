@@ -4,10 +4,14 @@ import { Link } from "react-router-dom";
 import gearShiftIcon from '../../assets/icons/shift.png'
 import petrolIcon from '../../assets/icons/benzin.png'
 import userIcon from '../../assets/icons/user.png'
-import doorIcon from '../../assets/icons/door.png'
 import electricIcon from '../../assets/icons/elektrican.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSuitcaseRolling } from "@fortawesome/free-solid-svg-icons";
+
+const mappedTrans = {
+    "Manuel": "Manuelan"
+};
+
 
 const CarCardNew = ({ carData }) => {
     return (
@@ -23,7 +27,7 @@ const CarCardNew = ({ carData }) => {
                 <div className="card-specs_new">
                     <div className="spec-item_new transmission">
                         <img src={gearShiftIcon} alt="gear shift" className="spec-icon_new" />
-                        <span>{carData.transmission}</span>
+                        <span>{mappedTrans[carData.transmission] || carData.transmission}</span>
                     </div>
                     <div className="spec-item_new">
                         <img src={carData.fuelType === 'Petrol' ? petrolIcon : electricIcon} alt="fuel type icon" className="spec-icon_new" />
