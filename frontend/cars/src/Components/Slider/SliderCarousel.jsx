@@ -111,7 +111,7 @@ export default function SliderCarousel() {
         <div className="container-car-slider">
             <div className="section-container-h1-p">
                 <div className="gold-line"></div>
-                <h1>Upoznajte našu flotu</h1>
+                <h1>Iznajmi auto iz naše mreže vozila</h1>
             </div>
             <Slider {...settings}>
                 {carTypes.map((car) => (

@@ -9,7 +9,7 @@ export default function SectionComponent({ sectionData, DynamicComponent }) {
                     <span className="darker-primary-color">Iznajmi.me</span> je platforma osnovana da resi jedan jednostavan problem, širok i nesiguran izbor iznajmljivanja vozila, nas cilj jeste da olaksamo ceo proces za sve, tako sto okupljamo sve proverene i pouzdane agencije na jedno mesto, bez da pretrazujete nepoznate sajtove pokusavajuci da nadjete rent a car agenciju kojoj mozete verovati
                 </p>
                 <div className="gold-line"></div>
-                <h1>{sectionData.header}</h1>
+                <h2>{sectionData.header}</h2>
                 <p>{sectionData.details}</p>
             </div>
 

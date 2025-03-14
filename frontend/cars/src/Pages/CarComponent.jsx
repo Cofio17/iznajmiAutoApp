@@ -10,6 +10,7 @@ import Layout from '../Components/Layout/Layout';
 import TimePickerManager from '../Components/TimePicker/TimePickerManager';
 import { createDate, hoursInPeriod, calculatePriceBasedOnHours, calculateTotalDaysBasedOnHours } from "../utils/createDate"
 import { apiRequest } from '../utils/Api/apiService';
+import { Helmet } from 'react-helmet-async';
 
 
 export default function Car() {
@@ -115,6 +116,11 @@ export default function Car() {
 
     return (
         <Layout>
+            <Helmet>
+                <title>Iznajmite {carData.brand} {carData.model} | Rent a Car Srbija - iznajmi.me</title>
+                <meta name="description" content={`Iznajmite ${carData.brand} ${carData.model} za nezaboravno iskustvo vožnje! Uživajte u vrhunskom komforu i performansama ovog automobila. Rezervišite odmah i istražite Srbiju u stilu!`} />
+            </Helmet>
+
             <div className='container-car'>
 
                 <div className="container-car-upper">

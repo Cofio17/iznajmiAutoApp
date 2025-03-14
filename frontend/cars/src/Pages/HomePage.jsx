@@ -7,15 +7,16 @@ import Search from '../Components/SearchPageComponents/Search';
 import { useEffect } from 'react';
 import SliderCarousel from '../Components/Slider/SliderCarousel'
 import Layout from '../Components/Layout/Layout'
+import { Helmet, HelmetProvider } from 'react-helmet-async'
 
 export default function HomePage() {
 
-    useEffect(() => {
-        document.title = 'Iznajmi me - Pocetna'
-    })
+    // useEffect(() => {
+    //     document.title = 'Iznajmi me - Pocetna'
+    // })
 
     const sectionData = {
-        header: "Kako iznajmiti auto u 3 koraka?",
+        header: "Iznajmi auto u 3 laka koraka?",
         details: "Jednostavno pronađete željeno vozilo, rezervišete i preuzmete",
         steps: [
 
@@ -44,7 +45,7 @@ export default function HomePage() {
     };
 
     const cities = {
-        header: "Pronađite vozilo u željenom gradu",
+        header: "Rent a car u Vašem gradu",
         details: "Jednim klikom odaberite grad u kojem ćete iznajmiti vozilo, i pregledajte mnogobrojan izbor vozila prilagođen vašim potrebama.",
         steps: [
             {
@@ -75,11 +76,18 @@ export default function HomePage() {
     }
 
     return (
+
         <Layout >
+            <Helmet>
+                <title>Iznajmi Auto u Srbiji | Rent a Car Serbia</title>
+                <meta name="description" content="Iznajmi auto brzo i jednostavno širom Srbije! Povezujemo vas sa najboljim rent a car agencijama, nudeći širok izbor vozila po povoljnim cenama." />
+            </Helmet>
             <Search />
             <SliderCarousel />
             <SectionComponent sectionData={cities} DynamicComponent={CityComponent} />
             <SectionComponent sectionData={sectionData} DynamicComponent={SectionItem} />
         </Layout>
+
+
     )
 }
