@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { HelmetProvider } from 'react-helmet-async'
 //Pages
 import App from './Pages/App.jsx'
 import Car from './Pages/CarComponent.jsx'
@@ -94,10 +95,12 @@ const router = createBrowserRouter([
 ]);
 createRoot(document.getElementById('root')).render(
 
+  <HelmetProvider>
+    <StrictMode>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </StrictMode>,
+  </HelmetProvider>
 
-  <StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
-  </StrictMode>,
 )

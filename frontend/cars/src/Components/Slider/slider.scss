@@ -88,9 +88,12 @@ width: 65%;
 margin: 2rem 0;
 place-items: center;
 align-self: center;
+h1{
+    font-size: 1.7rem;
+}
 @media screen and (max-width:768px) {
     h1{
-        font-size: 1.7rem;
+        font-size: 1.1rem;
 
     }
     width: 100%;

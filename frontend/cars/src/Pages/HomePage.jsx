@@ -80,7 +80,7 @@ export default function HomePage() {
         <Layout >
             <Helmet>
                 <title>Iznajmi Auto u Srbiji | Rent a Car Serbia</title>
-                <meta name="description" content="Iznajmi auto brzo i jednostavno širom Srbije! Povezujemo vas sa najboljim rent a car agencijama, nudeći širok izbor vozila po povoljnim cenama." />
+                <meta name="description" content="Iznajmi auto brzo i jednostavno širom Srbije! Povezujemo vas sa najboljim rent a car agencijama, nudeći širok izbor vozila po povoljnim cenama." data-react-helmet="true" />
             </Helmet>
             <Search />
             <SliderCarousel />

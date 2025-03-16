@@ -20,6 +20,10 @@ router.get("/sitemap.xml", async (req, res) => {
             { loc: "https://iznajmi.me/odgovornost", priority: 0.3 },
             { loc: "https://iznajmi.me/blog", priority: 0.8 },
             { loc: "https://iznajmi.me/reservation", priority: 0.2 },
+            { loc: "https://iznajmi.me/blog/pravo-avanturisticno-putovanje-kroz-austriju/", priority: 0.7 },
+            { loc: "https://iznajmi.me/blog/digitalni-detoks-otkrijte-srbiju-bez-ekrana/", priority: 0.7 },
+            { loc: "https://iznajmi.me/blog/najbolji-automobili-za-iznajmljivanje-po-tipu-putovanja/", priority: 0.7 },
+            { loc: "https://iznajmi.me/blog/kako-iznajmiti-automobil-bez-stresa/", priority: 0.7 },
         ];
 
         const carPages = cars.map((car) => ({

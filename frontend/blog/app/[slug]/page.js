@@ -1,5 +1,25 @@
 import { getPostData, getSortedPostsData } from "@/lib/posts";
 
+
+export async function generateMetadata({ params }) {
+    const { slug } = await params;
+    const post = await getPostData(slug);
+
+    if (!post) {
+        return { title: "Post Not Found" };
+    }
+
+    return {
+        title: post.title,
+        description: post.desc,
+        openGraph: {
+            title: post.title,
+            description: post.desc,
+            images: [`https://storage.googleapis.com/iznajmimeprobabucket/blog/${slug}.webp`],
+        },
+    };
+}
+
 export default async function BlogPost({ params }) {
 
     // Učitajte podatke o postu na osnovu sluga
