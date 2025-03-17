@@ -4,16 +4,11 @@ import CityComponent from '../Components/CityComponent/CityComponent'
 import SectionItem from '../Components/HomeSections/SectionItem'
 import { faKey, faCar, faHandshake } from '@fortawesome/free-solid-svg-icons'
 import Search from '../Components/SearchPageComponents/Search';
-import { useEffect } from 'react';
 import SliderCarousel from '../Components/Slider/SliderCarousel'
 import Layout from '../Components/Layout/Layout'
-import { Helmet, HelmetProvider } from 'react-helmet-async'
+import Seo from '../utils/SEO/Seo'
 
 export default function HomePage() {
-
-    // useEffect(() => {
-    //     document.title = 'Iznajmi me - Pocetna'
-    // })
 
     const sectionData = {
         header: "Iznajmi auto u 3 laka koraka?",
@@ -78,10 +73,16 @@ export default function HomePage() {
     return (
 
         <Layout >
-            <Helmet>
-                <title>Iznajmi Auto u Srbiji | Rent a Car Serbia</title>
-                <meta name="description" content="Iznajmi auto brzo i jednostavno širom Srbije! Povezujemo vas sa najboljim rent a car agencijama, nudeći širok izbor vozila po povoljnim cenama." data-react-helmet="true" />
-            </Helmet>
+
+            <Seo
+                title={'Iznajmi Auto u Srbiji | Rent a Car Serbia'}
+                description={'Iznajmi auto brzo i jednostavno širom Srbije! Povezujemo vas sa najboljim rent a car agencijama, nudeći širok izbor vozila po povoljnim cenama."'}
+                canonical={`https://iznajmi.me/`}
+                keywords={'rent a car, car, auto ,iznajmi, izajmi auto, rent a car Subotica, rent a car Beograd'}
+                url={`https://iznajmi.me/`}
+
+            />
+
             <Search />
             <SliderCarousel />
             <SectionComponent sectionData={cities} DynamicComponent={CityComponent} />

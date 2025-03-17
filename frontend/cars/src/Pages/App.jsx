@@ -8,6 +8,7 @@ import Sidebar from "../Components/Sidebar/Sidebar";
 import Filter from "../Components/Filter/Filter";
 import { useLoaderData, useLocation } from "react-router-dom"; // Add useLocation
 import Layout from "../Components/Layout/Layout";
+import Seo from "../utils/SEO/Seo";
 
 function App() {
   const {
@@ -28,7 +29,7 @@ function App() {
   const header = "Pronadji Idealan Auto";
 
   useEffect(() => {
-    document.title = "Izaberite Vas Auto";
+
 
     // Parse URL parameters
     const searchParams = new URLSearchParams(location.search);
@@ -65,6 +66,13 @@ function App() {
 
   return (
     <Layout header={header} appjsx={true}>
+      <Seo
+        title={"Rent a Car – Automobili za Iznajmljivanje | Srbija"}
+        description={'Rent a car u Srbiji brzo i jednostavno! Iznajmite vozilo po najboljim cenama. Rezervišite svoj auto online već danas!'}
+        canonical={'https://iznajmi.me/rent-a-car'}
+        keywords={'rent a car, iznajmi, auto, car'}
+
+      />
       <Sidebar filter={true}>
         <Filter />
       </Sidebar>

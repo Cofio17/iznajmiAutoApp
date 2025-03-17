@@ -10,7 +10,7 @@ import Layout from '../Components/Layout/Layout';
 import TimePickerManager from '../Components/TimePicker/TimePickerManager';
 import { createDate, hoursInPeriod, calculatePriceBasedOnHours, calculateTotalDaysBasedOnHours } from "../utils/createDate"
 import { apiRequest } from '../utils/Api/apiService';
-import { Helmet } from 'react-helmet-async';
+import Seo from '../utils/SEO/Seo';
 
 
 export default function Car() {
@@ -116,10 +116,18 @@ export default function Car() {
 
     return (
         <Layout>
-            <Helmet>
+            {/* <Helmet>
                 <title>Iznajmite {carData.brand} {carData.model} | Rent a Car Srbija - iznajmi.me</title>
-                <meta name="description" content={`Iznajmite ${carData.brand} ${carData.model} za nezaboravno iskustvo vožnje! Uživajte u vrhunskom komforu i performansama ovog automobila. Rezervišite odmah i istražite Srbiju u stilu!`} />
-            </Helmet>
+                <meta name="description" content={`Iznajmite ${carData.brand} ${carData.model} za nezaboravno iskustvo vožnje! Uživajte u komforu i performansama ovog automobila. Rezervišite odmah i istražite Srbiju!`} />
+            </Helmet> */}
+            <Seo
+                title={`Iznajmite ${carData.brand} ${carData.model} | Rent a Car Srbija - iznajmi.me`}
+                description={`Iznajmite ${carData.brand} ${carData.model} za nezaboravno iskustvo vožnje! Uživajte u komforu i performansama ovog automobila. Rezervišite odmah i istražite Srbiju!`}
+                keywords={'rent a car, iznajmi, auto, car'}
+                url={`https://iznajmi.me/rent-a-car/car/${carData.licensePlate}`}
+                image={carData.images[0]}
+                canonical={`https://iznajmi.me/rent-a-car/car/${carData.licensePlate}`}
+            />
 
             <div className='container-car'>
 

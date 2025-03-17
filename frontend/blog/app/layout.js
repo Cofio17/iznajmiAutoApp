@@ -4,7 +4,7 @@ import Header from "@/components/Header/Header";
 import Head from "next/head";
 
 export const metadata = {
-  title: "Iznajmi me Blog",
+  title: "Rent a Car | Iznajmi Auto Blog - iznajmi.me",
   description: "Pročitajte sve što Vas zanima o automobilima na jednom mestu",
   icons: '/blog/favicon.svg'
 };
