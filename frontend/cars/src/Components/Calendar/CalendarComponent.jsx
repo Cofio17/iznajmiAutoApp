@@ -6,6 +6,7 @@ import "./calendar.scss";
 import LoadingCircle from "../../utils/LoadingCircle/LoadingCircle";
 import { apiRequest } from "../../utils/Api/apiService";
 import dayjs from "dayjs";
+import { SkeletonCalendar } from "../../utils/Skeleton/Skeleton";
 
 export default function CalendarComponent({
     calendarId,
@@ -184,7 +185,7 @@ export default function CalendarComponent({
     }
 
     if (loading) {
-        return <LoadingCircle />;
+        return <SkeletonCalendar />;
     }
     return (
         <div className="calendar-wrapper">

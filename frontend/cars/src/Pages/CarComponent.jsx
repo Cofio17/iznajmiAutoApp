@@ -11,6 +11,7 @@ import TimePickerManager from '../Components/TimePicker/TimePickerManager';
 import { createDate, hoursInPeriod, calculatePriceBasedOnHours, calculateTotalDaysBasedOnHours } from "../utils/createDate"
 import { apiRequest } from '../utils/Api/apiService';
 import Seo from '../utils/SEO/Seo';
+import SkeletonCar from '../utils/Skeleton/Skeleton';
 
 
 export default function Car() {
@@ -108,7 +109,8 @@ export default function Car() {
     };
 
     if (loading) {
-        return <p>Data is loading</p>
+        return <SkeletonCar />
+
     }
     if (error) {
         return <ErrorPage error={error} />
@@ -116,10 +118,6 @@ export default function Car() {
 
     return (
         <Layout>
-            {/* <Helmet>
-                <title>Iznajmite {carData.brand} {carData.model} | Rent a Car Srbija - iznajmi.me</title>
-                <meta name="description" content={`Iznajmite ${carData.brand} ${carData.model} za nezaboravno iskustvo vožnje! Uživajte u komforu i performansama ovog automobila. Rezervišite odmah i istražite Srbiju!`} />
-            </Helmet> */}
             <Seo
                 title={`Iznajmite ${carData.brand} ${carData.model} | Rent a Car Srbija - iznajmi.me`}
                 description={`Iznajmite ${carData.brand} ${carData.model} za nezaboravno iskustvo vožnje! Uživajte u komforu i performansama ovog automobila. Rezervišite odmah i istražite Srbiju!`}

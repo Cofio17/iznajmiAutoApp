@@ -12,9 +12,6 @@ import { createDate } from "../../utils/createDate";
 import generateReservationId from "../../utils/generateId";
 import MotionButton from "../../Components/MotionButton/MotionButton";
 import Input from "../../Components/Filter/Input";
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import dayjs from "dayjs";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import DatePickerExp from "../../Components/DatePicker/DatePicker";
 
 
@@ -325,13 +322,9 @@ export default function ReservationForm() {
                 />
 
                 <Input required={true} label={'Prihvatam uslove korišćenja'} checked={termsAccepted} onChangeProp={(e) => { setTermsAccepted(e.target.checked) }} />
-
-                <MotionButton type="submit" className="button" disabled={isSubmitting} text={isSubmitting ? 'Slanje...' : 'Rezerviši'} />
-
-                <p className="driversLicense-warning">*Obavezno proverite da Vam nije istekla vozačka dozvola i da vozač ne koristi probnu vozačku dozvolu.</p>
-
                 {errors.server && <p style={{ color: 'red' }}>{errors.server}</p>}
-
+                <MotionButton type="submit" className="button" disabled={isSubmitting} text={isSubmitting ? 'Slanje...' : 'Rezerviši'} />
+                <p className="driversLicense-warning">*Obavezno proverite da Vam nije istekla vozačka dozvola i da vozač ne koristi probnu vozačku dozvolu.</p>
             </form>
 
         </div>
