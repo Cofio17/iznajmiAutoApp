@@ -1,5 +1,5 @@
  # Car Rental Platform
-Cao HH
+
 ## Overview  
 This project is a **car rental platform** that allows users to browse and reserve cars from multiple rental agencies. It integrates advanced booking features to simplify the reservation process and improve the management of car availability for agencies.
 
