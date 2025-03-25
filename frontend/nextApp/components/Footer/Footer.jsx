@@ -1,4 +1,3 @@
-import Link from "next/link";
 import styles from './Footer.module.scss'
 export default function Footer() {
 
@@ -36,7 +35,7 @@ export default function Footer() {
             <hr />
             <div className={styles.content}>
                 <div className={styles['footer-section']} >
-                    <img src='/blog/logo.png' alt="logo 300x50" />
+                    <img src='/logo.png' alt="logo 300x50" />
                     <p>
                         {sectionLogo.content}
                         <a href={`mailto:${email}`}>{email}</a>

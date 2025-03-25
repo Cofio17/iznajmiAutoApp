@@ -1,0 +1,54 @@
+@use '../../app/_variables.scss' as *;
+
+.navlist{
+    @include flex-row();
+    justify-content: space-between !important;
+    list-style: none;
+    align-items: center;
+    padding: 0.4rem 1rem;
+    
+  
+   
+    img{
+        height: 3rem;
+        width: 120px;
+        margin-left: 1rem;
+        object-fit: contain;
+    }
+    
+    a{
+      font-weight: bold;
+        &:hover{
+            color: $primary-color;
+           
+        }
+    }
+  
+  .navlinks{
+    @include flex-row();
+    justify-self: center !important;
+    gap: 3rem;
+    margin-right: 50px;
+    position: relative;
+    @media (max-width: 768px) {
+        display: none !important; // Sakrij desktop navigaciju na manjim ekranima
+    }
+  }
+  @media (max-width: 768px) {
+    &{
+        height: 55px;
+       
+    }
+    img{
+        position: absolute;
+        right: 1rem;
+        top: 3.5px;
+    }
+  }
+  
+  .navlinksButton {
+    @media (max-width: 768px) {
+        display: none; // Sakrij desktop navigaciju na manjim ekranima
+    }
+  }
+  }

@@ -3,13 +3,13 @@ import ListItem from "./ListItem";
 import styles from "./Header.module.scss";
 import BurgerMenu from "./BurgerMenu";
 import Link from "next/link";
-export default function Header() {
+export default function HeaderBlog() {
 
     return (
         <header className={styles.header}>
             <Link href="https://iznajmi.me/" passHref>
                 <Image
-                    src="/blog/logo.png"
+                    src="/logo.png"
                     alt="logo"
                     width={170}
                     height={55}

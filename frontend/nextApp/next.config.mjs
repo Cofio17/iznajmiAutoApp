@@ -1,8 +1,8 @@
+const prefix = process.env.prefix
 const nextConfig = {
     output: "export",
-    basePath: '/blog',
-    // assetPrefix: process.env.NODE_ENV === 'production' ? '/blog' : '',
-    assetPrefix: '/blog',
+    // basePath: prefix,
+    // assetPrefix: prefix,
     trailingSlash: true,
 };
 
