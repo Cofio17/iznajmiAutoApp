@@ -4,7 +4,30 @@
   --background: #ffffff;
   --foreground: #171717;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background-color: $white-color;
 }
+
+h1{
+  color: $header-color;
+  font-size: 3.2rem;
+}
+
+.bold{
+  font-weight: 500;
+}
+
+h2,h3, h4{
+  color: $text-color-headers !important  ;
+}
+
+.error {
+  color: red;
+}
+
+p{
+  color: $text-color-light;
+}
+
 
 * {
   box-sizing: border-box;
@@ -20,6 +43,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   place-items: center;
   margin-top: 5%;
+ 
 }
 
 html,
@@ -363,6 +387,7 @@ p{
   flex-direction: column;
   margin: 3rem 10%;
   max-width: 100vw;
+  margin-top: 100px;
 
   button {
     background-color: white;

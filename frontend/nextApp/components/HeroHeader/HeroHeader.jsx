@@ -1,20 +1,19 @@
 import Search from '../Search/Search';
 import styles from './HeroHeader.module.scss';
 
-export default function HeroHeader({ header }) {
+export default function HeroHeader({ header, overlay = true, subtext }) {
 
     return (
         <div className={styles.heroHeaderContainer}>
-            <h1 style={{ fontSize: '3rem' }}>{header}</h1>
+            <h1>{header}</h1>
+            <h2>{subtext}</h2>
             <img
-                className={`${styles.heroHeaderImage} ${header === 'Pronadji Idealan Auto' ? styles.imageMainPage : ''}`}
-
+                className={`${styles.heroHeaderImage} ${styles.imageMainPage}`}
                 src="/Banner.webp"
                 alt="hero-header-image"
             />
-            {header === 'Pronadji Idealan Auto' && (
+            {overlay && (
                 <div className={styles.overlay}>
-                    {/* Sadržaj overlay-a ako je potrebno */}
                     <Search />
                 </div>
             )}

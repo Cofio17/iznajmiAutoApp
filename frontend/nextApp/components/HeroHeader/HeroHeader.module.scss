@@ -6,6 +6,7 @@
     text-align: center;
     margin-top: 100px;
     width: 100vw;
+    justify-self: center;
    
    
 
@@ -17,6 +18,18 @@
         transform: translate(-50%, -50%); /* Pomeranje za pola svoje veličine za savršeno centriranje */
         margin: 0; /* Uklanja margine ako ih ima */
         color: $text-color !important;
+        font-size: 3rem;
+    }
+
+    h2 {
+        position: absolute;
+        display: inline-block;
+        left: 50%;
+        top: 60%; /* Podešava vertikalnu poziciju */
+        transform: translate(-50%, -50%); /* Pomeranje za pola svoje veličine za savršeno centriranje */
+        margin: 0; /* Uklanja margine ako ih ima */
+        color: $text-color !important;
+        font-size: 1.5rem;
     }
 
     @media screen and (max-width:810px) {
@@ -34,7 +47,7 @@
    
     object-fit: cover;
     object-position: center 60%; // Pomera prikaz slike na donji deo
-    height: 200px;
+    height: 300px;
     width: 90%;
     border-radius: 15px;
     @media screen and (max-width:$small-screen) {

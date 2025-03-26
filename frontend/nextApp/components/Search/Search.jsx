@@ -10,6 +10,8 @@ import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { usePathname, useRouter } from 'next/navigation';
+import { CircularProgress, Box } from '@mui/material';
+
 
 
 export default function Search() {
@@ -33,7 +35,6 @@ export default function Search() {
     const handleSearch = async () => {
         try {
             await getCars();
-
             const params = new URLSearchParams();
             if (startDate) params.set('start-date', encodeURIComponent(startDate));
             if (endDate) params.set('end-date', encodeURIComponent(endDate));
@@ -98,7 +99,9 @@ export default function Search() {
                     <FontAwesomeIcon icon={faMagnifyingGlass} color='black' size='1x' />
                 </div>
             </div>
-            {loading && pathname === '/' && (<p>loading</p>)}
+            {/* {loading && <Box sx={{ display: 'flex' }}>
+                <CircularProgress />
+            </Box>} */}
         </div>
     );
 }

@@ -1,0 +1,87 @@
+@use '../../app/_variables.scss' as *;
+
+.sectionContainer{
+    @include flex-column();
+    align-items: center;
+    background-color: $text-color;
+    text-align: center;
+    padding:3rem;
+    height: fit-content;
+    margin: 3rem 5rem;
+    border-radius: 15px;
+    p{
+        font-size: 18px;
+    }
+
+    .gold-line {
+        display: inline-block; /* Omogućava kontrolisanu širinu */
+        width: 60px; 
+        height: 5px; 
+        background-color: $darker-primary-color !important; 
+        border-radius: 2px; 
+        margin: 0 auto; 
+    }
+
+    @media screen  and (max-width: 1050px){ 
+        gap: 30px;
+        margin: 3rem 0; 
+    }
+}
+
+.sectionContainerItems{
+    @include flex-row();
+    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    
+}
+
+
+.sectionContainerItem{
+    @include flex-column();
+    background-color: $text-color;
+    width: 400px;
+    height: 300px;
+   align-items: center;
+
+   @media screen and (max-width:768px) {
+    &{
+        width: 350px;
+    }
+   }
+}
+
+.sectionContainerItemIcon{
+    display: flex;
+    height: 70px;
+    width: 70px;
+    // background-color: $darker-primary-color;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;    
+ svg{
+    color: $white-color;
+ }
+}
+
+
+.sectionContainerItemText{
+   width: 80%;
+   h2{
+    color: $header-color; 
+    margin-bottom: 15px;
+}
+   p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    color: $gray;
+    width: 100%;
+
+  }}
+
+  .sectionTitle{
+    color: $darker-primary-color !important;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
