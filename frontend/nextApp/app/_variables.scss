@@ -48,4 +48,25 @@ $p-color:#535a5e;
   }
 }
 
+@mixin button-style-reverse($font-size){
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: $font-size;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: $darker-primary-color;
+  transition: all 0.2s ease;
+  color: #fff;
+  cursor: pointer;
+  a{
+      color: #fff;
+  }
+
+&:hover{
+  background-color: $primary-color;
+}
+}
+
+
   

@@ -8,7 +8,63 @@ import "slick-carousel/slick/slick-theme.css"; // Add this
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-export default function SliderCarousel() {
+function NextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+        <div
+            className={className}
+            style={{ ...style, display: "block", cursor: "pointer" }}
+            onClick={onClick}
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="36" // Širina SVG-a
+                height="36" // Visina SVG-a
+                viewBox="0 0 36 36"
+                fill="none" // Bez popune, samo kontura
+            >
+                <path
+                    d="M12 6l12 12-12 12" // Chevron strelica
+                    stroke="#2D6A4F" // Boja strelice
+                    strokeWidth="3" // Debljina linije
+                    strokeLinecap="round" // Zaobljeni završeci
+                />
+            </svg>
+        </div>
+    );
+}
+
+
+function PrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+        <div
+            className={className}
+            style={{ ...style, display: "block", cursor: "pointer" }}
+            onClick={onClick}
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="36" // Širina SVG-a
+                height="36" // Visina SVG-a
+                viewBox="0 0 36 36"
+                fill="none" // Bez popune, samo kontura
+            >
+                <path
+                    d="M24 6l-12 12 12 12" // Chevron strelica okrenuta levo
+                    stroke="#2D6A4F" // Boja strelice
+                    strokeWidth="3" // Debljina linije
+                    strokeLinecap="round" // Zaobljeni završeci
+                />
+            </svg>
+        </div>
+    );
+}
+
+
+
+
+export default function SliderCarousel({ carTypes }) {
     const [loading, setLoading] = useState(false); // Local state for loading
     const router = useRouter();
 
@@ -22,6 +78,8 @@ export default function SliderCarousel() {
         autoplay: true,
         autoplaySpeed: 1900,
         cssEase: "linear",
+        nextArrow: <NextArrow />,
+        prevArrow: <PrevArrow />,
         responsive: [
             {
                 breakpoint: 1024,
@@ -50,32 +108,6 @@ export default function SliderCarousel() {
         ],
     };
 
-    const carTypes = [
-        {
-            naziv: "Mini",
-            image: "/Limuzina-04.webp",
-        },
-        {
-            naziv: "Kompaktan",
-            image: "/Limuzina-03.webp",
-        },
-        {
-            naziv: "SUV",
-            image: "/Limuzina-06.webp",
-        },
-        {
-            naziv: "Porodičan",
-            image: "/Limuzina-05.webp",
-        },
-        {
-            naziv: "Limuzina",
-            image: "/Limuzina-01.webp",
-        },
-        {
-            naziv: "Premium",
-            image: "/Limuzina-02.webp",
-        },
-    ];
 
     const handleClick = async (naziv) => {
         try {

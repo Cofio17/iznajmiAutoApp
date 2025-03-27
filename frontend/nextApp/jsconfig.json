@@ -1,7 +1,14 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"], // Ovo pokriva sve u root-u
+      "@/components/*": ["./components/*"], // Ovo dodaje alias za components
+      "@/data/*": ["./data/*"], // Ovo dodaje alias za components
+      "@/layouts/*": ["./layouts/*"], // Ovo dodaje alias za components
+      "@/lib/*": ["./lib/*"], // Ovo dodaje alias za components
+
     }
-  }
+  },
+  "include": ["app/**/*", "components/**/*"] // Uključuje i app i components folder
 }

@@ -1,0 +1,127 @@
+@use '../../app/_variables.scss' as *;
+
+.carSliderContainer {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+    overflow: hidden; // Ensure container clips content
+  }
+  
+  .carSlider {
+    overflow: hidden;
+    visibility: hidden; // Initially hidden until mounted
+    width: 100%;
+    position: relative;
+  }
+  
+  .carSliderTrack {
+    display: flex;
+    transition: transform 0.3s ease-out;
+    width: 100%; // Ensure track fills container
+    height: 100%;
+  }
+  
+  .carCardWrapper {
+    flex: 0 0 100%;
+    width: 100%; // Each wrapper takes full width
+    padding: 15px 15px;
+    box-sizing: border-box; // Include padding in width calculation
+
+    @media screen and (max-width:768px) {
+        scale: 70%;
+    }
+
+    
+  }
+  
+  .carCard {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    opacity: 1;
+  }
+  
+  .carCardImageContainer {
+    position: relative;
+    height: 300px;
+    width: 100%;
+  }
+  
+  .carCardImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .carCardContent {
+    padding: 20px;
+  }
+  
+  .carCardTitle {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+  }
+  
+  .carCardPrice {
+    font-size: 20px;
+    color: #666;
+    margin-top: 8px;
+    font-weight: 500;
+  }
+  
+  .prevButton,
+  .nextButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255,255,255,0.8);
+    padding: 12px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: background-color 0.2s;
+    z-index: 10;
+  
+    &:hover {
+      background-color: #fff;
+    }
+  }
+  
+  .prevButton {
+    left: 20px;
+  }
+  
+  .nextButton {
+    right: 20px;
+  }
+  
+  .progressContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+  }
+  
+  .progressDot {
+    height: 8px;
+    border-radius: 999px;
+    transition: all 0.3s;
+    width: 20px;
+    background-color: #d1d5db;
+  
+    &.active {
+      width: 40px;
+      background-color: $darker-primary-color;
+    }
+  }

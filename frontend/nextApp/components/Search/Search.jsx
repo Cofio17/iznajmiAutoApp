@@ -99,9 +99,9 @@ export default function Search() {
                     <FontAwesomeIcon icon={faMagnifyingGlass} color='black' size='1x' />
                 </div>
             </div>
-            {/* {loading && <Box sx={{ display: 'flex' }}>
-                <CircularProgress />
-            </Box>} */}
+            {loading && <Box position={'absolute'} bottom={-25} sx={{ display: 'flex' }}>
+                <CircularProgress color='#2D6A4F' />
+            </Box>}
         </div>
     );
 }

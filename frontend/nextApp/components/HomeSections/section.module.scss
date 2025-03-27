@@ -5,9 +5,36 @@
     align-items: center;
     background-color: $text-color;
     text-align: center;
-    padding:3rem;
+    padding:2rem 3rem 1rem 3rem;
     height: fit-content;
-    margin: 3rem 5rem;
+    margin: 3rem 5rem 0 3rem ;
+    border-radius: 15px;
+    p{
+        font-size: 18px;
+    }
+
+    .gold-line {
+        display: inline-block; /* Omogućava kontrolisanu širinu */
+        width: 60px; 
+        height: 5px; 
+        background-color: $darker-primary-color !important; 
+        border-radius: 2px; 
+        margin: 0 auto; 
+    }
+
+    @media screen  and (max-width: 1050px){ 
+        gap: 30px;
+        margin: 3rem 0; 
+    }
+}
+
+
+.sectionContainerButton{
+    @include flex-column();
+    align-items: center;
+    background-color: $white-color;
+    text-align: center;
+    height: fit-content;
     border-radius: 15px;
     p{
         font-size: 18px;
