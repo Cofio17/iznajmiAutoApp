@@ -173,24 +173,46 @@ const CarSlider = () => {
                 </div>
             </div>
 
-            <button
-                onClick={prevSlide}
+            <div
                 className={styles.prevButton}
-                aria-label="Previous slide"
+                style={{ display: "block", cursor: "pointer" }}
+                onClick={prevSlide}
             >
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                    <path d="M15 18L9 12L15 6" stroke="#333" strokeWidth="2" strokeLinecap="round" />
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="36" // Širina SVG-a
+                    height="36" // Visina SVG-a
+                    viewBox="0 0 36 36"
+                    fill="none" // Bez popune, samo kontura
+                >
+                    <path
+                        d="M24 6l-12 12 12 12" // Chevron strelica okrenuta levo
+                        stroke="#2D6A4F" // Boja strelice
+                        strokeWidth="3" // Debljina linije
+                        strokeLinecap="round" // Zaobljeni završeci
+                    />
                 </svg>
-            </button>
-            <button
-                onClick={nextSlide}
+            </div>
+            <div
                 className={styles.nextButton}
-                aria-label="Next slide"
+                style={{ display: "block", cursor: "pointer" }}
+                onClick={nextSlide}
             >
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                    <path d="M9 18L15 12L9 6" stroke="#333" strokeWidth="2" strokeLinecap="round" />
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="36" // Širina SVG-a
+                    height="36" // Visina SVG-a
+                    viewBox="0 0 36 36"
+                    fill="none" // Bez popune, samo kontura
+                >
+                    <path
+                        d="M12 6l12 12-12 12" // Chevron strelica
+                        stroke="#2D6A4F" // Boja strelice
+                        strokeWidth="3" // Debljina linije
+                        strokeLinecap="round" // Zaobljeni završeci
+                    />
                 </svg>
-            </button>
+            </div>
 
             <div className={styles.progressContainer}>
                 {Array.from({ length: DUMMY_CARS.length }).map((_, index) => (

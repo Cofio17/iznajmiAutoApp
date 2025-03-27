@@ -6,6 +6,7 @@ import CarCardNew from "@/components/CarCardNew/CarCardNew";
 import homePageDataJson from '@/data/homePageDataJson'
 import SectionButtons from "@/components/HomeSections/SectionButtons";
 import CarSlider from "@/components/CarSlider/CarSlider";
+import SectionComponentWrapper from "@/components/HomeSections/SectionComponentWrapper";
 
 
 const sectionData = homePageDataJson.sectionData;
@@ -15,7 +16,7 @@ const buttonDataReservation = {
     header: "Iznajmi auto u Subotici odmah!",
     buttonText: "Pretraži vozila",
     id: "search-cars-button",
-    to: '/blog'
+    to: 'https://iznajmi.me/rent-a-car?City=Subotica'
 }
 
 const buttonDataBlog = {
@@ -110,9 +111,9 @@ export default function RentACar() {
             <SliderCarousel carTypes={carTypes} />
             <SectionComponent sectionData={sectionData} />
             <CarSlider />
-            <SectionComponent sectionData={sectionZanimljivosti} />
+            <SectionComponentWrapper sectionData={sectionZanimljivosti} />
+            <SectionButtons buttonData={buttonDataBlog} line={false} />
             <SectionButtons buttonData={buttonDataReservation} />
-            <SectionButtons buttonData={buttonDataBlog} />
         </>
     );
 }

@@ -442,6 +442,11 @@ p{
   }
 }
 
+//uklanja default strelice
+.slick-arrow::before{
+  display: none;
+}
+
 .h1 {
   color: $header-color !important;
   font-size: 2rem;

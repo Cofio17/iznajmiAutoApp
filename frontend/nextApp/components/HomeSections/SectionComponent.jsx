@@ -9,7 +9,7 @@ export default function SectionComponent({ sectionData }) {
             <div className="section-container-h1-p">
                 <div className="gold-line"></div>
                 <h2 className={styles.sectionTitle}>{sectionData.header}</h2>
-                <p>{sectionData.details}</p>
+                {sectionData.details && <p>{sectionData.details}</p>}
             </div>
 
             <div className={styles.sectionContainerItems}>
