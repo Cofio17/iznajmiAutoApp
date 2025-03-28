@@ -41,7 +41,7 @@ export default function Header({ onClick }) {
                             <NavLink onClick={() => { handleRefresh('/rent-a-car') }} to='/rent-a-car' >Rent a Car </NavLink>
                             {/* <DropDownMenu isActive={activeDropDown} /> */}
                         </li>
-                        <li><NavLink to='/about_us' >O nama</NavLink></li>
+                        <li><NavLink to='/blog' >Blog</NavLink></li>
                     </div>
 
 

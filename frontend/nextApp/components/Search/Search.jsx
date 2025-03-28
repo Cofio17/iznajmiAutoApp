@@ -14,7 +14,7 @@ import { CircularProgress, Box } from '@mui/material';
 
 
 
-export default function Search() {
+export default function Search({ filteredCars }) {
     const localhost = process.env.NEXT_PUBLIC_SERVER;
     const searchLink = `${localhost}api/calendar/search`;
 
@@ -24,7 +24,7 @@ export default function Search() {
 
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
-    const [city, setCity] = useState(null);
+    const [city, setCity] = useState('Subotica');
     const [loading, setLoading] = useState(false);
     const maxDate = dayjs().add(3, 'month');
 
@@ -40,7 +40,7 @@ export default function Search() {
             if (endDate) params.set('end-date', encodeURIComponent(endDate));
             if (city) params.set('City', encodeURIComponent(city));
 
-            // router.push(`/rent-a-car`);
+            router.push(`/rent-a-car`);
         } catch (error) {
             console.log('Error during redirection:', error);
         }

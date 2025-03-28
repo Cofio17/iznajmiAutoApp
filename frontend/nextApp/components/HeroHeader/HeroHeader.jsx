@@ -1,7 +1,7 @@
 import Search from '../Search/Search';
 import styles from './HeroHeader.module.scss';
 
-export default function HeroHeader({ header, overlay = true, subtext }) {
+export default function HeroHeader({ header, overlay = true, subtext, filteredCars }) {
 
     return (
         <div className={styles.heroHeaderContainer}>
@@ -14,7 +14,7 @@ export default function HeroHeader({ header, overlay = true, subtext }) {
             />
             {overlay && (
                 <div className={styles.overlay}>
-                    <Search />
+                    <Search filteredCars={filteredCars} />
                 </div>
             )}
         </div>

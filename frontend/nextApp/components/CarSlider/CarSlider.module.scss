@@ -24,9 +24,9 @@
     padding: 0 20px;
     overflow: hidden; // Ensure container clips content
 
-    @media screen and (max-width:1400px) {
-      width: 1000px;
-    }
+    // @media screen and (max-width:1400px) {
+    //   width: 1000px;
+    // }
 
   }
   
@@ -131,4 +131,3 @@
       padding: 10px; // Smanjeni padding za desktop
   }
 }
-

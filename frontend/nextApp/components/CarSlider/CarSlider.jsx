@@ -76,13 +76,8 @@ const CarSlider = ({ sectionData, cars }) => {
     const numberOfDots = Math.max(1, cars.length - cardsPerView + 1); // Ensure at least 1 dot
     const translatePercentage = typeof window !== 'undefined' && window.innerWidth <= 768 ? 105 : 100;
     return (
-        <section className={styles.carSliderWrapper}>
 
-            <div className="section-container-h1-p">
-                <div className="gold-line"></div>
-                <h3 className={styles.sectionTitle}>{sectionData.header}</h3>
-                {sectionData.details && <p>{sectionData.details}</p>}
-            </div>
+        <>
             <div className={styles.carSliderContainer}>
                 <div
                     ref={sliderRef}
@@ -123,8 +118,12 @@ const CarSlider = ({ sectionData, cars }) => {
                     ))}
                 </div>
             </div>
-        </section>
+
+        </>
+
+
     );
 };
 
 export default CarSlider;
+

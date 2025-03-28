@@ -11,13 +11,13 @@
   flex-direction: column;
   height: 100%;
 
-  @media screen and (max-width:1750px) {
-      width: 350px;
-  }
+  // @media screen and (max-width:1750px) {
+  //     width: 350px;
+  // }
 
-  @media screen and (max-width:1460px) {
-      max-width: 300px;
-  }
+  // @media screen and (max-width:1460px) {
+  //     max-width: 300px;
+  // }
 
   @media screen and (max-width:768px) {
       max-width: 350px;

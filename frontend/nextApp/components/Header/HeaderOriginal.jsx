@@ -24,9 +24,9 @@ export default function HeaderFullWidth({ }) {
                         />
                     </Link>
                     <div className={styles.navlinks}>
-                        <ListItem to={'https://iznajmi.me/'} text={'Početna'} />
-                        <ListItem to={'https://iznajmi.me/rent-a-car'} text={'Rent a Car'} />
-                        <ListItem to={'https://iznajmi.me/iznajmi-auto/blog'} text={'Blog'} />
+                        <ListItem to={'/'} text={'Početna'} />
+                        <ListItem to={'/rent-a-car'} text={'Rent a Car'} />
+                        <ListItem to={'/blog'} text={'Blog'} />
                     </div>
 
                     <div className={styles.navlinksButton}>

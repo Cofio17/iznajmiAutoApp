@@ -36,7 +36,13 @@ function App() {
     const carType = searchParams.get("tip");
 
     if (initialLoad && !hasSearched) {
-      setSearchListData(carsData);
+      if (JSON.parse(localStorage.getItem('searchListData')) && JSON.parse(localStorage.getItem('searchListData').length > 0)) {
+        setSearchListData(JSON.parse(localStorage.getItem('searchListData')));
+      }
+      else {
+        setSearchListData(carsData);
+      }
+
 
       // If there's a car type in the URL, apply it as a filter
       if (carType) {
@@ -58,6 +64,8 @@ function App() {
 
   useEffect(() => {
     if (searchListData.length > 0) {
+      console.log(searchListData);
+
       localStorage.setItem("searchListData", JSON.stringify(searchListData));
     }
   }, [searchListData]);
