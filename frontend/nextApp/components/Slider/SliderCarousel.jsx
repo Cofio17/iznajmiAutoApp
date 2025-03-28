@@ -7,6 +7,8 @@ import "slick-carousel/slick/slick-theme.css"; // Add this
 // import { apiRequest } from "../../utils/Api/apiService";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import apiRequest from "@/Api/apiService";
+
 
 function NextArrow(props) {
     const { className, style, onClick } = props;

@@ -24,6 +24,7 @@ router.get("/sitemap.xml", async (req, res) => {
             { loc: "https://iznajmi.me/blog/digitalni-detoks-otkrijte-srbiju-bez-ekrana/", priority: 0.7 },
             { loc: "https://iznajmi.me/blog/najbolji-automobili-za-iznajmljivanje-po-tipu-putovanja/", priority: 0.7 },
             { loc: "https://iznajmi.me/blog/kako-iznajmiti-automobil-bez-stresa/", priority: 0.7 },
+            { loc: "https://iznajmi.me/rent-a-car-subotica/", priority: 0.9 },
         ];
 
         const carPages = cars.map((car) => ({

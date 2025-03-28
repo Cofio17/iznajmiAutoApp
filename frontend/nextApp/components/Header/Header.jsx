@@ -9,7 +9,7 @@ export default function HeaderBlog() {
         <header className={styles.header}>
             <Link href="https://iznajmi.me/" passHref>
                 <Image
-                    src="/logo.png"
+                    src="nextapp/logo.png"
                     alt="logo"
                     width={170}
                     height={55}

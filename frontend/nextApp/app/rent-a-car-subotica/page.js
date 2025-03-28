@@ -24,30 +24,32 @@ const buttonDataBlog = {
     to: '/blog'
 }
 
+const prefix = process.env.prefix
+
 const carTypes = [
     {
         naziv: "Mini",
-        image: "/Limuzina-04.webp",
+        image: `${prefix}/Limuzina-04.webp`,
     },
     {
         naziv: "Kompaktan",
-        image: "/Limuzina-03.webp",
+        image: "/nextapp//Limuzina-03.webp",
     },
     {
         naziv: "SUV",
-        image: "/Limuzina-06.webp",
+        image: "/nextapp//Limuzina-06.webp",
     },
     {
         naziv: "Porodičan",
-        image: "/Limuzina-05.webp",
+        image: "/nextapp//Limuzina-05.webp",
     },
     {
         naziv: "Limuzina",
-        image: "/Limuzina-01.webp",
+        image: "/nextapp//Limuzina-01.webp",
     },
     {
         naziv: "Premium",
-        image: "/Limuzina-02.webp",
+        image: "/nextapp//Limuzina-02.webp",
     },
 ];
 
@@ -55,7 +57,7 @@ export const metadata = {
     title: "Rent a Car Subotica | Iznajmljivanje Automobila Subotica",
     description: "Rent a Car Subotica – Jeftino, lako i brzo iznajmljivanje kola. Najbolje cene, bez skrivenih troškova! Rezervišite auto danas i uživajte u vožnji.",
     alternates: {
-        canonical: "https://iznajmi.me/iznajmi-auto"
+        canonical: "https://iznajmi.me/rent-a-car-subotica"
     }
 }
 

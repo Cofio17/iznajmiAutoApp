@@ -14,7 +14,7 @@ export default function HeaderFullWidth({ }) {
                     {/* Desktop devices  */}
                     <Link href="https://iznajmi.me/" passHref>
                         <Image
-                            src="/logo.png"
+                            src="/nextapp/logo.png"
                             alt="logo"
                             width={170}
                             height={55}

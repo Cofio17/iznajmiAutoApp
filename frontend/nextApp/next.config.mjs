@@ -2,7 +2,7 @@ const prefix = process.env.prefix
 const nextConfig = {
     output: "export",
     // basePath: prefix,
-    // assetPrefix: prefix,
+    assetPrefix: prefix,
     trailingSlash: true,
 };
 
