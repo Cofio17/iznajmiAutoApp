@@ -9,7 +9,9 @@ export default function SectionButtons({ buttonData, line = true, filteredCars }
     const router = useRouter();
 
     const handleRedirect = () => {
-        // localStorage.setItem('searchListData', JSON.stringify(filteredCars));
+        if (filteredCars) {
+            localStorage.setItem('searchListData', JSON.stringify(filteredCars));
+        }
         router.push(buttonData.to);
     }
 

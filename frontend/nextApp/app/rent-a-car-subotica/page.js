@@ -74,7 +74,7 @@ export default async function RentACar() {
             <CarSlider cars={Array.from(cars).slice(0, 5)} sectionData={{ header: "Najbolje Rent a Car Ponude u Subotici" }} />
             <SectionComponentWrapper sectionData={sectionZanimljivosti} />
             <SectionButtons buttonData={buttonDataBlog} line={false} />
-            <SectionButtons buttonData={buttonDataReservation} />
+            <SectionButtons filteredCars={carsByCity} buttonData={buttonDataReservation} />
         </>
     );
 }

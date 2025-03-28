@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSuitcaseRolling } from "@fortawesome/free-solid-svg-icons";
 
+const prefix = process.env.prefix
+
 const mappedTrans = {
     "Manuel": "Manuelan"
 };
@@ -19,7 +21,7 @@ const CarCardNew = ({ carData }) => {
                 <h2 className={styles.cardTitleNew}> {carData.brand} {carData.model}</h2>
                 <div className={styles.cardSpecsNew}>
                     <div className={`${styles.specItemNew} ${styles.transmission}`}>
-                        <img src={'/images/shift.png'} alt="gear shift" className={styles.specIconNew} />
+                        <img src={`${prefix}/images/shift.png`} alt="gear shift" className={styles.specIconNew} />
                         <span>{mappedTrans[carData.transmission] || carData.transmission}</span>
                     </div>
                     <div className={styles.specItemNew}>
@@ -30,7 +32,7 @@ const CarCardNew = ({ carData }) => {
                         />
                     </div>
                     <div className={styles.specItemNew}>
-                        <img src={'/images/user.png'} alt="seats icon" className={styles.specIconNew} />
+                        <img src={`${prefix}/images/user.png`} alt="seats icon" className={styles.specIconNew} />
                         <span>{carData.seats}</span>
                     </div>
                     <div className={styles.specItemNew}>
