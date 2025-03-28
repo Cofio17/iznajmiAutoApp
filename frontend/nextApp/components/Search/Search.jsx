@@ -87,14 +87,14 @@ export default function Search() {
                         minDate={startDate || null}
                     />
                 </LocalizationProvider>
-                <Autocomplete
+                {/* <Autocomplete
                     value={city}
                     options={cities}
                     getOptionLabel={(option) => option}
                     onChange={(e, newValue) => setCity(newValue)}
                     renderInput={(params) => <TextField {...params} label="Izaberite grad" variant="outlined" />}
                     className='mui-input'
-                />
+                /> */}
                 <div onClick={handleSearch} className='search-bar-icon'>
                     <FontAwesomeIcon icon={faMagnifyingGlass} color='black' size='1x' />
                 </div>

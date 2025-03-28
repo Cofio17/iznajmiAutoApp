@@ -9,7 +9,7 @@ const mappedTrans = {
 
 const CarCardNew = ({ carData }) => {
     return (
-        <Link href={`car/${carData.licensePlate}`}>
+        <Link passHref key={carData.licensePlate} href={`rent-a-car/car/${carData.licensePlate}`}>
             <div className={styles.cardNew}>
                 <div className={styles.cardImageContainerNew}>
                     <img src={carData.image} alt="Automobil" className={styles.cardImageNew} />

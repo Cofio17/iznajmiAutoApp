@@ -3,7 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  // font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   background-color: $white-color;
 }
 
@@ -293,6 +293,7 @@ p{
   justify-content: center;
   margin-top: 100px;
   gap: 1rem;
+  background-color: $gray-light !important;
   input{
       width:150px ;
   }
@@ -311,6 +312,7 @@ p{
           border-radius: 15px;
           padding: 10px;
           text-align: center;
+       
           svg{
               display: none;
           }
@@ -330,6 +332,7 @@ p{
           margin: 0 auto;
           color: #fff;
           padding: 5px;
+          color: #d9d2d2;
          
           
       }
@@ -344,7 +347,7 @@ p{
   margin-left: 0.5rem;
   padding: 20px;
   border-radius: 0.7rem;
-  background-color: $text-color;
+  background-color: #d9d2d2;
   transition: all 0.3s ease;
   svg{
       color: $text-color-headers !important;
@@ -394,7 +397,7 @@ p{
   flex-direction: column;
   margin: 3rem 10%;
   max-width: 90vw;
-  margin-top: 100px;
+  margin-top: 120px;
   justify-self: center;
 
   button {
@@ -471,7 +474,7 @@ p{
   flex-direction: column;
   gap: 1rem;
   width: 65%;
-  margin: 2rem 0;
+  margin: 2rem auto;
   place-items: center;
   align-self: center;
 
@@ -479,10 +482,14 @@ p{
     font-size: 1.7rem;
   }
 
+
+
   @media screen and (max-width: 768px) {
     h1 {
       font-size: 1.1rem;
     }
+
+
     width: 100%;
   }
 }
@@ -499,6 +506,8 @@ p{
 }
 
 #my-reservation-button{
-  font-weight: bold;
+  font-weight: 500;
 }
+
+
 

@@ -15,7 +15,7 @@ const mappedTrans = {
 
 const CarCardNew = ({ carData }) => {
     return (
-        <Link to={`car/${carData.licensePlate}`}>
+        <Link to={`/rent-a-car/car/${carData.licensePlate}`}>
 
             <div className="card_new">
                 <div className="card-image-container_new">
