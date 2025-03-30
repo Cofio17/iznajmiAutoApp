@@ -52,7 +52,7 @@ export default function CityComponent({ itemData }) {
       >
         <div className="overlay"></div>
         <p className="text-overlay">{itemData.title}</p>
-        <img src={itemData.description} alt="image" />
+        <img src={itemData.description} alt="image" loading="lazy" />
       </motion.div>
     </Link>
   );

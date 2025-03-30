@@ -3,15 +3,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import styles from './CarSlider.module.scss';
 import CarCardNew from '../CarCardNew/CarCardNew';
 
-
-const DUMMY_CARS = [
-    { licensePlate: '6', id: 1, title: "Tesla Model S", image: "https://storage.googleapis.com/iznajmimeprobabucket/cars/SU157-LZ_1.webp", price: "50€" },
-    { licensePlate: '1', id: 2, title: "Porsche Taycan", image: "https://storage.googleapis.com/iznajmimeprobabucket/cars/SU157-LZ_1.webp", price: "50€" },
-    { licensePlate: '4', id: 3, title: "BMW i4", image: "https://storage.googleapis.com/iznajmimeprobabucket/cars/SU157-LZ_1.webp", price: "70€" },
-    { licensePlate: '3', id: 4, title: "Audi e-tron GT", image: "https://storage.googleapis.com/iznajmimeprobabucket/cars/SU157-LZ_1.webp", price: "20€" },
-    { licensePlate: '2', id: 5, title: "Mercedes EQS", image: "https://storage.googleapis.com/iznajmimeprobabucket/cars/SU157-LZ_1.webp", price: "30€" },
-];
-
 const CarSlider = ({ sectionData, cars }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [cardsPerView, setCardsPerView] = useState(3);

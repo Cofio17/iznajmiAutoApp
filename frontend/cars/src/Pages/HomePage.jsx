@@ -8,6 +8,8 @@ import SliderCarousel from '../Components/Slider/SliderCarousel'
 import Layout from '../Components/Layout/Layout'
 import Seo from '../utils/SEO/Seo'
 
+
+
 export default function HomePage() {
 
     const sectionData = {
@@ -47,25 +49,25 @@ export default function HomePage() {
                 id: "01",
                 title: "Subotica",
                 description:
-                    "https://storage.googleapis.com/iznajmimeprobabucket/gradovi/Subotica.webp",
+                    '/cities/gradovi_Subotica.webp',
             },
             {
                 id: "02",
                 title: "Novi Sad",
                 description:
-                    "https://storage.googleapis.com/iznajmimeprobabucket/gradovi/Novi-Sad.webp",
+                    '/cities/gradovi_Novi-Sad.webp'
             },
             {
                 id: "03",
                 title: "Beograd",
                 description:
-                    "https://storage.googleapis.com/iznajmimeprobabucket/gradovi/Beograd.webp",
+                    '/cities/gradovi_Beograd.webp'
             },
             {
                 id: "04",
                 title: "Zrenjanin",
                 description:
-                    "https://storage.googleapis.com/iznajmimeprobabucket/gradovi/Zrenjanin.webp",
+                    '/cities/gradovi_Zrenjanin.webp',
             },
         ],
     }
