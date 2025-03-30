@@ -34,7 +34,7 @@ function DatePickerExp({ dateExp, setDateExp, handleBlur, error }) {
         <TextField
             onBlur={handleBlur}
             required
-            label="MM/YY"
+            label="MM/GG"
             value={dateExp || ''} // Koristi dateExp iz propova
             onChange={handleChange}
             inputProps={{
@@ -44,7 +44,7 @@ function DatePickerExp({ dateExp, setDateExp, handleBlur, error }) {
             sx={{ width: '100px' }}
             className="mui-input reservation-form-input"
             error={error}
-            helperText={error || ''}
+            helperText={error || 'Datum isteka vozačke dozvole'}
         />
     );
 }

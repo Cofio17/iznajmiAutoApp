@@ -13,6 +13,9 @@ import generateReservationId from "../../utils/generateId";
 import MotionButton from "../../Components/MotionButton/MotionButton";
 import Input from "../../Components/Filter/Input";
 import DatePickerExp from "../../Components/DatePicker/DatePicker";
+import { Tooltip } from "@mui/material";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faQuestion } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function ReservationForm() {
@@ -255,20 +258,28 @@ export default function ReservationForm() {
                     className="mui-input reservation-form-input"
                 />
 
-                <TextField
-                    id="jmbg"
-                    label="JMBG/PIB"
-                    type="text"
-                    variant="outlined"
-                    fullWidth
-                    required
-                    value={jmbg}
-                    onChange={(e) => setJmbg(e.target.value)}
-                    onBlur={(e) => handleBlur('jmbg', e.target.value)}
-                    error={Boolean(errors.jmbg)}
-                    helperText={errors.jmbg || 'JBMG ili PIB firme'}
-                    className="mui-input reservation-form-input"
-                />
+                <div className="jmbg-wrapper">
+
+                    <Tooltip title={'Ukoliko ste pravno lice, upišite PIB firme'}>
+                        <FontAwesomeIcon className="icon tooltipIcon" icon={faQuestion} />
+                    </Tooltip>
+                    <TextField
+                        id="jmbg"
+                        label="JMBG/PIB"
+                        type="text"
+                        variant="outlined"
+                        fullWidth
+                        required
+                        value={jmbg}
+                        onChange={(e) => setJmbg(e.target.value)}
+                        onBlur={(e) => handleBlur('jmbg', e.target.value)}
+                        error={Boolean(errors.jmbg)}
+                        helperText={errors.jmbg || 'JBMG za fizička lica ili PIB firme za pravna lica'}
+                        className="mui-input reservation-form-input"
+                    />
+
+                </div>
+
 
                 <div className="drivesLicense-wrapper">
                     <TextField
@@ -285,7 +296,7 @@ export default function ReservationForm() {
                         className="mui-input reservation-form-input"
                     />
 
-                    <DatePickerExp handleBlur={(e) => handleBlur('expDate', e.target.value)} error={Boolean(errors.dateExp)} helperText={errors.dateExp || ''} id='driversLicense-exp' dateExp={dateExp} setDateExp={setDateExp} />
+                    <DatePickerExp handleBlur={(e) => handleBlur('expDate', e.target.value)} error={Boolean(errors.dateExp)} helperText={errors.dateExp || 'Datum isteka vozačke dozvole'} id='driversLicense-exp' dateExp={dateExp} setDateExp={setDateExp} />
                 </div>
 
                 <TextField

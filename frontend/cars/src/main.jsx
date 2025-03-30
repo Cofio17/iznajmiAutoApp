@@ -58,7 +58,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/reservation',
-    element: <ReservationForm />
+    element:
+      <>
+        <ScrollToTop />
+        <ReservationForm />
+      </>
   },
   {
     path: '/about_us',
