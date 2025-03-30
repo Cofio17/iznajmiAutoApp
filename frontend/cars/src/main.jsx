@@ -43,7 +43,6 @@ const router = createBrowserRouter([
     path: "/rent-a-car",
     element: (
       <SearchProvider>
-        <ScrollToTop />
         <App />
       </SearchProvider>
     ),

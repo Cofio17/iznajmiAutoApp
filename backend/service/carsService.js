@@ -24,8 +24,29 @@ const updateCarsWithNullCompanyId = async (newCompanyId) => {
     }
 };
 
+const returnCarImages = async (licensePlate) => {
+    const BASE_URL = `https://storage.googleapis.com/iznajmime/carImages/`;
+    const imagesArray = [];
+    const plateUpper = String(licensePlate).toUpperCase();
+    try {
+        let index = 1;
+
+        while (true) {
+            const plate = `${plateUpper}_${index}.webp`;
+            const response = await fetch(`${BASE_URL}${plate}`);
+
+            if (!response.ok) break;
+            imagesArray.push(`${BASE_URL}${plate}`);
+            index++;
+        }
+    } catch (error) {
+        console.error("Error trying to get images:", error);
+    }
+    return imagesArray;
+};
 
 module.exports = {
     filterCarsById,
-    updateCarsWithNullCompanyId
+    updateCarsWithNullCompanyId,
+    returnCarImages
 }

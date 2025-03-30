@@ -26,7 +26,7 @@ const CarCardNew = ({ carData }) => {
                     </div>
                     <div className={styles.specItemNew}>
                         <img
-                            src={carData.fuelType === 'Petrol' ? '/images/benzin.png' : '/images/elektrican.png'}
+                            src={carData.fuelType === 'Petrol' ? `${prefix}/images/benzin.png` : `${prefix}/images/elektrican.png`}
                             alt="fuel type icon"
                             className={styles.specIconNew}
                         />

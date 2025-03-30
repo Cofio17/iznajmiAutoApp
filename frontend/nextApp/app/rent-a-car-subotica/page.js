@@ -7,6 +7,7 @@ import CarSlider from "@/components/CarSlider/CarSlider";
 import SectionComponentWrapper from "@/components/HomeSections/SectionComponentWrapper";
 import { fetchCars } from '@/lib/fetchCars.js'
 
+const prefix = process.env.prefix
 const sectionData = homePageDataJson.sectionData;
 const sectionZanimljivosti = homePageDataJson.sectionZanimljivosti;
 
@@ -24,7 +25,7 @@ const buttonDataBlog = {
     to: '/blog'
 }
 
-const prefix = process.env.prefix
+
 
 const carTypes = [
     {
@@ -58,7 +59,12 @@ export const metadata = {
     description: "Rent a Car Subotica – Jeftino, lako i brzo iznajmljivanje kola. Najbolje cene, bez skrivenih troškova! Rezervišite auto danas i uživajte u vožnji.",
     alternates: {
         canonical: "https://iznajmi.me/rent-a-car-subotica"
+    },
+    icons: {
+        icon: "/favicon.ico",
+        apple: "/favicon.ico"
     }
+
 }
 
 export default async function RentACar() {
@@ -68,10 +74,10 @@ export default async function RentACar() {
 
     return (
         <>
-            <HeroHeader filteredCars={carsByCity} header="Iznajmi Idealan Auto u Subotici" subtext="Pronađi najbolje ponude pouzdanih agencija" />
+            <HeroHeader filteredCars={carsByCity} header="Rent A Car Subotica" subtext="Pronađi najbolje ponude pouzdanih agencija" />
             <SliderCarousel carTypes={carTypes} />
             <SectionComponent sectionData={sectionData} />
-            <CarSlider cars={Array.from(cars).slice(0, 5)} sectionData={{ header: "Najbolje Rent a Car Ponude u Subotici" }} />
+            <CarSlider cars={carsByCity} sectionData={{ header: "Najbolje Rent a Car Ponude u Subotici" }} />
             <SectionComponentWrapper sectionData={sectionZanimljivosti} />
             <SectionButtons buttonData={buttonDataBlog} line={false} />
             <SectionButtons filteredCars={carsByCity} buttonData={buttonDataReservation} />
