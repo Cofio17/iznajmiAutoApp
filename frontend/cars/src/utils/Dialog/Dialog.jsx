@@ -6,7 +6,7 @@ import { sendEmailHelper } from '../emails/sendEmail';
 import { generateUpdateCarEmail } from '../emails/emailUtils';
 
 
-const DialogSelect = ({ openProp, onClose, selectedCar, setReservations }) => {
+const DialogSelect = ({ openProp, onClose, selectedCar, setReservations, companyId }) => {
     const [open, setOpen] = useState(openProp);
     const [selectedOption, setSelectedOption] = useState('');
     const [freeCars, setFreeCars] = useState([]);
@@ -24,7 +24,7 @@ const DialogSelect = ({ openProp, onClose, selectedCar, setReservations }) => {
                 const dataTime = {
                     timeMin: selectedCar.startDate,
                     timeMax: selectedCar.endDate,
-                    companyId: "6743593c11b9b757fa23d8e4"
+                    companyId: companyId
                 }
                 const response = await apiRequest("POST", `/api/calendar/search`, dataTime);
                 setFreeCars(response.cars)

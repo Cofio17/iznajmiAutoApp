@@ -72,7 +72,7 @@ export default function DashBoard() {
             <h1>Portal agencije</h1>
             <h2 id="agency-name">{user.name}</h2>
             <p>Ukupno Objavljeno automobila: {totalCars}</p>
-            <MuiTable reservations={reservations} setReservations={setReservations} />
+            <MuiTable companyId={user.companyId} reservations={reservations} setReservations={setReservations} />
 
             <div className="buttons">
                 <MotionButton onClick={handleLogout} className={'button'} text={'Izlogujte se'} />

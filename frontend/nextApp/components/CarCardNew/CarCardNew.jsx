@@ -15,7 +15,6 @@ const CarCardNew = ({ carData }) => {
             <div className={styles.cardNew}>
                 <div className={styles.cardImageContainerNew}>
                     <img src={carData.image} alt="Automobil" className={styles.cardImageNew} />
-                    <div className={styles.cardImageOverlayNew}></div>
                     <div className={styles.cardPriceNew}>{carData.pricePerDay}€/dan</div>
                 </div>
                 <h2 className={styles.cardTitleNew}> {carData.brand} {carData.model}</h2>

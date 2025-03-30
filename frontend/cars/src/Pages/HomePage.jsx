@@ -82,10 +82,11 @@ export default function HomePage() {
                 canonical={`https://iznajmi.me/`}
                 keywords={'rent a car, car, auto ,iznajmi, izajmi auto, rent a car Subotica, rent a car Beograd'}
                 url={`https://iznajmi.me/`}
-
             />
+            <div className="search-bar-wrapper-for-calendar">
+                <Search />
+            </div>
 
-            <Search />
             <SliderCarousel />
             <SectionComponent sectionData={cities} DynamicComponent={CityComponent} />
             <SectionComponent sectionData={sectionData} DynamicComponent={SectionItem} />

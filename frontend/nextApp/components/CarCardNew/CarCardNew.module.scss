@@ -10,6 +10,8 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  border: 2px solid transparent;
+    border-radius: 10px;
 
   // @media screen and (max-width:1750px) {
   //     width: 350px;
@@ -30,6 +32,10 @@
       .cardImageOverlayNew {
           background-color: rgba(0, 0, 0, 0.2);
       }
+      &:hover{
+        border-color: #48ad7e;
+      }
+  
   }
 
   &::before {
@@ -43,10 +49,6 @@
       border-radius: 10px;
       transition: border-color 0.3s ease;
       pointer-events: none;
-  }
-
-  &:hover::before {
-      border-color: #48ad7e;
   }
 }
 
