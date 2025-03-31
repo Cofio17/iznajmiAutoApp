@@ -115,8 +115,9 @@ export default function SliderCarousel({ carTypes }) {
         try {
             setLoading(true);
             const response = await apiRequest("GET", "cars");
-            const filteredByType = response.data.filter((car) => car.type.includes(naziv));
-            console.log(filteredByType);
+            const CITY = 'Subotica'
+            const carsByCity = response.data.filter((car) => car.location === CITY);
+            const filteredByType = carsByCity.filter((car) => car.type.includes(naziv));
 
             // Store all cars and filtered cars in localStorage
             localStorage.setItem("searchListData", JSON.stringify(response.data));
