@@ -26,6 +26,7 @@ h2,h3, h4{
 
 p{
   color: $text-color-light;
+  color: $text-color-dark !important;
 }
 
 
@@ -462,10 +463,10 @@ p{
 
 .gold-line {
   display: inline-block;
-  width: 60px;
-  height: 5px;
+  width: 40px !important;
+  height: 8px;
   background-color: #2D6A4F;
-  border-radius: 2px;
+  border-radius: 5px;
   margin: 0 auto;
 }
 
@@ -507,6 +508,13 @@ p{
 
 #my-reservation-button{
   font-weight: 500;
+}
+
+.headerCarSlider{
+  text-align: center !important;
+  margin-top: 40px;
+  color: $header-color-dark !important;
+  font-size: 1.6rem;
 }
 
 

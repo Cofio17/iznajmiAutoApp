@@ -7,8 +7,6 @@ import "slick-carousel/slick/slick-theme.css"; // Add this
 // import { apiRequest } from "../../utils/Api/apiService";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import apiRequest from "@/Api/apiService";
-
 
 function NextArrow(props) {
     const { className, style, onClick } = props;
@@ -66,7 +64,7 @@ function PrevArrow(props) {
 
 
 
-export default function SliderCarousel({ carTypes }) {
+export default function SliderCarousel({ carTypes, cars }) {
     const [loading, setLoading] = useState(false); // Local state for loading
     const router = useRouter();
 
@@ -114,15 +112,12 @@ export default function SliderCarousel({ carTypes }) {
     const handleClick = async (naziv) => {
         try {
             setLoading(true);
-            const response = await apiRequest("GET", "cars");
-            const CITY = 'Subotica'
-            const carsByCity = response.data.filter((car) => car.location === CITY);
-            const filteredByType = carsByCity.filter((car) => car.type.includes(naziv));
+            const filteredByType = cars.filter((car) => car.type.includes(naziv));
+            console.log(filteredByType);
 
             // Store all cars and filtered cars in localStorage
-            localStorage.setItem("searchListData", JSON.stringify(response.data));
+            localStorage.setItem("searchListData", JSON.stringify(cars));
             localStorage.setItem("filterListData", JSON.stringify(filteredByType));
-            localStorage.setItem("filtersContext", JSON.stringify([naziv]));
 
             // Navigate with the filter applied in the URL
             if (!loading) {

@@ -9,6 +9,7 @@ const CarSlider = ({ sectionData, cars }) => {
     const [touchStart, setTouchStart] = useState(null);
     const [touchEnd, setTouchEnd] = useState(null);
     const sliderRef = useRef(null);
+    // const [translatePercentage, setTranslatePercentage] = useState(100);
 
 
     const minSwipeDistance = 50;
@@ -19,6 +20,7 @@ const CarSlider = ({ sectionData, cars }) => {
     useEffect(() => {
         const handleResize = () => {
             setCardsPerView(window.innerWidth > 768 ? 3 : 1);
+            // setTranslatePercentage(window.innerWidth <= 768 ? 105 : 100);
         };
 
         handleResize();
@@ -68,7 +70,9 @@ const CarSlider = ({ sectionData, cars }) => {
     const translatePercentage = typeof window !== 'undefined' && window.innerWidth <= 768 ? 105 : 100;
     return (
 
-        <>
+        <div>
+            <h2 className='headerCarSlider'>{sectionData.header}</h2>
+
             <div className={styles.carSliderContainer}>
                 <div
                     ref={sliderRef}
@@ -109,10 +113,7 @@ const CarSlider = ({ sectionData, cars }) => {
                     ))}
                 </div>
             </div>
-
-        </>
-
-
+        </div>
     );
 };
 

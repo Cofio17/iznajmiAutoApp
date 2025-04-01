@@ -26,7 +26,6 @@ const buttonDataBlog = {
 }
 
 
-
 const carTypes = [
     {
         naziv: "Mini",
@@ -75,7 +74,7 @@ export default async function RentACar() {
     return (
         <>
             <HeroHeader filteredCars={carsByCity} header="Rent A Car Subotica" subtext="Pronađi najbolje ponude pouzdanih agencija" />
-            <SliderCarousel carTypes={carTypes} />
+            <SliderCarousel cars={carsByCity} carTypes={carTypes} />
             <SectionComponent sectionData={sectionData} />
             <CarSlider cars={carsByCity} sectionData={{ header: "Najbolje Rent a Car Ponude u Subotici" }} />
             <SectionComponentWrapper sectionData={sectionZanimljivosti} />

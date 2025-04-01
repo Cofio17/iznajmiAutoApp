@@ -7,9 +7,23 @@
     text-align: center;
     justify-self: center;
     width: 100%;
+
+    .sectionContainer{
+        padding: 0 3rem;
+    }
+    
+    .sectionTitle{
+        color: #081C15 !important;
+    }
     
     .sectionContainer{
         margin: 0 !important
+    }
+
+    .sectionContainerItemText{
+        h2{
+            color: $darker-primary-color !important
+        }
     }
 }
 
@@ -88,7 +102,7 @@
     flex-wrap: wrap;
     background-color: $text-color;
     border-radius: 30px;
-    padding: 20px 0;   
+    
 }
 
 
@@ -99,6 +113,10 @@
     height: 300px;
    align-items: center;
    justify-content: center;
+   h2{
+    color: #081C15 !important
+}
+
 
    @media screen and (max-width:1000px) {
     &{
@@ -116,8 +134,8 @@
 
 .sectionContainerItemIcon{
     display: flex;
-    height: 70px;
-    width: 70px;
+    height: 80px;
+    width: 80px;
     // background-color: $darker-primary-color;
     border-radius: 50%;
     align-items: center;
