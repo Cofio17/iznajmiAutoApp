@@ -1,5 +1,5 @@
 import { getPostData, getSortedPostsData } from "@/lib/posts";
-
+import NotFound from "@/app/not-found";
 
 export async function generateMetadata({ params }) {
     const { slug } = await params;
@@ -24,14 +24,12 @@ export default async function BlogPost({ params }) {
 
     // Učitajte podatke o postu na osnovu sluga
     const { slug } = await params;
-
-
     const post = await getPostData(slug)
 
 
     if (!post) {
         // Možete dodati logiku za obradu grešaka ili 404
-        return <h1>Post not found</h1>;
+        return NotFound();
     }
 
     return (

@@ -12,12 +12,16 @@ export default function BurgerMenu() {
 
     return (
         <Menu className="contaner-burger-menu" left isOpen={isOpen} onStateChange={({ isOpen }) => setIsOpen(isOpen)}>
-            <Link href="https://iznajmi.me/blog" className="menu-item" onClick={closeMenu}>
-                Blog
+            <Link href="/" className="menu-item" onClick={closeMenu}>
+                Početna
             </Link>
-            <Link href="https://iznajmi.me/" className="menu-item" onClick={closeMenu}>
+            <Link href="/rent-a-car" className="menu-item" onClick={closeMenu}>
                 Rent a Car
             </Link>
+            <Link href="/blog" className="menu-item" onClick={closeMenu}>
+                Blog
+            </Link>
+
         </Menu>
     )
 }

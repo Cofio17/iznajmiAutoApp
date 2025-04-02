@@ -12,7 +12,7 @@ export default function HeaderFullWidth({ }) {
                 <ul className={styles.navlist}>
 
                     {/* Desktop devices  */}
-                    <Link href="https://iznajmi.me/" passHref>
+                    <Link href="/" passHref>
                         <Image
                             src="/nextapp/logo.png"
                             alt="logo"

@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick-theme.css"; // Add this
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
+
 function NextArrow(props) {
     const { className, style, onClick } = props;
     return (
@@ -68,6 +69,7 @@ export default function SliderCarousel({ carTypes, cars }) {
     const [loading, setLoading] = useState(false); // Local state for loading
     const router = useRouter();
 
+
     const settings = {
         dots: false,
         infinite: true,
@@ -117,11 +119,13 @@ export default function SliderCarousel({ carTypes, cars }) {
 
             // Store all cars and filtered cars in localStorage
             localStorage.setItem("searchListData", JSON.stringify(cars));
-            localStorage.setItem("filterListData", JSON.stringify(filteredByType));
+            localStorage.setItem('filterListData', JSON.stringify(filteredByType))
 
             // Navigate with the filter applied in the URL
             if (!loading) {
-                router.push(`/rent-a-car?tip=${encodeURIComponent(naziv)}`);
+                const query = new URLSearchParams({ tip: naziv, redirect: true });
+                router.push(`/rent-a-car?${query.toString()}`);
+
             }
         } catch (error) {
             console.log(`Error fetching data: ${error}`);
@@ -140,7 +144,7 @@ export default function SliderCarousel({ carTypes, cars }) {
                 {carTypes.map((car) => (
                     <div className="slider-container-item" key={car.naziv}>
                         <Link
-                            href={`/rent-a-car?tip=${encodeURIComponent(car.naziv)}`}
+                            href={'#'}
                             onClick={(e) => {
                                 e.preventDefault(); // Prevent default Link behavior
                                 handleClick(car.naziv); // Call handleClick instead
