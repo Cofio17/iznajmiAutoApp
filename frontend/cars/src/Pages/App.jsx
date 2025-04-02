@@ -34,6 +34,9 @@ function App() {
     // Parse URL parameters
     const searchParams = new URLSearchParams(location.search);
     const carType = searchParams.get("tip");
+    const redirect = searchParams.get("redirect");
+    console.log(redirect);
+
 
     if (initialLoad && !hasSearched) {
       if (JSON.parse(localStorage.getItem('searchListData')) && JSON.parse(localStorage.getItem('searchListData').length > 0)) {
@@ -43,12 +46,20 @@ function App() {
         setSearchListData(carsData);
       }
 
-
+      const storedFilteredData = JSON.parse(localStorage.getItem('filterListData'))
       // If there's a car type in the URL, apply it as a filter
       if (carType) {
-        const filteredByType = carsData.filter((car) => car.type.includes(carType));
-        setFilterListData(filteredByType);
-        setFiltersContext([carType]); // Use string array
+        //do this if there is a localstorage items existing
+        if (storedFilteredData && redirect) {
+          setFilterListData(storedFilteredData);
+          setFiltersContext([carType]);
+        }
+        //standard
+        else {
+          const filteredByType = carsData.filter((car) => car.type.includes(carType));
+          setFilterListData(filteredByType);
+          setFiltersContext([carType]); // Use string array
+        }
       }
       setInitialLoad(false);
     }
@@ -62,6 +73,12 @@ function App() {
     hasSearched,
   ]);
 
+  // useEffect(() => {
+  //   if (localStorage.getItem('filterListData')) {
+  //     localStorage.removeItem('filterListData');
+  //   }
+  // }, [filterListData]);
+
   useEffect(() => {
     if (searchListData.length > 0) {
       console.log(searchListData);
@@ -71,6 +88,7 @@ function App() {
   }, [searchListData]);
 
   const areFiltersActive = filtersContext && filtersContext.length > 0;
+
 
   return (
     <Layout header={header} appjsx={true}>

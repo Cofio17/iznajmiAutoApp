@@ -33,23 +33,23 @@ const carTypes = [
     },
     {
         naziv: "Kompaktan",
-        image: "/nextapp//Limuzina-03.webp",
+        image: `${prefix}/Limuzina-03.webp`,
     },
     {
         naziv: "SUV",
-        image: "/nextapp//Limuzina-06.webp",
+        image: `${prefix}/Limuzina-06.webp`,
     },
     {
         naziv: "Porodičan",
-        image: "/nextapp//Limuzina-05.webp",
+        image: `${prefix}/Limuzina-05.webp`,
     },
     {
         naziv: "Limuzina",
-        image: "/nextapp//Limuzina-01.webp",
+        image: `${prefix}/Limuzina-01.webp`,
     },
     {
         naziv: "Premium",
-        image: "/nextapp//Limuzina-02.webp",
+        image: `${prefix}/Limuzina-02.webp`,
     },
 ];
 

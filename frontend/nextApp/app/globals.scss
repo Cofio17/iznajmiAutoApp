@@ -29,6 +29,16 @@ p{
   color: $text-color-dark !important;
 }
 
+.primary-color{
+  color: $primary-color;
+}
+
+.underline{
+  font-weight: bold;
+  text-decoration: underline;
+
+}
+
 
 * {
   box-sizing: border-box;
@@ -516,6 +526,18 @@ p{
   color: $header-color-dark !important;
   font-size: 1.6rem;
 }
+
+
+.errorPageWrapper{
+  @include flex-column();
+  text-align: center;
+  margin-top: 100px;
+  height: 50vh;
+  svg{
+      font-size: 150px;
+  }
+}
+
 
 
 

@@ -101,8 +101,7 @@
     align-items: center;
     flex-wrap: wrap;
     background-color: $text-color;
-    border-radius: 30px;
-    
+    border-radius: 30px;   
 }
 
 
@@ -128,14 +127,15 @@
     &{
         width: 350px;
         height: 250px;
+        margin-top: 1rem;
     }
    }
 }
 
 .sectionContainerItemIcon{
     display: flex;
-    height: 80px;
-    width: 80px;
+    height: 70px;
+    width: 70px;
     // background-color: $darker-primary-color;
     border-radius: 50%;
     align-items: center;
