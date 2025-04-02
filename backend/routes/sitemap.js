@@ -11,12 +11,12 @@ router.get("/sitemap.xml", async (req, res) => {
         const pages = [
             { loc: "https://iznajmi.me/", priority: 1.0 },
             { loc: "https://iznajmi.me/rent-a-car", priority: 0.8 },
-            { loc: "https://iznajmi.me/about_us", priority: 0.8 },
-            { loc: "https://iznajmi.me/politika-privatnosti", priority: 0.3 },
-            { loc: "https://iznajmi.me/politika-reklamacije", priority: 0.3 },
-            { loc: "https://iznajmi.me/politika-otkazivanja", priority: 0.3 },
-            { loc: "https://iznajmi.me/uslovi-rezervacije", priority: 0.3 },
-            { loc: "https://iznajmi.me/uslovi-placanja", priority: 0.3 },
+            { loc: "https://iznajmi.me/about_us", priority: 0.1 },
+            { loc: "https://iznajmi.me/politika-privatnosti", priority: 0.1 },
+            { loc: "https://iznajmi.me/politika-reklamacije", priority: 0.1 },
+            { loc: "https://iznajmi.me/politika-otkazivanja", priority: 0.1 },
+            { loc: "https://iznajmi.me/uslovi-rezervacije", priority: 0.1 },
+            { loc: "https://iznajmi.me/uslovi-placanja", priority: 0.1 },
             { loc: "https://iznajmi.me/odgovornost", priority: 0.3 },
             { loc: "https://iznajmi.me/blog", priority: 0.8 },
             { loc: "https://iznajmi.me/reservation", priority: 0.2 },
@@ -30,7 +30,7 @@ router.get("/sitemap.xml", async (req, res) => {
         const carPages = cars.map((car) => ({
             loc: `https://iznajmi.me/rent-a-car/car/${car.licensePlate}`,
             lastmod: new Date().toISOString().split("T")[0],
-            priority: 0.7,
+            priority: 0.8,
         }));
 
         // Generisanje XML-a

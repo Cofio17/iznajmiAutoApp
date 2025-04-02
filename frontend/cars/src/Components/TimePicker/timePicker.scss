@@ -6,15 +6,21 @@ $black-color: #081C15;
 
 
 
-
-
- .Mui-selected{
-    background-color: $darker-primary-color !important;
-    border-radius: 15px !important;
-    margin: 0 auto !important;
-    width: 100px !important;
-    margin-bottom: 3px !important;   
+.MuiMultiSectionDigitalClock-root{
+    .Mui-selected{
+        background-color: $darker-primary-color !important;
+        border-radius: 15px !important;
+        margin: 0 auto !important;
+        width: 100px !important;
+        margin-bottom: 3px !important;   
+    } 
 }
+
+.Mui-selected{
+    background-color: $darker-primary-color !important;
+} 
+
+
 
 .MuiMultiSectionDigitalClock-root{
     .MuiList-root{

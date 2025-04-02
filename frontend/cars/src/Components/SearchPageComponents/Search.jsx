@@ -155,7 +155,7 @@ export default function Search() {
                     />
                 </LocalizationProvider>
                 <Autocomplete
-
+                    id='cityPickerInput'
                     value={city}
                     options={cities}
                     getOptionLabel={(option) => option}
@@ -165,7 +165,7 @@ export default function Search() {
                     renderInput={(params) => (
                         <TextField {...params} label="Izaberite grad" variant="outlined" />
                     )}
-                    className='mui-input'
+                    className='mui-input cityPickerInput'
                 />
                 <div onClick={handleSearch} className='search-bar-icon' >
                     <FontAwesomeIcon icon={faMagnifyingGlass} color='black' size='1x' />

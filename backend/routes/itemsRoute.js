@@ -4,7 +4,7 @@ const { getAllCars, getCarById, insertCars, updateCarsWithNullCompanyId, getCarB
 const authenticateToken = require('../middleware/authenticate.js');
 
 router.get('/', getAllCars);
-router.post('/save', authenticateToken, insertCars);
+router.post('/save', insertCars);
 router.get('/:itemID', getCarById);
 router.post('/by-company-id', authenticateToken, getCarByCompanyId);
 router.put('/update-company-id', updateCarsWithNullCompanyId);

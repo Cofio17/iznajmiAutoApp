@@ -1,0 +1,73 @@
+//colors
+$white-color:#fff;
+$primary-color:#48AD7E;
+$darker-primary-color:#2D6A4F;
+$black-color: #081C15;
+$light-primary:#99D6B5;
+$yellow-color:#B69121;
+$gray: #6b6b6b;
+$text-color: #ebebeb;
+$gray-light: #EBEBEB;
+$gray-light_300 :#d9d2d2;
+$text-color-headers: #444;
+$header-color: rgba(15, 23, 39, 0.85);
+$text-color-light: rgba(15, 23, 39, 0.45);
+$small-screen:768px;
+$p-color:#535a5e;
+$text-color-dark:#505050;
+$header-color-dark:#081C15;
+
+@mixin flex-row (){
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap !important;
+  }
+  
+  @mixin flex-column (){
+    display: flex;
+    flex-direction: column;
+  }
+
+  %box-shadow{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  }
+
+  @mixin button-style($font-size){
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: $font-size;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #48AD7E;
+    transition: all 0.2s ease;
+    color: #fff;
+    cursor: pointer;
+    a{
+        color: #fff;
+    }
+
+  &:hover{
+    background-color: #2D6A4F;
+  }
+}
+
+@mixin button-style-reverse($font-size){
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: $font-size;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: $darker-primary-color;
+  transition: all 0.2s ease;
+  color: #fff;
+  cursor: pointer;
+  a{
+      color: #fff;
+  }
+
+&:hover{
+  background-color: $primary-color;
+}
+}

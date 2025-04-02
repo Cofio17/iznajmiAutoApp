@@ -34,7 +34,7 @@ export default function LongMenu({ options }) {
                 aria-expanded={open ? 'true' : undefined}
                 aria-haspopup="true"
                 onClick={handleClick}
-                style={{ cursor: 'pointer', height: '20px' }}
+                style={{ cursor: 'pointer', height: '20px', padding: '0 5px ' }}
 
             />
 

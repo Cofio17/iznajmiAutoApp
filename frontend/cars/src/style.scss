@@ -1226,6 +1226,12 @@ p{
     width: 20px;
     margin-right: 5px;
 }
+
+.tooltipIcon{
+    background-color: $text-color;
+    border-radius: 50%;
+    color: #c7c4c4!important;
+}
 .font-awsome-icon{
     height: 20px;
     width: 20px;
@@ -1254,14 +1260,28 @@ p{
 .menu-long{
     position: absolute;
     left: 2%;
-    
-   
+
+
 }
 
 #agency-name{
     color: $darker-primary-color !important;
 }
-  
+
+
+.search-bar{
+    .MuiAutocomplete-hasPopupIcon.css-ka7ti6-MuiAutocomplete-root .MuiOutlinedInput-root{
+        padding-right: 39px !important;
+    }
+
+    .MuiAutocomplete-hasPopupIcon.MuiAutocomplete-hasClearIcon.css-f7t77y .MuiOutlinedInput-root{
+        padding-right: 39px !important;
+    }
+      
+}
+
+
+
 
   
   

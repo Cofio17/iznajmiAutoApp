@@ -10,7 +10,7 @@ import DialogSelect from '../../utils/Dialog/Dialog';
 import './table.scss'
 
 
-const MuiTable = ({ reservations, setReservations }) => {
+const MuiTable = ({ reservations, setReservations, companyId }) => {
 
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -117,7 +117,7 @@ const MuiTable = ({ reservations, setReservations }) => {
 
     return (
         <TableContainer component={Paper}>
-            {selectedCar && <DialogSelect setReservations={setReservations} selectedCar={selectedCar} openProp={dialogOpen} onClose={() => setIsDialogOpen(false)} />}
+            {selectedCar && <DialogSelect companyId={companyId} setReservations={setReservations} selectedCar={selectedCar} openProp={dialogOpen} onClose={() => setIsDialogOpen(false)} />}
 
             <Table>
                 <TableHead>

@@ -33,26 +33,39 @@ const getCarById = async (req, res) => {
 
 
 //inserting car
-const insertCars = async (req, res) => { //incomplete 
+const insertCars = async (req, res) => {
 
     const user = req.user;
-    const cars = req.body;
+    let cars = req.body;
 
-    console.log(`this user added a car ${user}`);
+    if (cars.length === undefined) {
+        // Ako cars nije niz, pretvaramo ga u niz sa jednim elementom
+        cars = [cars];
+    }
 
+    //zahteva IZMENE
+    cars = await Promise.all(cars.map(async (car) => {
+        const images = await carService.returnCarImages(car.licensePlate);
+        return {
+            ...car,
+            images,
+            image: images[0],
+            enginePower: 80,
+            // location: "Subotica",
+            // companyId: "67e848026671c169effc1ebc"
+        };
+    }));
     try {
         const response = await Car.insertMany(cars);
-        console.log('Car successfully added:', response);
+        console.log('Car/s successfully added:', response);
 
-        // Vraćanje odgovora klijentu
         res.status(201).json({
-            message: "Car successfully added",
+            message: "Car/s successfully added",
             car: response
         });
     } catch (error) {
         console.error("Error while adding car to the database:", error.message);
 
-        // Slanje greške klijentu
         res.status(500).json({
             message: "Failed to add car to the database",
             error: error.message

@@ -6,6 +6,12 @@ import { Link, useNavigate } from "react-router-dom"; // Add useNavigate
 import { useContext } from "react";
 import { SearchContext } from "../../Contexts/SearchContext";
 import { apiRequest } from "../../utils/Api/apiService";
+import miniImg from '../../assets/images/carTypes/Limuzina-04.webp'
+import kompaktanImg from '../../assets/images/carTypes/Limuzina-03.webp'
+import suvImg from '../../assets/images/carTypes/Limuzina-06.webp'
+import porodicanImg from '../../assets/images/carTypes/Limuzina-05.webp'
+import limuzinaImg from '../../assets/images/carTypes/Limuzina-01.webp'
+import premiumImg from '../../assets/images/carTypes/Limuzina-02.webp'
 
 export default function SliderCarousel() {
     const { setSearchListData, setFilterListData, setFiltersContext, setLoading, filterListData, loading } =
@@ -54,28 +60,28 @@ export default function SliderCarousel() {
     const carTypes = [
         {
             naziv: "Mini",
-            image: "https://storage.googleapis.com/iznajmimeprobabucket/carSlider/Auti/Set1/Limuzina-04.webp",
+            image: miniImg,
         },
         {
             naziv: "Kompaktan",
-            image: "https://storage.googleapis.com/iznajmimeprobabucket/carSlider/Auti/Set1/Limuzina-03.webp",
+            image: kompaktanImg,
         },
 
         {
             naziv: "SUV",
-            image: "https://storage.googleapis.com/iznajmimeprobabucket/carSlider/Auti/Set1/Limuzina-06.webp",
+            image: suvImg,
         },
         {
             naziv: "Porodičan",
-            image: "https://storage.googleapis.com/iznajmimeprobabucket/carSlider/Auti/Set1/Limuzina-05.webp",
+            image: porodicanImg,
         },
         {
             naziv: "Limuzina",
-            image: "https://storage.googleapis.com/iznajmimeprobabucket/carSlider/Auti/Set1/Limuzina-01.webp",
+            image: limuzinaImg,
         },
         {
             naziv: "Premium",
-            image: "https://storage.googleapis.com/iznajmimeprobabucket/carSlider/Auti/Set1/Limuzina-02.webp",
+            image: premiumImg,
         },
 
     ];

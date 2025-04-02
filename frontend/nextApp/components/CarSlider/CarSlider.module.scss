@@ -1,0 +1,133 @@
+@use '../../app/_variables.scss' as *;
+
+.carSliderWrapper{
+  
+  h2{
+    display: inline-block;
+    font-size: 1.2rem;
+    align-self: center;
+
+    @media screen and (max-width:758px) {
+      h2{
+        display: none;
+      }
+    }
+
+  }
+
+}
+
+.carSliderContainer {
+    position: relative;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 20px;
+    overflow: hidden; // Ensure container clips content
+
+    // @media screen and (max-width:1400px) {
+    //   width: 1000px;
+    // }
+
+  }
+  
+  .carSlider {
+    overflow: hidden;
+    visibility: hidden; // Initially hidden until mounted
+    width: 100%;
+    position: relative;
+  }
+  
+  .carSliderTrack {
+    display: flex;
+    transition: transform 0.3s ease-out;
+    width: 100%; // Ensure track fills container
+    height: 100%;
+  }
+  
+  .prevButton,
+  .nextButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255,255,255,0.8);
+    padding: 12px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    // box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: background-color 0.2s;
+    z-index: 10;
+  
+    &:hover {
+      svg{
+        color: $primary-color;
+      }
+    
+    }
+    @media screen and (max-width:768px) {
+      display: none !important;
+  }
+  }
+  
+  .prevButton {
+    left: 20px;
+  }
+  
+  .nextButton {
+    right: 20px;
+  }
+  
+  .progressContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+  }
+  
+  .progressDot {
+    height: 8px;
+    border-radius: 999px;
+    transition: all 0.3s;
+    width: 20px;
+    background-color: #d1d5db;
+  
+    &.active {
+      width: 40px;
+      background-color: $darker-primary-color;
+    }
+  }
+
+  
+
+.carSliderContainer {
+  position: relative;
+  margin: 0 auto;
+  padding: 0 20px;
+  overflow: hidden;
+}
+
+.carSlider {
+  overflow: hidden;
+  visibility: hidden;
+  width: 100%;
+  position: relative;
+
+}
+
+.carSliderTrack {
+  display: flex;
+  transition: transform 0.3s ease-out;
+  height: 100%;
+  gap: 20px;
+  padding: 20px 0;
+
+}
+
+.carCardWrapper {
+  padding: 15px 15px;
+  box-sizing: border-box;
+
+  @media screen and (min-width: 769px) {
+      padding: 10px; // Smanjeni padding za desktop
+  }
+}

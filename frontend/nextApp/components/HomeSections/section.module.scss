@@ -1,0 +1,167 @@
+@use '../../app/_variables.scss' as *;
+
+.sectionWrapper{
+    background-color: $white-color; 
+    @include flex-column();
+    align-items: center;
+    text-align: center;
+    justify-self: center;
+    width: 100%;
+
+    .sectionContainer{
+        padding: 0 3rem;
+    }
+    
+    .sectionTitle{
+        color: #081C15 !important;
+    }
+    
+    .sectionContainer{
+        margin: 0 !important
+    }
+
+    .sectionContainerItemText{
+        h2{
+            color: $darker-primary-color !important
+        }
+    }
+}
+
+.sectionContainer{
+    @include flex-column();
+    align-items: center;
+    text-align: center;
+    padding:2rem 3rem 1rem 3rem;
+    height: fit-content;
+    // margin: 0 3rem 0 3rem ;
+    border-radius: 15px;
+    width: 95%;
+    justify-self: center;
+    background-color: $text-color;
+    margin: 0 auto;
+    p{
+        font-size: 18px;
+    }
+
+    .gold-line {
+        display: inline-block; /* Omogućava kontrolisanu širinu */
+        width: 60px; 
+        height: 5px; 
+        background-color: $darker-primary-color !important; 
+        border-radius: 2px; 
+        margin: 0 auto; 
+    }
+
+    @media screen  and (max-width: 1050px){ 
+        gap: 30px;
+    }
+}
+
+
+.sectionContainerButton{
+    @include flex-column();
+    align-items: center;
+    background-color: $white-color;
+    text-align: center;
+    height: fit-content;
+    border-radius: 15px;
+    width: 90vw;
+    flex-wrap: wrap;
+    justify-self: center;
+    margin: 0 auto;
+    h2{
+        font-size: 1.5rem;
+    }
+    p{
+        font-size: 18px;
+    }
+
+    .gold-line {
+        display: inline-block; /* Omogućava kontrolisanu širinu */
+        width: 60px; 
+        height: 5px; 
+        background-color: $darker-primary-color !important; 
+        border-radius: 2px; 
+        margin: 0 auto; 
+    }
+
+    @media screen  and (max-width: 1050px){ 
+        gap: 30px;
+        margin: 3rem auto;
+        justify-self: center; 
+        
+        
+    }
+}
+
+.sectionContainerItems{
+    @include flex-row();
+    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: $text-color;
+    border-radius: 30px;
+    
+}
+
+
+.sectionContainerItem{
+    @include flex-column();
+    background-color: $text-color;
+    width: 400px;
+    height: 300px;
+   align-items: center;
+   justify-content: center;
+   h2{
+    color: #081C15 !important
+}
+
+
+   @media screen and (max-width:1000px) {
+    &{
+        height: 250px;
+    }
+   }
+
+   @media screen and (max-width:768px) {
+    &{
+        width: 350px;
+        height: 250px;
+    }
+   }
+}
+
+.sectionContainerItemIcon{
+    display: flex;
+    height: 80px;
+    width: 80px;
+    // background-color: $darker-primary-color;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;    
+ svg{
+    color: $white-color;
+ }
+}
+
+
+.sectionContainerItemText{
+   width: 80%;
+   h2{
+    color: $header-color; 
+    margin-bottom: 15px;
+}
+   p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    color: $gray;
+    width: 100%;
+
+  }}
+
+  .sectionTitle{
+    color: $darker-primary-color !important;
+    font-size: 1.8rem;
+    font-weight: bold;
+}

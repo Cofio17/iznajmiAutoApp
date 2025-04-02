@@ -12,8 +12,8 @@ export default function BurgerMenu({ handleRefresh, onClickMyReservation }) {
             <NavLink onClick={() => { handleRefresh('/rent-a-car') }} to="/rent-a-car" className="menu-item">
                 Rent a Car
             </NavLink>
-            <NavLink to="/about_us" className="menu-item">
-                O nama
+            <NavLink reloadDocument to="/blog/" className="menu-item">
+                Blog
             </NavLink>
             <button onClick={onClickMyReservation} id='my-reservation-button' className="menu-item button">Moja rezervacija</button>
         </Menu>

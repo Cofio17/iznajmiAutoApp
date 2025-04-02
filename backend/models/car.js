@@ -12,7 +12,7 @@ const carSchema = new Schema({
     seats: { type: Number, required: true },
     doors: { type: Number, required: true },
     pricePerDay: { type: Number, required: true },
-    mileage: { type: Number, required: true },
+    mileage: { type: Number },
     insuranceIncluded: { type: Boolean, default: false },
     deposit: { type: Number },
     location: { type: String, required: true },

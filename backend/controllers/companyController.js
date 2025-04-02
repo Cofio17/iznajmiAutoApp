@@ -13,13 +13,10 @@ const getAllCompanies = async (req, res) => {
 
 //insert company in a db
 const insertCompany = async (req, res) => {
-    const { name, location } = req.body;
+    const company = req.body;
     try {
-        const newCompany = new Company({
-            name: "Rent a Car Agencija 2",
-            location: "Novi Sad"
-        })
-        const response = await newCompany.save();
+
+        const response = await new Company(company).save();
         res.status(201).json({
             message: "Company successfully added",
             data: response,

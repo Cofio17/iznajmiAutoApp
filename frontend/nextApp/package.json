@@ -1,0 +1,35 @@
+{
+  "name": "blog",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next build && next export"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "@mui/material": "^6.4.8",
+    "@mui/x-date-pickers": "^7.28.0",
+    "axios": "^1.8.4",
+    "dayjs": "^1.11.13",
+    "gray-matter": "^4.0.3",
+    "next": "^15.2.3",
+    "react": "^19.0.0",
+    "react-burger-menu": "^3.1.0",
+    "react-dom": "^19.0.0",
+    "react-slick": "^0.30.3",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1",
+    "slick-carousel": "^1.8.1"
+  },
+  "devDependencies": {
+    "sass": "^1.85.1"
+  }
+}

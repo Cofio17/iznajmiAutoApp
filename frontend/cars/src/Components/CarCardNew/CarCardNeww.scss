@@ -11,6 +11,12 @@
     display: flex;
     flex-direction: column; /* Kartica je flex container */
     height: 100%; /* Popuni dostupnu visinu */
+    border: 2px solid transparent;
+    border-radius: 10px;
+
+    &:hover{
+      border-color: #48ad7e;
+    }
 
 
   @media screen and (max-width:1750px) {
@@ -51,9 +57,9 @@
     pointer-events: none;
   }
   
-  .card_new:hover::before {
-    border-color: #48ad7e;
-  }
+  // .card_new:hover::before {
+  //   border-color: #48ad7e;
+  // }
   
   /* Stilovi za sliku (4:3 format) */
   .card-image-container_new {
@@ -86,6 +92,7 @@
   
   .card_new:hover .card-image-overlay_new {
     background-color: rgba(0, 0, 0, 0.2); /* Svjetliji overlay na hover */
+    border-color: #48ad7e;
   }
   
   /* Stilovi za naslov */
@@ -108,7 +115,7 @@
     background-color: rgba(255, 255, 255, 0.9); /* Bijela pozadina s prozirnošću */
     padding: 8px 12px; /* Dodajem padding */
     border-radius: 8px; /* Zaobljeni kutovi */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Lagana sjena */
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     @media screen and (max-width:768px) {
         font-size: 1em;
     }

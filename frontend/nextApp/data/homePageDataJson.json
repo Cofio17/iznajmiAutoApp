@@ -1,0 +1,47 @@
+{
+    "sectionData": {
+      "header": "Zašto izabrati baš nas?",
+      "steps": [
+        {
+          "id": "01",
+          "title": "Pouzdanost na svakom koraku",
+          "description": "Povezujemo vas isključivo sa proverenim i pouzdanim rent a car agencijama u Subotici, tako da uvek dobijate sigurno i kvalitetno vozilo.",
+          "icon": "shield.svg"
+        },
+        {
+          "id": "02",
+          "title": "Preuzimanje vozila na više lokacija u Subotici",
+          "description": "Birajte između centra, autobuske stanice ili bilo koje lokacije u Subotici – mi ćemo pronaći vozilo najbliže vama za brz početak putovanja.",
+          "icon": "pin.svg"
+        },
+        {
+          "id": "03",
+          "title": "Brza i jednostavna online rezervacija",
+          "description": "Iznajmite auto za manje od 2 minuta! Pregledajte dostupna vozila, izaberite idealno i rezervišite u samo par klikova.",
+          "icon": "sand-clocks.svg"
+        }
+      ]
+    },
+    "sectionZanimljivosti": {
+      "header": "Šta videti u Subotici?",
+      "details": "Ako planirate boravak u subotici, pročitajte naše preporuke kako da najbolje iskoristite vaše vreme",
+      "steps": [
+        {
+          "id": "01",
+          "title": "Palićko jezero",
+          "description": "Na samo 15 minuta vožnje od centra, Palić je idealno mesto za opuštanje uz šetnju pored vode, biciklizam ili uživanje u restoranima sa tradicionalnim jelima."
+        },
+        {
+          "id": "02",
+          "title": "Gradska kuća i Trg slobode",
+          "description": "U samom srcu Subotice nalazi se impozantna secesijska Gradska kuća i prelep Trg slobode, savršen za istraživanje arhitekture i uživanje u kafićima."
+        },
+        {
+          "id": "03",
+          "title": "Segedin, Mađarska",
+          "description": "Iskoristite blizinu granice i za samo 60 minuta vožnje obiđite prelepi Segedin, poznat po termalnim banjama, shopping centrima i bogatoj kuhinji."
+        }
+      ]
+    }
+  }
+  
