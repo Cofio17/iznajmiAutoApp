@@ -22,7 +22,7 @@
     max-width: 1440px;
     margin: 0 auto;
     padding: 0 20px;
-    overflow: hidden; // Ensure container clips content
+    overflow: visible !important; // Ensure container clips content
 
     // @media screen and (max-width:1400px) {
     //   width: 1000px;
@@ -70,11 +70,11 @@
   }
   
   .prevButton {
-    left: 20px;
+    left: -50px;
   }
   
   .nextButton {
-    right: 20px;
+    right: -50px;
   }
   
   .progressContainer {

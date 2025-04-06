@@ -9,18 +9,16 @@ const CarSlider = ({ sectionData, cars }) => {
     const [touchStart, setTouchStart] = useState(null);
     const [touchEnd, setTouchEnd] = useState(null);
     const sliderRef = useRef(null);
-    // const [translatePercentage, setTranslatePercentage] = useState(100);
-
+    const autoSlideRef = useRef(null);
 
     const minSwipeDistance = 50;
     const maxIndex = cars.length - cardsPerView;
-
+    const AUTO_SLIDE_INTERVAL = 2000; // 2 seconds in milliseconds
 
     // Detect screen width
     useEffect(() => {
         const handleResize = () => {
             setCardsPerView(window.innerWidth > 768 ? 3 : 1);
-            // setTranslatePercentage(window.innerWidth <= 768 ? 105 : 100);
         };
 
         handleResize();
@@ -35,12 +33,41 @@ const CarSlider = ({ sectionData, cars }) => {
         }
     }, []);
 
+    // Automatic sliding effect
+    useEffect(() => {
+        // Start auto-sliding
+        autoSlideRef.current = setInterval(() => {
+            setCurrentIndex(current => (current >= maxIndex ? 0 : current + 1));
+        }, AUTO_SLIDE_INTERVAL);
+
+        // Cleanup interval on component unmount
+        return () => {
+            if (autoSlideRef.current) {
+                clearInterval(autoSlideRef.current);
+            }
+        };
+    }, [maxIndex]); // Re-run when maxIndex changes
+
     const nextSlide = () => {
         setCurrentIndex(current => (current >= maxIndex ? 0 : current + 1));
+        // Reset auto-slide timer when manually navigating
+        if (autoSlideRef.current) {
+            clearInterval(autoSlideRef.current);
+            autoSlideRef.current = setInterval(() => {
+                setCurrentIndex(current => (current >= maxIndex ? 0 : current + 1));
+            }, AUTO_SLIDE_INTERVAL);
+        }
     };
 
     const prevSlide = () => {
         setCurrentIndex(current => (current === 0 ? maxIndex : current - 1));
+        // Reset auto-slide timer when manually navigating
+        if (autoSlideRef.current) {
+            clearInterval(autoSlideRef.current);
+            autoSlideRef.current = setInterval(() => {
+                setCurrentIndex(current => (current >= maxIndex ? 0 : current + 1));
+            }, AUTO_SLIDE_INTERVAL);
+        }
     };
 
     const handleTouchStart = (e) => {
@@ -66,10 +93,10 @@ const CarSlider = ({ sectionData, cars }) => {
         setTouchEnd(null);
     };
 
-    const numberOfDots = Math.max(1, cars.length - cardsPerView + 1); // Ensure at least 1 dot
+    const numberOfDots = Math.max(1, cars.length - cardsPerView + 1);
     const translatePercentage = typeof window !== 'undefined' && window.innerWidth <= 768 ? 105 : 100;
-    return (
 
+    return (
         <div>
             <h2 className='headerCarSlider'>{sectionData.header}</h2>
 
@@ -80,12 +107,10 @@ const CarSlider = ({ sectionData, cars }) => {
                     onTouchStart={handleTouchStart}
                     onTouchMove={handleTouchMove}
                     onTouchEnd={handleTouchEnd}
-
                 >
                     <div
                         className={styles.carSliderTrack}
                         style={{ transform: `translateX(-${currentIndex * (translatePercentage / cardsPerView)}%)` }}
-
                     >
                         {cars.map((car) => (
                             <CarCardNew key={car.licensePlate} carData={car} />
@@ -118,4 +143,3 @@ const CarSlider = ({ sectionData, cars }) => {
 };
 
 export default CarSlider;
-
