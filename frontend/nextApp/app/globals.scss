@@ -39,6 +39,12 @@ p{
 
 }
 
+a{
+  &:hover{
+    color: $primary-color;
+  }
+}
+
 
 * {
   box-sizing: border-box;
@@ -302,10 +308,11 @@ p{
 
 #search-bar{
   @include flex-row();
+  @extend %box-shadow;
   justify-content: center;
   margin-top: 100px;
   gap: 1rem;
-  background-color: $gray-light !important;
+  background-color: $white-color !important;
   input{
       width:150px ;
   }
@@ -315,6 +322,7 @@ p{
           margin: 0 auto;
           max-width: 250px;
           margin-top: 90px;
+          padding: 30px 10px;
       }
 
       .search-bar-icon{
@@ -344,7 +352,7 @@ p{
           margin: 0 auto;
           color: #fff;
           padding: 5px;
-          color: #d9d2d2;
+          color: $white-color;
          
           
       }
@@ -460,6 +468,10 @@ p{
 //uklanja default strelice
 .slick-arrow::before{
   display: none;
+}
+
+.slick-prev{
+  left: -35px !important;
 }
 
 .h1 {

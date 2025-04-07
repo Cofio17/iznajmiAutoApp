@@ -101,7 +101,11 @@
     align-items: center;
     flex-wrap: wrap;
     background-color: $text-color;
-    border-radius: 30px;   
+    border-radius: 30px;
+
+    @media screen and (max-width:1000px) {
+        @include flex-column();
+    }
 }
 
 
@@ -119,7 +123,7 @@
 
    @media screen and (max-width:1000px) {
     &{
-        height: 250px;
+        height: 300px;
     }
    }
 
@@ -127,7 +131,7 @@
     &{
         width: 350px;
         height: 250px;
-        margin-top: 1rem;
+        margin-top: 3rem;
     }
    }
 }
@@ -136,7 +140,7 @@
     display: flex;
     height: 70px;
     width: 70px;
-    // background-color: $darker-primary-color;
+    margin-bottom: 2rem;
     border-radius: 50%;
     align-items: center;
     justify-content: center;    

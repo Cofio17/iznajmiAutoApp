@@ -8,6 +8,14 @@ export default function NotFound() {
             <h2>Stranica u izradi</h2>
             <FontAwesomeIcon size='3xl' icon={faWrench} color='#2D6A4F' />
             <Link href="/">Klikni za <span className='primary-color underline'>Povratak na sigurno</span> </Link>
+            <br />
+
+            <p>FAST TRAVEL - pritisni za teleportaciju</p>
+            <ul>
+                <li><Link href={'/rent-a-car-subotica'}>Subotica</Link></li>
+                <li><Link href={'/rent-a-car-beograd'}>Beograd</Link></li>
+                <li><Link href={'/blog'}>Blog</Link></li>
+            </ul>
         </div>
     )
 }

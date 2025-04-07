@@ -23,7 +23,10 @@ const CarCardNew = ({ carData }) => {
                     {/* <div className="card-image-overlay_new"></div>  */}
                     <div className="card-price_new">{carData.pricePerDay}€/dan</div> {/* Cijena u donjem desnom kutu */}
                 </div>
-                <h2 className="card-title_new"> {carData.brand} {carData.model}</h2>
+                <div className='cardTitleSubtextContainer'>
+                    <h2 className="card-title_new"> {carData.brand} {carData.model}</h2>
+                    {/* <p className='cardSubtext'> ili Slično</p> */}
+                </div>
                 <div className="card-specs_new">
                     <div className="spec-item_new transmission">
                         <img src={gearShiftIcon} alt="gear shift" className="spec-icon_new" />
