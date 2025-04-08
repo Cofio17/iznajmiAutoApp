@@ -1,0 +1,56 @@
+@use '../../_variables.scss' as *;
+
+.companySectionWrapper{
+    max-width: 500px;
+    align-self: center;
+    justify-self: center;
+    position: relative;
+    max-height: 300px;
+    position: relative;
+    min-width: 330px;
+    position: relative;
+}
+.companySection{
+position: absolute;
+height: auto;
+max-width: 400px;
+min-width: 330px;
+background-color:$gray-light;
+justify-self: flex-end;
+border-radius: 15px;
+padding: 7px 30px;
+text-align: center;
+cursor: pointer;
+justify-self: center;
+p{
+    color: $darker-primary-color !important;
+    font-weight: bold;
+}
+
+&:hover{
+    p{
+        color: $primary-color !important;
+    }
+    
+}
+
+@media screen and (max-width : $small-screen) {
+    &{
+        padding: 10px 5px;
+    }
+}
+
+}
+
+.displayNone{
+    height: 0;
+    overflow: hidden;
+    
+}
+
+.expandedList{
+    height: auto;
+    width: auto;
+    display: block;
+}
+

@@ -94,7 +94,7 @@ const CarSlider = ({ sectionData, cars }) => {
     };
 
     const numberOfDots = Math.max(1, cars.length - cardsPerView + 1);
-    const translatePercentage = typeof window !== 'undefined' && window.innerWidth <= 768 ? 105 : 100;
+    const translatePercentage = typeof window !== 'undefined' && window.innerWidth <= 768 ? 105 : 101;
 
     return (
         <div>

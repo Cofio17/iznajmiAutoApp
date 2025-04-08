@@ -40,6 +40,13 @@ body{
     margin: 0;
 }
 
+.no-select {
+    user-select: none; /* Za moderne browsere */
+    -webkit-user-select: none; /* Za Safari */
+    -moz-user-select: none; /* Za Firefox */
+}
+
+
 
 .active{
     color: $primary-color !important;
@@ -529,6 +536,7 @@ text-align: center;
         width: fit-content;
         margin: 0 auto;
         @extend %box-shadow;
+        margin-top: 150px;
     
         .category {
             position: relative;
@@ -559,6 +567,7 @@ text-align: center;
 
         @media screen and (max-width:768px) {
             width: 250px;
+            margin-top: 200px;
             h3{
                 font-size: 1rem
             }

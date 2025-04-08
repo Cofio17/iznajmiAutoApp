@@ -12,6 +12,7 @@ import { createDate, hoursInPeriod, calculatePriceBasedOnHours, calculateTotalDa
 import { apiRequest } from '../utils/Api/apiService';
 import Seo from '../utils/SEO/Seo';
 import SkeletonCar from '../utils/Skeleton/Skeleton';
+import CompanySection from '../Components/Car/CompanySection';
 
 
 export default function Car() {
@@ -136,11 +137,10 @@ export default function Car() {
                         {/* fetchDates prop receives a fuctions that handles the selected dates and brings back to the this/parent component */}
                         <CalendarComponent calendarId={carData.calendarId} fetchDates={handleSelectedData} carId={params.carId} />
                         {errorText && <p>{errorText}</p>}
-
                         <TimePickerManager onTimesChange={handleTimesChange} />
-
                         <button id='to-reservation-page' className='button' onClick={handleNavigate}><Link>Rezerviši</Link></button>
                         {priceTotal && <span style={{ fontWeight: 'bold', fontSize: 18, color: "#444" }}>Cena za izabrani period: {priceTotal}€ </span>}
+                        <CompanySection />
                     </div>
                 </div>
                 <CategoryInfo carData={carData} />
