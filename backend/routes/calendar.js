@@ -14,7 +14,7 @@ router.post("/create-event", async (req, res) => {
 
     const eventDetails = {
         summary: description || "default description details",
-        description: `Auto ID:${summary.carId} ${summary.email}, kontakt telefon: ${summary.number}. Ukupna cena: ${summary.priceTotal}` || "default summary details",
+        description: `- ${summary.carId}\n - ${summary.firstName} ${summary.lastName}\n - ${summary.email}\n - ${summary.number}\nUkupna cena: ${summary.priceTotal}€ \n - ${summary.jmbg}` || "default summary details",
         start: {
             dateTime: start.dateTime, // Korišćenje tačnog formata sa vremenskom zonom
             timeZone: "Europe/Belgrade"  // Postavljamo vremensku zonu kao "Europe/Belgrade"

@@ -86,7 +86,6 @@ export default function HomePage() {
             <div className="search-bar-wrapper-for-calendar">
                 <Search />
             </div>
-
             <SliderCarousel />
             <SectionComponent sectionData={cities} DynamicComponent={CityComponent} />
             <SectionComponent sectionData={sectionData} DynamicComponent={SectionItem} />

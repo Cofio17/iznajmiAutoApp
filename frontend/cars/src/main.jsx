@@ -43,6 +43,7 @@ const router = createBrowserRouter([
     path: "/rent-a-car",
     element: (
       <SearchProvider>
+        <ScrollToTop />
         <App />
       </SearchProvider>
     ),
@@ -52,6 +53,7 @@ const router = createBrowserRouter([
     path: 'rent-a-car/car/:carId',
     element:
       <SearchProvider>
+        <ScrollToTop />
         <Car />
       </SearchProvider>,
     errorElement: <ErrorPage />

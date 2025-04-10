@@ -10,7 +10,7 @@ export default function CityComponent({ itemData }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const [hasAnimated, setHasAnimated] = useState(true);
-  const { searchListData, setSearchListData, setLoading, setHasSearched, setFilterListData } = useContext(SearchContext);
+  const { searchListData, setSearchListData, setLoading, setHasSearched, setFilterListData, setFiltersContext } = useContext(SearchContext);
 
   useEffect(() => {
     if (isInView) {
@@ -26,6 +26,9 @@ export default function CityComponent({ itemData }) {
         return car.location === itemData.title;
       });
       setSearchListData(filteredDataByCity);
+      setFilterListData([]);
+      setFiltersContext([]);
+
 
     } catch (error) {
       console.log(`error fetching data ${error}`);

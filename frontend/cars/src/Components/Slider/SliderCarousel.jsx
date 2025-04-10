@@ -13,6 +13,61 @@ import porodicanImg from '../../assets/images/carTypes/Limuzina-05.webp'
 import limuzinaImg from '../../assets/images/carTypes/Limuzina-01.webp'
 import premiumImg from '../../assets/images/carTypes/Limuzina-02.webp'
 
+
+function NextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+        <div
+            className={className}
+            style={{ ...style, display: "block", cursor: "pointer" }}
+            onClick={onClick}
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="36" // Širina SVG-a
+                height="36" // Visina SVG-a
+                viewBox="0 0 36 36"
+                fill="none" // Bez popune, samo kontura
+            >
+                <path
+                    d="M12 6l12 12-12 12" // Chevron strelica
+                    stroke="#2D6A4F" // Boja strelice
+                    strokeWidth="3" // Debljina linije
+                    strokeLinecap="round" // Zaobljeni završeci
+                />
+            </svg>
+        </div>
+    );
+}
+
+
+function PrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+        <div
+            className={className}
+            style={{ ...style, display: "block", cursor: "pointer" }}
+            onClick={onClick}
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="36" // Širina SVG-a
+                height="36" // Visina SVG-a
+                viewBox="0 0 36 36"
+                fill="none" // Bez popune, samo kontura
+            >
+                <path
+                    d="M24 6l-12 12 12 12" // Chevron strelica okrenuta levo
+                    stroke="#2D6A4F" // Boja strelice
+                    strokeWidth="3" // Debljina linije
+                    strokeLinecap="round" // Zaobljeni završeci
+                />
+            </svg>
+        </div>
+    );
+}
+
+
 export default function SliderCarousel() {
     const { setSearchListData, setFilterListData, setFiltersContext, setLoading, filterListData, loading } =
         useContext(SearchContext);
@@ -28,6 +83,8 @@ export default function SliderCarousel() {
         autoplay: true,
         autoplaySpeed: 1900,
         cssEase: "linear",
+        nextArrow: <NextArrow className='slick-prev-class' />,
+        prevArrow: <PrevArrow />,
         responsive: [
             {
                 breakpoint: 1024,
