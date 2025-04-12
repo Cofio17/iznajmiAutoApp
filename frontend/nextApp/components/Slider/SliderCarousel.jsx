@@ -65,7 +65,7 @@ function PrevArrow(props) {
 
 
 
-export default function SliderCarousel({ carTypes, cars }) {
+export default function SliderCarousel({ carTypes, cars, header }) {
     const [loading, setLoading] = useState(false); // Local state for loading
     const router = useRouter();
 
@@ -138,7 +138,7 @@ export default function SliderCarousel({ carTypes, cars }) {
         <div className="container-car-slider">
             <div className="section-container-h1-p">
                 <div className="gold-line"></div>
-                <h1>Naša mreža vozila u Subotici</h1>
+                <h1>{header}</h1>
             </div>
             <Slider {...settings}>
                 {carTypes.map((car) => (

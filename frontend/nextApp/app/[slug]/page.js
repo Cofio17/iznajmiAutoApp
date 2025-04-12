@@ -44,7 +44,7 @@ export default async function RentACarCity({ params }) {
 
     return (<>
         <HeroHeader cityProp={CITY_NAME} filteredCars={filteredCars} header={`Rent a car ${CITY_NAME}`} subtext="Pronađi najbolje ponude pouzdanih agencija" />
-        <SliderCarousel cars={filteredCars} carTypes={carTypes} />
+        <SliderCarousel cars={filteredCars} carTypes={carTypes} header={`Naša mreža vozila u ${city.nameVariation}`} />
         <SectionComponent sectionData={city.sectionData} />
         <CarSlider cars={filteredCars} sectionData={{ header: `Najbolje Rent a Car ponude u ${city.nameVariation}` }} />
         <SectionComponentWrapper sectionData={city.sectionZanimljivosti} />
