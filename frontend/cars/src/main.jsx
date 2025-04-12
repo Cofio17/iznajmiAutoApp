@@ -1,7 +1,7 @@
-import { StrictMode } from 'react'
+import { StrictMode, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, useLocation } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 //Pages
 import App from './Pages/App.jsx'
@@ -24,6 +24,9 @@ import { AuthProvider } from './Contexts/AuthContext.jsx'
 import ScrollToTop from './utils/ScrollToTop.jsx'
 import ProtectedRoute from './Components/Layout/ProtectedRoute.jsx'
 
+import { ThemeProvider } from '@mui/material'
+import theme from './lib/fontTheme.js'
+
 //loaders
 import { fetchCars } from './loaders/fetchCars.js'
 
@@ -43,6 +46,7 @@ const router = createBrowserRouter([
     path: "/rent-a-car",
     element: (
       <SearchProvider>
+        <ScrollToTop />
         <App />
       </SearchProvider>
     ),
@@ -52,6 +56,7 @@ const router = createBrowserRouter([
     path: 'rent-a-car/car/:carId',
     element:
       <SearchProvider>
+        <ScrollToTop />
         <Car />
       </SearchProvider>,
     errorElement: <ErrorPage />
@@ -102,7 +107,9 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <HelmetProvider>
       <AuthProvider>
-        <RouterProvider router={router} />
+        <ThemeProvider theme={theme}>
+          <RouterProvider router={router} />
+        </ThemeProvider>
       </AuthProvider>
     </HelmetProvider>
   </StrictMode>,

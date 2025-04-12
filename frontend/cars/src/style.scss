@@ -12,13 +12,30 @@ $header-color: rgba(15, 23, 39, 0.85);
 $text-color-light: rgba(15, 23, 39, 0.45);
 $small-screen:768px;
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap');
+
+html{
+    scroll-behavior: smooth;
+    
+}
+
+.bold-500{
+    font-weight: 500;
+}
+
 h1{
     color: $header-color;
     font-size: 3.2rem;
+    font-weight: 800;
 }
 
 .bold{
     font-weight: 500;
+}
+
+
+h2{
+    font-weight: 700 !important;
 }
 
 h2,h3, h4{
@@ -30,15 +47,25 @@ h2,h3, h4{
 }
 :root{
     background-color: $white-color;
+    background-color:#fafafa;
 }
 
 body{
     height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+   
 }
 
 *{
     margin: 0;
 }
+
+.no-select {
+    user-select: none; /* Za moderne browsere */
+    -webkit-user-select: none; /* Za Safari */
+    -moz-user-select: none; /* Za Firefox */
+}
+
 
 
 .active{
@@ -120,7 +147,7 @@ header {
     width: 100%; 
     z-index: 100; 
     background-color: #fff; 
-    margin-bottom: 100px; //obrisat
+    
     @extend %box-shadow;
 }
 
@@ -151,6 +178,7 @@ header {
     justify-self: center !important;
     gap: 3rem;
     margin-right: 50px;
+    font-weight: 500;
     position: relative;
     @media (max-width: 768px) {
         display: none !important; // Sakrij desktop navigaciju na manjim ekranima
@@ -217,11 +245,15 @@ header {
     }
     .gold-line {
         display: inline-block; /* Omogućava kontrolisanu širinu */
-        width: 60px; 
-        height: 5px; 
+        width: 40px; 
+        height: 6px; 
         background-color: $darker-primary-color !important; 
         border-radius: 2px; 
         margin: 0 auto; 
+    }
+
+    .sub-header{
+        font-size: 2rem;
     }
 
     @media screen  and (max-width: 1050px){ 
@@ -254,11 +286,17 @@ header {
     height: 300px;
    align-items: center;
 
+   @media screen and (max-width:1300px) {
+    &{
+        width: 300px;
+    }
+
    @media screen and (max-width:768px) {
     &{
         width: 350px;
     }
    }
+}
 }
 
 .section-container-item-icon{
@@ -353,8 +391,7 @@ h2{
 
 /*Car Component*/
 .container-car{
-    margin-top: 90px;
-    // place-items: center;
+    margin-top: 130px;
 p, span ul, li, label,h2{
     color: black;
 }
@@ -375,6 +412,8 @@ h2 span{
     align-items: center;
     gap:1rem;
     margin-bottom: 2rem;
+    position: relative;
+    top: -50px;
 }
 
 #price {
@@ -529,6 +568,7 @@ text-align: center;
         width: fit-content;
         margin: 0 auto;
         @extend %box-shadow;
+        margin-top: 140px;
     
         .category {
             position: relative;
@@ -559,6 +599,7 @@ text-align: center;
 
         @media screen and (max-width:768px) {
             width: 250px;
+            margin-top: 200px;
             h3{
                 font-size: 1rem
             }
@@ -1260,6 +1301,10 @@ p{
 .menu-long{
     position: absolute;
     left: 2%;
+
+    svg{
+        padding: 0 !important;
+    }
 
 
 }

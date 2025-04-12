@@ -14,7 +14,8 @@ import { CircularProgress, Box } from '@mui/material';
 
 
 
-export default function Search({ filteredCars }) {
+export default function Search({ filteredCars, cityProp }) {
+
     const localhost = process.env.NEXT_PUBLIC_SERVER;
     const searchLink = `${localhost}api/calendar/search`;
 
@@ -24,13 +25,9 @@ export default function Search({ filteredCars }) {
 
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
-    const [city, setCity] = useState('Subotica');
+    const [city, setCity] = useState(cityProp);
     const [loading, setLoading] = useState(false);
     const maxDate = dayjs().add(3, 'month');
-
-    const cities = ['Subotica', 'Novi Sad', 'Beograd', 'Zrenjanin'];
-
-
 
     const handleSearch = async () => {
         try {

@@ -109,7 +109,7 @@ export default function ReservationForm() {
 
             const reservationData = {
                 summary: { carId, email, number, firstName, lastName, jmbg, priceTotal, daysTotal, brand: car.brand, model: car.model },
-                description: `Zakazan Auto: ${car.brand}: ${car.licensePlate}`,
+                description: `${car.licensePlate}`,
                 start: { dateTime: createDate(startDate, startHours) },
                 end: { dateTime: createDate(endDate, endHours) },
                 calendarId: car.calendarId,

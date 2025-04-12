@@ -11,12 +11,15 @@ $text-color-headers: #444;
 $header-color: rgba(15, 23, 39, 0.85);
 $text-color-light: rgba(15, 23, 39, 0.45);
 
-
+.slick-prev{
+    left: -35px !important;
+}
 .container-car-slider{
 display: flex;
 flex-direction: column;
 margin: 3rem 10%;
 justify-self: center;
+
 
 }
 .slider-container-item{

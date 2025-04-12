@@ -5,6 +5,9 @@ import Modal from "../../utils/Modal/Modal";
 import { AnimatePresence } from "framer-motion";
 import LoginModal from "../../utils/Modal/ModalTypes/LoginModal";
 import useModal from "../../Hooks/useModal";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import ReactGA from 'react-ga4'
 
 
 
@@ -18,6 +21,13 @@ import useModal from "../../Hooks/useModal";
 export default function Layout({ header, children, appjsx }) {
 
     const { modalOpen, open, close } = useModal();
+    const location = useLocation();
+    const GA_MEASUREMENT_ID = "GTM-M7KWRNMX"
+
+    useEffect(() => {
+        ReactGA.initialize(GA_MEASUREMENT_ID);
+        ReactGA.send({ hitType: 'pageview', page: location.pathname + location.search }); // Praćenje pageview-a
+    }, [location])
 
     return (
         <>

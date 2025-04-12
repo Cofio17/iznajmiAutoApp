@@ -60,7 +60,7 @@ export default function Footer({ onClick }) {
                 </div>
                 {sections.map((section) => (
                     <div key={section.id} className="footer-section">
-                        <h2>{section.header}</h2>
+                        <h3>{section.header}</h3>
                         <div className="links">
                             {section.links.map((link, index) => (
                                 <Link key={index} to={link.url}>

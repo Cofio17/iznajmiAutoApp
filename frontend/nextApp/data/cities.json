@@ -1,0 +1,132 @@
+[
+    {
+      "id": "1",
+      "name": "Subotica",
+      "slug": "rent-a-car-subotica",
+      "nameVariation":"Subotici",
+      "sectionData": {
+        "header": "Zašto izabrati baš nas?",
+        "steps": [
+          {
+            "id": "01",
+            "title": "Pouzdanost na svakom koraku",
+            "description": "Povezujemo vas isključivo sa proverenim i pouzdanim rent a car agencijama u Subotici, tako da uvek dobijate sigurno i kvalitetno vozilo.",
+            "icon": "shield.svg"
+          },
+          {
+            "id": "02",
+            "title": "Preuzimanje vozila na više lokacija u Subotici",
+            "description": "Birajte između centra, autobuske stanice ili bilo koje lokacije u Subotici – mi ćemo pronaći vozilo najbliže vama za brz početak putovanja.",
+            "icon": "pin.svg"
+          },
+          {
+            "id": "03",
+            "title": "Brza i jednostavna online rezervacija",
+            "description": "Iznajmite auto za manje od 2 minuta! Pregledajte dostupna vozila, izaberite idealno i rezervišite u samo par klikova.",
+            "icon": "sand-clocks.svg"
+          }
+        ]
+      },
+      "sectionZanimljivosti": {
+        "header": "Šta videti u Subotici?",
+        "details": "Ako planirate boravak u subotici, pročitajte naše preporuke kako da najbolje iskoristite vaše vreme",
+        "steps": [
+          {
+            "id": "01",
+            "title": "Palićko jezero",
+            "description": "Na samo 15 minuta vožnje od centra, Palić je idealno mesto za opuštanje uz šetnju pored vode, biciklizam ili uživanje u restoranima sa tradicionalnim jelima."
+          },
+          {
+            "id": "02",
+            "title": "Gradska kuća i Trg slobode",
+            "description": "U samom srcu Subotice nalazi se impozantna secesijska Gradska kuća i prelep Trg slobode, savršen za istraživanje arhitekture i uživanje u kafićima."
+          },
+          {
+            "id": "03",
+            "title": "Segedin, Mađarska",
+            "description": "Iskoristite blizinu granice i za samo 60 minuta vožnje obiđite prelepi Segedin, poznat po termalnim banjama, shopping centrima i bogatoj kuhinji."
+          }
+        ]
+      },
+      "buttons": {
+        "reservation": {
+          "header": "Iznajmi auto u Subotici odmah!",
+          "buttonText": "Pretraži vozila",
+          "id": "search-cars-button",
+          "to": "/rent-a-car?City=Subotica"
+        },
+        "blog": {
+          "header": "Saznaj više o Subotici u našem blogu!",
+          "buttonText": "Pritisni ovde!",
+          "id": "goToBlogButton",
+          "to": "/blog"
+        }
+      }
+    },
+    {
+        "id": "2",
+        "name": "Beograd",
+        "slug": "rent-a-car-beograd",
+        "nameVariation":"Beogradu",
+        "sectionData": {
+          "header": "Zašto izabrati baš nas?",
+          "steps": [
+            {
+              "id": "01",
+              "title": "Pouzdani partneri širom Beograda",
+              "description": "Saradjujemo sa proverenim rent a car agencijama u Beogradu, kako biste uvek imali bezbedno i kvalitetno vozilo na raspolaganju.",
+              "icon": "shield.svg"
+            },
+            {
+              "id": "02",
+              "title": "Fleksibilno preuzimanje vozila",
+              "description": "Preuzmite vozilo na Aerodromu Nikola Tesla, železničkoj stanici ili bilo kojoj lokaciji u Beogradu – brzo i jednostavno.",
+              "icon": "pin.svg"
+            },
+            {
+              "id": "03",
+              "title": "Online rezervacija bez muke",
+              "description": "Rezervišite vozilo u svega par klikova! Naša platforma omogućava brzo pregledanje i izbor automobila koji vam najviše odgovara.",
+              "icon": "sand-clocks.svg"
+            }
+          ]
+        },
+        "sectionZanimljivosti": {
+          "header": "Šta videti u Beogradu?",
+          "details": "Planirate boravak u Beogradu? Pogledajte naše predloge i maksimalno iskoristite svoj boravak.",
+          "steps": [
+            {
+              "id": "01",
+              "title": "Kalemegdan i Beogradska tvrđava",
+              "description": "Uživajte u panoramskom pogledu na ušće Save u Dunav, šetnji kroz park i istorijskim znamenitostima tvrđave."
+            },
+            {
+              "id": "02",
+              "title": "Skadarlija",
+              "description": "Boemska četvrt koja odiše starogradskim šarmom, idealna za večeru uz tamburaše i domaću kuhinju."
+            },
+            {
+              "id": "03",
+              "title": "Ada Ciganlija",
+              "description": "Popularno beogradsko izletište i plaža, savršeno za vožnju bicikla, kupanje ili uživanje u kafićima pored vode."
+            }
+          ]
+        },
+        "buttons": {
+          "reservation": {
+            "header": "Iznajmi auto u Beogradu odmah!",
+            "buttonText": "Pretraži vozila",
+            "id": "search-cars-button",
+            "to": "/rent-a-car?City=Beograd"
+          },
+          "blog": {
+            "header": "Saznaj više o Beogradu u našem blogu!",
+            "buttonText": "Pritisni ovde!",
+            "id": "goToBlogButton",
+            "to": "/blog"
+          }
+        }
+      }
+      
+  ]
+  
