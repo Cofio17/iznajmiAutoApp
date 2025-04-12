@@ -83,7 +83,7 @@ export default function SliderCarousel() {
         autoplay: true,
         autoplaySpeed: 1900,
         cssEase: "linear",
-        nextArrow: <NextArrow className='slick-prev-class' />,
+        nextArrow: <NextArrow />,
         prevArrow: <PrevArrow />,
         responsive: [
             {

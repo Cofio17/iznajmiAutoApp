@@ -1,7 +1,7 @@
-import { StrictMode } from 'react'
+import { StrictMode, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, useLocation } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 //Pages
 import App from './Pages/App.jsx'
@@ -23,6 +23,9 @@ import { AuthProvider } from './Contexts/AuthContext.jsx'
 //Utils
 import ScrollToTop from './utils/ScrollToTop.jsx'
 import ProtectedRoute from './Components/Layout/ProtectedRoute.jsx'
+
+import { ThemeProvider } from '@mui/material'
+import theme from './lib/fontTheme.js'
 
 //loaders
 import { fetchCars } from './loaders/fetchCars.js'
@@ -104,7 +107,9 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <HelmetProvider>
       <AuthProvider>
-        <RouterProvider router={router} />
+        <ThemeProvider theme={theme}>
+          <RouterProvider router={router} />
+        </ThemeProvider>
       </AuthProvider>
     </HelmetProvider>
   </StrictMode>,

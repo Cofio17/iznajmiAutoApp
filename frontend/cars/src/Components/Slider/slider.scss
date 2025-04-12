@@ -109,6 +109,19 @@ h1{
     right: -15px;
 }
 
-.slick-prev:before, .slick-next:before{
-    display: none !important;
+.slick-next::before, .slick-prev::before{
+    content: '';
+}
+
+.slick-prev.active-click:before,
+.slick-next.active-click:before {
+    position: absolute;
+    display: block;
+    content: '';
+    background-color: rgba(128, 128, 128, 0.1);
+    padding: 5px;
+    height: calc(100% + 5px);
+    width: calc(100% + 5px);
+    left: 1px;
+    border-radius: 50%; 
 }

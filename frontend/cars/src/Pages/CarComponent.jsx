@@ -133,7 +133,7 @@ export default function Car() {
                 <div className="container-car-upper">
                     <ImageSlider carData={carData} />
                     <div className='container-car-calendar'>
-                        <div id='price'><p>{carData.pricePerDay}€ / Dan </p></div>
+                        <div id='price'><p className='bold-500'>{carData.pricePerDay}€ / Dan </p></div>
                         {/* fetchDates prop receives a fuctions that handles the selected dates and brings back to the this/parent component */}
                         <CalendarComponent calendarId={carData.calendarId} fetchDates={handleSelectedData} carId={params.carId} />
                         {errorText && <p>{errorText}</p>}
